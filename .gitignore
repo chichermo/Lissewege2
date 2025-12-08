@@ -29,3 +29,5 @@ build/
 .env
 .env.local
 
+# API Keys (opcional - descomenta si quieres mantener las keys privadas)
+# scripts/api-config.js

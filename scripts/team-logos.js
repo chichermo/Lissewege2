@@ -1,0 +1,141 @@
+// ============================================
+// TEAM LOGOS MANAGEMENT - REAL LOGOS
+// ============================================
+
+// Map of team names to their logo URLs
+// 4e Provinciale C West-Vlaanderen teams
+const TEAM_LOGOS = {
+    // RFC Lissewege
+    'RFC Lissewege': '/images/logos/100b.jpeg',
+    'R.F.C. Lissewege': '/images/logos/100b.jpeg',
+    
+    // Equipos de la 4e Provinciale C - Agregar logos cuando estén disponibles
+    // 4e Provinciale C teams - Add logos when available
+    'KVV Aartrijke': '/images/logos/teams/kvv-aartrijke.png',
+    'KFC Damme': '/images/logos/teams/kfc-damme.png',
+    'VV Eendracht Brugge': '/images/logos/teams/vv-eendracht-brugge.png',
+    'KSK Steenbrugge': '/images/logos/teams/ksk-steenbrugge.png',
+    'KFC Sint-Joris Sportief': '/images/logos/teams/kfc-sint-joris.png',
+    'K. Excelsior Zedelgem B': '/images/logos/teams/excelsior-zedelgem.png',
+    'KSKD Hertsberge': '/images/logos/teams/kskd-hertsberge.png',
+    'VVC Beernem B': '/images/logos/teams/vvc-beernem.png',
+    'VKSO Zerkegem B': '/images/logos/teams/vkso-zerkegem.png',
+    'KFC Heist B': '/images/logos/teams/kfc-heist.png',
+    'FC Zeebrugge': '/images/logos/teams/fc-zeebrugge.png',
+    'KSV Bredene B': '/images/logos/teams/ksv-bredene.png',
+    'VC Vamos Zandvoorde': '/images/logos/teams/vc-vamos-zandvoorde.png',
+};
+
+// Function to generate placeholder logo with team initials
+function generatePlaceholderLogo(teamName) {
+    // Extraer iniciales del nombre del equipo
+    const words = teamName.split(' ').filter(word => {
+        // Filtrar palabras comunes que no queremos en las iniciales
+        const skipWords = ['FC', 'KFC', 'KVV', 'VV', 'VC', 'KSK', 'KSKD', 'VKSO', 'VVC', 'KSV', 'K.', 'B'];
+        return !skipWords.includes(word.toUpperCase());
+    });
+    
+    let initials = '';
+    if (words.length >= 2) {
+        // Tomar primera letra de las dos primeras palabras significativas
+        initials = words[0].charAt(0).toUpperCase() + words[1].charAt(0).toUpperCase();
+    } else if (words.length === 1) {
+        // Si solo hay una palabra, tomar las dos primeras letras
+        initials = words[0].substring(0, 2).toUpperCase();
+    } else {
+        // Fallback: tomar las primeras dos letras del nombre completo
+        initials = teamName.replace(/[^A-Za-z]/g, '').substring(0, 2).toUpperCase();
+    }
+    
+    // Crear un SVG con las iniciales como data URL
+    const svg = `<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="grad-${teamName.replace(/[^A-Za-z0-9]/g, '')}" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#1a7a4a;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#0d4d2e;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        <circle cx="40" cy="40" r="38" fill="url(#grad-${teamName.replace(/[^A-Za-z0-9]/g, '')})" stroke="#fff" stroke-width="2"/>
+        <text x="40" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">${initials}</text>
+    </svg>`;
+    
+    // Convertir SVG a data URL
+    return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg)));
+}
+
+// Function to get team logo
+function getTeamLogo(teamName) {
+    // Check exact match first
+    if (TEAM_LOGOS[teamName] && TEAM_LOGOS[teamName] !== null) {
+        return TEAM_LOGOS[teamName];
+    }
+
+    // Check case-insensitive
+    const lowerName = teamName.toLowerCase();
+    for (const [key, value] of Object.entries(TEAM_LOGOS)) {
+        if (key.toLowerCase() === lowerName && value !== null) {
+            return value;
+        }
+    }
+
+    // Try to find logo file in teams directory
+    const sanitizedName = teamName.toLowerCase()
+        .replace(/[^a-z0-9]/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    
+    // Try multiple extensions
+    const extensions = ['.png', '.jpg', '.jpeg', '.svg'];
+    for (const ext of extensions) {
+        const logoPath = `/images/logos/teams/${sanitizedName}${ext}`;
+        // Return path - browser will handle 404 and trigger onerror
+        return logoPath;
+    }
+
+    // Generate placeholder with initials as fallback
+    return generatePlaceholderLogo(teamName);
+}
+
+// Function to update team logos in DOM
+function updateTeamLogos() {
+    // Update match cards
+    document.querySelectorAll('.match-card-team-logo, .team-logo-placeholder').forEach(logoEl => {
+        const teamName = logoEl.closest('.match-card-team, .team-home, .team-away')?.querySelector('.team-name, .match-card-team-name')?.textContent;
+        if (teamName) {
+            const logoUrl = getTeamLogo(teamName.trim());
+            if (logoEl.tagName === 'IMG') {
+                logoEl.src = logoUrl;
+            } else {
+                // Replace icon with img
+                const img = document.createElement('img');
+                img.src = logoUrl;
+                img.alt = `${teamName} logo`;
+                img.className = 'team-logo-img';
+                logoEl.replaceWith(img);
+            }
+        }
+    });
+
+    // Update standings table
+    document.querySelectorAll('.standings-table tbody tr').forEach(row => {
+        const teamName = row.querySelector('td:nth-child(2)')?.textContent;
+        if (teamName) {
+            const logoUrl = getTeamLogo(teamName.trim());
+            const firstCell = row.querySelector('td:first-child');
+            if (firstCell && !firstCell.querySelector('img')) {
+                const img = document.createElement('img');
+                img.src = logoUrl;
+                img.alt = `${teamName} logo`;
+                img.className = 'standings-team-logo';
+                firstCell.appendChild(img);
+            }
+        }
+    });
+}
+
+// Export
+window.getTeamLogo = getTeamLogo;
+window.generatePlaceholderLogo = generatePlaceholderLogo;
+window.updateTeamLogos = updateTeamLogos;
+window.TEAM_LOGOS = TEAM_LOGOS;
+

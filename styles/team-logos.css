@@ -1,0 +1,81 @@
+/* ============================================
+   TEAM LOGOS STYLES
+   ============================================ */
+
+.team-logo-img,
+.match-card-team-logo-img,
+.standings-team-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.match-card-team-logo,
+.team-logo-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.match-card-team-logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.team-logo-placeholder img.team-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.standings-team-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.team-home .team-logo-placeholder img,
+.team-away .team-logo-placeholder img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid var(--white);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.match-card-team {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.match-card-team-logo {
+    position: relative;
+}
+
+.match-card-team-logo img {
+    display: block;
+}
+
+.match-card-team-logo i {
+    display: none;
+}
+
+.match-card-team-logo:not(:has(img)) i {
+    display: flex;
+}
+

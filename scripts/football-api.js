@@ -6,95 +6,116 @@
 const API_FOOTBALL_KEY = 'YOUR_API_KEY'; // You'll need to get a free API key
 const API_FOOTBALL_BASE = 'https://api.football-data.org/v4';
 
-// For Belgium, we'll use mock data structure that can be replaced with real API
+// REAL DATA - 4e Provinciale C West-Vlaanderen 2025/2026
 class FootballAPI {
     constructor() {
         this.teamId = null; // RFC Lissewege team ID when available
         this.leagueId = null; // Belgium league ID
+        this.competition = '4e Provinciale C West-Vlaanderen';
     }
 
-    // Mock data structure - Replace with real API calls
+    // REAL DATA - 4e Provinciale C West-Vlaanderen 2025/2026
     async getNextMatch() {
-        // In production, this would be: fetch(`${API_FOOTBALL_BASE}/teams/${this.teamId}/matches?status=SCHEDULED&limit=1`)
+        // Próximo partido real: 13/12/2025 RFC Lissewege vs FC Zeebrugge
         return {
             homeTeam: 'RFC Lissewege',
-            awayTeam: 'Tegenstander FC',
-            date: '2025-12-07',
-            time: '14:00',
-            category: 'U13',
+            awayTeam: 'FC Zeebrugge',
+            date: '2025-12-13',
+            time: '19:00',
+            category: '4e Provinciale C',
             venue: 'home',
             address: 'Pol Dhondtstraat 70, 8380 Lissewege',
-            competition: 'Jeugdcompetitie'
+            competition: '4e Provinciale C West-Vlaanderen'
         };
     }
 
     async getLeagueStandings() {
-        // Mock data - Replace with real API
+        // Real data - RFC Lissewege está en posición 8
         return {
-            position: 3,
+            position: 8,
             team: 'RFC Lissewege',
-            played: 15,
-            won: 10,
+            played: 13,
+            won: 6,
             drawn: 3,
-            lost: 2,
-            points: 33
+            lost: 4,
+            goalsFor: 41,
+            goalsAgainst: 24,
+            points: 21
         };
     }
 
     async getUpcomingMatches(count = 10) {
-        // Mock data - Replace with real API
+        // REAL DATA - Próximos partidos 4e Provinciale C West-Vlaanderen 2025/2026
         return [
             {
-                date: '2025-12-07',
-                time: '14:00',
-                category: 'U13',
+                date: '2025-12-13',
+                time: '19:00',
+                category: '4e Provinciale C',
                 homeTeam: 'RFC Lissewege',
-                awayTeam: 'Tegenstander FC',
+                awayTeam: 'FC Zeebrugge',
                 venue: 'home',
                 address: 'Pol Dhondtstraat 70, 8380 Lissewege'
             },
             {
-                date: '2025-12-10',
-                time: '18:00',
-                category: 'Training',
+                date: '2026-01-18',
+                time: '15:00',
+                category: '4e Provinciale C',
                 homeTeam: 'RFC Lissewege',
-                awayTeam: 'Alle Teams',
+                awayTeam: 'VKSO Zerkegem B',
                 venue: 'home',
                 address: 'Pol Dhondtstraat 70, 8380 Lissewege'
             },
             {
-                date: '2025-12-14',
-                time: '10:00',
-                category: 'U10',
-                homeTeam: 'Vijand FC',
+                date: '2026-01-25',
+                time: '14:30',
+                category: '4e Provinciale C',
+                homeTeam: 'KSK Steenbrugge',
                 awayTeam: 'RFC Lissewege',
                 venue: 'away',
-                address: 'Sportstraat 15, 8000 Brugge'
+                address: 'KSK Steenbrugge Stadion'
             },
             {
-                date: '2025-12-17',
-                time: '19:00',
-                category: 'Event',
+                date: '2026-02-01',
+                time: '15:00',
+                category: '4e Provinciale C',
                 homeTeam: 'RFC Lissewege',
-                awayTeam: 'Clubavond',
-                venue: 'home',
-                address: 'Clubhuis, Pol Dhondtstraat 70'
-            },
-            {
-                date: '2025-12-21',
-                time: '11:00',
-                category: 'U8',
-                homeTeam: 'RFC Lissewege',
-                awayTeam: 'Competitor FC',
+                awayTeam: 'KFC Heist B',
                 venue: 'home',
                 address: 'Pol Dhondtstraat 70, 8380 Lissewege'
             },
             {
-                date: '2025-12-28',
-                time: '18:00',
-                category: 'Training',
+                date: '2026-02-07',
+                time: '19:30',
+                category: '4e Provinciale C',
+                homeTeam: 'KSV Bredene B',
+                awayTeam: 'RFC Lissewege',
+                venue: 'away',
+                address: 'KSV Bredene Stadion'
+            },
+            {
+                date: '2026-02-15',
+                time: '15:00',
+                category: '4e Provinciale C',
                 homeTeam: 'RFC Lissewege',
-                awayTeam: 'Alle Teams',
+                awayTeam: 'VVC Beernem B',
+                venue: 'home',
+                address: 'Pol Dhondtstraat 70, 8380 Lissewege'
+            },
+            {
+                date: '2026-02-22',
+                time: '15:00',
+                category: '4e Provinciale C',
+                homeTeam: 'KVV Aartrijke',
+                awayTeam: 'RFC Lissewege',
+                venue: 'away',
+                address: 'KVV Aartrijke Stadion'
+            },
+            {
+                date: '2026-03-01',
+                time: '15:00',
+                category: '4e Provinciale C',
+                homeTeam: 'RFC Lissewege',
+                awayTeam: 'KFC Damme',
                 venue: 'home',
                 address: 'Pol Dhondtstraat 70, 8380 Lissewege'
             }
@@ -108,7 +129,35 @@ const footballAPI = new FootballAPI();
 // Update Next Match Widget
 async function updateNextMatchWidget() {
     try {
-        const match = await footballAPI.getNextMatch();
+        // Try to get real match first
+        let match = null;
+        if (window.realFootballAPI) {
+            try {
+                const realMatches = await window.realFootballAPI.getUpcomingMatches(null, 1);
+                if (realMatches && realMatches.length > 0) {
+                    const realMatch = realMatches[0];
+                    match = {
+                        homeTeam: realMatch.homeTeam,
+                        homeTeamId: realMatch.homeTeamId,
+                        awayTeam: realMatch.awayTeam,
+                        awayTeamId: realMatch.awayTeamId,
+                        date: realMatch.date,
+                        time: realMatch.time,
+                        category: realMatch.competition || 'Competitie',
+                        venue: realMatch.venue,
+                        address: realMatch.venue === 'home' ? 'Pol Dhondtstraat 70, 8380 Lissewege' : 'Tegenstander Stadion'
+                    };
+                }
+            } catch (error) {
+                console.warn('Real API failed, using fallback:', error);
+            }
+        }
+
+        // Fallback to mock data
+        if (!match) {
+            match = await footballAPI.getNextMatch();
+        }
+
         const matchDate = document.getElementById('matchDate');
         const matchTime = document.getElementById('matchTime');
         const opponentName = document.getElementById('opponentName');
@@ -116,6 +165,8 @@ async function updateNextMatchWidget() {
         const matchCategory = document.getElementById('matchCategory');
         const locationType = document.querySelector('.location-type');
         const locationAddress = document.querySelector('.location-address span');
+        const homeTeamLogo = document.querySelector('.team-home .team-logo-placeholder');
+        const awayTeamLogo = document.querySelector('.team-away .team-logo-placeholder');
 
         if (matchDate) {
             const date = new Date(match.date);
@@ -130,8 +181,9 @@ async function updateNextMatchWidget() {
             matchTime.textContent = match.time;
         }
 
+        const opponent = match.venue === 'home' ? match.awayTeam : match.homeTeam;
         if (opponentName) {
-            opponentName.textContent = match.venue === 'home' ? match.awayTeam : match.homeTeam;
+            opponentName.textContent = opponent;
         }
 
         if (matchCategory) {
@@ -152,6 +204,46 @@ async function updateNextMatchWidget() {
             locationAddress.textContent = match.address || 'Pol Dhondtstraat 70, 8380 Lissewege';
         }
 
+        // Update logos
+        if (window.getTeamLogo) {
+            const homeLogo = window.getTeamLogo(match.homeTeam);
+            const awayLogo = window.getTeamLogo(opponent);
+            
+            if (homeTeamLogo) {
+                const homeImg = document.createElement('img');
+                homeImg.src = homeLogo;
+                homeImg.alt = `${match.homeTeam} logo`;
+                homeImg.className = 'team-logo-img';
+                homeImg.onerror = function() { 
+                    if (window.generatePlaceholderLogo) {
+                        this.src = window.generatePlaceholderLogo(match.homeTeam);
+                        this.onerror = null;
+                    } else {
+                        this.style.display = 'none';
+                    }
+                };
+                homeTeamLogo.innerHTML = '';
+                homeTeamLogo.appendChild(homeImg);
+            }
+            
+            if (awayTeamLogo) {
+                const awayImg = document.createElement('img');
+                awayImg.src = awayLogo;
+                awayImg.alt = `${opponent} logo`;
+                awayImg.className = 'team-logo-img';
+                awayImg.onerror = function() { 
+                    if (window.generatePlaceholderLogo) {
+                        this.src = window.generatePlaceholderLogo(opponent);
+                        this.onerror = null;
+                    } else {
+                        this.style.display = 'none';
+                    }
+                };
+                awayTeamLogo.innerHTML = '';
+                awayTeamLogo.appendChild(awayImg);
+            }
+        }
+
         // Update countdown
         updateMatchCountdown(match.date, match.time);
     } catch (error) {
@@ -162,15 +254,42 @@ async function updateNextMatchWidget() {
 // Update Other Matches
 async function updateOtherMatches() {
     try {
-        const matches = await footballAPI.getUpcomingMatches();
+        // Try to get real matches first
+        let matches = null;
+        if (window.realFootballAPI) {
+            try {
+                matches = await window.realFootballAPI.getUpcomingMatches(null, 10);
+                if (matches) {
+                    // Transform API data to our format
+                    matches = matches.map(m => ({
+                        date: m.date,
+                        time: m.time,
+                        category: m.competition || 'Competitie',
+                        homeTeam: m.homeTeam,
+                        homeTeamId: m.homeTeamId,
+                        awayTeam: m.awayTeam,
+                        awayTeamId: m.awayTeamId,
+                        venue: m.venue,
+                        address: m.venue === 'home' ? 'Pol Dhondtstraat 70, 8380 Lissewege' : 'Tegenstander Stadion'
+                    }));
+                }
+            } catch (error) {
+                console.warn('Real API failed, using fallback:', error);
+            }
+        }
+
+        // Fallback to mock data if API unavailable
+        if (!matches) {
+            matches = await footballAPI.getUpcomingMatches();
+        }
+
         const matchesGrid = document.getElementById('otherMatchesGrid');
-        
         if (!matchesGrid) return;
 
         // Get the first match to exclude it from the list
         const nextMatch = await footballAPI.getNextMatch();
         const otherMatches = matches.filter(m => 
-            !(m.date === nextMatch.date && m.time === nextMatch.time && m.category === nextMatch.category)
+            !(m.date === nextMatch.date && m.time === nextMatch.time)
         );
 
         matchesGrid.innerHTML = '';
@@ -180,6 +299,12 @@ async function updateOtherMatches() {
             const isHome = match.venue === 'home';
             const ourTeam = isHome ? match.homeTeam : match.awayTeam;
             const opponent = isHome ? match.awayTeam : match.homeTeam;
+            const ourTeamId = isHome ? match.homeTeamId : match.awayTeamId;
+            const opponentId = isHome ? match.awayTeamId : match.homeTeamId;
+
+            // Get logos
+            const ourTeamLogo = window.getTeamLogo ? window.getTeamLogo(ourTeam) : (window.generatePlaceholderLogo ? window.generatePlaceholderLogo(ourTeam) : '/images/logos/100b.jpeg');
+            const opponentLogo = window.getTeamLogo ? window.getTeamLogo(opponent) : (window.generatePlaceholderLogo ? window.generatePlaceholderLogo(opponent) : '/images/logos/100b.jpeg');
 
             const matchCard = document.createElement('div');
             matchCard.className = 'match-card';
@@ -193,14 +318,16 @@ async function updateOtherMatches() {
                 </div>
                 <div class="match-card-teams">
                     <div class="match-card-team">
-                        <div class="match-card-team-logo">
+                        <img src="${ourTeamLogo}" alt="${ourTeam} logo" class="match-card-team-logo-img" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${ourTeam}'); this.onerror = null; } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
+                        <div class="match-card-team-logo" style="display: none;">
                             <i class="fas fa-shield-alt"></i>
                         </div>
                         <span class="match-card-team-name ${isHome ? 'home' : ''}">${ourTeam}</span>
                     </div>
                     <div class="match-card-vs">VS</div>
                     <div class="match-card-team">
-                        <div class="match-card-team-logo">
+                        <img src="${opponentLogo}" alt="${opponent} logo" class="match-card-team-logo-img" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${opponent}'); this.onerror = null; } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
+                        <div class="match-card-team-logo" style="display: none;">
                             <i class="fas fa-shield-alt"></i>
                         </div>
                         <span class="match-card-team-name">${opponent}</span>

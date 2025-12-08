@@ -307,6 +307,174 @@
     }
 }
 
+/* Past Match Results Styles */
+.calendar-card-modern.past-match {
+    border-left: 4px solid var(--text-light);
+}
+
+.calendar-card-modern.past-match.win {
+    border-left-color: #10b981;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.calendar-card-modern.past-match.loss {
+    border-left-color: #ef4444;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.calendar-card-modern.past-match.draw {
+    border-left-color: #f59e0b;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.event-type-badge.match.win {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+}
+
+.event-type-badge.match.loss {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.event-type-badge.match.draw {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+}
+
+.event-type-badge.match.upcoming {
+    background: rgba(13, 77, 46, 0.2);
+    color: var(--primary-color);
+}
+
+/* Match Result Display */
+.match-result-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(13, 77, 46, 0.05);
+    border-radius: 12px;
+    margin: 0.5rem 0;
+}
+
+.match-result-team {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    justify-content: center;
+}
+
+.match-result-team:first-child {
+    justify-content: flex-end;
+}
+
+.match-result-team:last-child {
+    justify-content: flex-start;
+}
+
+.match-result-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: var(--white);
+    padding: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.match-result-score {
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--text-color);
+    min-width: 40px;
+    text-align: center;
+}
+
+.match-result-score.winner {
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+.match-result-separator {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+    padding: 0 0.5rem;
+}
+
+/* Upcoming Match Teams Display */
+.match-teams-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(13, 77, 46, 0.05);
+    border-radius: 12px;
+    margin: 0.5rem 0;
+}
+
+.match-team-upcoming {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--dark-color);
+}
+
+.match-team-upcoming:first-child {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.match-team-upcoming:last-child {
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.match-team-logo-small {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: var(--white);
+    padding: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.match-vs-upcoming {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 0.5rem;
+}
+
+.event-category {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin: 0;
+    font-weight: 600;
+}
+
+.event-category i {
+    color: var(--accent-color);
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .calendar-card-modern {
         flex-direction: column;
@@ -325,6 +493,35 @@
 
     .date-month-modern {
         margin-top: 0;
+    }
+
+    .match-result-display {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .match-result-team {
+        width: 100%;
+        justify-content: center !important;
+    }
+
+    .match-result-team:first-child {
+        flex-direction: row-reverse;
+    }
+
+    .match-teams-display {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .match-team-upcoming {
+        width: 100%;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    .match-team-upcoming:first-child {
+        flex-direction: row-reverse;
     }
 }
 

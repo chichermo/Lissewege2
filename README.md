@@ -163,6 +163,37 @@ Las imágenes actualmente usan URLs de Pexels. Puedes reemplazarlas con imágene
 - Edge (últimas versiones)
 - Navegadores móviles modernos
 
+## 🔌 Integración con APIs Reales
+
+El sitio está preparado para conectarse a APIs reales de fútbol para obtener:
+- **Partidos en tiempo real**
+- **Tablas de posiciones actualizadas**
+- **Estadísticas de equipos**
+- **Logos de equipos**
+
+### Configuración de APIs
+
+1. **API-Football (RapidAPI)**
+   - Registro: https://rapidapi.com/api-sports/api/api-football
+   - Tier gratuito: 100 requests/día
+   - Agrega tu API key en `scripts/api-config.js`
+
+2. **Football-Data.org**
+   - Registro: https://www.football-data.org/register
+   - Tier gratuito: 10 requests/minuto
+   - Agrega tu token en `scripts/api-config.js`
+
+Ver `API_SETUP.md` para instrucciones detalladas.
+
+### Logos de Equipos
+
+Para agregar logos reales:
+1. Descarga los logos de los equipos
+2. Guárdalos en `/images/logos/teams/`
+3. Agrega el mapeo en `scripts/team-logos.js`
+
+El sistema intentará obtener logos automáticamente con fallback al logo del club.
+
 ## 📄 Licencia
 
 Este proyecto fue creado para R.F.C. Lissewege.
