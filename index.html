@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="R.F.C. Lissewege - Samen sterk, op naar de overwinning! Voetbalclub in Lissewege, Brugge">
+    <title>R.F.C. Lissewege - Voetbalclub</title>
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/home-animated.css">
+    <link rel="stylesheet" href="styles/buttons.css">
+    <link rel="stylesheet" href="styles/players.css">
+    <link rel="stylesheet" href="styles/matches.css">
+    <link rel="stylesheet" href="styles/pages.css">
+    <link rel="stylesheet" href="styles/calendar-improved.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <img src="images/logos/100b.jpeg" alt="RFC Lissewege Logo" class="sidebar-logo-img">
+                <div class="sidebar-logo-text">
+                    <span class="sidebar-logo-main">RFC</span>
+                    <span class="sidebar-logo-sub">Lissewege 4718</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li><a href="#home" class="sidebar-link active" data-section="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a></li>
+                <li><a href="#club-info" class="sidebar-link" data-section="club-info">
+                    <i class="fas fa-building"></i>
+                    <span>Club Info</span>
+                </a></li>
+                <li><a href="#over-ons" class="sidebar-link" data-section="over-ons">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Over Ons</span>
+                </a></li>
+                <li><a href="#teams" class="sidebar-link" data-section="teams">
+                    <i class="fas fa-users"></i>
+                    <span>Teams</span>
+                </a></li>
+                <li><a href="#spelers" class="sidebar-link" data-section="spelers">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Spelers</span>
+                </a></li>
+                <li><a href="#nieuws" class="sidebar-link" data-section="nieuws">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Nieuws</span>
+                </a></li>
+                <li><a href="#galerij" class="sidebar-link" data-section="galerij">
+                    <i class="fas fa-images"></i>
+                    <span>Galerij</span>
+                </a></li>
+                <li><a href="#kalender" class="sidebar-link" data-section="kalender">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Kalender</span>
+                </a></li>
+                <li><a href="#prijslijst" class="sidebar-link" data-section="prijslijst">
+                    <i class="fas fa-euro-sign"></i>
+                    <span>Prijslijst</span>
+                </a></li>
+                <li><a href="#team" class="sidebar-link" data-section="team">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Team</span>
+                </a></li>
+                <li><a href="#sponsors" class="sidebar-link" data-section="sponsors">
+                    <i class="fas fa-handshake"></i>
+                    <span>Sponsors</span>
+                </a></li>
+                <li><a href="#contact" class="sidebar-link" data-section="contact">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="sidebar-social">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="sidebar-copyright">&copy; 2025 RFC Lissewege</p>
+        </div>
+    </aside>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+
+    <!-- Home Page -->
+    <section id="home" class="page-section active home-animated">
+        <div class="home-background-animation">
+            <canvas id="particlesCanvas"></canvas>
+            <div class="home-gradient-overlay"></div>
+        </div>
+        
+        <div class="home-content-wrapper">
+            <!-- Main Title Animation -->
+            <div class="home-title-section">
+                <div class="home-logo-animated">
+                    <img src="images/logos/100b.jpeg" alt="RFC Lissewege" class="animated-logo">
+                </div>
+                <h1 class="home-main-title">
+                    <span class="title-word" data-word="R.F.C.">R.F.C.</span>
+                    <span class="title-word" data-word="Lissewege">Lissewege</span>
+                </h1>
+                <p class="home-subtitle">"Samen sterk, op naar de overwinning!"</p>
+            </div>
+
+            <!-- Next Match Widget - Featured -->
+            <div class="next-match-widget featured-match">
+                <div class="match-widget-header">
+                    <div class="match-category-badge" id="matchCategory">U13</div>
+                    <div class="match-header-right">
+                        <i class="fas fa-futbol"></i>
+                        <h3>Volgende Wedstrijd</h3>
+                    </div>
+                </div>
+                <div class="match-widget-content" id="nextMatchWidget">
+                    <div class="match-teams">
+                        <div class="team-home">
+                            <div class="team-logo-placeholder">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <span class="team-name">RFC Lissewege</span>
+                        </div>
+                        <div class="match-vs">
+                            <span class="vs-text">VS</span>
+                            <div class="match-datetime">
+                                <span class="match-date" id="matchDate">--/--/----</span>
+                                <span class="match-time" id="matchTime">--:--</span>
+                            </div>
+                        </div>
+                        <div class="team-away">
+                            <div class="team-logo-placeholder">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <span class="team-name" id="opponentName">Tegenstander</span>
+                        </div>
+                    </div>
+                    <div class="match-info-detailed">
+                        <div class="match-location-info">
+                            <div class="location-type" id="locationType">
+                                <i class="fas fa-home"></i>
+                                <span>Thuis</span>
+                            </div>
+                            <div class="location-address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span id="matchLocation">Pol Dhondtstraat 70, 8380 Lissewege</span>
+                            </div>
+                        </div>
+                        <a href="#kalender" class="match-link">Bekijk Kalender <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Matches List -->
+            <div class="other-matches-section">
+                <h3 class="other-matches-title">
+                    <i class="fas fa-calendar-week"></i>
+                    Andere Wedstrijden
+                </h3>
+                <div class="other-matches-grid" id="otherMatchesGrid">
+                    <!-- Matches will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Latest News Carousel -->
+            <div class="news-carousel-section">
+                <div class="carousel-header">
+                    <h3><i class="fas fa-newspaper"></i> Laatste Nieuws</h3>
+                    <a href="#nieuws" class="view-all-link">Alles Bekijken <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="news-carousel" id="newsCarousel">
+                    <div class="news-slide active">
+                        <div class="news-slide-image">
+                            <img src="images/gallery/zomerkamp25.jpeg" alt="Nieuws">
+                        </div>
+                        <div class="news-slide-content">
+                            <span class="news-date">15 Januari 2025</span>
+                            <h4>Nieuw U15 Team voor Seizoen 2025-2026</h4>
+                            <p>RFC Lissewege gaat volgend seizoen normaal van start met een U15 ploeg...</p>
+                            <a href="#nieuws" class="read-more-link">Lees meer <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="news-slide">
+                        <div class="news-slide-image">
+                            <img src="images/gallery/allen 1.jpeg" alt="Nieuws">
+                        </div>
+                        <div class="news-slide-content">
+                            <span class="news-date">10 Januari 2025</span>
+                            <h4>Jeugdspelers Seizoen 2024-2025</h4>
+                            <p>Bekijk onze jeugdspelers van het seizoen 2024-2025...</p>
+                            <a href="#nieuws" class="read-more-link">Lees meer <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" id="prevNews"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                    </div>
+                    <button class="carousel-btn next" id="nextNews"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="home-quick-stats">
+                <div class="quick-stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="stat-value" id="nextMatchCountdown">--</div>
+                    <div class="stat-label">Dagen tot volgende wedstrijd</div>
+                </div>
+                <div class="quick-stat-card">
+                    <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="stat-value" id="leaguePosition">--</div>
+                    <div class="stat-label">Positie in competitie</div>
+                </div>
+                <div class="quick-stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">Actieve Teams</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Club Info Page -->
+    <section id="club-info" class="page-section section club-info-section">
+        <div class="container-fluid">
+            <div class="club-info-hero">
+                <div class="club-info-background">
+                    <img src="images/gallery/achtergrond.jpeg" alt="Background" class="club-bg-image">
+                    <div class="club-overlay"></div>
+                </div>
+                <div class="container">
+                    <div class="club-info-content">
+                        <h1 class="club-info-title">
+                            <span class="title-line">R.F.C. Lissewege</span>
+                            <span class="title-subtitle">"Samen sterk, op naar de overwinning!"</span>
+                        </h1>
+                        <p class="club-info-description">Een dynamische en groeiende voetbalvereniging, gevestigd in het pittoreske dorpje Lissewege. Al sinds 1947 bieden wij jong en oud de mogelijkheid om bij ons te komen voetballen.</p>
+                        <div class="club-info-buttons">
+                            <a href="#contact" class="btn-modern btn-modern-primary">
+                                <span>Word Lid</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="#over-ons" class="btn-modern btn-modern-outline">
+                                <span>Meer Info</span>
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                        <div class="club-info-stats">
+                            <div class="stat-card-modern">
+                                <div class="stat-icon-modern"><i class="fas fa-calendar-alt"></i></div>
+                                <div class="stat-number-modern" data-target="1947">0</div>
+                                <div class="stat-label-modern">Opgericht</div>
+                            </div>
+                            <div class="stat-card-modern">
+                                <div class="stat-icon-modern"><i class="fas fa-hashtag"></i></div>
+                                <div class="stat-number-modern" data-target="4718">0</div>
+                                <div class="stat-label-modern">Club Nummer</div>
+                            </div>
+                            <div class="stat-card-modern">
+                                <div class="stat-icon-modern"><i class="fas fa-users"></i></div>
+                                <div class="stat-number-modern" data-target="6">0</div>
+                                <div class="stat-label-modern">Jeugdteams</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Over Ons Page -->
+    <section id="over-ons" class="page-section section about-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Over Ons</span>
+                <h2 class="section-title">Welkom bij R.F.C. Lissewege</h2>
+                <p class="section-description">Een gepassioneerde en ambitieuze club waar jong en oud zich thuis voelt</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-intro">
+                        <h3>Onze Geschiedenis</h3>
+                        <p>R.F.C. Lissewege is een dynamische en groeiende voetbalvereniging, gevestigd in het pittoreske dorpje Lissewege. <strong>Al sinds 1947</strong> bieden wij jong en oud de mogelijkheid om bij ons te komen voetballen. Onze vereniging staat bekend om haar familiaire sfeer en gezelligheid, maar ook om haar sportieve prestaties.</p>
+                        <p>In de beginjaren speelde de club voornamelijk vriendschappelijke wedstrijden tegen andere lokale teams. Maar de club groeide snel en begon deel te nemen aan officiële competities. Door de jaren heen heeft RFC Lissewege een rijke geschiedenis opgebouwd met verschillende kampioenschappen en promoties.</p>
+                    </div>
+                    <div class="about-cards">
+                        <div class="about-card">
+                            <div class="card-icon">
+                                <i class="fas fa-futbol"></i>
+                            </div>
+                            <h3>Onze Missie</h3>
+                            <p>Vanaf zes jaar oud ben je bij ons welkom om je voetbaltalent te ontwikkelen en te laten zien op het veld. We geloven in het ontwikkelen van zowel technische vaardigheden als karakter en teamspirit.</p>
+                        </div>
+                        <div class="about-card">
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Onze Visie</h3>
+                            <p>Een club waar iedereen zich thuis voelt, ongeacht leeftijd of niveau. We streven naar een positieve en ondersteunende omgeving waar spelers kunnen groeien en hun passie voor voetbal kunnen delen.</p>
+                        </div>
+                        <div class="about-card">
+                            <div class="card-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3>Onze Waarden</h3>
+                            <p>Respect, fair play, teamwork en plezier staan centraal in alles wat we doen. We zijn trots op onze gemeenschap en de band die we hebben opgebouwd door de jaren heen.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <img src="images/logos/Nieuw logo Lissewege.jpeg" alt="RFC Lissewege Logo" class="about-img">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teams Page -->
+    <section id="teams" class="page-section section teams-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Onze Teams</span>
+                <h2 class="section-title">Jeugdteams Seizoen 2024-2025</h2>
+                <p class="section-description">Ontdek onze verschillende leeftijdsgroepen en sluit je aan bij het team dat bij jou past</p>
+            </div>
+            <div class="teams-masonry">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="images/teams/U 07.jpeg" alt="U7 Team">
+                    </div>
+                    <div class="team-card-header">
+                        <span class="team-age">U7</span>
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Mini's</h3>
+                        <p>Voor spelers geboren in 2018-2019. Perfecte start voor jonge voetballers!</p>
+                        <ul class="team-info">
+                            <li><i class="fas fa-calendar"></i> Training: Woensdag 18:00</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Pol Dhondtstraat 70</li>
+                        </ul>
+                    </div>
+                    <div class="team-card-footer">
+                        <a href="#contact" class="btn-new btn-new-small">
+                            <span>Meer Info</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="images/teams/U 08 ok.jpeg" alt="U8 Team">
+                    </div>
+                    <div class="team-card-header">
+                        <span class="team-age">U8</span>
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Benjamins</h3>
+                        <p>Voor spelers geboren in 2017. Ontwikkeling van basisvaardigheden en plezier.</p>
+                        <ul class="team-info">
+                            <li><i class="fas fa-calendar"></i> Training: Woensdag 18:00</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Pol Dhondtstraat 70</li>
+                        </ul>
+                    </div>
+                    <div class="team-card-footer">
+                        <a href="#contact" class="btn-new btn-new-small">
+                            <span>Meer Info</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="images/teams/U 09 ok.jpeg" alt="U9 Team">
+                    </div>
+                    <div class="team-card-header">
+                        <span class="team-age">U9</span>
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Preminiemen</h3>
+                        <p>Voor spelers geboren in 2016. Verder ontwikkelen van techniek en tactiek.</p>
+                        <ul class="team-info">
+                            <li><i class="fas fa-calendar"></i> Training: Woensdag 18:00</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Pol Dhondtstraat 70</li>
+                        </ul>
+                    </div>
+                    <div class="team-card-footer">
+                        <a href="#contact" class="btn-new btn-new-small">
+                            <span>Meer Info</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="images/teams/U 10 ok.jpeg" alt="U10 Team">
+                    </div>
+                    <div class="team-card-header">
+                        <span class="team-age">U10</span>
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Miniemen</h3>
+                        <p>Voor spelers geboren in 2015. Meer competitie en ontwikkeling.</p>
+                        <ul class="team-info">
+                            <li><i class="fas fa-calendar"></i> Training: Woensdag 18:00</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Pol Dhondtstraat 70</li>
+                        </ul>
+                    </div>
+                    <div class="team-card-footer">
+                        <a href="#contact" class="btn-new btn-new-small">
+                            <span>Meer Info</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-card featured">
+                    <div class="team-image">
+                        <img src="images/teams/U 13 b ok.jpeg" alt="U13 Team">
+                    </div>
+                    <div class="team-card-header">
+                        <span class="team-age">U13</span>
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Pupillen</h3>
+                        <p>Voor spelers geboren in 2012-2013. Intensievere training en wedstrijden.</p>
+                        <ul class="team-info">
+                            <li><i class="fas fa-calendar"></i> Training: Woensdag 18:00</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Pol Dhondtstraat 70</li>
+                        </ul>
+                    </div>
+                    <div class="team-card-footer">
+                        <a href="#contact" class="btn-new btn-new-small">
+                            <span>Meer Info</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-card highlight">
+                    <div class="team-card-header">
+                        <span class="team-age">U15</span>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Nieuw Team!</h3>
+                        <p><strong>Seizoen 2025-2026:</strong> We zoeken nog spelers van geboortejaar 2011, 2012 of 2013!</p>
+                        <ul class="team-info">
+                            <li><i class="fas fa-calendar"></i> Start: Seizoen 2025-2026</li>
+                            <li><i class="fas fa-phone"></i> 0477 792 803</li>
+                        </ul>
+                    </div>
+                    <div class="team-card-footer">
+                        <a href="#contact" class="btn-new btn-new-small btn-new-accent">
+                            <span>Aanmelden</span>
+                            <i class="fas fa-user-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spelers Page -->
+    <section id="spelers" class="page-section section players-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Spelers</span>
+                <h2 class="section-title">Onze Spelers</h2>
+                <p class="section-description">Ontmoet alle spelers van onze teams</p>
+            </div>
+            
+            <!-- Team Selector -->
+            <div class="team-selector">
+                <button class="team-select-btn active" data-team="u7">U7</button>
+                <button class="team-select-btn" data-team="u8">U8</button>
+                <button class="team-select-btn" data-team="u9">U9</button>
+                <button class="team-select-btn" data-team="u10">U10</button>
+                <button class="team-select-btn" data-team="u13">U13</button>
+                <button class="team-select-btn" data-team="u15">U15</button>
+            </div>
+
+            <!-- Players Grid by Team -->
+            <div class="players-container">
+                <!-- U7 Team Players -->
+                <div class="players-team active" id="team-u7">
+                    <h3 class="team-players-title">U7 Team - Mini's</h3>
+                    <div class="players-grid">
+                        <!-- Players will be added here when you provide photos and names -->
+                        <div class="player-card placeholder">
+                            <div class="player-photo">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="player-info">
+                                <h4>Speler Naam</h4>
+                                <p>Rugnummer: --</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- U8 Team Players -->
+                <div class="players-team" id="team-u8">
+                    <h3 class="team-players-title">U8 Team - Benjamins</h3>
+                    <div class="players-grid">
+                        <div class="player-card placeholder">
+                            <div class="player-photo">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="player-info">
+                                <h4>Speler Naam</h4>
+                                <p>Rugnummer: --</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- U9 Team Players -->
+                <div class="players-team" id="team-u9">
+                    <h3 class="team-players-title">U9 Team - Preminiemen</h3>
+                    <div class="players-grid">
+                        <div class="player-card placeholder">
+                            <div class="player-photo">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="player-info">
+                                <h4>Speler Naam</h4>
+                                <p>Rugnummer: --</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- U10 Team Players -->
+                <div class="players-team" id="team-u10">
+                    <h3 class="team-players-title">U10 Team - Miniemen</h3>
+                    <div class="players-grid">
+                        <div class="player-card placeholder">
+                            <div class="player-photo">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="player-info">
+                                <h4>Speler Naam</h4>
+                                <p>Rugnummer: --</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- U13 Team Players -->
+                <div class="players-team" id="team-u13">
+                    <h3 class="team-players-title">U13 Team - Pupillen</h3>
+                    <div class="players-grid">
+                        <div class="player-card placeholder">
+                            <div class="player-photo">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="player-info">
+                                <h4>Speler Naam</h4>
+                                <p>Rugnummer: --</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- U15 Team Players -->
+                <div class="players-team" id="team-u15">
+                    <h3 class="team-players-title">U15 Team - Nieuw Team!</h3>
+                    <div class="players-grid">
+                        <div class="player-card placeholder">
+                            <div class="player-photo">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="player-info">
+                                <h4>Speler Naam</h4>
+                                <p>Rugnummer: --</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nieuws Page -->
+    <section id="nieuws" class="page-section section news-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Nieuws</span>
+                <h2 class="section-title">Laatste Nieuws</h2>
+                <p class="section-description">Blijf op de hoogte van alle ontwikkelingen bij R.F.C. Lissewege</p>
+            </div>
+            <div class="news-masonry">
+                <article class="news-card featured-news">
+                    <div class="news-image">
+                        <img src="images/gallery/zomerkamp25.jpeg" alt="U15 Team">
+                        <span class="news-badge">Belangrijk</span>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date"><i class="fas fa-calendar"></i> 15 Januari 2025</span>
+                        <h3>Nieuw U15 Team voor Seizoen 2025-2026</h3>
+                        <p>RFC Lissewege gaat volgend seizoen normaal van start met een U15 ploeg. Hiervoor zoeken we nog enkele spelers van geboortejaar 2011, 2012 of 2013 zodat de kern voldoende ruim is. Heb je interesse, stuur me gerust een privébericht. rfcl@telenet.be of 0477 792 803</p>
+                        <a href="#contact" class="news-link">Lees meer <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="images/gallery/allen 1.jpeg" alt="Jeugdspelers">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date"><i class="fas fa-calendar"></i> 10 Januari 2025</span>
+                        <h3>Jeugdspelers Seizoen 2024-2025</h3>
+                        <p>Bekijk onze jeugdspelers van het seizoen 2024-2025. We zijn trots op alle teams en hun ontwikkeling dit seizoen!</p>
+                        <a href="#teams" class="news-link">Lees meer <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="images/logos/Nieuw logo Lissewege.jpeg" alt="Inschrijvingen">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date"><i class="fas fa-calendar"></i> 5 Januari 2025</span>
+                        <h3>Inschrijvingen Nieuw Seizoen Open</h3>
+                        <p>Het nieuwe voetbalseizoen staat voor de deur en dat betekent dat het tijd is om jullie lidmaatschap bij R.F.C. Lissewege te vernieuwen. Schrijf je snel in!</p>
+                        <a href="#prijslijst" class="news-link">Lees meer <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerij Page -->
+    <section id="galerij" class="page-section section gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Galerij</span>
+                <h2 class="section-title">Momenten Vastgelegd</h2>
+                <p class="section-description">Bekijk de mooiste momenten van onze spelers en teams</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/gallery/allen 1.jpeg" alt="Jeugdspelers RFC Lissewege 2024-2025">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                        <p>Jeugdspelers 2024-2025</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/zomerkamp25.jpeg" alt="Zomerkamp 2025">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                        <p>Zomerkamp 2025</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/teams/U 07.jpeg" alt="U7 Team">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                        <p>U7 Team</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/teams/U 08 ok.jpeg" alt="U8 Team">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                        <p>U8 Team</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/teams/U 09 ok.jpeg" alt="U9 Team">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                        <p>U9 Team</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/teams/U 10 ok.jpeg" alt="U10 Team">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                        <p>U10 Team</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/teams/U 13 b ok.jpeg" alt="U13 Team">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                        <p>U13 Team</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/team/ploeg 1-0.jpeg" alt="Team Foto">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                        <p>Team Foto</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kalender Page -->
+    <section id="kalender" class="page-section section calendar-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Kalender</span>
+                <h2 class="section-title">Komende Evenementen</h2>
+                <p class="section-description">Bekijk alle belangrijke data en evenementen</p>
+            </div>
+            <!-- League Standings Table -->
+            <div class="standings-section">
+                <h3 class="standings-title">
+                    <i class="fas fa-trophy"></i>
+                    Competitie Stand
+                </h3>
+                <div class="standings-table-wrapper">
+                    <table class="standings-table">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Team</th>
+                                <th>P</th>
+                                <th>W</th>
+                                <th>G</th>
+                                <th>V</th>
+                                <th>DV</th>
+                                <th>DT</th>
+                                <th>DS</th>
+                                <th>Ptn</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standingsTableBody">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Calendar Events -->
+            <div class="calendar-events-section">
+                <h3 class="calendar-events-title">
+                    <i class="fas fa-calendar-alt"></i>
+                    Komende Evenementen
+                </h3>
+                <div class="calendar-grid-modern">
+                    <div class="calendar-card-modern">
+                        <div class="calendar-date-modern">
+                            <span class="date-day-modern">07</span>
+                            <span class="date-month-modern">DEC</span>
+                        </div>
+                        <div class="calendar-content-modern">
+                            <div class="event-type-badge match">Wedstrijd</div>
+                            <h3>Wedstrijd U13</h3>
+                            <div class="event-details">
+                                <p class="event-time"><i class="fas fa-clock"></i> 14:00 - 15:30</p>
+                                <p class="event-location"><i class="fas fa-home"></i> Thuis - Pol Dhondtstraat 70, 8380 Lissewege</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calendar-card-modern">
+                        <div class="calendar-date-modern">
+                            <span class="date-day-modern">10</span>
+                            <span class="date-month-modern">DEC</span>
+                        </div>
+                        <div class="calendar-content-modern">
+                            <div class="event-type-badge training">Training</div>
+                            <h3>Training Alle Teams</h3>
+                            <div class="event-details">
+                                <p class="event-time"><i class="fas fa-clock"></i> 18:00 - 19:30</p>
+                                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Pol Dhondtstraat 70, 8380 Lissewege</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calendar-card-modern">
+                        <div class="calendar-date-modern">
+                            <span class="date-day-modern">14</span>
+                            <span class="date-month-modern">DEC</span>
+                        </div>
+                        <div class="calendar-content-modern">
+                            <div class="event-type-badge match">Wedstrijd</div>
+                            <h3>Wedstrijd U10</h3>
+                            <div class="event-details">
+                                <p class="event-time"><i class="fas fa-clock"></i> 10:00 - 11:00</p>
+                                <p class="event-location"><i class="fas fa-plane"></i> Uit - Tegenstander FC, Sportstraat 15, 8000 Brugge</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calendar-card-modern">
+                        <div class="calendar-date-modern">
+                            <span class="date-day-modern">17</span>
+                            <span class="date-month-modern">DEC</span>
+                        </div>
+                        <div class="calendar-content-modern">
+                            <div class="event-type-badge event">Evenement</div>
+                            <h3>Clubavond</h3>
+                            <div class="event-details">
+                                <p class="event-time"><i class="fas fa-clock"></i> 19:00 - 22:00</p>
+                                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Clubhuis, Pol Dhondtstraat 70</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calendar-card-modern">
+                        <div class="calendar-date-modern">
+                            <span class="date-day-modern">21</span>
+                            <span class="date-month-modern">DEC</span>
+                        </div>
+                        <div class="calendar-content-modern">
+                            <div class="event-type-badge match">Wedstrijd</div>
+                            <h3>Wedstrijd U8</h3>
+                            <div class="event-details">
+                                <p class="event-time"><i class="fas fa-clock"></i> 11:00 - 12:00</p>
+                                <p class="event-location"><i class="fas fa-home"></i> Thuis - Pol Dhondtstraat 70, 8380 Lissewege</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calendar-card-modern">
+                        <div class="calendar-date-modern">
+                            <span class="date-day-modern">28</span>
+                            <span class="date-month-modern">DEC</span>
+                        </div>
+                        <div class="calendar-content-modern">
+                            <div class="event-type-badge training">Training</div>
+                            <h3>Training Alle Teams</h3>
+                            <div class="event-details">
+                                <p class="event-time"><i class="fas fa-clock"></i> 18:00 - 19:30</p>
+                                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Pol Dhondtstraat 70, 8380 Lissewege</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prijslijst Page -->
+    <section id="prijslijst" class="page-section section pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Prijslijst</span>
+                <h2 class="section-title">Lidmaatschap & Producten</h2>
+                <p class="section-description">Het nieuwe voetbalseizoen staat voor de deur. Vernieuw je lidmaatschap nu!</p>
+            </div>
+            <div class="pricing-staggered">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Jeugdlidmaatschap</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">€200</span>
+                            <span class="price-period">per seizoen</span>
+                        </div>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Toegang tot alle trainingen</li>
+                            <li><i class="fas fa-check"></i> Deelname aan wedstrijden</li>
+                            <li><i class="fas fa-check"></i> Verzekering</li>
+                            <li><i class="fas fa-check"></i> Wedstrijdshirt (bruikleen)</li>
+                            <li><i class="fas fa-check"></i> Verschillende activiteiten</li>
+                        </ul>
+                        <a href="#contact" class="btn-new btn-new-block btn-new-accent">
+                            <span>Word Lid</span>
+                            <i class="fas fa-user-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Trainingspak</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">Op aanvraag</span>
+                        </div>
+                    </div>
+                    <div class="pricing-body">
+                        <p class="pricing-description">Een trainingspak is een comfortabel en sportief kledingstuk dat bestaat uit een trainingsjasje en een bijpassende trainingsbroek.</p>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Clublogo</li>
+                            <li><i class="fas fa-check"></i> Hoge kwaliteit</li>
+                            <li><i class="fas fa-check"></i> Verschillende maten</li>
+                        </ul>
+                        <a href="#contact" class="btn-new btn-new-block btn-new-outline">
+                            <span>Vraag Aan</span>
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Wedstrijdshirt</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">Bruikleen</span>
+                        </div>
+                    </div>
+                    <div class="pricing-body">
+                        <p class="pricing-description">Het wedstrijdshirt was het symbool van trots en teamgeest tijdens elke wedstrijd. Beschikbaar via bruikleen bij lidmaatschap.</p>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Beschikbaar via bruikleen</li>
+                            <li><i class="fas fa-check"></i> Professionele kwaliteit</li>
+                            <li><i class="fas fa-check"></i> Clublogo</li>
+                        </ul>
+                        <a href="#contact" class="btn-new btn-new-block btn-new-outline">
+                            <span>Meer Info</span>
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Voetbalschoenen</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">Zelf aankopen</span>
+                        </div>
+                    </div>
+                    <div class="pricing-body">
+                        <p class="pricing-description">De nieuwe voetbalschoenen zijn niet alleen stijlvol, maar bieden ook optimale grip en ondersteuning op het veld.</p>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-info-circle"></i> Zelf aankopen</li>
+                            <li><i class="fas fa-check"></i> Optimale grip</li>
+                            <li><i class="fas fa-check"></i> Verschillende merken</li>
+                        </ul>
+                        <a href="#contact" class="btn-new btn-new-block btn-new-outline">
+                            <span>Advies</span>
+                            <i class="fas fa-comments"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Clubtas</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">Op aanvraag</span>
+                        </div>
+                    </div>
+                    <div class="pricing-body">
+                        <p class="pricing-description">Clubtas is een handige en veelzijdige tas voor sportclubs en verenigingen om hun spullen georganiseerd en makkelijk mee te nemen.</p>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Clublogo</li>
+                            <li><i class="fas fa-check"></i> Ruime capaciteit</li>
+                            <li><i class="fas fa-check"></i> Hoge kwaliteit</li>
+                        </ul>
+                        <a href="#contact" class="btn-new btn-new-block btn-new-outline">
+                            <span>Vraag Aan</span>
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Trainingssokken</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">Op aanvraag</span>
+                        </div>
+                    </div>
+                    <div class="pricing-body">
+                        <p class="pricing-description">Trainingssokken zijn speciaal ontworpen voor optimale ondersteuning en comfort tijdens het sporten.</p>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Clublogo</li>
+                            <li><i class="fas fa-check"></i> Comfortabel</li>
+                            <li><i class="fas fa-check"></i> Verschillende maten</li>
+                        </ul>
+                        <a href="#contact" class="btn-new btn-new-block btn-new-outline">
+                            <span>Vraag Aan</span>
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Page -->
+    <section id="team" class="page-section section team-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Ons Team</span>
+                <h2 class="section-title">Ontmoet Ons Team</h2>
+                <p class="section-description">De mensen achter R.F.C. Lissewege</p>
+            </div>
+            <div class="team-asymmetric">
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="images/team/johan.jpeg" alt="Johan">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Johan</h3>
+                        <p class="member-role">Trainer</p>
+                        <p class="member-description">Onze trainers zijn gepassioneerde en ervaren voetballers die hun kennis en vaardigheden graag delen met onze leden. Ze zijn geduldig, motiverend en weten hoe ze het beste uit spelers kunnen halen.</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="images/team/jenko.jpeg" alt="Jenko">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Jenko</h3>
+                        <p class="member-role">Trainer</p>
+                        <p class="member-description">Onze trainers zijn gepassioneerde en ervaren voetballers die hun kennis en vaardigheden graag delen met onze leden. Ze zijn geduldig, motiverend en weten hoe ze het beste uit spelers kunnen halen.</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="images/team/dieter.jpeg" alt="Dieter">
+                        <div class="member-overlay">
+                            <div class="member-social">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Dieter</h3>
+                        <p class="member-role">Bestuurslid</p>
+                        <p class="member-description">Onze bestuursleden zijn betrokken en toegewijde vrijwilligers die hun steentje bijdragen aan de club. Ze nemen beslissingen over de toekomst van de club en zorgen voor de financiële gezondheid.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="team-group-photos">
+                <div class="group-photo-card">
+                    <img src="images/team/ploeg 1-0.jpeg" alt="Team Foto 1">
+                </div>
+                <div class="group-photo-card">
+                    <img src="images/team/ploeg 2.jpeg" alt="Team Foto 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Page -->
+    <section id="sponsors" class="page-section section sponsors-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Sponsors</span>
+                <h2 class="section-title">Onze Sponsors</h2>
+                <p class="section-description">Met dank aan onze trouwe partners</p>
+            </div>
+            <div class="sponsors-grid-original">
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/Bossy.jpeg" alt="ISUYT BJORN / Bossypain" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/Jovado.jpeg" alt="KOFFIE JOVADO" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/LOGO tcd.jpeg" alt="KS CONSTRUCT" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/logo dimitri.jpeg" alt="COOPMAN DIMITRI" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/Den ouden toren.jpeg" alt="Café Den Ouden Toren" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/1 dauwens-5.jpeg" alt="SCHILDERWERKEN DAUWENS" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/blauwe toren klein.jpeg" alt="DE NIEUWE BLAUWE TOREN" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/voetbalschool_Devriendt_Logo-04.jpeg" alt="VOETBALSCHOOL DEVRIENDT-LEBEIN" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/max nieuw.jpeg" alt="MAX' DAK- EN SCHRIJNWERKEN" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/jenko  terdoest.jpeg" alt="Family Tradition / Hostellerie Ter Doest" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/Logo_Staelen_Nick_opt-768x513.png" alt="Staelen Nick" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/de bolle.jpeg" alt="Cafe De Bolle" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/opticlean.jpeg" alt="RUITENWASSERIJ BVBA OPTI-CLEAN" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/LOGO FRS (003).jpeg" alt="Flanders Road Services" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/Logo_Contrast_Interieur.png" alt="CONTRAST" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/22 SavelVDB_WitTransparant (002)-4.jpeg" alt="SAVELS - VDB" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/blikvanger.jpeg" alt="Blikvanger BY MAENHOUT PHOTOGRAPHY" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/LOGO tcd.jpeg" alt="CEDRIC DELLEVOET" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/BG_Sleutel-Logo-2.png" alt="bg" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/bistro de kip.jpeg" alt="De Kip" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/23 Lissewege Express.jpeg" alt="Lissewege Express" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/panos.jpeg" alt="Panos" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/ecs.jpeg" alt="ECS Transport" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/26 de coif.jpeg" alt="Coiffeur de CoisDe Haan" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/bikeworld.jpeg" alt="BIKE WORLD" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/D Verheye-3.jpeg" alt="VERHEYE DANNY KRAANWERKEN" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/bella.jpeg" alt="BellaDerma" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/tropicana-3.jpeg" alt="Tropicana fruitsap" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/logo bobo-s land (002).jpeg" alt="bobosland" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/passeviet-logo.jpeg" alt="Passeviet" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/27 ASCD zond achter.jpeg" alt="tennis - padel duinbergen" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/audry vaesen.jpeg" alt="AUDREY VAESEN" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/Onyx.jpeg" alt="ONYX permanente make-up" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/simon santos.jpeg" alt="Transport Simon-Santos" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/Delreu.jpeg" alt="OPTIEK DELRUE" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/Luna VB.jpeg" alt="Luna Beauty Care" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/Kimberly.jpeg" alt="Passion NAILS & BEAUTY Kimberly Lootens" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/t putje.jpeg" alt="Bakkerij 't putje" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/Kenzie.jpeg" alt="Kenzie" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item">
+                    <div class="sponsor-logo-container">
+                        <img src="images/sponsors/Martens-Talitha-crew-2019-6zww-40x60.jpeg" alt="Martens Talitha" class="sponsor-image">
+                    </div>
+                </div>
+                <div class="sponsor-logo-item sponsor-cta-card">
+                    <div class="sponsor-logo-container">
+                        <div class="sponsor-logo-content gradient-bg">
+                            <i class="fas fa-handshake"></i>
+                            <span class="sponsor-name white-text">Word Sponsor</span>
+                            <span class="sponsor-desc white-text">Neem contact op</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sponsor-cta">
+                <p>Wil je sponsor worden van R.F.C. Lissewege?</p>
+                <a href="#contact" class="btn-new btn-new-accent">
+                    <span>Neem Contact Op</span>
+                    <i class="fas fa-paper-plane"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page-section section contact-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Contact</span>
+                <h2 class="section-title">Neem Contact Op</h2>
+                <p class="section-description">We staan altijd klaar om je vragen te beantwoorden</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Bezoek Ons</h3>
+                        <p>Pol Dhondtstraat 70<br>8380 Lissewege<br>Brugge</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Bel Ons</h3>
+                        <p><a href="tel:0477792803">0477 792 803</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>E-mail</h3>
+                        <p><a href="mailto:rfcl@telenet.be">rfcl@telenet.be</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <h3>Social Media</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Naam *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefoon</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Onderwerp *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Selecteer onderwerp</option>
+                                <option value="lidmaatschap">Lidmaatschap</option>
+                                <option value="training">Training</option>
+                                <option value="sponsoring">Sponsoring</option>
+                                <option value="algemeen">Algemeen</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Bericht *</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-new btn-new-block btn-new-accent">
+                            <span>Verstuur Bericht</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Abonneer u op onze nieuwsbrief</h2>
+                <p>Blijf op de hoogte van alle nieuws en evenementen</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="E-mailadres" required>
+                    <button type="submit" class="btn-new btn-new-accent">
+                        <span>Sturen</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>R.F.C. Lissewege</h3>
+                    <p>"Samen sterk, op naar de overwinning!"</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Snelle Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#over-ons">Over Ons</a></li>
+                        <li><a href="#teams">Teams</a></li>
+                        <li><a href="#nieuws">Nieuws</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Informatie</h4>
+                    <ul>
+                        <li><a href="#prijslijst">Prijslijst</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#sponsors">Sponsors</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Pol Dhondtstraat 70, 8380 Lissewege</li>
+                        <li><i class="fas fa-phone"></i> 0477 792 803</li>
+                        <li><i class="fas fa-envelope"></i> rfcl@telenet.be</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 R.F.C. Lissewege. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+    </main>
+
+    <script src="scripts/particles.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/football-api.js"></script>
+    <script src="scripts/standings.js"></script>
+</body>
+</html>
+

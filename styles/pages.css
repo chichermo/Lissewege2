@@ -1,0 +1,35 @@
+/* ============================================
+   PAGE SYSTEM - SINGLE PAGE APP STYLE
+   ============================================ */
+.page-section {
+    display: none !important;
+    min-height: 100vh;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    animation: fadeIn 0.5s ease;
+    position: relative;
+}
+
+.page-section.active {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main-content {
+    position: relative;
+}
+

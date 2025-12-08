@@ -1,0 +1,171 @@
+/* ============================================
+   NEW BUTTON STYLES - UNIQUE DESIGN
+   ============================================ */
+.btn-modern,
+.btn-new {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-modern span,
+.btn-new span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-modern i,
+.btn-new i {
+    position: relative;
+    z-index: 2;
+    transition: var(--transition);
+}
+
+/* Primary Button - Geometric Style */
+.btn-modern-primary,
+.btn-new-accent {
+    background: var(--gradient-accent);
+    color: var(--white);
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+    clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+.btn-modern-primary::before,
+.btn-new-accent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-modern-primary:hover::before,
+.btn-new-accent:hover::before {
+    left: 100%;
+}
+
+.btn-modern-primary:hover,
+.btn-new-accent:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.6);
+}
+
+.btn-modern-primary:hover i,
+.btn-new-accent:hover i {
+    transform: translateX(5px) rotate(15deg);
+}
+
+/* Outline Button */
+.btn-modern-outline,
+.btn-new-outline {
+    background: transparent;
+    color: var(--primary-color);
+    border: 3px solid var(--primary-color);
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+    position: relative;
+}
+
+.btn-modern-outline::before,
+.btn-new-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--gradient-primary);
+    transition: width 0.4s ease;
+    z-index: 0;
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+}
+
+.btn-modern-outline:hover::before,
+.btn-new-outline:hover::before {
+    width: 100%;
+}
+
+.btn-modern-outline:hover,
+.btn-new-outline:hover {
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(13, 77, 46, 0.3);
+}
+
+.btn-modern-outline:hover i,
+.btn-new-outline:hover i {
+    transform: translateX(5px);
+}
+
+/* Small Buttons */
+.btn-new-small {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+}
+
+/* Block Buttons */
+.btn-new-block {
+    width: 100%;
+    display: flex;
+}
+
+/* Button Sizes */
+.btn-modern-large {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+/* Special Effects */
+.btn-modern-primary::after,
+.btn-new-accent::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-modern-primary:active::after,
+.btn-new-accent:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Disabled State */
+.btn-modern:disabled,
+.btn-new:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .btn-modern,
+    .btn-new {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
