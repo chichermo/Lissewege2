@@ -1,5 +1,5 @@
 /* ============================================
-   NEW BUTTON STYLES - UNIQUE DESIGN
+   BUTTON STYLES - PREMIUM MODERN DESIGN
    ============================================ */
 .btn-modern,
 .btn-new {
@@ -7,41 +7,44 @@
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    padding: 1rem 2rem;
+    padding: 1.1rem 2.5rem;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     border: none;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
     position: relative;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 10px;
     font-family: 'Poppins', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.3px;
+    background: transparent;
+    white-space: nowrap;
 }
 
 .btn-modern span,
 .btn-new span {
     position: relative;
     z-index: 2;
+    transition: transform 0.25s ease;
 }
 
 .btn-modern i,
 .btn-new i {
     position: relative;
     z-index: 2;
-    transition: var(--transition);
+    transition: transform 0.25s ease;
+    font-size: 0.95em;
 }
 
-/* Primary Button - Geometric Style */
+/* Primary Button - Premium Gradient */
 .btn-modern-primary,
 .btn-new-accent {
-    background: var(--gradient-accent);
+    background: var(--gradient-primary);
     color: var(--white);
-    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
-    clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+    box-shadow: 0 4px 14px rgba(13, 77, 46, 0.25);
+    border: none;
 }
 
 .btn-modern-primary::before,
@@ -49,37 +52,48 @@
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .btn-modern-primary:hover::before,
 .btn-new-accent:hover::before {
-    left: 100%;
+    opacity: 1;
 }
 
 .btn-modern-primary:hover,
 .btn-new-accent:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(13, 77, 46, 0.35);
+}
+
+.btn-modern-primary:hover span,
+.btn-new-accent:hover span {
+    transform: translateX(2px);
 }
 
 .btn-modern-primary:hover i,
 .btn-new-accent:hover i {
-    transform: translateX(5px) rotate(15deg);
+    transform: translateX(4px);
 }
 
-/* Outline Button */
+.btn-modern-primary:active,
+.btn-new-accent:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(13, 77, 46, 0.25);
+}
+
+/* Outline Button - Clean & Elegant */
 .btn-modern-outline,
 .btn-new-outline {
-    background: transparent;
+    background: var(--white);
     color: var(--primary-color);
-    border: 3px solid var(--primary-color);
-    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
-    position: relative;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 2px 8px rgba(13, 77, 46, 0.1);
 }
 
 .btn-modern-outline::before,
@@ -91,9 +105,8 @@
     width: 0;
     height: 100%;
     background: var(--gradient-primary);
-    transition: width 0.4s ease;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 0;
-    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
 }
 
 .btn-modern-outline:hover::before,
@@ -104,19 +117,28 @@
 .btn-modern-outline:hover,
 .btn-new-outline:hover {
     color: var(--white);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(13, 77, 46, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(13, 77, 46, 0.2);
+    border-color: var(--primary-color);
 }
 
+.btn-modern-outline:hover span,
+.btn-new-outline:hover span,
 .btn-modern-outline:hover i,
 .btn-new-outline:hover i {
-    transform: translateX(5px);
+    transform: translateX(2px);
+}
+
+.btn-modern-outline:active,
+.btn-new-outline:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(13, 77, 46, 0.1);
 }
 
 /* Small Buttons */
 .btn-new-small {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.85rem;
+    padding: 0.7rem 1.75rem;
+    font-size: 0.875rem;
 }
 
 /* Block Buttons */
@@ -127,29 +149,8 @@
 
 /* Button Sizes */
 .btn-modern-large {
-    padding: 1.25rem 2.5rem;
-    font-size: 1.1rem;
-}
-
-/* Special Effects */
-.btn-modern-primary::after,
-.btn-new-accent::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.btn-modern-primary:active::after,
-.btn-new-accent:active::after {
-    width: 300px;
-    height: 300px;
+    padding: 1.25rem 3rem;
+    font-size: 1.05rem;
 }
 
 /* Disabled State */
@@ -160,12 +161,23 @@
     pointer-events: none;
 }
 
+/* Focus States for Accessibility */
+.btn-modern:focus-visible,
+.btn-new:focus-visible {
+    outline: 3px solid rgba(13, 77, 46, 0.3);
+    outline-offset: 2px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .btn-modern,
     .btn-new {
-        padding: 0.875rem 1.5rem;
+        padding: 0.95rem 2rem;
         font-size: 0.9rem;
     }
+    
+    .btn-new-small {
+        padding: 0.65rem 1.5rem;
+        font-size: 0.85rem;
+    }
 }
-
