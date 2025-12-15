@@ -41,25 +41,41 @@ class VoetbalInBelgieAPI {
             // Construir URL según estructura de voetbalinbelgie.be
             const url = `${this.apiUrl}/competities/${this.season}/${province}/${gender}/${division}/standings`;
             
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            });
+            // Intentar fetch con manejo silencioso de errores CORS
+            let response;
+            try {
+                response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    mode: 'cors'
+                });
+            } catch (fetchError) {
+                // Error de CORS o red - usar datos de respaldo silenciosamente
+                return this.getFallbackStandings();
+            }
 
-            if (response.ok) {
+            if (response && response.ok) {
                 const data = await response.json();
                 this.cache.standings = data;
                 this.cache.lastUpdate = Date.now();
                 return data;
             } else {
-                console.warn('API no disponible, usando datos de respaldo');
+                // API no disponible o error de CORS - usar datos de respaldo silenciosamente
                 return this.getFallbackStandings();
             }
         } catch (error) {
-            console.warn('Error al obtener clasificación:', error);
+            // Silenciar errores de CORS y red - usar datos de respaldo
+            // Solo mostrar errores que no sean relacionados con CORS/fetch
+            const isCorsOrNetworkError = error.name === 'TypeError' || 
+                                        error.message?.includes('fetch') ||
+                                        error.message?.includes('CORS') ||
+                                        error.message?.includes('Failed to fetch');
+            
+            if (!isCorsOrNetworkError) {
+                console.warn('Error al obtener clasificación:', error);
+            }
             return this.getFallbackStandings();
         }
     }

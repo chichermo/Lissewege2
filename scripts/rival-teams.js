@@ -25,7 +25,13 @@ class RivalTeamsManager {
                 }
             }
         } catch (error) {
-            console.warn('Error al cargar rivales desde API:', error);
+            // Silenciar errores de CORS/red - usar datos de respaldo
+            const isCorsOrNetworkError = error.name === 'TypeError' || 
+                                        error.message?.includes('fetch') ||
+                                        error.message?.includes('CORS');
+            if (!isCorsOrNetworkError) {
+                console.warn('Error al cargar rivales desde API:', error);
+            }
         }
 
         // Usar datos de respaldo

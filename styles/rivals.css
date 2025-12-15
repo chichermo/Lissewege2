@@ -197,12 +197,64 @@
 }
 
 @media (max-width: 768px) {
+    .rivals-container {
+        padding: 0 1rem;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
     .rivals-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .rival-card {
+        padding: 1.25rem;
     }
 
     .rival-stats {
         grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 1rem;
+    }
+
+    .rivals-filters {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .rival-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .rival-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .rival-name {
+        font-size: 1rem;
+    }
+
+    .rivals-filters {
+        flex-direction: column;
+    }
+
+    .filter-btn {
+        width: 100%;
     }
 }
 
