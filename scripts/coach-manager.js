@@ -40,10 +40,10 @@ class CoachManager {
     loadTeamData(teamId) {
         // Laad spelers van het team
         this.loadTeamPlayers(teamId);
-        // Laad communicaties
-        this.loadTeamCommunications(teamId);
-        // Laad opgeslagen opstellingen
-        this.loadSavedLineups(teamId);
+        // Laad communicaties (indien geïmplementeerd)
+        // this.loadTeamCommunications(teamId);
+        // Laad opgeslagen opstellingen (indien geïmplementeerd)
+        // this.loadSavedLineups(teamId);
     }
 
     /**
