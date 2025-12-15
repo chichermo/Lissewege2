@@ -1,0 +1,45 @@
+{
+  "name": "R.F.C. Lissewege - Voetbalclub",
+  "short_name": "RFC Lissewege",
+  "description": "Voetbalclub in Lissewege, Brugge. Competities, uitslagen en nieuws van RFC Lissewege.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d4d2e",
+  "theme_color": "#0d4d2e",
+  "orientation": "portrait-primary",
+  "categories": ["sports", "football"],
+  "lang": "nl-BE",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/images/logos/100b.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logos/100b.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Competities",
+      "short_name": "Competities",
+      "description": "Bekijk de competitie standen",
+      "url": "/#competities",
+      "icons": [{ "src": "/images/logos/100b.jpeg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Kalender",
+      "short_name": "Kalender",
+      "description": "Bekijk de komende wedstrijden",
+      "url": "/#kalender",
+      "icons": [{ "src": "/images/logos/100b.jpeg", "sizes": "192x192" }]
+    }
+  ]
+}
+

@@ -154,15 +154,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            showPage(targetId);
-            
-            // Close mobile menu if open
-            if (sidebar && sidebar.classList.contains('active')) {
-                sidebar.classList.remove('active');
-                if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
-                if (mobileOverlay) mobileOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
+        showPage(targetId);
+        
+        // Trigger page change event for other scripts
+        document.dispatchEvent(new CustomEvent('pageChanged', { detail: { pageId: targetId } }));
+        
+        // Close mobile menu if open
+        if (sidebar && sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+            if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+            if (mobileOverlay) mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
         });
     });
     

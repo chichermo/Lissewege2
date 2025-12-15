@@ -65,8 +65,8 @@ class RealFootballAPI {
             // From clearbit (domain-based)
             `https://logo.clearbit.com/${this.getTeamDomain(teamName)}.com`,
             // From local storage if available
-            `/images/logos/teams/${this.sanitizeTeamName(teamName)}.png`,
-            `/images/logos/teams/${this.sanitizeTeamName(teamName)}.jpg`
+            `images/logos/teams/${this.sanitizeTeamName(teamName)}.png`,
+            `images/logos/teams/${this.sanitizeTeamName(teamName)}.jpg`
         ].filter(Boolean);
 
         for (const source of logoSources) {
@@ -81,7 +81,7 @@ class RealFootballAPI {
         }
 
         // Fallback to default logo
-        return '/images/logos/100b.jpeg';
+        return 'images/logos/100b.jpeg';
     }
 
     sanitizeTeamName(name) {
@@ -148,7 +148,7 @@ class RealFootballAPI {
             // Try to get standings from API
             // Note: This requires API keys to be configured
             const data = await this.fetchWithFallback(`/competitions/${leagueId || BELGIUM_LEAGUES.footballData.proLeague}/standings`);
-            
+
             if (data && data.standings && data.standings[0]) {
                 const standings = data.standings[0].table.map((team, index) => ({
                     position: team.position,
@@ -187,7 +187,7 @@ class RealFootballAPI {
             }
 
             const data = await this.fetchWithFallback(url);
-            
+
             if (data && data.matches) {
                 return data.matches.map(match => ({
                     id: match.id,

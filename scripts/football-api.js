@@ -16,12 +16,12 @@ class FootballAPI {
 
     // REAL DATA - 4e Provinciale C West-Vlaanderen 2025/2026
     async getNextMatch() {
-        // Próximo partido real: 13/12/2025 RFC Lissewege vs FC Zeebrugge
+        // Próximo partido real: 18/01/2026 RFC Lissewege vs VKSO Zerkegem B
         return {
             homeTeam: 'RFC Lissewege',
-            awayTeam: 'FC Zeebrugge',
-            date: '2025-12-13',
-            time: '19:00',
+            awayTeam: 'VKSO Zerkegem B',
+            date: '2026-01-18',
+            time: '15:00',
             category: '4e Provinciale C',
             venue: 'home',
             address: 'Pol Dhondtstraat 70, 8380 Lissewege',
@@ -47,15 +47,6 @@ class FootballAPI {
     async getUpcomingMatches(count = 10) {
         // REAL DATA - Próximos partidos 4e Provinciale C West-Vlaanderen 2025/2026
         return [
-            {
-                date: '2025-12-13',
-                time: '19:00',
-                category: '4e Provinciale C',
-                homeTeam: 'RFC Lissewege',
-                awayTeam: 'FC Zeebrugge',
-                venue: 'home',
-                address: 'Pol Dhondtstraat 70, 8380 Lissewege'
-            },
             {
                 date: '2026-01-18',
                 time: '15:00',
@@ -170,10 +161,10 @@ async function updateNextMatchWidget() {
 
         if (matchDate) {
             const date = new Date(match.date);
-            matchDate.textContent = date.toLocaleDateString('nl-BE', { 
-                day: '2-digit', 
-                month: '2-digit', 
-                year: 'numeric' 
+            matchDate.textContent = date.toLocaleDateString('nl-BE', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
             });
         }
 
@@ -208,13 +199,13 @@ async function updateNextMatchWidget() {
         if (window.getTeamLogo) {
             const homeLogo = window.getTeamLogo(match.homeTeam);
             const awayLogo = window.getTeamLogo(opponent);
-            
+
             if (homeTeamLogo) {
                 const homeImg = document.createElement('img');
                 homeImg.src = homeLogo;
                 homeImg.alt = `${match.homeTeam} logo`;
                 homeImg.className = 'team-logo-img';
-                homeImg.onerror = function() { 
+                homeImg.onerror = function () {
                     if (window.generatePlaceholderLogo) {
                         this.src = window.generatePlaceholderLogo(match.homeTeam);
                         this.onerror = null;
@@ -225,13 +216,13 @@ async function updateNextMatchWidget() {
                 homeTeamLogo.innerHTML = '';
                 homeTeamLogo.appendChild(homeImg);
             }
-            
+
             if (awayTeamLogo) {
                 const awayImg = document.createElement('img');
                 awayImg.src = awayLogo;
                 awayImg.alt = `${opponent} logo`;
                 awayImg.className = 'team-logo-img';
-                awayImg.onerror = function() { 
+                awayImg.onerror = function () {
                     if (window.generatePlaceholderLogo) {
                         this.src = window.generatePlaceholderLogo(opponent);
                         this.onerror = null;
@@ -288,7 +279,7 @@ async function updateOtherMatches() {
 
         // Get the first match to exclude it from the list
         const nextMatch = await footballAPI.getNextMatch();
-        const otherMatches = matches.filter(m => 
+        const otherMatches = matches.filter(m =>
             !(m.date === nextMatch.date && m.time === nextMatch.time)
         );
 
@@ -372,7 +363,7 @@ async function updateLeaguePosition() {
     try {
         const standings = await footballAPI.getLeagueStandings();
         const positionElement = document.getElementById('leaguePosition');
-        
+
         if (positionElement) {
             positionElement.textContent = `#${standings.position}`;
         }
@@ -386,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNextMatchWidget();
     updateOtherMatches();
     updateLeaguePosition();
-    
+
     // Update countdown every minute
     setInterval(() => {
         const matchDate = document.getElementById('matchDate')?.textContent;

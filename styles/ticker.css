@@ -1,0 +1,104 @@
+/* ============================================
+   RESULTS TICKER - BROADCAST STYLE
+   ============================================ */
+.results-ticker-wrapper {
+    background: var(--dark-color);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    height: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+}
+
+.ticker-label {
+    background: var(--accent-color);
+    color: var(--white);
+    padding: 0 1.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.ticker-label::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 0;
+    height: 0;
+    border-top: 40px solid var(--accent-color);
+    border-right: 10px solid transparent;
+}
+
+.results-ticker {
+    display: flex;
+    animation: tickerScroll 20s linear infinite;
+    white-space: nowrap;
+    padding-left: 20px;
+}
+
+.results-ticker:hover {
+    animation-play-state: paused;
+}
+
+.ticker-item {
+    display: flex;
+    align-items: center;
+    margin-right: 3rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.ticker-match {
+    font-weight: 500;
+}
+
+.ticker-match .score {
+    color: var(--accent-color);
+    font-weight: 800;
+    margin: 0 0.5rem;
+    font-family: 'Orbitron', 'monospace';
+}
+
+.ticker-category {
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.7rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-light);
+    /* Actually light gray on dark bg */
+}
+
+@keyframes tickerScroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsive adjustment for Ticker */
+@media (max-width: 768px) {
+    .ticker-label {
+        padding: 0 1rem;
+        font-size: 0.7rem;
+    }
+
+    .ticker-label::after {
+        border-right-width: 5px;
+    }
+}

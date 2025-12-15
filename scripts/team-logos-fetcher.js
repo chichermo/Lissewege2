@@ -7,7 +7,7 @@ const TEAM_LOGO_SOURCES = {
     // RFC Lissewege - Ya tenemos el logo
     'RFC Lissewege': '/images/logos/100b.jpeg',
     'R.F.C. Lissewege': '/images/logos/100b.jpeg',
-    
+
     // Intentar obtener logos desde APIs o crear placeholders
     'KVV Aartrijke': null,
     'KFC Damme': null,
@@ -32,7 +32,7 @@ function generatePlaceholderLogo(teamName) {
         const skipWords = ['FC', 'KFC', 'KVV', 'VV', 'VC', 'KSK', 'KSKD', 'VKSO', 'VVC', 'KSV', 'K.', 'B'];
         return !skipWords.includes(word.toUpperCase());
     });
-    
+
     let initials = '';
     if (words.length >= 2) {
         // Tomar primera letra de las dos primeras palabras significativas
@@ -44,7 +44,7 @@ function generatePlaceholderLogo(teamName) {
         // Fallback: tomar las primeras dos letras del nombre completo
         initials = teamName.replace(/[^A-Za-z]/g, '').substring(0, 2).toUpperCase();
     }
-    
+
     // Crear un SVG con las iniciales
     const svg = `
         <svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +58,7 @@ function generatePlaceholderLogo(teamName) {
             <text x="40" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">${initials}</text>
         </svg>
     `;
-    
+
     // Convertir SVG a data URL
     const blob = new Blob([svg], { type: 'image/svg+xml' });
     return URL.createObjectURL(blob);
@@ -71,14 +71,14 @@ async function fetchLogoFromClearbit(teamName) {
         .replace(/FC|KFC|KVV|VV|VC|KSK|KSKD|VKSO|VVC|KSV|K\./g, '')
         .replace(/\s+B$/, '') // Remover " B" al final
         .trim();
-    
+
     // Intentar diferentes variaciones del nombre
     const variations = [
         cleanName,
         cleanName.replace(/\s+/g, ''),
         cleanName.split(' ')[0] // Primera palabra
     ];
-    
+
     for (const variation of variations) {
         try {
             const url = `https://logo.clearbit.com/${variation.toLowerCase().replace(/\s+/g, '')}.com`;
@@ -91,7 +91,7 @@ async function fetchLogoFromClearbit(teamName) {
             continue;
         }
     }
-    
+
     return null;
 }
 
@@ -108,7 +108,7 @@ async function getTeamLogoAsync(teamName) {
     if (TEAM_LOGO_SOURCES[teamName] && TEAM_LOGO_SOURCES[teamName] !== null) {
         return TEAM_LOGO_SOURCES[teamName];
     }
-    
+
     // Verificar si existe en el sistema de logos existente
     if (window.getTeamLogo) {
         const existingLogo = window.getTeamLogo(teamName);
@@ -117,7 +117,7 @@ async function getTeamLogoAsync(teamName) {
             return existingLogo;
         }
     }
-    
+
     // Intentar obtener desde Clearbit (solo para equipos conocidos)
     try {
         const clearbitLogo = await fetchLogoFromClearbit(teamName);
@@ -127,7 +127,7 @@ async function getTeamLogoAsync(teamName) {
     } catch (error) {
         console.warn(`Could not fetch logo from Clearbit for ${teamName}:`, error);
     }
-    
+
     // Generar placeholder con iniciales
     return generatePlaceholderLogo(teamName);
 }
@@ -136,10 +136,10 @@ async function getTeamLogoAsync(teamName) {
 async function updateAllTeamLogos() {
     // Obtener todos los elementos que muestran logos de equipos
     const logoElements = document.querySelectorAll('[data-team-name], .team-logo-placeholder, .match-result-logo, .match-team-logo-small');
-    
+
     for (const element of logoElements) {
         let teamName = element.getAttribute('data-team-name');
-        
+
         // Si no tiene atributo, intentar obtener del contexto
         if (!teamName) {
             const parent = element.closest('.match-result-team, .match-team-upcoming, .team-home, .team-away');
@@ -150,38 +150,39 @@ async function updateAllTeamLogos() {
                 }
             }
         }
-        
+
         if (teamName) {
             try {
                 const logoUrl = await getTeamLogoAsync(teamName);
-                
-                // Si es un elemento img, actualizar src
+
                 if (element.tagName === 'IMG') {
                     element.src = logoUrl;
-                    element.onerror = function() {
-                        // Si falla, usar placeholder
+                    element.onerror = function () {
                         this.src = generatePlaceholderLogo(teamName);
                     };
                 } else {
-                    // Si es un contenedor, crear img
-                    const img = document.createElement('img');
+                    // Check if img already exists inside container
+                    let img = element.querySelector('img');
+                    if (!img) {
+                        img = document.createElement('img');
+                        // Use correct class based on container context
+                        img.className = element.className.includes('match-result-logo') ? 'match-result-logo' :
+                            element.className.includes('match-team-logo-small') ? 'match-team-logo-small' :
+                                'team-logo-img';
+                        element.appendChild(img);
+                    }
+
                     img.src = logoUrl;
                     img.alt = `${teamName} logo`;
-                    img.className = element.className.includes('match-result-logo') ? 'match-result-logo' : 
-                                   element.className.includes('match-team-logo-small') ? 'match-team-logo-small' : 
-                                   'team-logo-img';
-                    img.onerror = function() {
-                        // Si falla, usar placeholder
+                    img.onerror = function () {
                         this.src = generatePlaceholderLogo(teamName);
                     };
-                    
-                    // Reemplazar icono si existe
+
+                    // Hide override icon if present
                     const icon = element.querySelector('i');
                     if (icon) {
                         icon.style.display = 'none';
                     }
-                    
-                    element.appendChild(img);
                 }
             } catch (error) {
                 console.warn(`Error updating logo for ${teamName}:`, error);

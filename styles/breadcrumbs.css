@@ -1,0 +1,53 @@
+/* ============================================
+   BREADCRUMBS NAVIGATION
+   ============================================ */
+.breadcrumbs {
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+}
+
+.breadcrumbs-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumbs-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.breadcrumbs-link {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.breadcrumbs-link:hover {
+    color: var(--primary-color);
+}
+
+.breadcrumbs-link.active {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.breadcrumbs-separator {
+    color: var(--text-light);
+    font-size: 0.75rem;
+    margin: 0 0.25rem;
+}
+
+.breadcrumbs-icon {
+    font-size: 0.85rem;
+}
+

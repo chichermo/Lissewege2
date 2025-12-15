@@ -34,166 +34,95 @@ const PLAYERS_DATA = {
     // Estos jugadores pueden estar en U13 o U15 dependiendo de su edad
     eersteElftallen: [
         {
-            id: 'player-001',
-            firstName: 'Jurgen',
-            lastName: 'Belpaire',
-            photo: '/images/players/jurgen-belpaire.jpg', // Placeholder
-            jerseyNumber: 1,
-            position: 'GK',
-            positionFull: 'Doelman',
-            age: 52,
-            birthYear: 1973,
-            team: 'u13', // o 'u15' dependiendo de la categoría real
-            height: null,
-            joinedYear: null,
-            isCaptain: false,
-            isViceCaptain: false
-        },
-        {
-            id: 'player-002',
-            firstName: 'Nana',
-            lastName: 'Osei-Berkoe',
-            photo: '/images/players/nana-osei-berkoe.jpg', // Placeholder
-            jerseyNumber: 9,
-            position: 'FW',
-            positionFull: 'Aanvaller',
-            age: 34,
-            birthYear: 1991,
-            team: 'u13', // o 'u15' dependiendo de la categoría real
-            height: null,
-            joinedYear: null,
-            isCaptain: false,
-            isViceCaptain: false
-        },
-        {
-            id: 'player-003',
-            firstName: 'Amijs',
-            lastName: 'Damon',
-            photo: '/images/players/amijs-damon.jpg', // Placeholder
+            id: 'staff-001',
+            fullName: 'Dieter Maenhout',
+            photo: null,
             jerseyNumber: null,
-            position: 'MF',
-            positionFull: 'Middenvelder',
+            position: 'STAF',
+            positionFull: 'Trainer',
             age: null,
-            birthYear: null,
-            team: 'u13',
-            height: null,
-            joinedYear: null,
-            isCaptain: false,
-            isViceCaptain: false
+            team: 'eersteElftallen'
         },
         {
-            id: 'player-004',
-            firstName: 'Antonio',
-            lastName: 'Adao',
-            photo: '/images/players/antonio-adao.jpg', // Placeholder
+            id: 'staff-002',
+            fullName: 'Jenko',
+            photo: null,
             jerseyNumber: null,
-            position: 'DF',
-            positionFull: 'Verdediger',
+            position: 'STAF',
+            positionFull: 'Assistent-trainer (TVJO)',
             age: null,
-            birthYear: null,
-            team: 'u13',
-            height: null,
-            joinedYear: null,
-            isCaptain: false,
-            isViceCaptain: false
+            team: 'eersteElftallen'
         },
         {
-            id: 'player-005',
-            firstName: 'Billiet',
-            lastName: 'Billie',
-            photo: '/images/players/billiet-billie.jpg', // Placeholder
+            id: 'staff-003',
+            fullName: 'Kevin',
+            photo: null,
             jerseyNumber: null,
-            position: 'MF',
-            positionFull: 'Middenvelder',
+            position: 'STAF',
+            positionFull: 'Jeugdtrainer',
             age: null,
-            birthYear: null,
-            team: 'u13',
-            height: null,
-            joinedYear: null,
-            isCaptain: false,
-            isViceCaptain: false
+            team: 'eersteElftallen'
         },
         {
-            id: 'player-006',
-            firstName: 'Borrizée',
-            lastName: 'Jaron',
-            photo: '/images/players/borrizee-jaron.jpg', // Placeholder
+            id: 'staff-004',
+            fullName: 'Stefaan',
+            photo: null,
             jerseyNumber: null,
-            position: 'FW',
-            positionFull: 'Aanvaller',
+            position: 'STAF',
+            positionFull: 'Jeugdtrainer',
             age: null,
-            birthYear: null,
-            team: 'u13',
-            height: null,
-            joinedYear: null,
-            isCaptain: false,
-            isViceCaptain: false
+            team: 'eersteElftallen'
         },
         {
-            id: 'player-007',
-            firstName: 'Bossuyt',
-            lastName: 'Björn',
-            photo: '/images/players/bossuyt-bjorn.jpg', // Placeholder
+            id: 'staff-005',
+            fullName: 'Bjarne',
+            photo: null,
             jerseyNumber: null,
-            position: 'DF',
-            positionFull: 'Verdediger',
+            position: 'STAF',
+            positionFull: 'Jeugdtrainer',
             age: null,
-            birthYear: null,
-            team: 'u13',
-            height: null,
-            joinedYear: null,
-            isCaptain: false,
-            isViceCaptain: false
+            team: 'eersteElftallen'
         },
         {
-            id: 'player-008',
-            firstName: 'Braems',
-            lastName: 'Gino',
-            photo: '/images/players/braems-gino.jpg', // Placeholder
+            id: 'staff-006',
+            fullName: 'Ferdi',
+            photo: null,
             jerseyNumber: null,
-            position: 'MF',
-            positionFull: 'Middenvelder',
+            position: 'STAF',
+            positionFull: 'Jeugdtrainer',
             age: null,
-            birthYear: null,
-            team: 'u13',
-            height: null,
-            joinedYear: null,
-            isCaptain: false,
-            isViceCaptain: false
+            team: 'eersteElftallen'
         },
         {
-            id: 'player-009',
-            firstName: 'Clevers',
-            lastName: 'Fabrice',
-            photo: '/images/players/clevers-fabrice.jpg', // Placeholder
+            id: 'staff-007',
+            fullName: 'Robin',
+            photo: null,
             jerseyNumber: null,
-            position: 'DF',
-            positionFull: 'Verdediger',
+            position: 'STAF',
+            positionFull: 'Jeugdtrainer',
             age: null,
-            birthYear: null,
-            team: 'u13',
-            height: null,
-            joinedYear: null,
-            isCaptain: false,
-            isViceCaptain: false
+            team: 'eersteElftallen'
         },
         {
-            id: 'player-010',
-            firstName: 'Compernolle',
-            lastName: 'Dante',
-            photo: '/images/players/compernolle-dante.jpg', // Placeholder
+            id: 'staff-008',
+            fullName: 'Dauwens Johan',
+            photo: null,
             jerseyNumber: null,
-            position: 'FW',
-            positionFull: 'Aanvaller',
+            position: 'STAF',
+            positionFull: 'Voorzitter',
             age: null,
-            birthYear: null,
-            team: 'u13',
-            height: null,
-            joinedYear: null,
-            isCaptain: false,
-            isViceCaptain: false
+            team: 'eersteElftallen'
+        },
+        {
+            id: 'staff-009',
+            fullName: 'Vandeweghe Jama',
+            photo: null,
+            jerseyNumber: null,
+            position: 'STAF',
+            positionFull: 'Secretaris GC',
+            age: null,
+            team: 'eersteElftallen'
         }
-        // Más jugadores se agregarán cuando se proporcionen las fotos y nombres
     ],
 
     // U7 Team - Mini's (Geboren 2018-2019)
@@ -250,7 +179,8 @@ function getPositionColor(position) {
         'GK': '#ef4444',    // Rojo para porteros
         'DF': '#3b82f6',    // Azul para defensas
         'MF': '#10b981',    // Verde para mediocampistas
-        'FW': '#f59e0b'     // Naranja para delanteros
+        'FW': '#f59e0b',    // Naranja para delanteros
+        'STAF': '#8b5cf6'   // Púrpura para staff
     };
     return colors[position] || '#6b7280';
 }
@@ -261,7 +191,8 @@ function getPositionIcon(position) {
         'GK': 'fas fa-hand-paper',      // Portero
         'DF': 'fas fa-shield-alt',      // Defensa
         'MF': 'fas fa-circle',          // Mediocampista
-        'FW': 'fas fa-bullseye'          // Delantero
+        'FW': 'fas fa-bullseye',         // Delantero
+        'STAF': 'fas fa-user-tie'       // Staff icon
     };
     return icons[position] || 'fas fa-user';
 }

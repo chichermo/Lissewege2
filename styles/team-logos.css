@@ -8,29 +8,33 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    border-radius: 50%;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    max-width: 50px;
+    /* Prevent pixelation for small source images */
+    max-height: 50px;
+    margin: 0 auto;
 }
 
 .match-card-team-logo,
 .team-logo-placeholder {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--gradient-primary);
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     flex-shrink: 0;
 }
 
-.match-card-team-logo-img {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
+.team-logo-placeholder {
     border-radius: 50%;
-    border: 2px solid var(--white);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background: var(--gradient-primary);
+    overflow: hidden;
+}
+
+.match-card-team-logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
 }
 
 .team-logo-placeholder img.team-logo-img {
@@ -40,21 +44,19 @@
 }
 
 .standings-team-logo {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     margin-right: 0.5rem;
-    border-radius: 50%;
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
 }
 
 .team-home .team-logo-placeholder img,
 .team-away .team-logo-placeholder img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 4px solid var(--white);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 60px;
+    /* Reduced from 90px to improve quality */
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
 .match-card-team {
@@ -78,4 +80,3 @@
 .match-card-team-logo:not(:has(img)) i {
     display: flex;
 }
-

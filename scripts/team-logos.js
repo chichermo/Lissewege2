@@ -6,24 +6,23 @@
 // 4e Provinciale C West-Vlaanderen teams
 const TEAM_LOGOS = {
     // RFC Lissewege
-    'RFC Lissewege': '/images/logos/100b.jpeg',
-    'R.F.C. Lissewege': '/images/logos/100b.jpeg',
-    
-    // Equipos de la 4e Provinciale C - Agregar logos cuando estén disponibles
-    // 4e Provinciale C teams - Add logos when available
-    'KVV Aartrijke': '/images/logos/teams/kvv-aartrijke.png',
-    'KFC Damme': '/images/logos/teams/kfc-damme.png',
-    'VV Eendracht Brugge': '/images/logos/teams/vv-eendracht-brugge.png',
-    'KSK Steenbrugge': '/images/logos/teams/ksk-steenbrugge.png',
-    'KFC Sint-Joris Sportief': '/images/logos/teams/kfc-sint-joris.png',
-    'K. Excelsior Zedelgem B': '/images/logos/teams/excelsior-zedelgem.png',
-    'KSKD Hertsberge': '/images/logos/teams/kskd-hertsberge.png',
-    'VVC Beernem B': '/images/logos/teams/vvc-beernem.png',
-    'VKSO Zerkegem B': '/images/logos/teams/vkso-zerkegem.png',
-    'KFC Heist B': '/images/logos/teams/kfc-heist.png',
-    'FC Zeebrugge': '/images/logos/teams/fc-zeebrugge.png',
-    'KSV Bredene B': '/images/logos/teams/ksv-bredene.png',
-    'VC Vamos Zandvoorde': '/images/logos/teams/vc-vamos-zandvoorde.png',
+    'RFC Lissewege': 'images/logos/teams/rfc-lissewege.webp',
+    'R.F.C. Lissewege': 'images/logos/teams/rfc-lissewege.webp',
+
+    // Equilibrium teams
+    'KVV Aartrijke': 'images/logos/teams/kvv-aartrijke.webp',
+    'KFC Damme': 'images/logos/teams/kfc-damme.webp',
+    'VV Eendracht Brugge': 'images/logos/teams/vv-eendracht-brugge.webp',
+    'KSK Steenbrugge': 'images/logos/teams/ksk-steenbrugge.webp',
+    'KFC Sint-Joris Sportief': 'images/logos/teams/kfc-sint-joris-sportief.webp',
+    'K. Excelsior Zedelgem B': 'images/logos/teams/k-excelsior-zedelgem-b.webp',
+    'KSKD Hertsberge': 'images/logos/teams/kskd-hertsberge.webp',
+    'VVC Beernem B': 'images/logos/teams/vvc-beernem-b.webp',
+    'VKSO Zerkegem B': 'images/logos/teams/vkso-zerkegem-b.webp',
+    'KFC Heist B': 'images/logos/teams/kfc-heist-b.webp',
+    'FC Zeebrugge': 'images/logos/teams/fc-zeebrugge.webp',
+    'KSV Bredene B': 'images/logos/teams/ksv-bredene-b.webp',
+    'VC Vamos Zandvoorde': 'images/logos/teams/vc-vamos-zandvoorde.webp',
 };
 
 // Function to generate placeholder logo with team initials
@@ -34,7 +33,7 @@ function generatePlaceholderLogo(teamName) {
         const skipWords = ['FC', 'KFC', 'KVV', 'VV', 'VC', 'KSK', 'KSKD', 'VKSO', 'VVC', 'KSV', 'K.', 'B'];
         return !skipWords.includes(word.toUpperCase());
     });
-    
+
     let initials = '';
     if (words.length >= 2) {
         // Tomar primera letra de las dos primeras palabras significativas
@@ -46,7 +45,7 @@ function generatePlaceholderLogo(teamName) {
         // Fallback: tomar las primeras dos letras del nombre completo
         initials = teamName.replace(/[^A-Za-z]/g, '').substring(0, 2).toUpperCase();
     }
-    
+
     // Crear un SVG con las iniciales como data URL
     const svg = `<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -58,7 +57,7 @@ function generatePlaceholderLogo(teamName) {
         <circle cx="40" cy="40" r="38" fill="url(#grad-${teamName.replace(/[^A-Za-z0-9]/g, '')})" stroke="#fff" stroke-width="2"/>
         <text x="40" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">${initials}</text>
     </svg>`;
-    
+
     // Convertir SVG a data URL
     return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg)));
 }
@@ -83,11 +82,11 @@ function getTeamLogo(teamName) {
         .replace(/[^a-z0-9]/g, '-')
         .replace(/-+/g, '-')
         .replace(/^-|-$/g, '');
-    
+
     // Try multiple extensions
     const extensions = ['.png', '.jpg', '.jpeg', '.svg'];
     for (const ext of extensions) {
-        const logoPath = `/images/logos/teams/${sanitizedName}${ext}`;
+        const logoPath = `images/logos/teams/${sanitizedName}${ext}`;
         // Return path - browser will handle 404 and trigger onerror
         return logoPath;
     }
@@ -101,6 +100,12 @@ function updateTeamLogos() {
     // Update match cards
     document.querySelectorAll('.match-card-team-logo, .team-logo-placeholder').forEach(logoEl => {
         const teamName = logoEl.closest('.match-card-team, .team-home, .team-away')?.querySelector('.team-name, .match-card-team-name')?.textContent;
+
+        // Check if there's already an image sibling (prevents duplication with football-api.js)
+        if (logoEl.previousElementSibling && logoEl.previousElementSibling.tagName === 'IMG') {
+            return;
+        }
+
         if (teamName) {
             const logoUrl = getTeamLogo(teamName.trim());
             if (logoEl.tagName === 'IMG') {

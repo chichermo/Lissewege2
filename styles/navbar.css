@@ -1,0 +1,210 @@
+/* ============================================
+   PROFESSIONAL TOP NAVIGATION
+   ============================================ */
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #0d4d2e;
+    padding: 0;
+    /* No padding on wrapper, let children handle it */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.main-header.scrolled {
+    background: rgba(13, 77, 46, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.main-header.scrolled .navbar-container {
+    padding: 0.75rem 2rem;
+}
+
+.navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    transition: padding 0.4s ease;
+}
+
+/* Logo Area */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    z-index: 1001;
+}
+
+.nav-logo-img {
+    height: 60px;
+    width: auto;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.main-header.scrolled .nav-logo-img {
+    height: 45px;
+}
+
+.nav-brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-main {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.brand-sub {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+/* Desktop Navigation */
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ff6b35;
+    /* Accent Color */
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #ffffff;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* CTA Button in Nav */
+.nav-cta {
+    background: #ff6b35;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    /* Slightly squared for sports look */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+    border: none;
+    cursor: pointer;
+}
+
+.nav-cta:hover {
+    background: #ff8c5a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+/* Mobile Toggle */
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .nav-menu {
+        display: none;
+        /* Hidden by default on mobile, toggled via JS */
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(135deg, #0d4d2e 0%, #0a3d24 100%);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        padding: 2rem;
+    }
+
+    .nav-menu.active {
+        display: flex;
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .mobile-toggle {
+        display: block;
+        padding: 0.5rem;
+    }
+
+    .nav-link {
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .nav-cta {
+        margin-top: 1rem;
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+}
