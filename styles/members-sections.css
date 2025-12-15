@@ -1,0 +1,734 @@
+/* ============================================
+   MEMBERS SECTIONS STYLES
+   ============================================ */
+
+/* Members Tabs Navigation */
+.members-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin: 2rem 0;
+    padding: 0 1rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.members-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.25rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px 8px 0 0;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.members-tab:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.members-tab.active {
+    background: white;
+    color: #667eea;
+    font-weight: 600;
+}
+
+.members-tab i {
+    font-size: 1rem;
+}
+
+/* Section Content */
+.members-section-content {
+    display: none;
+    padding: 2rem 0;
+    animation: fadeIn 0.3s ease;
+}
+
+.members-section-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-header-inline {
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.section-header-inline h3 {
+    color: white;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header-inline p {
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+/* Admin Section */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.admin-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.admin-card-icon {
+    font-size: 3rem;
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.admin-card h4 {
+    color: #333;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.admin-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.btn-admin-action {
+    width: 100%;
+    padding: 0.75rem;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-admin-action:hover {
+    background: #5568d3;
+}
+
+.admin-quick-actions {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.admin-quick-actions h4 {
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.quick-action-btn {
+    padding: 1rem;
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.quick-action-btn:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.quick-action-btn i {
+    font-size: 1.5rem;
+}
+
+/* Coach Section */
+.coach-team-selector {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.coach-team-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-select {
+    width: 100%;
+    padding: 0.875rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.coach-subtabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+}
+
+.coach-subtab {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.coach-subtab:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.coach-subtab.active {
+    background: white;
+    color: #667eea;
+}
+
+.coach-section-content {
+    display: none;
+}
+
+.coach-section-content.active {
+    display: block;
+}
+
+.coach-form-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.coach-form-card h4 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.875rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.btn-primary {
+    padding: 0.875rem 1.5rem;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary:hover {
+    background: #5568d3;
+}
+
+.btn-secondary {
+    padding: 0.75rem 1.25rem;
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #667eea;
+    color: white;
+}
+
+/* Players Selection List */
+.players-selection-list {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #f8f9fa;
+}
+
+.player-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.player-item:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.player-item.selected {
+    background: #e8f5e9;
+    border: 2px solid #4caf50;
+}
+
+.player-info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex: 1;
+}
+
+.player-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.player-position {
+    padding: 0.25rem 0.75rem;
+    background: #f0f0f0;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.player-age {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.player-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-icon {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background: #667eea;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.btn-icon:hover {
+    background: #5568d3;
+}
+
+/* Announcements */
+.announcements-list,
+.squads-list {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.announcements-list h4,
+.squads-list h4 {
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.announcement-item {
+    padding: 1.5rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background: #f8f9fa;
+}
+
+.announcement-item.urgent {
+    border-color: #ff6b35;
+    background: #fff3f0;
+}
+
+.announcement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 1rem;
+}
+
+.announcement-header h4 {
+    color: #333;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.announcement-date {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.announcement-content {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.announcement-target {
+    color: #667eea;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.announcement-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.announcement-actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.announcement-actions button:first-child {
+    background: #667eea;
+    color: white;
+}
+
+.announcement-actions button:last-child {
+    background: #dc3545;
+    color: white;
+}
+
+.announcement-actions button:hover {
+    opacity: 0.8;
+}
+
+/* Squad Items */
+.squad-item {
+    padding: 1.5rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background: white;
+}
+
+.squad-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.squad-header h4 {
+    color: #333;
+    margin: 0;
+}
+
+.squad-players-count {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.squad-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.squad-actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.squad-actions button:first-child {
+    background: #667eea;
+    color: white;
+}
+
+.squad-actions button:last-child {
+    background: #28a745;
+    color: white;
+}
+
+/* Lineup Builder */
+.lineup-builder {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.lineup-info {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.formation-selector {
+    margin-bottom: 2rem;
+}
+
+.field-container {
+    background: #2d5016;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+#lineupCanvas {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Communication */
+.communication-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.comm-tab {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.comm-tab.active {
+    background: white;
+    color: #667eea;
+}
+
+/* Documents */
+.documents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.document-category {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.document-category h4 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.documents-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.documents-list li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.documents-list li:last-child {
+    border-bottom: none;
+}
+
+.documents-list a {
+    color: #667eea;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.documents-list a:hover {
+    color: #5568d3;
+}
+
+/* Finances */
+.finances-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.finance-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.finance-card h4 {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.finance-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #999;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.text-muted {
+    color: #999;
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .members-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .members-tab span {
+        display: none;
+    }
+
+    .members-tab {
+        padding: 0.75rem 1rem;
+    }
+
+    .admin-grid,
+    .quick-actions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .coach-subtabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .player-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .documents-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

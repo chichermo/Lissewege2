@@ -88,10 +88,13 @@ class MembersLogin {
      * Maneja el acceso libre sin formulario
      */
     handleFreeAccess() {
+        // Permitir selección de rol para pruebas
+        const role = prompt('Selecciona tu rol:\n1. member (Miembro)\n2. coach (Coach)\n3. admin (Administrador)\n4. president (Presidente)', 'member') || 'member';
+        
         this.login({
             name: 'Miembro RFC Lissewege',
             email: 'miembro@rfclissewege.be',
-            role: 'member',
+            role: role,
             memberSince: new Date().toISOString()
         });
     }
@@ -160,8 +163,24 @@ class MembersLogin {
 
             // Actualizar información del usuario
             const userNameEl = membersSection.querySelector('.member-name');
+            const userRoleEl = membersSection.querySelector('.member-role');
             if (userNameEl && this.currentUser) {
                 userNameEl.textContent = this.currentUser.name;
+            }
+            if (userRoleEl && this.currentUser) {
+                const roleNames = {
+                    'member': 'Miembro',
+                    'coach': 'Coach',
+                    'admin': 'Administrador',
+                    'president': 'Presidente'
+                };
+                userRoleEl.textContent = roleNames[this.currentUser.role] || 'Miembro';
+            }
+
+            // Actualizar secciones según rol
+            if (window.membersSections) {
+                window.membersSections.userRole = this.currentUser.role;
+                window.membersSections.initRoleBasedAccess();
             }
         } else {
             // Usuario no logueado

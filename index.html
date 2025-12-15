@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="styles/competitions.css">
     <link rel="stylesheet" href="styles/rivals.css">
     <link rel="stylesheet" href="styles/members.css">
+    <link rel="stylesheet" href="styles/members-sections.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -1671,7 +1672,7 @@
                                 </div>
                                 <div class="member-details">
                                     <h3 class="member-name">Miembro RFC Lissewege</h3>
-                                    <p>Bienvenido al área de miembros</p>
+                                    <p class="member-role">Miembro</p>
                                 </div>
                             </div>
                             <button class="btn-logout" id="membersLogoutBtn">
@@ -1681,54 +1682,413 @@
                         </div>
                     </div>
 
-                    <div class="members-features">
-                        <div class="member-feature-card">
-                            <div class="member-feature-icon">
-                                <i class="fas fa-calendar-alt"></i>
+                    <!-- Members Navigation Tabs -->
+                    <div class="members-tabs">
+                        <button class="members-tab active" data-section="dashboard">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </button>
+                        <button class="members-tab admin-only" data-section="admin" style="display: none;">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Directiva</span>
+                        </button>
+                        <button class="members-tab coach-only" data-section="coach" style="display: none;">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Coach</span>
+                        </button>
+                        <button class="members-tab member-only" data-section="players">
+                            <i class="fas fa-users"></i>
+                            <span>Jugadores</span>
+                        </button>
+                        <button class="members-tab member-only" data-section="documents">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Documentos</span>
+                        </button>
+                        <button class="members-tab admin-only" data-section="finances" style="display: none;">
+                            <i class="fas fa-euro-sign"></i>
+                            <span>Finanzas</span>
+                        </button>
+                        <button class="members-tab member-only" data-section="calendar">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Calendario</span>
+                        </button>
+                        <button class="members-tab member-only" data-section="forum">
+                            <i class="fas fa-comments"></i>
+                            <span>Foro</span>
+                        </button>
+                    </div>
+
+                    <!-- Dashboard Section -->
+                    <div id="section-dashboard" class="members-section-content active">
+                        <div class="members-features">
+                            <div class="member-feature-card" onclick="window.membersSections?.loadSection('calendar')">
+                                <div class="member-feature-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <h4>Calendario de Eventos</h4>
+                                <p>Accede al calendario completo de eventos, entrenamientos y reuniones del club.</p>
                             </div>
-                            <h4>Calendario de Eventos</h4>
-                            <p>Accede al calendario completo de eventos, entrenamientos y reuniones del club.</p>
+
+                            <div class="member-feature-card" onclick="window.membersSections?.loadSection('documents')">
+                                <div class="member-feature-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <h4>Documentos del Club</h4>
+                                <p>Descarga documentos importantes, reglamentos y formularios del club.</p>
+                            </div>
+
+                            <div class="member-feature-card" onclick="window.membersSections?.loadSection('players')">
+                                <div class="member-feature-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h4>Directorio de Miembros</h4>
+                                <p>Consulta el directorio completo de miembros del club con información de contacto.</p>
+                            </div>
+
+                            <div class="member-feature-card">
+                                <div class="member-feature-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h4>Estadísticas Personales</h4>
+                                <p>Revisa tus estadísticas personales, partidos jugados y logros.</p>
+                            </div>
+
+                            <div class="member-feature-card" onclick="window.membersSections?.loadSection('forum')">
+                                <div class="member-feature-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h4>Foro del Club</h4>
+                                <p>Participa en discusiones y mantente al día con las últimas noticias del club.</p>
+                            </div>
+
+                            <div class="member-feature-card">
+                                <div class="member-feature-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <h4>Tienda del Club</h4>
+                                <p>Accede a la tienda exclusiva de miembros con descuentos especiales.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin/Directiva Section -->
+                    <div id="section-admin" class="members-section-content admin-only" style="display: none;">
+                        <div class="section-header-inline">
+                            <h3><i class="fas fa-user-shield"></i> Área de Directiva</h3>
+                            <p>Gestión administrativa del club</p>
                         </div>
 
-                        <div class="member-feature-card">
-                            <div class="member-feature-icon">
-                                <i class="fas fa-file-alt"></i>
+                        <div class="admin-grid">
+                            <div class="admin-card">
+                                <div class="admin-card-icon">
+                                    <i class="fas fa-file-contract"></i>
+                                </div>
+                                <h4>Documentación</h4>
+                                <p>Gestiona documentos oficiales, actas, reglamentos y normativas del club.</p>
+                                <button class="btn-admin-action" onclick="adminManager.openDocuments()">
+                                    Gestionar Documentos
+                                </button>
                             </div>
-                            <h4>Documentos del Club</h4>
-                            <p>Descarga documentos importantes, reglamentos y formularios del club.</p>
+
+                            <div class="admin-card">
+                                <div class="admin-card-icon">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <h4>Administración</h4>
+                                <p>Gestiona miembros, permisos, equipos y configuración del club.</p>
+                                <button class="btn-admin-action" onclick="adminManager.openAdministration()">
+                                    Administrar Club
+                                </button>
+                            </div>
+
+                            <div class="admin-card">
+                                <div class="admin-card-icon">
+                                    <i class="fas fa-euro-sign"></i>
+                                </div>
+                                <h4>Finanzas</h4>
+                                <p>Gestiona presupuestos, pagos, facturas y estados financieros.</p>
+                                <button class="btn-admin-action" onclick="window.membersSections?.loadSection('finances')">
+                                    Ver Finanzas
+                                </button>
+                            </div>
                         </div>
 
-                        <div class="member-feature-card">
-                            <div class="member-feature-icon">
-                                <i class="fas fa-users"></i>
+                        <div class="admin-quick-actions">
+                            <h4>Acciones Rápidas</h4>
+                            <div class="quick-actions-grid">
+                                <button class="quick-action-btn">
+                                    <i class="fas fa-user-plus"></i>
+                                    Agregar Miembro
+                                </button>
+                                <button class="quick-action-btn">
+                                    <i class="fas fa-file-upload"></i>
+                                    Subir Documento
+                                </button>
+                                <button class="quick-action-btn">
+                                    <i class="fas fa-bullhorn"></i>
+                                    Anuncio General
+                                </button>
+                                <button class="quick-action-btn">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Reportes
+                                </button>
                             </div>
-                            <h4>Directorio de Miembros</h4>
-                            <p>Consulta el directorio completo de miembros del club con información de contacto.</p>
+                        </div>
+                    </div>
+
+                    <!-- Coach Section -->
+                    <div id="section-coach" class="members-section-content coach-only" style="display: none;">
+                        <div class="section-header-inline">
+                            <h3><i class="fas fa-clipboard-list"></i> Área de Coach</h3>
+                            <p>Gestión de equipos, comunicaciones y formaciones</p>
                         </div>
 
-                        <div class="member-feature-card">
-                            <div class="member-feature-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h4>Estadísticas Personales</h4>
-                            <p>Revisa tus estadísticas personales, partidos jugados y logros.</p>
+                        <!-- Team Selector -->
+                        <div class="coach-team-selector">
+                            <label for="coachTeamSelector">Selecciona tu equipo:</label>
+                            <select id="coachTeamSelector" class="form-select">
+                                <option value="">-- Selecciona un equipo --</option>
+                                <option value="u7">U7 - Mini's</option>
+                                <option value="u8">U8 - Benjamins</option>
+                                <option value="u9">U9 - Preminiemen</option>
+                                <option value="u10">U10 - Miniemen</option>
+                                <option value="u13">U13 - Pupillen</option>
+                                <option value="u15">U15 - Nieuw Team</option>
+                                <option value="senior">A-Kern</option>
+                            </select>
                         </div>
 
-                        <div class="member-feature-card">
-                            <div class="member-feature-icon">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <h4>Foro del Club</h4>
-                            <p>Participa en discusiones y mantente al día con las últimas noticias del club.</p>
+                        <!-- Coach Tabs -->
+                        <div class="coach-subtabs">
+                            <button class="coach-subtab active" data-coach-section="announcements">
+                                <i class="fas fa-bullhorn"></i> Anuncios
+                            </button>
+                            <button class="coach-subtab" data-coach-section="squad">
+                                <i class="fas fa-list"></i> Convocados
+                            </button>
+                            <button class="coach-subtab" data-coach-section="lineup">
+                                <i class="fas fa-sitemap"></i> Formaciones
+                            </button>
+                            <button class="coach-subtab" data-coach-section="communication">
+                                <i class="fas fa-envelope"></i> Comunicación
+                            </button>
+                            <button class="coach-subtab" data-coach-section="players">
+                                <i class="fas fa-users"></i> Jugadores
+                            </button>
                         </div>
 
-                        <div class="member-feature-card">
-                            <div class="member-feature-icon">
-                                <i class="fas fa-shopping-cart"></i>
+                        <!-- Announcements Section -->
+                        <div id="coach-announcements" class="coach-section-content active">
+                            <div class="coach-form-card">
+                                <h4>Crear Anuncio</h4>
+                                <form id="announcementForm">
+                                    <div class="form-group">
+                                        <label>Título</label>
+                                        <input type="text" id="announcementTitle" class="form-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contenido</label>
+                                        <textarea id="announcementContent" class="form-textarea" rows="4" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Dirigido a</label>
+                                        <select id="announcementTarget" class="form-select">
+                                            <option value="all">Todos los jugadores</option>
+                                            <option value="team">Equipo seleccionado</option>
+                                            <option value="parents">Solo apoderados</option>
+                                            <option value="players">Solo jugadores</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox" id="announcementUrgent">
+                                            Anuncio urgente
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn-primary">
+                                        <i class="fas fa-paper-plane"></i> Publicar Anuncio
+                                    </button>
+                                </form>
                             </div>
-                            <h4>Tienda del Club</h4>
-                            <p>Accede a la tienda exclusiva de miembros con descuentos especiales.</p>
+
+                            <div class="announcements-list" id="announcementsList">
+                                <h4>Anuncios Publicados</h4>
+                                <div class="empty-state">
+                                    <i class="fas fa-bullhorn"></i>
+                                    <p>No hay anuncios publicados aún</p>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- Squad List Section -->
+                        <div id="coach-squad" class="coach-section-content">
+                            <div class="coach-form-card">
+                                <h4>Crear Lista de Convocados</h4>
+                                <form id="squadForm">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Fecha del Partido</label>
+                                            <input type="date" id="squadMatchDate" class="form-input" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Hora</label>
+                                            <input type="time" id="squadMatchTime" class="form-input" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rival</label>
+                                        <input type="text" id="squadOpponent" class="form-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Jugadores Convocados</label>
+                                        <div id="teamPlayersList" class="players-selection-list">
+                                            <p class="text-muted">Selecciona un equipo primero</p>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn-primary">
+                                        <i class="fas fa-check"></i> Crear Lista de Convocados
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="squads-list" id="squadsList">
+                                <h4>Listas de Convocados</h4>
+                                <div class="empty-state">
+                                    <i class="fas fa-list"></i>
+                                    <p>No hay listas de convocados creadas</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Lineup Section -->
+                        <div id="coach-lineup" class="coach-section-content">
+                            <div class="lineup-builder">
+                                <h4>Constructor de Formaciones</h4>
+                                <div class="lineup-info">
+                                    <p>Integración con <strong>alineaciones.es</strong> para crear y compartir formaciones profesionales.</p>
+                                    <button class="btn-secondary" onclick="coachManager.initLineupAPI()">
+                                        <i class="fas fa-plug"></i> Conectar con API
+                                    </button>
+                                </div>
+                                <div class="formation-selector">
+                                    <label>Selecciona Formación:</label>
+                                    <select id="formationSelect" class="form-select">
+                                        <option value="4-4-2">4-4-2</option>
+                                        <option value="4-3-3">4-3-3</option>
+                                        <option value="3-5-2">3-5-2</option>
+                                        <option value="4-2-3-1">4-2-3-1</option>
+                                        <option value="3-4-3">3-4-3</option>
+                                    </select>
+                                </div>
+                                <div class="lineup-field" id="lineupField">
+                                    <!-- Campo de fútbol visual para arrastrar jugadores -->
+                                    <div class="field-container">
+                                        <canvas id="lineupCanvas" width="600" height="400"></canvas>
+                                    </div>
+                                </div>
+                                <button class="btn-primary" onclick="coachManager.saveLineup()">
+                                    <i class="fas fa-save"></i> Guardar Formación
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Communication Section -->
+                        <div id="coach-communication" class="coach-section-content">
+                            <div class="communication-tabs">
+                                <button class="comm-tab active" data-comm-type="players">Jugadores</button>
+                                <button class="comm-tab" data-comm-type="parents">Apoderados</button>
+                                <button class="comm-tab" data-comm-type="team">Equipo Completo</button>
+                            </div>
+
+                            <div class="coach-form-card">
+                                <h4>Enviar Mensaje</h4>
+                                <form id="messageForm">
+                                    <div class="form-group">
+                                        <label>Destinatario</label>
+                                        <input type="text" id="messageRecipient" class="form-input" placeholder="Email o nombre" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Asunto</label>
+                                        <input type="text" id="messageSubject" class="form-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mensaje</label>
+                                        <textarea id="messageContent" class="form-textarea" rows="5" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn-primary">
+                                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Players Management Section -->
+                        <div id="coach-players" class="coach-section-content">
+                            <div id="teamPlayersList" class="players-management-list">
+                                <p class="text-muted">Selecciona un equipo para ver los jugadores</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Players Section -->
+                    <div id="section-players" class="members-section-content member-only" style="display: none;">
+                        <h3>Directorio de Jugadores</h3>
+                        <p>Información de contacto de todos los miembros del club</p>
+                        <!-- Contenido será cargado dinámicamente -->
+                    </div>
+
+                    <!-- Documents Section -->
+                    <div id="section-documents" class="members-section-content member-only" style="display: none;">
+                        <h3>Documentos del Club</h3>
+                        <div class="documents-grid">
+                            <div class="document-category">
+                                <h4><i class="fas fa-file-pdf"></i> Reglamentos</h4>
+                                <ul class="documents-list">
+                                    <li><a href="#"><i class="fas fa-download"></i> Reglamento Interno</a></li>
+                                    <li><a href="#"><i class="fas fa-download"></i> Normativas KBVB</a></li>
+                                </ul>
+                            </div>
+                            <div class="document-category">
+                                <h4><i class="fas fa-file-contract"></i> Formularios</h4>
+                                <ul class="documents-list">
+                                    <li><a href="#"><i class="fas fa-download"></i> Formulario de Inscripción</a></li>
+                                    <li><a href="#"><i class="fas fa-download"></i> Autorización Médica</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Finances Section -->
+                    <div id="section-finances" class="members-section-content admin-only" style="display: none;">
+                        <h3>Gestión Financiera</h3>
+                        <div class="finances-dashboard">
+                            <div class="finance-card">
+                                <h4>Presupuesto Anual</h4>
+                                <div class="finance-amount">€25,000</div>
+                            </div>
+                            <div class="finance-card">
+                                <h4>Gastos del Mes</h4>
+                                <div class="finance-amount">€2,500</div>
+                            </div>
+                            <div class="finance-card">
+                                <h4>Ingresos del Mes</h4>
+                                <div class="finance-amount">€3,200</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calendar Section -->
+                    <div id="section-calendar" class="members-section-content member-only" style="display: none;">
+                        <h3>Calendario del Club</h3>
+                        <p>Eventos, entrenamientos y partidos</p>
+                        <!-- Calendario será integrado -->
+                    </div>
+
+                    <!-- Forum Section -->
+                    <div id="section-forum" class="members-section-content member-only" style="display: none;">
+                        <h3>Foro del Club</h3>
+                        <p>Discusiones y noticias</p>
+                        <!-- Foro será integrado -->
                     </div>
                 </div>
             </div>
@@ -2090,6 +2450,9 @@
     <script src="scripts/rival-teams.js"></script>
     <script src="scripts/competitions-init.js"></script>
     <script src="scripts/members-login.js"></script>
+    <script src="scripts/members-sections.js"></script>
+    <script src="scripts/coach-manager.js"></script>
+    <script src="scripts/admin-manager.js"></script>
 </body>
 
 </html>
