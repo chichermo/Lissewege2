@@ -1,7 +1,7 @@
 // ============================================
 // ADMIN MANAGER
 // ============================================
-// Gestión administrativa para presidente y directiva
+// Administratief beheer voor voorzitter en directie
 
 class AdminManager {
     constructor() {
@@ -13,22 +13,22 @@ class AdminManager {
     }
 
     /**
-     * Inicializa las acciones rápidas
+     * Initialiseert de snelle acties
      */
     initQuickActions() {
-        // Agregar miembro
+        // Lid toevoegen
         document.querySelectorAll('.quick-action-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const action = e.target.closest('.quick-action-btn');
                 if (action) {
                     const icon = action.querySelector('i');
-                    if (icon?.classList.contains('fa-user-plus')) {
+                    if (icon && icon.classList.contains('fa-user-plus')) {
                         this.openAddMemberModal();
-                    } else if (icon?.classList.contains('fa-file-upload')) {
+                    } else if (icon && icon.classList.contains('fa-file-upload')) {
                         this.openUploadDocumentModal();
-                    } else if (icon?.classList.contains('fa-bullhorn')) {
+                    } else if (icon && icon.classList.contains('fa-bullhorn')) {
                         this.openGeneralAnnouncementModal();
-                    } else if (icon?.classList.contains('fa-chart-bar')) {
+                    } else if (icon && icon.classList.contains('fa-chart-bar')) {
                         this.openReportsModal();
                     }
                 }
@@ -37,39 +37,39 @@ class AdminManager {
     }
 
     /**
-     * Abre modal para agregar miembro
+     * Opent modal om lid toe te voegen
      */
     openAddMemberModal() {
         alert('Functionaliteit: Nieuw lid toevoegen aan de club');
-        // Aquí se implementaría el modal real
+        // Hier zou de echte modal worden geïmplementeerd
     }
 
     /**
-     * Abre modal para subir documento
+     * Opent modal om document te uploaden
      */
     openUploadDocumentModal() {
         alert('Functionaliteit: Nieuw document uploaden');
-        // Aquí se implementaría el modal real
+        // Hier zou de echte modal worden geïmplementeerd
     }
 
     /**
-     * Abre modal para anuncio general
+     * Opent modal voor algemene aankondiging
      */
     openGeneralAnnouncementModal() {
         alert('Functionaliteit: Algemene aankondiging maken voor alle leden');
-        // Aquí se implementaría el modal real
+        // Hier zou de echte modal worden geïmplementeerd
     }
 
     /**
-     * Abre modal de reportes
+     * Opent rapporten modal
      */
     openReportsModal() {
         alert('Functionaliteit: Rapporten en statistieken van de club bekijken');
-        // Aquí se implementaría el modal real
+        // Hier zou de echte modal worden geïmplementeerd
     }
 
     /**
-     * Abre sección de documentos
+     * Opent documenten sectie
      */
     openDocuments() {
         if (window.membersSections) {
@@ -78,11 +78,11 @@ class AdminManager {
     }
 
     /**
-     * Abre sección de administración
+     * Opent administratie sectie
      */
     openAdministration() {
         alert('Functionaliteit: Administratiepaneel van de club');
-        // Aquí se implementaría el panel completo
+        // Hier zou het volledige paneel worden geïmplementeerd
     }
 }
 

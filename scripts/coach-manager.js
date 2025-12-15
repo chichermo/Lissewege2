@@ -268,13 +268,13 @@ class CoachManager {
     }
 
     /**
-     * Inicializa la conexión con la API de formaciones
+     * Initialiseert de verbinding met de opstelling API
      */
     async initLineupAPI() {
         if (!this.lineupAPI.enabled) {
             const enable = confirm('Wil je verbinden met de alineaciones.es API?\n\nOpmerking: Je hebt API-referenties nodig.');
             if (enable) {
-                // Aquí se pedirían las credenciales
+                // Hier zouden de referenties worden gevraagd
                 const apiKey = prompt('Voer je API Key van alineaciones.es in (leeg laten voor demo modus):');
                 if (apiKey) {
                     this.lineupAPI.enabled = true;
@@ -290,8 +290,8 @@ class CoachManager {
         }
 
         try {
-            // Aquí se haría la conexión con la API real
-            // Ejemplo: const response = await fetch(`${this.lineupAPI.baseUrl}/teams/${teamId}`, {
+            // Hier zou de verbinding met de echte API worden gemaakt
+            // Voorbeeld: const response = await fetch(`${this.lineupAPI.baseUrl}/teams/${teamId}`, {
             //     headers: { 'Authorization': `Bearer ${this.lineupAPI.key}` }
             // });
             console.log('Lineup API geïnitialiseerd');
@@ -302,7 +302,7 @@ class CoachManager {
     }
 
     /**
-     * Inicializa el constructor de formaciones en modo demo
+     * Initialiseert de opstelling bouwer in demo modus
      */
     initDemoLineupBuilder() {
         const canvas = document.getElementById('lineupCanvas');
@@ -342,20 +342,24 @@ class CoachManager {
     }
 
     /**
-     * Guarda la formación actual
+     * Slaat de huidige opstelling op
      */
     saveLineup() {
-        const formation = document.getElementById('formationSelect')?.value;
+        const formationEl = document.getElementById('formationSelect');
+        const formation = formationEl?.value;
         if (!formation) {
             alert('Selecteer eerst een opstelling');
             return;
         }
 
         const selectedPlayers = Array.from(document.querySelectorAll('.player-item.selected'))
-            .map(el => ({
-                id: el.dataset.playerId,
-                name: el.querySelector('.player-name')?.textContent
-            }));
+            .map(el => {
+                const nameEl = el.querySelector('.player-name');
+                return {
+                    id: el.dataset.playerId,
+                    name: nameEl?.textContent || ''
+                };
+            });
 
         if (selectedPlayers.length < 11) {
             alert('Selecteer ten minste 11 spelers voor de opstelling');
@@ -367,7 +371,7 @@ class CoachManager {
     }
 
     /**
-     * Crea una formación
+     * Maakt een opstelling
      */
     createLineup(formation, players) {
         const lineup = {
@@ -448,7 +452,7 @@ class CoachManager {
     }
 
     /**
-     * Selecciona un jugador para la lista de convocados
+     * Selecteert een speler voor de selectie lijst
      */
     selectPlayer(playerId) {
         const playerEl = document.querySelector(`[data-player-id="${playerId}"]`);
@@ -458,12 +462,18 @@ class CoachManager {
     }
 
     /**
-     * Envía mensaje a un jugador
+     * Verstuurt bericht naar een speler
      */
     messagePlayer(playerId) {
-        // Abrir modal de mensaje
-        document.getElementById('messageRecipient')?.value = `player-${playerId}`;
-        document.getElementById('messageModal')?.classList.add('active');
+        // Open bericht modal
+        const recipientEl = document.getElementById('messageRecipient');
+        if (recipientEl) {
+            recipientEl.value = `player-${playerId}`;
+        }
+        const modalEl = document.getElementById('messageModal');
+        if (modalEl) {
+            modalEl.classList.add('active');
+        }
     }
 
     /**
