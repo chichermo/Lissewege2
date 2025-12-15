@@ -40,7 +40,7 @@ class AdminManager {
      * Abre modal para agregar miembro
      */
     openAddMemberModal() {
-        alert('Funcionalidad: Agregar nuevo miembro al club');
+        alert('Functionaliteit: Nieuw lid toevoegen aan de club');
         // Aquí se implementaría el modal real
     }
 
@@ -48,7 +48,7 @@ class AdminManager {
      * Abre modal para subir documento
      */
     openUploadDocumentModal() {
-        alert('Funcionalidad: Subir nuevo documento');
+        alert('Functionaliteit: Nieuw document uploaden');
         // Aquí se implementaría el modal real
     }
 
@@ -56,7 +56,7 @@ class AdminManager {
      * Abre modal para anuncio general
      */
     openGeneralAnnouncementModal() {
-        alert('Funcionalidad: Crear anuncio general para todos los miembros');
+        alert('Functionaliteit: Algemene aankondiging maken voor alle leden');
         // Aquí se implementaría el modal real
     }
 
@@ -64,7 +64,7 @@ class AdminManager {
      * Abre modal de reportes
      */
     openReportsModal() {
-        alert('Funcionalidad: Ver reportes y estadísticas del club');
+        alert('Functionaliteit: Rapporten en statistieken van de club bekijken');
         // Aquí se implementaría el modal real
     }
 
@@ -81,7 +81,7 @@ class AdminManager {
      * Abre sección de administración
      */
     openAdministration() {
-        alert('Funcionalidad: Panel de administración del club');
+        alert('Functionaliteit: Administratiepaneel van de club');
         // Aquí se implementaría el panel completo
     }
 }

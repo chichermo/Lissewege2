@@ -89,11 +89,11 @@ class MembersLogin {
      */
     handleFreeAccess() {
         // Permitir selección de rol para pruebas
-        const role = prompt('Selecciona tu rol:\n1. member (Miembro)\n2. coach (Coach)\n3. admin (Administrador)\n4. president (Presidente)', 'member') || 'member';
+        const role = prompt('Selecteer je rol:\n1. member (Lid)\n2. coach (Trainer)\n3. admin (Beheerder)\n4. president (Voorzitter)', 'member') || 'member';
         
         this.login({
-            name: 'Miembro RFC Lissewege',
-            email: 'miembro@rfclissewege.be',
+            name: 'Lid RFC Lissewege',
+            email: 'lid@rfclissewege.be',
             role: role,
             memberSince: new Date().toISOString()
         });
@@ -140,7 +140,7 @@ class MembersLogin {
         this.updateUI();
 
         // Mostrar mensaje
-        this.showMessage('Sesión cerrada correctamente', 'info');
+        this.showMessage('Succesvol uitgelogd', 'info');
     }
 
     /**
@@ -169,12 +169,12 @@ class MembersLogin {
             }
             if (userRoleEl && this.currentUser) {
                 const roleNames = {
-                    'member': 'Miembro',
-                    'coach': 'Coach',
-                    'admin': 'Administrador',
-                    'president': 'Presidente'
+                    'member': 'Lid',
+                    'coach': 'Trainer',
+                    'admin': 'Beheerder',
+                    'president': 'Voorzitter'
                 };
-                userRoleEl.textContent = roleNames[this.currentUser.role] || 'Miembro';
+                userRoleEl.textContent = roleNames[this.currentUser.role] || 'Lid';
             }
 
             // Actualizar secciones según rol
@@ -194,7 +194,7 @@ class MembersLogin {
      * Muestra mensaje de bienvenida
      */
     showWelcomeMessage() {
-        const message = `¡Bienvenido, ${this.currentUser.name}!`;
+        const message = `Welkom, ${this.currentUser.name}!`;
         this.showMessage(message, 'success');
     }
 

@@ -54,21 +54,10 @@
 
 ---
 
-### 💬 **2. Sistema de Mensajería Mejorado**
+### 💬 **2. Sistema de Mensajería Mejorado** ❌ (EXCLUIDO)
 
-- **Chat en Tiempo Real**
-  - Mensajería instantánea entre miembros
-  - Grupos de chat por equipo
-  - Notificaciones push
-  - Historial de conversaciones
-  - Compartir archivos e imágenes
-
-- **Sistema de Notificaciones**
-  - Notificaciones personalizables
-  - Alertas de partidos próximos
-  - Recordatorios de entrenamientos
-  - Notificaciones de anuncios importantes
-  - Notificaciones por email y SMS
+- ~~**Chat en Tiempo Real**~~
+- ~~**Sistema de Notificaciones**~~
 
 ---
 
@@ -185,14 +174,10 @@
 
 ---
 
-### 🔐 **13. Seguridad y Permisos Avanzados**
+### 🔐 **13. Seguridad y Permisos Avanzados** ❌ (EXCLUIDO)
 
-- **Sistema de Roles Granular**
-  - Roles personalizables
-  - Permisos específicos por funcionalidad
-  - Auditoría de acciones
-  - Logs de actividad
-  - Autenticación de dos factores (2FA)
+- ~~**Sistema de Roles Granular**~~
+- ~~**Autenticación de dos factores (2FA)**~~
 
 ---
 
@@ -283,18 +268,18 @@
 5. ✅ Notificaciones push
 
 ### **Media Prioridad:**
-6. Estadísticas y analytics avanzados
-7. Galería de fotos/videos
-8. Sistema de logros
-9. Evaluaciones de jugadores
-10. App móvil nativa
+6. Foto/video galerij
+7. Prestatiesysteem
+8. Spelersevaluaties
+9. Mobiele app
+10. Integraties met externe services
 
-### **Baja Prioridad (Futuro):**
-11. Integraciones externas avanzadas
-12. Sistema de voluntariado
-13. Planificación de temporada
-14. Biblioteca de recursos
-15. Personalización avanzada
+### **Lage Prioriteit (Toekomst):**
+11. Vrijwilligerssysteem
+12. Seizoensplanning
+13. Resourcebibliotheek
+14. Geavanceerde personalisatie
+15. Rapportages en export
 
 ---
 

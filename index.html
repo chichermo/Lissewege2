@@ -1638,9 +1638,10 @@
         <!-- Members Page -->
         <section id="members" class="page-section section members-section" style="display: none;">
             <div class="members-container">
-                <div class="members-header">
-                    <h2>Leden Zone</h2>
-                    <p>Área exclusiva para miembros de RFC Lissewege</p>
+                <div class="section-header">
+                    <span class="section-tag">Leden</span>
+                    <h2 class="section-title">Leden Zone</h2>
+                    <p class="section-description">Exclusief gebied voor leden van RFC Lissewege</p>
                 </div>
 
                 <!-- Login Prompt (shown when not logged in) -->
@@ -1648,16 +1649,16 @@
                     <div class="login-prompt-icon">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <h3>Acceso para Miembros</h3>
-                    <p>Inicia sesión para acceder al área exclusiva de miembros del club. Aquí encontrarás información privada, documentos y recursos especiales.</p>
+                    <h3>Toegang voor Leden</h3>
+                    <p>Log in om toegang te krijgen tot het exclusieve leden gebied van de club. Hier vind je privé informatie, documenten en speciale bronnen.</p>
                     <div class="login-buttons">
                         <button class="btn-login btn-login-primary" onclick="window.membersLogin.openLoginModal()">
                             <i class="fas fa-sign-in-alt"></i>
-                            Iniciar Sesión
+                            Inloggen
                         </button>
                         <button class="btn-login btn-login-secondary" id="freeAccessBtn">
                             <i class="fas fa-unlock"></i>
-                            Acceso Libre (Temporal)
+                            Vrije Toegang (Tijdelijk)
                         </button>
                     </div>
                 </div>
@@ -1690,31 +1691,31 @@
                         </button>
                         <button class="members-tab admin-only" data-section="admin" style="display: none;">
                             <i class="fas fa-user-shield"></i>
-                            <span>Directiva</span>
+                            <span>Directie</span>
                         </button>
                         <button class="members-tab coach-only" data-section="coach" style="display: none;">
                             <i class="fas fa-clipboard-list"></i>
-                            <span>Coach</span>
+                            <span>Trainer</span>
                         </button>
                         <button class="members-tab member-only" data-section="players">
                             <i class="fas fa-users"></i>
-                            <span>Jugadores</span>
+                            <span>Spelers</span>
                         </button>
                         <button class="members-tab member-only" data-section="documents">
                             <i class="fas fa-file-alt"></i>
-                            <span>Documentos</span>
+                            <span>Documenten</span>
                         </button>
                         <button class="members-tab admin-only" data-section="finances" style="display: none;">
                             <i class="fas fa-euro-sign"></i>
-                            <span>Finanzas</span>
+                            <span>Financiën</span>
                         </button>
                         <button class="members-tab member-only" data-section="calendar">
                             <i class="fas fa-calendar-alt"></i>
-                            <span>Calendario</span>
+                            <span>Kalender</span>
                         </button>
                         <button class="members-tab member-only" data-section="forum">
                             <i class="fas fa-comments"></i>
-                            <span>Foro</span>
+                            <span>Forum</span>
                         </button>
                     </div>
 
@@ -1725,57 +1726,57 @@
                                 <div class="member-feature-icon">
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
-                                <h4>Calendario de Eventos</h4>
-                                <p>Accede al calendario completo de eventos, entrenamientos y reuniones del club.</p>
-                            </div>
+                            <h4>Evenementenkalender</h4>
+                            <p>Bekijk de volledige kalender met evenementen, trainingen en vergaderingen van de club.</p>
+                        </div>
 
-                            <div class="member-feature-card" onclick="window.membersSections?.loadSection('documents')">
-                                <div class="member-feature-icon">
-                                    <i class="fas fa-file-alt"></i>
-                                </div>
-                                <h4>Documentos del Club</h4>
-                                <p>Descarga documentos importantes, reglamentos y formularios del club.</p>
+                        <div class="member-feature-card" onclick="window.membersSections?.loadSection('documents')">
+                            <div class="member-feature-icon">
+                                <i class="fas fa-file-alt"></i>
                             </div>
+                            <h4>Clubdocumenten</h4>
+                            <p>Download belangrijke documenten, reglementen en formulieren van de club.</p>
+                        </div>
 
-                            <div class="member-feature-card" onclick="window.membersSections?.loadSection('players')">
-                                <div class="member-feature-icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <h4>Directorio de Miembros</h4>
-                                <p>Consulta el directorio completo de miembros del club con información de contacto.</p>
+                        <div class="member-feature-card" onclick="window.membersSections?.loadSection('players')">
+                            <div class="member-feature-icon">
+                                <i class="fas fa-users"></i>
                             </div>
+                            <h4>Ledenlijst</h4>
+                            <p>Bekijk de volledige ledenlijst van de club met contactgegevens.</p>
+                        </div>
 
-                            <div class="member-feature-card">
-                                <div class="member-feature-icon">
-                                    <i class="fas fa-chart-line"></i>
-                                </div>
-                                <h4>Estadísticas Personales</h4>
-                                <p>Revisa tus estadísticas personales, partidos jugados y logros.</p>
+                        <div class="member-feature-card">
+                            <div class="member-feature-icon">
+                                <i class="fas fa-chart-line"></i>
                             </div>
+                            <h4>Persoonlijke Statistieken</h4>
+                            <p>Bekijk je persoonlijke statistieken, gespeelde wedstrijden en prestaties.</p>
+                        </div>
 
-                            <div class="member-feature-card" onclick="window.membersSections?.loadSection('forum')">
-                                <div class="member-feature-icon">
-                                    <i class="fas fa-comments"></i>
-                                </div>
-                                <h4>Foro del Club</h4>
-                                <p>Participa en discusiones y mantente al día con las últimas noticias del club.</p>
+                        <div class="member-feature-card" onclick="window.membersSections?.loadSection('forum')">
+                            <div class="member-feature-icon">
+                                <i class="fas fa-comments"></i>
                             </div>
+                            <h4>Clubforum</h4>
+                            <p>Neem deel aan discussies en blijf op de hoogte van het laatste clubnieuws.</p>
+                        </div>
 
-                            <div class="member-feature-card">
-                                <div class="member-feature-icon">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </div>
-                                <h4>Tienda del Club</h4>
-                                <p>Accede a la tienda exclusiva de miembros con descuentos especiales.</p>
+                        <div class="member-feature-card">
+                            <div class="member-feature-icon">
+                                <i class="fas fa-shopping-cart"></i>
                             </div>
+                            <h4>Clubwinkel</h4>
+                            <p>Toegang tot de exclusieve ledenwinkel met speciale kortingen.</p>
+                        </div>
                         </div>
                     </div>
 
-                    <!-- Admin/Directiva Section -->
+                    <!-- Admin/Directie Section -->
                     <div id="section-admin" class="members-section-content admin-only" style="display: none;">
                         <div class="section-header-inline">
-                            <h3><i class="fas fa-user-shield"></i> Área de Directiva</h3>
-                            <p>Gestión administrativa del club</p>
+                            <h3><i class="fas fa-user-shield"></i> Directie Gebied</h3>
+                            <p>Administratief beheer van de club</p>
                         </div>
 
                         <div class="admin-grid">
@@ -1783,10 +1784,10 @@
                                 <div class="admin-card-icon">
                                     <i class="fas fa-file-contract"></i>
                                 </div>
-                                <h4>Documentación</h4>
-                                <p>Gestiona documentos oficiales, actas, reglamentos y normativas del club.</p>
+                                <h4>Documentatie</h4>
+                                <p>Beheer officiële documenten, notulen, reglementen en normen van de club.</p>
                                 <button class="btn-admin-action" onclick="adminManager.openDocuments()">
-                                    Gestionar Documentos
+                                    Documenten Beheren
                                 </button>
                             </div>
 
@@ -1794,10 +1795,10 @@
                                 <div class="admin-card-icon">
                                     <i class="fas fa-cog"></i>
                                 </div>
-                                <h4>Administración</h4>
-                                <p>Gestiona miembros, permisos, equipos y configuración del club.</p>
+                                <h4>Administratie</h4>
+                                <p>Beheer leden, rechten, teams en clubinstellingen.</p>
                                 <button class="btn-admin-action" onclick="adminManager.openAdministration()">
-                                    Administrar Club
+                                    Club Beheren
                                 </button>
                             </div>
 
@@ -1805,32 +1806,32 @@
                                 <div class="admin-card-icon">
                                     <i class="fas fa-euro-sign"></i>
                                 </div>
-                                <h4>Finanzas</h4>
-                                <p>Gestiona presupuestos, pagos, facturas y estados financieros.</p>
+                                <h4>Financiën</h4>
+                                <p>Beheer budgetten, betalingen, facturen en financiële staten.</p>
                                 <button class="btn-admin-action" onclick="window.membersSections?.loadSection('finances')">
-                                    Ver Finanzas
+                                    Financiën Bekijken
                                 </button>
                             </div>
                         </div>
 
                         <div class="admin-quick-actions">
-                            <h4>Acciones Rápidas</h4>
+                            <h4>Snelle Acties</h4>
                             <div class="quick-actions-grid">
                                 <button class="quick-action-btn">
                                     <i class="fas fa-user-plus"></i>
-                                    Agregar Miembro
+                                    Lid Toevoegen
                                 </button>
                                 <button class="quick-action-btn">
                                     <i class="fas fa-file-upload"></i>
-                                    Subir Documento
+                                    Document Uploaden
                                 </button>
                                 <button class="quick-action-btn">
                                     <i class="fas fa-bullhorn"></i>
-                                    Anuncio General
+                                    Algemene Aankondiging
                                 </button>
                                 <button class="quick-action-btn">
                                     <i class="fas fa-chart-bar"></i>
-                                    Reportes
+                                    Rapporten
                                 </button>
                             </div>
                         </div>
@@ -1839,15 +1840,15 @@
                     <!-- Coach Section -->
                     <div id="section-coach" class="members-section-content coach-only" style="display: none;">
                         <div class="section-header-inline">
-                            <h3><i class="fas fa-clipboard-list"></i> Área de Coach</h3>
-                            <p>Gestión de equipos, comunicaciones y formaciones</p>
+                            <h3><i class="fas fa-clipboard-list"></i> Trainer Gebied</h3>
+                            <p>Beheer van teams, communicatie en opstellingen</p>
                         </div>
 
                         <!-- Team Selector -->
                         <div class="coach-team-selector">
-                            <label for="coachTeamSelector">Selecciona tu equipo:</label>
+                            <label for="coachTeamSelector">Selecteer je team:</label>
                             <select id="coachTeamSelector" class="form-select">
-                                <option value="">-- Selecciona un equipo --</option>
+                                <option value="">-- Selecteer een team --</option>
                                 <option value="u7">U7 - Mini's</option>
                                 <option value="u8">U8 - Benjamins</option>
                                 <option value="u9">U9 - Preminiemen</option>
@@ -1861,61 +1862,61 @@
                         <!-- Coach Tabs -->
                         <div class="coach-subtabs">
                             <button class="coach-subtab active" data-coach-section="announcements">
-                                <i class="fas fa-bullhorn"></i> Anuncios
+                                <i class="fas fa-bullhorn"></i> Aankondigingen
                             </button>
                             <button class="coach-subtab" data-coach-section="squad">
-                                <i class="fas fa-list"></i> Convocados
+                                <i class="fas fa-list"></i> Selectie
                             </button>
                             <button class="coach-subtab" data-coach-section="lineup">
-                                <i class="fas fa-sitemap"></i> Formaciones
+                                <i class="fas fa-sitemap"></i> Opstellingen
                             </button>
                             <button class="coach-subtab" data-coach-section="communication">
-                                <i class="fas fa-envelope"></i> Comunicación
+                                <i class="fas fa-envelope"></i> Communicatie
                             </button>
                             <button class="coach-subtab" data-coach-section="players">
-                                <i class="fas fa-users"></i> Jugadores
+                                <i class="fas fa-users"></i> Spelers
                             </button>
                         </div>
 
                         <!-- Announcements Section -->
                         <div id="coach-announcements" class="coach-section-content active">
                             <div class="coach-form-card">
-                                <h4>Crear Anuncio</h4>
+                                <h4>Aankondiging Maken</h4>
                                 <form id="announcementForm">
                                     <div class="form-group">
-                                        <label>Título</label>
+                                        <label>Titel</label>
                                         <input type="text" id="announcementTitle" class="form-input" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Contenido</label>
+                                        <label>Inhoud</label>
                                         <textarea id="announcementContent" class="form-textarea" rows="4" required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label>Dirigido a</label>
+                                        <label>Gericht aan</label>
                                         <select id="announcementTarget" class="form-select">
-                                            <option value="all">Todos los jugadores</option>
-                                            <option value="team">Equipo seleccionado</option>
-                                            <option value="parents">Solo apoderados</option>
-                                            <option value="players">Solo jugadores</option>
+                                            <option value="all">Alle spelers</option>
+                                            <option value="team">Geselecteerd team</option>
+                                            <option value="parents">Alleen ouders/voogden</option>
+                                            <option value="players">Alleen spelers</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>
                                             <input type="checkbox" id="announcementUrgent">
-                                            Anuncio urgente
+                                            Dringende aankondiging
                                         </label>
                                     </div>
                                     <button type="submit" class="btn-primary">
-                                        <i class="fas fa-paper-plane"></i> Publicar Anuncio
+                                        <i class="fas fa-paper-plane"></i> Aankondiging Publiceren
                                     </button>
                                 </form>
                             </div>
 
                             <div class="announcements-list" id="announcementsList">
-                                <h4>Anuncios Publicados</h4>
+                                <h4>Gepubliceerde Aankondigingen</h4>
                                 <div class="empty-state">
                                     <i class="fas fa-bullhorn"></i>
-                                    <p>No hay anuncios publicados aún</p>
+                                    <p>Nog geen aankondigingen gepubliceerd</p>
                                 </div>
                             </div>
                         </div>
@@ -1923,39 +1924,39 @@
                         <!-- Squad List Section -->
                         <div id="coach-squad" class="coach-section-content">
                             <div class="coach-form-card">
-                                <h4>Crear Lista de Convocados</h4>
+                                <h4>Selectie Lijst Maken</h4>
                                 <form id="squadForm">
                                     <div class="form-row">
                                         <div class="form-group">
-                                            <label>Fecha del Partido</label>
+                                            <label>Wedstrijddatum</label>
                                             <input type="date" id="squadMatchDate" class="form-input" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Hora</label>
+                                            <label>Tijd</label>
                                             <input type="time" id="squadMatchTime" class="form-input" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Rival</label>
+                                        <label>Tegenstander</label>
                                         <input type="text" id="squadOpponent" class="form-input" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Jugadores Convocados</label>
+                                        <label>Geselecteerde Spelers</label>
                                         <div id="teamPlayersList" class="players-selection-list">
-                                            <p class="text-muted">Selecciona un equipo primero</p>
+                                            <p class="text-muted">Selecteer eerst een team</p>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn-primary">
-                                        <i class="fas fa-check"></i> Crear Lista de Convocados
+                                        <i class="fas fa-check"></i> Selectie Lijst Maken
                                     </button>
                                 </form>
                             </div>
 
                             <div class="squads-list" id="squadsList">
-                                <h4>Listas de Convocados</h4>
+                                <h4>Selectie Lijsten</h4>
                                 <div class="empty-state">
                                     <i class="fas fa-list"></i>
-                                    <p>No hay listas de convocados creadas</p>
+                                    <p>Nog geen selectie lijsten gemaakt</p>
                                 </div>
                             </div>
                         </div>
@@ -1963,15 +1964,15 @@
                         <!-- Lineup Section -->
                         <div id="coach-lineup" class="coach-section-content">
                             <div class="lineup-builder">
-                                <h4>Constructor de Formaciones</h4>
+                                <h4>Opstelling Bouwer</h4>
                                 <div class="lineup-info">
-                                    <p>Integración con <strong>alineaciones.es</strong> para crear y compartir formaciones profesionales.</p>
+                                    <p>Integratie met <strong>alineaciones.es</strong> om professionele opstellingen te maken en te delen.</p>
                                     <button class="btn-secondary" onclick="coachManager.initLineupAPI()">
-                                        <i class="fas fa-plug"></i> Conectar con API
+                                        <i class="fas fa-plug"></i> Verbinden met API
                                     </button>
                                 </div>
                                 <div class="formation-selector">
-                                    <label>Selecciona Formación:</label>
+                                    <label>Selecteer Opstelling:</label>
                                     <select id="formationSelect" class="form-select">
                                         <option value="4-4-2">4-4-2</option>
                                         <option value="4-3-3">4-3-3</option>
@@ -1981,13 +1982,13 @@
                                     </select>
                                 </div>
                                 <div class="lineup-field" id="lineupField">
-                                    <!-- Campo de fútbol visual para arrastrar jugadores -->
+                                    <!-- Visueel voetbalveld om spelers te slepen -->
                                     <div class="field-container">
                                         <canvas id="lineupCanvas" width="600" height="400"></canvas>
                                     </div>
                                 </div>
                                 <button class="btn-primary" onclick="coachManager.saveLineup()">
-                                    <i class="fas fa-save"></i> Guardar Formación
+                                    <i class="fas fa-save"></i> Opstelling Opslaan
                                 </button>
                             </div>
                         </div>
@@ -1995,28 +1996,28 @@
                         <!-- Communication Section -->
                         <div id="coach-communication" class="coach-section-content">
                             <div class="communication-tabs">
-                                <button class="comm-tab active" data-comm-type="players">Jugadores</button>
-                                <button class="comm-tab" data-comm-type="parents">Apoderados</button>
-                                <button class="comm-tab" data-comm-type="team">Equipo Completo</button>
+                                <button class="comm-tab active" data-comm-type="players">Spelers</button>
+                                <button class="comm-tab" data-comm-type="parents">Ouders/Voogden</button>
+                                <button class="comm-tab" data-comm-type="team">Volledig Team</button>
                             </div>
 
                             <div class="coach-form-card">
-                                <h4>Enviar Mensaje</h4>
+                                <h4>Bericht Versturen</h4>
                                 <form id="messageForm">
                                     <div class="form-group">
-                                        <label>Destinatario</label>
-                                        <input type="text" id="messageRecipient" class="form-input" placeholder="Email o nombre" required>
+                                        <label>Ontvanger</label>
+                                        <input type="text" id="messageRecipient" class="form-input" placeholder="Email of naam" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Asunto</label>
+                                        <label>Onderwerp</label>
                                         <input type="text" id="messageSubject" class="form-input" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Mensaje</label>
+                                        <label>Bericht</label>
                                         <textarea id="messageContent" class="form-textarea" rows="5" required></textarea>
                                     </div>
                                     <button type="submit" class="btn-primary">
-                                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                                        <i class="fas fa-paper-plane"></i> Bericht Versturen
                                     </button>
                                 </form>
                             </div>
@@ -2025,34 +2026,39 @@
                         <!-- Players Management Section -->
                         <div id="coach-players" class="coach-section-content">
                             <div id="teamPlayersList" class="players-management-list">
-                                <p class="text-muted">Selecciona un equipo para ver los jugadores</p>
+                                <p class="text-muted">Selecteer een team om de spelers te zien</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Players Section -->
                     <div id="section-players" class="members-section-content member-only" style="display: none;">
-                        <h3>Directorio de Jugadores</h3>
-                        <p>Información de contacto de todos los miembros del club</p>
-                        <!-- Contenido será cargado dinámicamente -->
+                        <div class="section-header-inline">
+                            <h3>Spelerslijst</h3>
+                            <p>Contactgegevens van alle leden van de club</p>
+                        </div>
+                        <!-- Contenido wordt dynamisch geladen -->
                     </div>
 
                     <!-- Documents Section -->
                     <div id="section-documents" class="members-section-content member-only" style="display: none;">
-                        <h3>Documentos del Club</h3>
+                        <div class="section-header-inline">
+                            <h3>Clubdocumenten</h3>
+                            <p>Belangrijke documenten, reglementen en formulieren</p>
+                        </div>
                         <div class="documents-grid">
                             <div class="document-category">
-                                <h4><i class="fas fa-file-pdf"></i> Reglamentos</h4>
+                                <h4><i class="fas fa-file-pdf"></i> Reglementen</h4>
                                 <ul class="documents-list">
-                                    <li><a href="#"><i class="fas fa-download"></i> Reglamento Interno</a></li>
-                                    <li><a href="#"><i class="fas fa-download"></i> Normativas KBVB</a></li>
+                                    <li><a href="#"><i class="fas fa-download"></i> Intern Reglement</a></li>
+                                    <li><a href="#"><i class="fas fa-download"></i> KBVB Normen</a></li>
                                 </ul>
                             </div>
                             <div class="document-category">
-                                <h4><i class="fas fa-file-contract"></i> Formularios</h4>
+                                <h4><i class="fas fa-file-contract"></i> Formulieren</h4>
                                 <ul class="documents-list">
-                                    <li><a href="#"><i class="fas fa-download"></i> Formulario de Inscripción</a></li>
-                                    <li><a href="#"><i class="fas fa-download"></i> Autorización Médica</a></li>
+                                    <li><a href="#"><i class="fas fa-download"></i> Inschrijfformulier</a></li>
+                                    <li><a href="#"><i class="fas fa-download"></i> Medische Toestemming</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -2060,18 +2066,21 @@
 
                     <!-- Finances Section -->
                     <div id="section-finances" class="members-section-content admin-only" style="display: none;">
-                        <h3>Gestión Financiera</h3>
+                        <div class="section-header-inline">
+                            <h3>Financieel Beheer</h3>
+                            <p>Budgetten, betalingen en financiële overzichten</p>
+                        </div>
                         <div class="finances-dashboard">
                             <div class="finance-card">
-                                <h4>Presupuesto Anual</h4>
+                                <h4>Jaarbudget</h4>
                                 <div class="finance-amount">€25,000</div>
                             </div>
                             <div class="finance-card">
-                                <h4>Gastos del Mes</h4>
+                                <h4>Maandelijkse Uitgaven</h4>
                                 <div class="finance-amount">€2,500</div>
                             </div>
                             <div class="finance-card">
-                                <h4>Ingresos del Mes</h4>
+                                <h4>Maandelijkse Inkomsten</h4>
                                 <div class="finance-amount">€3,200</div>
                             </div>
                         </div>
@@ -2079,16 +2088,20 @@
 
                     <!-- Calendar Section -->
                     <div id="section-calendar" class="members-section-content member-only" style="display: none;">
-                        <h3>Calendario del Club</h3>
-                        <p>Eventos, entrenamientos y partidos</p>
-                        <!-- Calendario será integrado -->
+                        <div class="section-header-inline">
+                            <h3>Clubkalender</h3>
+                            <p>Evenementen, trainingen en wedstrijden</p>
+                        </div>
+                        <!-- Kalender wordt geïntegreerd -->
                     </div>
 
                     <!-- Forum Section -->
                     <div id="section-forum" class="members-section-content member-only" style="display: none;">
-                        <h3>Foro del Club</h3>
-                        <p>Discusiones y noticias</p>
-                        <!-- Foro será integrado -->
+                        <div class="section-header-inline">
+                            <h3>Clubforum</h3>
+                            <p>Discussies en nieuws</p>
+                        </div>
+                        <!-- Forum wordt geïntegreerd -->
                     </div>
                 </div>
             </div>
@@ -2098,31 +2111,31 @@
         <div class="login-modal" id="membersLoginModal">
             <div class="login-modal-content">
                 <div class="login-modal-header">
-                    <h3>Iniciar Sesión</h3>
+                    <h3>Inloggen</h3>
                     <button class="close-modal" onclick="window.membersLogin.closeLoginModal()">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
                 <form id="membersLoginForm">
                     <div class="login-form-group">
-                        <label for="memberName">Nombre</label>
-                        <input type="text" id="memberName" placeholder="Tu nombre" required>
+                        <label for="memberName">Naam</label>
+                        <input type="text" id="memberName" placeholder="Je naam" required>
                     </div>
                     <div class="login-form-group">
-                        <label for="memberEmail">Email (Opcional)</label>
-                        <input type="email" id="memberEmail" placeholder="tu@email.com">
+                        <label for="memberEmail">Email (Optioneel)</label>
+                        <input type="email" id="memberEmail" placeholder="jouw@email.com">
                     </div>
                     <div class="login-form-actions">
                         <button type="submit" class="btn-submit">
                             <i class="fas fa-sign-in-alt"></i>
-                            Iniciar Sesión
+                            Inloggen
                         </button>
                     </div>
                 </form>
                 <div style="margin-top: 1rem; text-align: center;">
                     <button class="btn-login-secondary" id="freeAccessBtnModal" style="width: 100%;">
                         <i class="fas fa-unlock"></i>
-                        Acceso Libre (Sin Login)
+                        Vrije Toegang (Zonder Login)
                     </button>
                 </div>
             </div>

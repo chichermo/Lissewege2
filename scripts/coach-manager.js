@@ -91,17 +91,17 @@ class CoachManager {
                     <span class="player-age">${player.age} años</span>
                 </div>
                 <div class="player-actions">
-                    <button class="btn-icon" onclick="coachManager.selectPlayer(${player.id})" title="Seleccionar">
-                        <i class="fas fa-check"></i>
-                    </button>
-                    <button class="btn-icon" onclick="coachManager.messagePlayer(${player.id})" title="Mensaje">
-                        <i class="fas fa-envelope"></i>
-                    </button>
-                    ${player.age < 18 ? `
-                        <button class="btn-icon" onclick="coachManager.messageParent('${player.parentContact}')" title="Contactar Apoderado">
-                            <i class="fas fa-user-friends"></i>
-                        </button>
-                    ` : ''}
+                                    <button class="btn-icon" onclick="coachManager.selectPlayer(${player.id})" title="Selecteren">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="btn-icon" onclick="coachManager.messagePlayer(${player.id})" title="Bericht">
+                                        <i class="fas fa-envelope"></i>
+                                    </button>
+                                    ${player.age < 18 ? `
+                                        <button class="btn-icon" onclick="coachManager.messageParent('${player.parentContact}')" title="Contact Ouder/Voogd">
+                                            <i class="fas fa-user-friends"></i>
+                                        </button>
+                                    ` : ''}
                 </div>
             </div>
         `).join('');
@@ -130,7 +130,7 @@ class CoachManager {
         const urgent = document.getElementById('announcementUrgent')?.checked;
 
         if (!title || !content) {
-            alert('Por favor completa todos los campos');
+            alert('Vul alle velden in');
             return;
         }
 
@@ -173,13 +173,13 @@ class CoachManager {
         announcementEl.innerHTML = `
             <div class="announcement-header">
                 <h4>${announcement.title}</h4>
-                <span class="announcement-date">${new Date(announcement.date).toLocaleDateString()}</span>
+                <span class="announcement-date">${new Date(announcement.date).toLocaleDateString('nl-BE')}</span>
             </div>
             <div class="announcement-content">${announcement.content}</div>
-            <div class="announcement-target">Para: ${announcement.target}</div>
+            <div class="announcement-target">Voor: ${announcement.target === 'all' ? 'Alle spelers' : announcement.target === 'team' ? 'Geselecteerd team' : announcement.target === 'parents' ? 'Ouders/Voogden' : 'Spelers'}</div>
             <div class="announcement-actions">
-                <button onclick="coachManager.editAnnouncement(${announcement.id})">Editar</button>
-                <button onclick="coachManager.deleteAnnouncement(${announcement.id})">Eliminar</button>
+                <button onclick="coachManager.editAnnouncement(${announcement.id})">Bewerken</button>
+                <button onclick="coachManager.deleteAnnouncement(${announcement.id})">Verwijderen</button>
             </div>
         `;
         container.insertBefore(announcementEl, container.firstChild);
@@ -209,7 +209,7 @@ class CoachManager {
             .map(el => el.dataset.playerId);
 
         if (!matchDate || !matchTime || selectedPlayers.length === 0) {
-            alert('Por favor completa todos los campos y selecciona al menos un jugador');
+            alert('Vul alle velden in en selecteer ten minste één speler');
             return;
         }
 
@@ -248,12 +248,12 @@ class CoachManager {
         squadEl.innerHTML = `
             <div class="squad-header">
                 <h4>${squad.opponent}</h4>
-                <span>${new Date(squad.matchDate).toLocaleDateString()} ${squad.matchTime}</span>
+                <span>${new Date(squad.matchDate).toLocaleDateString('nl-BE')} ${squad.matchTime}</span>
             </div>
-            <div class="squad-players-count">${squad.players.length} jugadores convocados</div>
+            <div class="squad-players-count">${squad.players.length} spelers geselecteerd</div>
             <div class="squad-actions">
-                <button onclick="coachManager.viewSquad(${squad.id})">Ver</button>
-                <button onclick="coachManager.shareSquad(${squad.id})">Compartir</button>
+                <button onclick="coachManager.viewSquad(${squad.id})">Bekijken</button>
+                <button onclick="coachManager.shareSquad(${squad.id})">Delen</button>
             </div>
         `;
         container.insertBefore(squadEl, container.firstChild);
@@ -272,10 +272,10 @@ class CoachManager {
      */
     async initLineupAPI() {
         if (!this.lineupAPI.enabled) {
-            const enable = confirm('¿Deseas conectar con la API de alineaciones.es?\n\nNota: Necesitarás credenciales de API.');
+            const enable = confirm('Wil je verbinden met de alineaciones.es API?\n\nOpmerking: Je hebt API-referenties nodig.');
             if (enable) {
                 // Aquí se pedirían las credenciales
-                const apiKey = prompt('Ingresa tu API Key de alineaciones.es (dejar vacío para usar modo demo):');
+                const apiKey = prompt('Voer je API Key van alineaciones.es in (leeg laten voor demo modus):');
                 if (apiKey) {
                     this.lineupAPI.enabled = true;
                     this.lineupAPI.key = apiKey;
@@ -284,7 +284,7 @@ class CoachManager {
         }
 
         if (!this.lineupAPI.enabled) {
-            console.log('Lineup API no habilitada. Usando modo demo.');
+            console.log('Lineup API niet ingeschakeld. Demo modus gebruiken.');
             this.initDemoLineupBuilder();
             return;
         }
@@ -294,9 +294,9 @@ class CoachManager {
             // Ejemplo: const response = await fetch(`${this.lineupAPI.baseUrl}/teams/${teamId}`, {
             //     headers: { 'Authorization': `Bearer ${this.lineupAPI.key}` }
             // });
-            console.log('Lineup API inicializada');
+            console.log('Lineup API geïnitialiseerd');
         } catch (error) {
-            console.warn('Error al conectar con Lineup API:', error);
+            console.warn('Fout bij verbinden met Lineup API:', error);
             this.initDemoLineupBuilder();
         }
     }
@@ -337,8 +337,8 @@ class CoachManager {
         ctx.fillStyle = 'white';
         ctx.font = '16px Arial';
         ctx.textAlign = 'center';
-        ctx.fillText('Constructor de Formaciones (Modo Demo)', canvas.width / 2, 30);
-        ctx.fillText('Arrastra jugadores desde la lista', canvas.width / 2, canvas.height - 20);
+        ctx.fillText('Opstelling Bouwer (Demo Modus)', canvas.width / 2, 30);
+        ctx.fillText('Sleep spelers vanuit de lijst', canvas.width / 2, canvas.height - 20);
     }
 
     /**
@@ -347,7 +347,7 @@ class CoachManager {
     saveLineup() {
         const formation = document.getElementById('formationSelect')?.value;
         if (!formation) {
-            alert('Selecciona una formación primero');
+            alert('Selecteer eerst een opstelling');
             return;
         }
 
@@ -358,12 +358,12 @@ class CoachManager {
             }));
 
         if (selectedPlayers.length < 11) {
-            alert('Selecciona al menos 11 jugadores para la formación');
+            alert('Selecteer ten minste 11 spelers voor de opstelling');
             return;
         }
 
         this.createLineup(formation, selectedPlayers);
-        alert('Formación guardada correctamente');
+        alert('Opstelling succesvol opgeslagen');
     }
 
     /**
@@ -428,7 +428,7 @@ class CoachManager {
         const content = document.getElementById('messageContent')?.value;
 
         if (!recipient || !subject || !content) {
-            alert('Por favor completa todos los campos');
+            alert('Vul alle velden in');
             return;
         }
 
@@ -442,8 +442,8 @@ class CoachManager {
         };
 
         // En producción, esto se enviaría a través de un sistema de mensajería
-        console.log('Mensaje enviado:', message);
-        alert('Mensaje enviado correctamente');
+        console.log('Bericht verzonden:', message);
+        alert('Bericht succesvol verzonden');
         document.getElementById('messageForm')?.reset();
     }
 
