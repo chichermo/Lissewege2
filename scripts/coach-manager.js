@@ -1,14 +1,14 @@
 // ============================================
 // COACH MANAGEMENT SYSTEM
 // ============================================
-// Sistema de gestión para coaches: comunicaciones, convocados, formaciones
+// Systeem voor trainers: communicatie, selecties, opstellingen
 
 class CoachManager {
     constructor() {
         this.selectedTeam = null;
         this.lineupAPI = {
             baseUrl: 'https://api.alineaciones.es',
-            enabled: false // Activar cuando se tenga acceso a la API
+            enabled: false // Activeren wanneer API toegang beschikbaar is
         };
         this.init();
     }
@@ -22,7 +22,7 @@ class CoachManager {
     }
 
     /**
-     * Inicializa el selector de equipos
+     * Initialiseert de team selector
      */
     initTeamSelector() {
         const teamSelector = document.getElementById('coachTeamSelector');
@@ -35,26 +35,26 @@ class CoachManager {
     }
 
     /**
-     * Carga datos del equipo seleccionado
+     * Laadt gegevens van het geselecteerde team
      */
     loadTeamData(teamId) {
-        // Cargar jugadores del equipo
+        // Laad spelers van het team
         this.loadTeamPlayers(teamId);
-        // Cargar comunicaciones
+        // Laad communicaties
         this.loadTeamCommunications(teamId);
-        // Cargar formaciones guardadas
+        // Laad opgeslagen opstellingen
         this.loadSavedLineups(teamId);
     }
 
     /**
-     * Carga los jugadores del equipo
+     * Laadt de spelers van het team
      */
     loadTeamPlayers(teamId) {
-        // Aquí se integraría con la base de datos de jugadores
+        // Hier zou integratie zijn met de spelers database
         const players = this.getTeamPlayers(teamId);
         this.renderPlayersList(players);
         
-        // También renderizar en la sección de jugadores del coach
+        // Ook renderen in de spelers sectie van de trainer
         const coachPlayersList = document.querySelector('#coach-players .players-management-list');
         if (coachPlayersList) {
             this.renderPlayersList(players, coachPlayersList);
@@ -62,20 +62,20 @@ class CoachManager {
     }
 
     /**
-     * Obtiene los jugadores de un equipo (datos de ejemplo)
+     * Haalt spelers van een team op (voorbeeldgegevens)
      */
     getTeamPlayers(teamId) {
-        // En producción, esto vendría de una API o base de datos
+        // In productie zou dit van een API of database komen
         return [
-            { id: 1, name: 'Jugador 1', position: 'Portero', age: 12, parentContact: 'parent1@email.com' },
-            { id: 2, name: 'Jugador 2', position: 'Defensa', age: 13, parentContact: 'parent2@email.com' },
-            { id: 3, name: 'Jugador 3', position: 'Mediocampista', age: 12, parentContact: 'parent3@email.com' },
-            { id: 4, name: 'Jugador 4', position: 'Delantero', age: 13, parentContact: 'parent4@email.com' }
+            { id: 1, name: 'Speler 1', position: 'Doelman', age: 12, parentContact: 'ouder1@email.com' },
+            { id: 2, name: 'Speler 2', position: 'Verdediger', age: 13, parentContact: 'ouder2@email.com' },
+            { id: 3, name: 'Speler 3', position: 'Middenvelder', age: 12, parentContact: 'ouder3@email.com' },
+            { id: 4, name: 'Speler 4', position: 'Aanvaller', age: 13, parentContact: 'ouder4@email.com' }
         ];
     }
 
     /**
-     * Renderiza la lista de jugadores
+     * Rendert de spelerslijst
      */
     renderPlayersList(players, container = null) {
         if (!container) {
@@ -88,7 +88,7 @@ class CoachManager {
                 <div class="player-info">
                     <span class="player-name">${player.name}</span>
                     <span class="player-position">${player.position}</span>
-                    <span class="player-age">${player.age} años</span>
+                    <span class="player-age">${player.age} jaar</span>
                 </div>
                 <div class="player-actions">
                                     <button class="btn-icon" onclick="coachManager.selectPlayer(${player.id})" title="Selecteren">
@@ -102,13 +102,13 @@ class CoachManager {
                                             <i class="fas fa-user-friends"></i>
                                         </button>
                                     ` : ''}
-                </div>
+                                </div>
             </div>
         `).join('');
     }
 
     /**
-     * Inicializa el sistema de anuncios
+     * Initialiseert het aankondigingssysteem
      */
     initAnnouncements() {
         const form = document.getElementById('announcementForm');
@@ -121,13 +121,18 @@ class CoachManager {
     }
 
     /**
-     * Crea un nuevo anuncio
+     * Maakt een nieuwe aankondiging
      */
     createAnnouncement() {
-        const title = document.getElementById('announcementTitle')?.value;
-        const content = document.getElementById('announcementContent')?.value;
-        const target = document.getElementById('announcementTarget')?.value;
-        const urgent = document.getElementById('announcementUrgent')?.checked;
+        const titleEl = document.getElementById('announcementTitle');
+        const contentEl = document.getElementById('announcementContent');
+        const targetEl = document.getElementById('announcementTarget');
+        const urgentEl = document.getElementById('announcementUrgent');
+        
+        const title = titleEl?.value;
+        const content = contentEl?.value;
+        const target = targetEl?.value || 'all';
+        const urgent = urgentEl?.checked || false;
 
         if (!title || !content) {
             alert('Vul alle velden in');
@@ -147,22 +152,25 @@ class CoachManager {
         this.saveAnnouncement(announcement);
         this.displayAnnouncement(announcement);
         
-        // Limpiar formulario
-        document.getElementById('announcementForm')?.reset();
+        // Formulier legen
+        const form = document.getElementById('announcementForm');
+        if (form) {
+            form.reset();
+        }
     }
 
     /**
-     * Guarda un anuncio
+     * Slaat een aankondiging op
      */
     saveAnnouncement(announcement) {
-        // En producción, esto se guardaría en una base de datos
+        // In productie zou dit in een database worden opgeslagen
         const announcements = JSON.parse(localStorage.getItem('coach_announcements') || '[]');
         announcements.push(announcement);
         localStorage.setItem('coach_announcements', JSON.stringify(announcements));
     }
 
     /**
-     * Muestra un anuncio en la lista
+     * Toont een aankondiging in de lijst
      */
     displayAnnouncement(announcement) {
         const container = document.getElementById('announcementsList');
@@ -186,7 +194,7 @@ class CoachManager {
     }
 
     /**
-     * Inicializa la lista de convocados
+     * Initialiseert de selectie lijst
      */
     initSquadList() {
         const form = document.getElementById('squadForm');
@@ -199,12 +207,16 @@ class CoachManager {
     }
 
     /**
-     * Crea una lista de convocados
+     * Maakt een selectie lijst
      */
     createSquadList() {
-        const matchDate = document.getElementById('squadMatchDate')?.value;
-        const matchTime = document.getElementById('squadMatchTime')?.value;
-        const opponent = document.getElementById('squadOpponent')?.value;
+        const matchDateEl = document.getElementById('squadMatchDate');
+        const matchTimeEl = document.getElementById('squadMatchTime');
+        const opponentEl = document.getElementById('squadOpponent');
+        
+        const matchDate = matchDateEl?.value;
+        const matchTime = matchTimeEl?.value;
+        const opponent = opponentEl?.value;
         const selectedPlayers = Array.from(document.querySelectorAll('.player-item.selected'))
             .map(el => el.dataset.playerId);
 
@@ -228,7 +240,7 @@ class CoachManager {
     }
 
     /**
-     * Guarda una lista de convocados
+     * Slaat een selectie lijst op
      */
     saveSquadList(squad) {
         const squads = JSON.parse(localStorage.getItem('coach_squads') || '[]');
@@ -237,7 +249,7 @@ class CoachManager {
     }
 
     /**
-     * Muestra una lista de convocados
+     * Toont een selectie lijst
      */
     displaySquadList(squad) {
         const container = document.getElementById('squadsList');
@@ -310,30 +322,30 @@ class CoachManager {
 
         const ctx = canvas.getContext('2d');
         
-        // Dibujar campo de fútbol
+        // Teken voetbalveld
         ctx.fillStyle = '#2d5016';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        // Líneas del campo
+        // Veldlijnen
         ctx.strokeStyle = 'white';
         ctx.lineWidth = 2;
         
-        // Línea central
+        // Centrale lijn
         ctx.beginPath();
         ctx.moveTo(canvas.width / 2, 0);
         ctx.lineTo(canvas.width / 2, canvas.height);
         ctx.stroke();
         
-        // Círculo central
+        // Centrale cirkel
         ctx.beginPath();
         ctx.arc(canvas.width / 2, canvas.height / 2, 50, 0, Math.PI * 2);
         ctx.stroke();
         
-        // Áreas
+        // Gebieden
         ctx.strokeRect(20, canvas.height / 2 - 60, 100, 120);
         ctx.strokeRect(canvas.width - 120, canvas.height / 2 - 60, 100, 120);
         
-        // Mostrar mensaje
+        // Toon bericht
         ctx.fillStyle = 'white';
         ctx.font = '16px Arial';
         ctx.textAlign = 'center';
@@ -382,36 +394,36 @@ class CoachManager {
             created: new Date().toISOString()
         };
 
-        // Guardar formación
+        // Sla opstelling op
         const lineups = JSON.parse(localStorage.getItem('coach_lineups') || '[]');
         lineups.push(lineup);
         localStorage.setItem('coach_lineups', JSON.stringify(lineups));
 
-        // Si la API está habilitada, sincronizar
+        // Als API is ingeschakeld, synchroniseren
         if (this.lineupAPI.enabled) {
             this.syncLineupToAPI(lineup);
         }
     }
 
     /**
-     * Sincroniza formación con API externa
+     * Synchroniseert opstelling met externe API
      */
     async syncLineupToAPI(lineup) {
         try {
-            // Ejemplo de integración con alineaciones.es
+            // Voorbeeld van integratie met alineaciones.es
             // const response = await fetch(`${this.lineupAPI.baseUrl}/lineups`, {
             //     method: 'POST',
             //     headers: { 'Content-Type': 'application/json' },
             //     body: JSON.stringify(lineup)
             // });
-            console.log('Formación sincronizada con API');
+            console.log('Opstelling gesynchroniseerd met API');
         } catch (error) {
-            console.warn('Error al sincronizar formación:', error);
+            console.warn('Fout bij synchroniseren opstelling:', error);
         }
     }
 
     /**
-     * Inicializa el sistema de comunicación
+     * Initialiseert het communicatiesysteem
      */
     initCommunication() {
         const messageForm = document.getElementById('messageForm');
@@ -477,15 +489,21 @@ class CoachManager {
     }
 
     /**
-     * Envía mensaje a un apoderado
+     * Verstuurt bericht naar een ouder/voogd
      */
     messageParent(parentContact) {
-        document.getElementById('messageRecipient')?.value = parentContact;
-        document.getElementById('messageModal')?.classList.add('active');
+        const recipientEl = document.getElementById('messageRecipient');
+        if (recipientEl) {
+            recipientEl.value = parentContact;
+        }
+        const modalEl = document.getElementById('messageModal');
+        if (modalEl) {
+            modalEl.classList.add('active');
+        }
     }
 }
 
-// Inicializar cuando el DOM esté listo
+// Initialiseer wanneer DOM klaar is
 document.addEventListener('DOMContentLoaded', () => {
     window.coachManager = new CoachManager();
 });
