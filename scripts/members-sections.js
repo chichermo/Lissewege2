@@ -140,24 +140,24 @@ class MembersSections {
      * Carga el dashboard
      */
     loadDashboard() {
-        // Dashboard ya está cargado en HTML
-        console.log('Dashboard loaded');
+        // Dashboard is al geladen in HTML
+        console.log('Dashboard geladen');
     }
 
     /**
      * Carga la sección de administración
      */
     loadAdminSection() {
-        console.log('Admin section loaded');
-        // Aquí se puede cargar contenido dinámico si es necesario
+        console.log('Admin sectie geladen');
+        // Hier kan dynamische content worden geladen indien nodig
     }
 
     /**
      * Carga la sección de coaches
      */
     loadCoachSection() {
-        console.log('Coach section loaded');
-        // Inicializar funcionalidades de coach
+        console.log('Trainer sectie geladen');
+        // Initialiseer coach functionaliteiten
         if (window.coachManager) {
             window.coachManager.init();
         }
@@ -167,21 +167,21 @@ class MembersSections {
      * Carga la sección de jugadores
      */
     loadPlayersSection() {
-        console.log('Players section loaded');
+        console.log('Spelers sectie geladen');
     }
 
     /**
      * Carga la sección de documentos
      */
     loadDocumentsSection() {
-        console.log('Documents section loaded');
+        console.log('Documenten sectie geladen');
     }
 
     /**
      * Carga la sección de finanzas
      */
     loadFinancesSection() {
-        console.log('Finances section loaded');
+        console.log('Financiën sectie geladen');
     }
 }
 

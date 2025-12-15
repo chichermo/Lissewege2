@@ -20,13 +20,26 @@
     margin-bottom: 3rem;
 }
 
-.members-header h2 {
+.members-header .section-tag {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.members-header .section-title {
     color: white;
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
-.members-header p {
+.members-header .section-description {
     font-size: 1.1rem;
     opacity: 0.9;
 }
