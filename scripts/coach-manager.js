@@ -436,12 +436,16 @@ class CoachManager {
     }
 
     /**
-     * Envía un mensaje
+     * Verstuurt een bericht
      */
     sendMessage() {
-        const recipient = document.getElementById('messageRecipient')?.value;
-        const subject = document.getElementById('messageSubject')?.value;
-        const content = document.getElementById('messageContent')?.value;
+        const recipientEl = document.getElementById('messageRecipient');
+        const subjectEl = document.getElementById('messageSubject');
+        const contentEl = document.getElementById('messageContent');
+        
+        const recipient = recipientEl?.value;
+        const subject = subjectEl?.value;
+        const content = contentEl?.value;
 
         if (!recipient || !subject || !content) {
             alert('Vul alle velden in');
@@ -457,10 +461,13 @@ class CoachManager {
             read: false
         };
 
-        // En producción, esto se enviaría a través de un sistema de mensajería
+        // In productie zou dit via een berichtensysteem worden verzonden
         console.log('Bericht verzonden:', message);
         alert('Bericht succesvol verzonden');
-        document.getElementById('messageForm')?.reset();
+        const form = document.getElementById('messageForm');
+        if (form) {
+            form.reset();
+        }
     }
 
     /**
