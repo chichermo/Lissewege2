@@ -272,11 +272,36 @@ class CoachManager {
     }
 
     /**
-     * Inicializa el constructor de formaciones
+     * Initialiseert de opstelling bouwer
      */
     initLineupBuilder() {
-        // Integración con API de alineaciones.es
-        this.initLineupAPI();
+        // Initialiseer eerst de tabs
+        this.initCoachSubtabs();
+        
+        // Wacht even zodat DOM volledig geladen is
+        setTimeout(() => {
+            // Gebruik enhanced lineup builder
+            if (window.enhancedLineupBuilder) {
+                try {
+                    window.enhancedLineupBuilder.init();
+                    console.log('Enhanced lineup builder geactiveerd');
+                } catch (error) {
+                    console.warn('Enhanced lineup builder fout, gebruik demo modus:', error);
+                    this.initLineupAPI();
+                }
+            } else if (typeof EnhancedLineupBuilder !== 'undefined') {
+                try {
+                    window.enhancedLineupBuilder = new EnhancedLineupBuilder();
+                    console.log('Enhanced lineup builder aangemaakt en geactiveerd');
+                } catch (error) {
+                    console.warn('Kon enhanced lineup builder niet maken:', error);
+                    this.initLineupAPI();
+                }
+            } else {
+                // Fallback naar demo modus
+                this.initLineupAPI();
+            }
+        }, 200);
     }
 
     /**

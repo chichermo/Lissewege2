@@ -227,7 +227,7 @@
 
 .login-form-group input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: var(--primary-color);
 }
 
 .login-form-actions {
@@ -239,19 +239,21 @@
 .btn-submit {
     flex: 1;
     padding: 0.875rem;
-    background: #667eea;
+    background: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius);
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
 }
 
 .btn-submit:hover {
-    background: #5568d3;
+    background: var(--primary-dark);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 /* Logged In Content */
@@ -278,13 +280,14 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-primary);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 1.5rem;
     font-weight: 700;
+    box-shadow: var(--shadow-sm);
 }
 
 .member-details h3 {
