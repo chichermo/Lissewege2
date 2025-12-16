@@ -272,6 +272,88 @@ class CoachManager {
     }
 
     /**
+     * Initialiseert de trainer tabs
+     */
+    initCoachSubtabs() {
+        const subtabs = document.querySelectorAll('.coach-subtab');
+        if (subtabs.length === 0) {
+            console.warn('Geen coach subtabs gevonden');
+            return;
+        }
+        
+        subtabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = tab.dataset.coachSection;
+                if (section) {
+                    this.showCoachSection(section);
+                }
+            });
+        });
+        
+        // Toon eerste tab standaard
+        const firstTab = subtabs[0];
+        if (firstTab) {
+            const firstSection = firstTab.dataset.coachSection;
+            if (firstSection) {
+                this.showCoachSection(firstSection);
+            }
+        }
+    }
+
+    /**
+     * Toont een specifieke trainer sectie
+     */
+    showCoachSection(sectionId) {
+        if (!sectionId) {
+            console.warn('Geen sectionId opgegeven');
+            return;
+        }
+
+        // Verberg alle secties
+        document.querySelectorAll('.coach-section-content').forEach(section => {
+            section.classList.remove('active');
+            section.style.display = 'none';
+        });
+
+        // Toon de geselecteerde sectie
+        const targetSection = document.getElementById(`coach-${sectionId}`);
+        if (targetSection) {
+            targetSection.classList.add('active');
+            targetSection.style.display = 'block';
+            
+            // Initialiseer lineup builder als het de lineup sectie is
+            if (sectionId === 'lineup') {
+                setTimeout(() => {
+                    if (window.enhancedLineupBuilder) {
+                        try {
+                            window.enhancedLineupBuilder.init();
+                        } catch (error) {
+                            console.warn('Lineup builder init fout:', error);
+                        }
+                    } else if (typeof EnhancedLineupBuilder !== 'undefined') {
+                        try {
+                            window.enhancedLineupBuilder = new EnhancedLineupBuilder();
+                        } catch (error) {
+                            console.warn('Kon lineup builder niet maken:', error);
+                        }
+                    }
+                }, 100);
+            }
+        } else {
+            console.warn(`Sectie coach-${sectionId} niet gevonden`);
+        }
+
+        // Update actieve tabs
+        document.querySelectorAll('.coach-subtab').forEach(tab => {
+            tab.classList.remove('active');
+            if (tab.dataset.coachSection === sectionId) {
+                tab.classList.add('active');
+            }
+        });
+    }
+
+    /**
      * Initialiseert de opstelling bouwer
      */
     initLineupBuilder() {
