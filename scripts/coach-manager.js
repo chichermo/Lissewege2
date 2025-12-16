@@ -660,6 +660,95 @@ class CoachManager {
             modalEl.classList.add('active');
         }
     }
+
+    /**
+     * Exporteert alle opstellingen
+     */
+    async exportLineups() {
+        if (!window.lineupAPIMock) {
+            alert('Mock API niet beschikbaar');
+            return;
+        }
+
+        try {
+            const result = await window.lineupAPIMock.getLineups(this.selectedTeam);
+            
+            if (result.success && result.data.length > 0) {
+                const json = JSON.stringify(result.data, null, 2);
+                const blob = new Blob([json], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `opstellingen_${this.selectedTeam || 'alle'}_${Date.now()}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+                alert(`${result.data.length} opstelling(en) geëxporteerd!`);
+            } else {
+                alert('Geen opstellingen om te exporteren');
+            }
+        } catch (error) {
+            console.error('Export fout:', error);
+            alert('Fout bij exporteren: ' + error.message);
+        }
+    }
+
+    /**
+     * Importeert opstellingen
+     */
+    async importLineups() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json';
+        
+        input.onchange = async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            try {
+                const text = await file.text();
+                const data = JSON.parse(text);
+                const lineups = Array.isArray(data) ? data : [data];
+
+                let imported = 0;
+                for (const lineup of lineups) {
+                    const result = await window.lineupAPIMock.importLineup(lineup);
+                    if (result.success) imported++;
+                }
+
+                alert(`${imported} van ${lineups.length} opstelling(en) geïmporteerd!`);
+                
+                // Herlaad opstellingen
+                if (this.selectedTeam) {
+                    this.loadTeamData(this.selectedTeam);
+                }
+            } catch (error) {
+                console.error('Import fout:', error);
+                alert('Fout bij importeren: ' + error.message);
+            }
+        };
+
+        input.click();
+    }
+
+    /**
+     * Synchroniseert met Mock API
+     */
+    async syncMockAPI() {
+        if (!window.lineupAPIMock) {
+            alert('Mock API niet beschikbaar');
+            return;
+        }
+
+        try {
+            const result = await window.lineupAPIMock.sync();
+            if (result.success) {
+                alert(`Synchronisatie voltooid!\n${result.data.synced} opstelling(en) gesynchroniseerd.`);
+            }
+        } catch (error) {
+            console.error('Sync fout:', error);
+            alert('Fout bij synchroniseren: ' + error.message);
+        }
+    }
 }
 
 // Initialiseer wanneer DOM klaar is
