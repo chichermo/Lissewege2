@@ -11,7 +11,7 @@ class EnhancedLineupBuilder {
         this.players = [];
         this.draggedPlayer = null;
         this.dragOffset = { x: 0, y: 0 };
-        this.fieldPositions = {};
+        this.fieldPositions = []; // Initialize as array, not object
         this.init();
     }
 
