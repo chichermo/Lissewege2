@@ -1966,18 +1966,24 @@
                             <div class="lineup-builder">
                                 <h4>Opstelling Bouwer</h4>
                                 <div class="lineup-info">
-                                    <p>Integratie met <strong>alineaciones.es</strong> om professionele opstellingen te maken en te delen.</p>
-                                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                    <p><strong>Mock API actief</strong> - Volledig functioneel zonder externe credentials!</p>
+                                    <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
                                         <button class="btn-secondary" onclick="coachManager.configureAPI()">
-                                            <i class="fas fa-cog"></i> API Configureren
+                                            <i class="fas fa-cog"></i> Externe API Configureren
                                         </button>
-                                        <button class="btn-secondary" onclick="coachManager.initDemoLineupBuilder()">
-                                            <i class="fas fa-paint-brush"></i> Demo Modus
+                                        <button class="btn-secondary" onclick="coachManager.exportLineups()">
+                                            <i class="fas fa-download"></i> Exporteer Opstellingen
+                                        </button>
+                                        <button class="btn-secondary" onclick="coachManager.importLineups()">
+                                            <i class="fas fa-upload"></i> Importeer Opstellingen
+                                        </button>
+                                        <button class="btn-secondary" onclick="coachManager.syncMockAPI()">
+                                            <i class="fas fa-sync"></i> Synchroniseer
                                         </button>
                                     </div>
                                     <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
                                         <i class="fas fa-info-circle"></i> 
-                                        Demo modus is standaard actief. Configureer API referenties om te synchroniseren met alineaciones.es
+                                        Mock API werkt volledig lokaal. Configureer externe API (alineaciones.es) voor cloud synchronisatie.
                                     </p>
                                 </div>
                                 <div class="formation-selector">
