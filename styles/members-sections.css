@@ -35,7 +35,7 @@
 
 .members-tab.active {
     background: white;
-    color: #667eea;
+    color: var(--primary-color);
     font-weight: 600;
 }
 
@@ -45,13 +45,13 @@
 
 /* Section Content */
 .members-section-content {
-    display: none;
+    display: none !important;
     padding: 2rem 0;
     animation: fadeIn 0.3s ease;
 }
 
 .members-section-content.active {
-    display: block;
+    display: block !important;
 }
 
 @keyframes fadeIn {
@@ -241,11 +241,11 @@
 }
 
 .coach-section-content {
-    display: none;
+    display: none !important;
 }
 
 .coach-section-content.active {
-    display: block;
+    display: block !important;
 }
 
 .coach-form-card {
