@@ -520,6 +520,13 @@ class EnhancedLineupBuilder {
         this.players.splice(index, 1);
         this.drawField();
     }
+    
+    /**
+     * Verwijdert speler van opstelling (alias voor removePlayer)
+     */
+    removePlayerFromLineup(playerIndex) {
+        this.removePlayer(playerIndex);
+    }
 
     /**
      * Exporteert als afbeelding
