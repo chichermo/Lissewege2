@@ -161,6 +161,26 @@ class MembersSections {
         if (window.coachManager) {
             window.coachManager.init();
         }
+        
+        // Initialiseer enhanced lineup builder wanneer coach sectie wordt getoond
+        setTimeout(() => {
+            const canvas = document.getElementById('lineupCanvas');
+            if (canvas && !window.enhancedLineupBuilder) {
+                try {
+                    window.enhancedLineupBuilder = new EnhancedLineupBuilder();
+                    console.log('Enhanced lineup builder geïnitialiseerd');
+                } catch (error) {
+                    console.warn('Kon enhanced lineup builder niet initialiseren:', error);
+                }
+            } else if (canvas && window.enhancedLineupBuilder) {
+                // Herinitialiseer als al bestaat
+                try {
+                    window.enhancedLineupBuilder.init();
+                } catch (error) {
+                    console.warn('Kon enhanced lineup builder niet herinitialiseren:', error);
+                }
+            }
+        }, 300);
     }
 
     /**
