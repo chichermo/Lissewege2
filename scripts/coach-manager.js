@@ -283,21 +283,33 @@ class CoachManager {
      * Initialiseert de verbinding met de opstelling API
      */
     async initLineupAPI() {
-        if (!this.lineupAPI.enabled) {
-            const enable = confirm('Wil je verbinden met de alineaciones.es API?\n\nOpmerking: Je hebt API-referenties nodig.');
-            if (enable) {
-                // Hier zouden de referenties worden gevraagd
-                const apiKey = prompt('Voer je API Key van alineaciones.es in (leeg laten voor demo modus):');
-                if (apiKey) {
-                    this.lineupAPI.enabled = true;
-                    this.lineupAPI.key = apiKey;
-                }
-            }
+        // Controleer of er al een API key is opgeslagen
+        const savedApiKey = localStorage.getItem('alineaciones_api_key');
+        const apiEnabled = localStorage.getItem('alineaciones_api_enabled') === 'true';
+
+        if (savedApiKey && apiEnabled) {
+            this.lineupAPI.enabled = true;
+            this.lineupAPI.key = savedApiKey;
+            console.log('Lineup API geïnitialiseerd met opgeslagen referenties');
+            return;
         }
 
+        // Als er geen API key is, gebruik demo modus automatisch
         if (!this.lineupAPI.enabled) {
-            console.log('Lineup API niet ingeschakeld. Demo modus gebruiken.');
+            console.log('Lineup API niet geconfigureerd. Demo modus gebruiken.');
             this.initDemoLineupBuilder();
+            
+            // Optioneel: vraag eenmalig of gebruiker API wil configureren
+            // Dit gebeurt alleen als er nog geen voorkeur is opgeslagen
+            const hasAskedBefore = localStorage.getItem('alineaciones_api_asked');
+            if (!hasAskedBefore) {
+                const enable = confirm('Wil je de alineaciones.es API configureren?\n\nJe kunt dit later ook doen via de instellingen.\n\nKlik "Annuleren" om demo modus te gebruiken.');
+                localStorage.setItem('alineaciones_api_asked', 'true');
+                
+                if (enable) {
+                    this.configureAPI();
+                }
+            }
             return;
         }
 
@@ -310,6 +322,25 @@ class CoachManager {
         } catch (error) {
             console.warn('Fout bij verbinden met Lineup API:', error);
             this.initDemoLineupBuilder();
+        }
+    }
+
+    /**
+     * Configureert de API referenties
+     */
+    configureAPI() {
+        const apiKey = prompt('Voer je API Key van alineaciones.es in:\n\n(Laat leeg om demo modus te blijven gebruiken)');
+        
+        if (apiKey && apiKey.trim() !== '') {
+            this.lineupAPI.enabled = true;
+            this.lineupAPI.key = apiKey.trim();
+            localStorage.setItem('alineaciones_api_key', apiKey.trim());
+            localStorage.setItem('alineaciones_api_enabled', 'true');
+            alert('API succesvol geconfigureerd!');
+            console.log('API referenties opgeslagen');
+        } else {
+            localStorage.setItem('alineaciones_api_enabled', 'false');
+            console.log('Demo modus blijft actief');
         }
     }
 

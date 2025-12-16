@@ -1967,9 +1967,18 @@
                                 <h4>Opstelling Bouwer</h4>
                                 <div class="lineup-info">
                                     <p>Integratie met <strong>alineaciones.es</strong> om professionele opstellingen te maken en te delen.</p>
-                                    <button class="btn-secondary" onclick="coachManager.initLineupAPI()">
-                                        <i class="fas fa-plug"></i> Verbinden met API
-                                    </button>
+                                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                        <button class="btn-secondary" onclick="coachManager.configureAPI()">
+                                            <i class="fas fa-cog"></i> API Configureren
+                                        </button>
+                                        <button class="btn-secondary" onclick="coachManager.initDemoLineupBuilder()">
+                                            <i class="fas fa-paint-brush"></i> Demo Modus
+                                        </button>
+                                    </div>
+                                    <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                                        <i class="fas fa-info-circle"></i> 
+                                        Demo modus is standaard actief. Configureer API referenties om te synchroniseren met alineaciones.es
+                                    </p>
                                 </div>
                                 <div class="formation-selector">
                                     <label>Selecteer Opstelling:</label>
