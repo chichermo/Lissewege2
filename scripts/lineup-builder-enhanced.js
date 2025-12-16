@@ -26,10 +26,11 @@ class EnhancedLineupBuilder {
         }
 
         this.ctx = this.canvas.getContext('2d');
+        this.fieldPositions = []; // Initialize as empty array
         this.setupCanvas();
+        this.loadFormation(); // Load formation after canvas is set up
         this.setupEventListeners();
         this.drawField();
-        this.loadFormation();
     }
 
     /**
@@ -325,6 +326,11 @@ class EnhancedLineupBuilder {
      * Voegt speler toe aan veld
      */
     addPlayerToField(player) {
+        // Ensure positions are loaded
+        if (!Array.isArray(this.fieldPositions) || this.fieldPositions.length === 0) {
+            this.loadFormation();
+        }
+
         // Find first empty position
         let positionIndex = -1;
         for (let i = 0; i < this.fieldPositions.length; i++) {
@@ -340,6 +346,11 @@ class EnhancedLineupBuilder {
         }
 
         const pos = this.fieldPositions[positionIndex];
+        if (!pos) {
+            console.error('Position not found at index:', positionIndex);
+            return;
+        }
+
         this.players.push({
             ...player,
             positionIndex,
@@ -522,8 +533,17 @@ class EnhancedLineupBuilder {
 
         // Draw players scaled
         this.players.forEach((player, index) => {
-            const x = (player.x || this.fieldPositions[player.positionIndex]?.x) * scaleX;
-            const y = (player.y || this.fieldPositions[player.positionIndex]?.y) * scaleY;
+            let x, y;
+            if (player.x && player.y) {
+                x = player.x * scaleX;
+                y = player.y * scaleY;
+            } else if (Array.isArray(this.fieldPositions) && this.fieldPositions[player.positionIndex]) {
+                x = this.fieldPositions[player.positionIndex].x * scaleX;
+                y = this.fieldPositions[player.positionIndex].y * scaleY;
+            } else {
+                x = exportCanvas.width / 2;
+                y = exportCanvas.height / 2;
+            }
             const radius = 25;
 
             exportCtx.fillStyle = player.jerseyColor || '#1e3a8a';

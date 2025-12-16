@@ -2498,8 +2498,30 @@
     <script>
         // Initialiseer enhanced lineup builder wanneer DOM klaar is
         document.addEventListener('DOMContentLoaded', () => {
-            if (document.getElementById('lineupCanvas')) {
-                window.enhancedLineupBuilder = new EnhancedLineupBuilder();
+            // Wacht tot de members sectie geladen is
+            const initEnhancedBuilder = () => {
+                const canvas = document.getElementById('lineupCanvas');
+                if (canvas && !window.enhancedLineupBuilder) {
+                    try {
+                        window.enhancedLineupBuilder = new EnhancedLineupBuilder();
+                    } catch (error) {
+                        console.warn('Kon enhanced lineup builder niet initialiseren:', error);
+                    }
+                }
+            };
+
+            // Probeer direct
+            initEnhancedBuilder();
+
+            // Luister naar sectie wijzigingen
+            if (window.membersSections) {
+                const originalLoadSection = window.membersSections.loadSection;
+                window.membersSections.loadSection = function(section) {
+                    originalLoadSection.call(this, section);
+                    if (section === 'coach') {
+                        setTimeout(initEnhancedBuilder, 200);
+                    }
+                };
             }
         });
     </script>
