@@ -114,7 +114,8 @@
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
-    line-height: 1;
+    line-height: 1.1;
+    padding: 0;
 }
 
 @media (max-width: 768px) {
