@@ -1987,7 +1987,7 @@
                                     </p>
                                 </div>
                                 <div class="formation-selector">
-                                    <label>Selecteer Opstelling:</label>
+                                    <label><i class="fas fa-sitemap"></i> Selecteer Opstelling:</label>
                                     <select id="formationSelect" class="form-select">
                                         <option value="4-4-2">4-4-2</option>
                                         <option value="4-3-3">4-3-3</option>
@@ -1996,10 +1996,22 @@
                                         <option value="3-4-3">3-4-3</option>
                                     </select>
                                 </div>
-                                <div class="lineup-field" id="lineupField">
-                                    <!-- Visueel voetbalveld om spelers te slepen -->
-                                    <div class="field-container">
-                                        <canvas id="lineupCanvas" width="600" height="400"></canvas>
+                                
+                                <!-- Lineup Builder Layout -->
+                                <div class="lineup-builder-layout">
+                                    <!-- Players List -->
+                                    <div class="lineup-players-panel">
+                                        <h5><i class="fas fa-users"></i> Spelers</h5>
+                                        <div class="players-list-container" id="lineupPlayersList">
+                                            <p class="players-list-hint">Selecteer eerst een team om spelers te zien</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Field Container -->
+                                    <div class="lineup-field" id="lineupField">
+                                        <div class="field-container">
+                                            <canvas id="lineupCanvas" width="800" height="533"></canvas>
+                                        </div>
                                     </div>
                                 </div>
                                 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">

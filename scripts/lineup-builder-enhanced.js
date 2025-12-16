@@ -325,37 +325,61 @@ class EnhancedLineupBuilder {
     /**
      * Voegt speler toe aan veld
      */
-    addPlayerToField(player) {
+    addPlayerToField(player, x = null, y = null) {
         // Ensure positions are loaded
         if (!Array.isArray(this.fieldPositions) || this.fieldPositions.length === 0) {
             this.loadFormation();
         }
 
-        // Find first empty position
-        let positionIndex = -1;
-        for (let i = 0; i < this.fieldPositions.length; i++) {
-            if (!this.players.some(p => p.positionIndex === i)) {
-                positionIndex = i;
-                break;
+        const width = this.canvas.width / (window.devicePixelRatio || 1);
+        const height = this.canvas.height / (window.devicePixelRatio || 1);
+
+        let playerX, playerY, positionIndex = -1;
+
+        // If x and y are provided (from drag/drop), use them
+        if (x !== null && y !== null) {
+            // Convert screen coordinates to canvas coordinates
+            const rect = this.canvas.getBoundingClientRect();
+            const scaleX = width / rect.width;
+            const scaleY = height / rect.height;
+            playerX = x * scaleX;
+            playerY = y * scaleY;
+            
+            // Find nearest position
+            const nearest = this.findNearestPosition(playerX, playerY);
+            if (nearest && nearest.distance < 50) {
+                playerX = nearest.x;
+                playerY = nearest.y;
+                positionIndex = nearest.index;
             }
-        }
+        } else {
+            // Find first empty position
+            for (let i = 0; i < this.fieldPositions.length; i++) {
+                if (!this.players.some(p => p.positionIndex === i)) {
+                    positionIndex = i;
+                    break;
+                }
+            }
 
-        if (positionIndex === -1) {
-            alert('Alle posities zijn bezet! Verwijder eerst een speler.');
-            return;
-        }
+            if (positionIndex === -1) {
+                alert('Alle posities zijn bezet! Verwijder eerst een speler door erop te klikken.');
+                return;
+            }
 
-        const pos = this.fieldPositions[positionIndex];
-        if (!pos) {
-            console.error('Position not found at index:', positionIndex);
-            return;
+            const pos = this.fieldPositions[positionIndex];
+            if (!pos) {
+                console.error('Position not found at index:', positionIndex);
+                return;
+            }
+            playerX = pos.x;
+            playerY = pos.y;
         }
 
         this.players.push({
             ...player,
-            positionIndex,
-            x: pos.x,
-            y: pos.y,
+            positionIndex: positionIndex !== -1 ? positionIndex : this.players.length,
+            x: playerX,
+            y: playerY,
             jerseyColor: this.getRandomJerseyColor()
         });
 

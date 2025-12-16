@@ -40,10 +40,86 @@ class CoachManager {
     loadTeamData(teamId) {
         // Laad spelers van het team
         this.loadTeamPlayers(teamId);
+        // Laad spelers in lineup builder
+        this.loadLineupPlayers(teamId);
         // Laad communicaties (indien geïmplementeerd)
         // this.loadTeamCommunications(teamId);
         // Laad opgeslagen opstellingen (indien geïmplementeerd)
         // this.loadSavedLineups(teamId);
+    }
+    
+    /**
+     * Laadt spelers voor de lineup builder
+     */
+    loadLineupPlayers(teamId) {
+        const players = this.getTeamPlayers(teamId);
+        const container = document.getElementById('lineupPlayersList');
+        if (!container) return;
+        
+        if (players.length === 0) {
+            container.innerHTML = '<p class="players-list-hint">Geen spelers beschikbaar voor dit team</p>';
+            return;
+        }
+        
+        container.innerHTML = players.map((player, index) => `
+            <div class="lineup-player-item" data-player-id="${player.id}" draggable="true">
+                <div class="lineup-player-info">
+                    <div class="lineup-player-name">${player.name}</div>
+                    <div class="lineup-player-position">${player.position}</div>
+                </div>
+                <div class="lineup-player-number">${index + 1}</div>
+            </div>
+        `).join('');
+        
+        // Add drag and drop listeners
+        container.querySelectorAll('.lineup-player-item').forEach(item => {
+            item.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', item.dataset.playerId);
+                item.classList.add('dragging');
+            });
+            
+            item.addEventListener('dragend', () => {
+                item.classList.remove('dragging');
+            });
+            
+            // Click to add
+            item.addEventListener('click', () => {
+                const playerId = item.dataset.playerId;
+                const playerName = item.querySelector('.lineup-player-name').textContent;
+                if (window.enhancedLineupBuilder) {
+                    window.enhancedLineupBuilder.addPlayerToField({ 
+                        id: playerId, 
+                        name: playerName 
+                    });
+                }
+            });
+        });
+        
+        // Allow drop on canvas
+        const canvas = document.getElementById('lineupCanvas');
+        if (canvas) {
+            canvas.addEventListener('dragover', (e) => {
+                e.preventDefault();
+            });
+            
+            canvas.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const playerId = e.dataTransfer.getData('text/plain');
+                const item = container.querySelector(`[data-player-id="${playerId}"]`);
+                if (item && window.enhancedLineupBuilder) {
+                    const playerName = item.querySelector('.lineup-player-name').textContent;
+                    const rect = canvas.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    window.enhancedLineupBuilder.addPlayerToField({ 
+                        id: playerId, 
+                        name: playerName,
+                        x: x,
+                        y: y
+                    });
+                }
+            });
+        }
     }
 
     /**
