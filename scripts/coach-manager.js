@@ -349,7 +349,14 @@ class CoachManager {
      */
     initDemoLineupBuilder() {
         const canvas = document.getElementById('lineupCanvas');
-        if (!canvas) return;
+        if (!canvas) {
+            console.warn('Lineup canvas niet gevonden');
+            return;
+        }
+
+        // Zorg dat canvas de juiste grootte heeft
+        canvas.width = 600;
+        canvas.height = 400;
 
         const ctx = canvas.getContext('2d');
         
@@ -372,16 +379,130 @@ class CoachManager {
         ctx.arc(canvas.width / 2, canvas.height / 2, 50, 0, Math.PI * 2);
         ctx.stroke();
         
-        // Gebieden
+        // Gebieden (doelgebieden)
         ctx.strokeRect(20, canvas.height / 2 - 60, 100, 120);
         ctx.strokeRect(canvas.width - 120, canvas.height / 2 - 60, 100, 120);
         
+        // Doelgebieden (kleine rechthoeken)
+        ctx.strokeRect(20, canvas.height / 2 - 30, 40, 60);
+        ctx.strokeRect(canvas.width - 60, canvas.height / 2 - 30, 40, 60);
+        
         // Toon bericht
         ctx.fillStyle = 'white';
-        ctx.font = '16px Arial';
+        ctx.font = 'bold 18px Arial';
         ctx.textAlign = 'center';
         ctx.fillText('Opstelling Bouwer (Demo Modus)', canvas.width / 2, 30);
-        ctx.fillText('Sleep spelers vanuit de lijst', canvas.width / 2, canvas.height - 20);
+        
+        ctx.font = '14px Arial';
+        ctx.fillText('Selecteer spelers en sleep ze naar het veld', canvas.width / 2, canvas.height - 30);
+        ctx.fillText('of gebruik de knoppen om ze toe te voegen', canvas.width / 2, canvas.height - 10);
+        
+        // Teken voorbeeld posities (4-4-2 formatie)
+        const formationEl = document.getElementById('formationSelect');
+        const formation = formationEl?.value || '4-4-2';
+        this.drawFormationPositions(ctx, canvas.width, canvas.height, formation);
+        
+        // Luister naar veranderingen in formatie selector
+        if (formationEl) {
+            formationEl.addEventListener('change', () => {
+                this.initDemoLineupBuilder(); // Herteken bij formatie wijziging
+            });
+        }
+    }
+
+    /**
+     * Tekent posities voor een formatie op het veld
+     */
+    drawFormationPositions(ctx, width, height, formation) {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.font = '12px Arial';
+        ctx.textAlign = 'center';
+        
+        // Definieer posities voor verschillende formaties
+        const formations = {
+            '4-4-2': [
+                { x: width / 2, y: height - 30, label: 'GK' },
+                { x: width * 0.2, y: height * 0.7, label: 'LB' },
+                { x: width * 0.35, y: height * 0.65, label: 'CB' },
+                { x: width * 0.65, y: height * 0.65, label: 'CB' },
+                { x: width * 0.8, y: height * 0.7, label: 'RB' },
+                { x: width * 0.25, y: height * 0.45, label: 'LM' },
+                { x: width * 0.4, y: height * 0.4, label: 'CM' },
+                { x: width * 0.6, y: height * 0.4, label: 'CM' },
+                { x: width * 0.75, y: height * 0.45, label: 'RM' },
+                { x: width * 0.35, y: height * 0.2, label: 'ST' },
+                { x: width * 0.65, y: height * 0.2, label: 'ST' }
+            ],
+            '4-3-3': [
+                { x: width / 2, y: height - 30, label: 'GK' },
+                { x: width * 0.2, y: height * 0.7, label: 'LB' },
+                { x: width * 0.35, y: height * 0.65, label: 'CB' },
+                { x: width * 0.65, y: height * 0.65, label: 'CB' },
+                { x: width * 0.8, y: height * 0.7, label: 'RB' },
+                { x: width * 0.3, y: height * 0.4, label: 'CM' },
+                { x: width * 0.5, y: height * 0.35, label: 'CM' },
+                { x: width * 0.7, y: height * 0.4, label: 'CM' },
+                { x: width * 0.25, y: height * 0.15, label: 'LW' },
+                { x: width * 0.5, y: height * 0.1, label: 'ST' },
+                { x: width * 0.75, y: height * 0.15, label: 'RW' }
+            ],
+            '3-5-2': [
+                { x: width / 2, y: height - 30, label: 'GK' },
+                { x: width * 0.3, y: height * 0.65, label: 'CB' },
+                { x: width * 0.5, y: height * 0.6, label: 'CB' },
+                { x: width * 0.7, y: height * 0.65, label: 'CB' },
+                { x: width * 0.15, y: height * 0.45, label: 'LWB' },
+                { x: width * 0.35, y: height * 0.4, label: 'CM' },
+                { x: width * 0.5, y: height * 0.35, label: 'CM' },
+                { x: width * 0.65, y: height * 0.4, label: 'CM' },
+                { x: width * 0.85, y: height * 0.45, label: 'RWB' },
+                { x: width * 0.4, y: height * 0.2, label: 'ST' },
+                { x: width * 0.6, y: height * 0.2, label: 'ST' }
+            ],
+            '4-2-3-1': [
+                { x: width / 2, y: height - 30, label: 'GK' },
+                { x: width * 0.2, y: height * 0.7, label: 'LB' },
+                { x: width * 0.35, y: height * 0.65, label: 'CB' },
+                { x: width * 0.65, y: height * 0.65, label: 'CB' },
+                { x: width * 0.8, y: height * 0.7, label: 'RB' },
+                { x: width * 0.4, y: height * 0.5, label: 'CDM' },
+                { x: width * 0.6, y: height * 0.5, label: 'CDM' },
+                { x: width * 0.25, y: height * 0.3, label: 'LW' },
+                { x: width * 0.5, y: height * 0.25, label: 'CAM' },
+                { x: width * 0.75, y: height * 0.3, label: 'RW' },
+                { x: width * 0.5, y: height * 0.1, label: 'ST' }
+            ],
+            '3-4-3': [
+                { x: width / 2, y: height - 30, label: 'GK' },
+                { x: width * 0.3, y: height * 0.65, label: 'CB' },
+                { x: width * 0.5, y: height * 0.6, label: 'CB' },
+                { x: width * 0.7, y: height * 0.65, label: 'CB' },
+                { x: width * 0.2, y: height * 0.45, label: 'LM' },
+                { x: width * 0.4, y: height * 0.4, label: 'CM' },
+                { x: width * 0.6, y: height * 0.4, label: 'CM' },
+                { x: width * 0.8, y: height * 0.45, label: 'RM' },
+                { x: width * 0.25, y: height * 0.15, label: 'LW' },
+                { x: width * 0.5, y: height * 0.1, label: 'ST' },
+                { x: width * 0.75, y: height * 0.15, label: 'RW' }
+            ]
+        };
+
+        const formationPositions = formations[formation] || formations['4-4-2'];
+        
+        formationPositions.forEach((pos, index) => {
+            // Teken cirkel voor positie
+            ctx.beginPath();
+            ctx.arc(pos.x, pos.y, 15, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // Teken nummer
+            ctx.fillStyle = '#2d5016';
+            ctx.fillText((index + 1).toString(), pos.x, pos.y + 4);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+        });
     }
 
     /**
