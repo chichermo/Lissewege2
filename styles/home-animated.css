@@ -59,14 +59,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
+    margin-bottom: 1rem;
 }
 
 .home-logo-animated {
     margin-bottom: 0;
     animation: logoFloat 3s ease-in-out infinite;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @keyframes logoFloat {
@@ -79,13 +83,14 @@
 }
 
 .animated-logo {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     background: var(--white);
-    padding: 15px;
+    padding: 12px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     animation: logoPulse 2s ease-in-out infinite;
+    object-fit: contain;
 }
 
 @keyframes logoPulse {
@@ -109,6 +114,7 @@
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
+    line-height: 1;
 }
 
 @media (max-width: 768px) {
@@ -122,8 +128,19 @@
     }
     
     .animated-logo {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-main-title {
+        font-size: 2.5rem;
+    }
+    
+    .animated-logo {
+        width: 70px;
+        height: 70px;
     }
 }
 
