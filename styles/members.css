@@ -115,19 +115,20 @@
 }
 
 .btn-login-primary:hover {
-    background: #5568d3;
+    background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-login-secondary {
     background: white;
-    color: #667eea;
-    border: 2px solid #667eea;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
 }
 
 .btn-login-secondary:hover {
-    background: #f8f9fa;
+    background: var(--light-color);
+    border-color: var(--primary-dark);
 }
 
 /* Login Modal */
