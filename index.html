@@ -2002,9 +2002,21 @@
                                         <canvas id="lineupCanvas" width="600" height="400"></canvas>
                                     </div>
                                 </div>
-                                <button class="btn-primary" onclick="coachManager.saveLineup()">
-                                    <i class="fas fa-save"></i> Opstelling Opslaan
-                                </button>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                                    <button class="btn-primary" onclick="coachManager.saveLineup()">
+                                        <i class="fas fa-save"></i> Opstelling Opslaan
+                                    </button>
+                                    <button class="btn-secondary" onclick="window.enhancedLineupBuilder?.exportAsImage()">
+                                        <i class="fas fa-download"></i> Exporteer als Afbeelding
+                                    </button>
+                                    <button class="btn-secondary" onclick="window.enhancedLineupBuilder?.reset()">
+                                        <i class="fas fa-redo"></i> Reset
+                                    </button>
+                                </div>
+                                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                                    <i class="fas fa-info-circle"></i> 
+                                    Sleep spelers van de lijst naar het veld, of klik op een speler om hem toe te voegen. Sleep spelers op het veld om ze te verplaatsen.
+                                </p>
                             </div>
                         </div>
 
@@ -2480,8 +2492,17 @@
     <script src="scripts/members-login.js"></script>
     <script src="scripts/members-sections.js"></script>
     <script src="scripts/lineup-api-mock.js"></script>
+    <script src="scripts/lineup-builder-enhanced.js"></script>
     <script src="scripts/coach-manager.js"></script>
     <script src="scripts/admin-manager.js"></script>
+    <script>
+        // Initialiseer enhanced lineup builder wanneer DOM klaar is
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.getElementById('lineupCanvas')) {
+                window.enhancedLineupBuilder = new EnhancedLineupBuilder();
+            }
+        });
+    </script>
 </body>
 
 </html>

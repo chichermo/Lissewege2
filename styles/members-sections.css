@@ -563,18 +563,27 @@
 }
 
 .field-container {
-    background: #2d5016;
+    background: #f8f9fa;
     border-radius: 8px;
-    padding: 2rem;
+    padding: 1rem;
     margin-bottom: 2rem;
     display: flex;
     justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: auto;
 }
 
 #lineupCanvas {
     max-width: 100%;
     height: auto;
     border-radius: 4px;
+    cursor: default;
+    touch-action: none;
+    background: #2d5016;
+}
+
+#lineupCanvas:active {
+    cursor: grabbing;
 }
 
 /* Communication */

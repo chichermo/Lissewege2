@@ -509,29 +509,42 @@ class CoachManager {
      * Slaat de huidige opstelling op
      */
     saveLineup() {
-        const formationEl = document.getElementById('formationSelect');
-        const formation = formationEl?.value;
-        if (!formation) {
-            alert('Selecteer eerst een opstelling');
-            return;
+        if (window.enhancedLineupBuilder) {
+            const lineup = window.enhancedLineupBuilder.save();
+            
+            if (lineup.players.length < 11) {
+                alert('Voeg ten minste 11 spelers toe aan de opstelling');
+                return;
+            }
+
+            this.createLineup(lineup.formation, lineup.players);
+            alert('Opstelling succesvol opgeslagen!');
+        } else {
+            // Fallback naar oude methode
+            const formationEl = document.getElementById('formationSelect');
+            const formation = formationEl?.value;
+            if (!formation) {
+                alert('Selecteer eerst een opstelling');
+                return;
+            }
+
+            const selectedPlayers = Array.from(document.querySelectorAll('.player-item.selected'))
+                .map(el => {
+                    const nameEl = el.querySelector('.player-name');
+                    return {
+                        id: el.dataset.playerId,
+                        name: nameEl?.textContent || ''
+                    };
+                });
+
+            if (selectedPlayers.length < 11) {
+                alert('Selecteer ten minste 11 spelers voor de opstelling');
+                return;
+            }
+
+            this.createLineup(formation, selectedPlayers);
+            alert('Opstelling succesvol opgeslagen');
         }
-
-        const selectedPlayers = Array.from(document.querySelectorAll('.player-item.selected'))
-            .map(el => {
-                const nameEl = el.querySelector('.player-name');
-                return {
-                    id: el.dataset.playerId,
-                    name: nameEl?.textContent || ''
-                };
-            });
-
-        if (selectedPlayers.length < 11) {
-            alert('Selecteer ten minste 11 spelers voor de opstelling');
-            return;
-        }
-
-        this.createLineup(formation, selectedPlayers);
-        alert('Opstelling succesvol opgeslagen');
     }
 
     /**
