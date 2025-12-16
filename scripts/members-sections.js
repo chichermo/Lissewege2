@@ -157,10 +157,24 @@ class MembersSections {
      */
     loadCoachSection() {
         console.log('Trainer sectie geladen');
-        // Initialiseer coach functionaliteiten
-        if (window.coachManager) {
-            window.coachManager.init();
+        
+        // Zorg dat coach sectie zichtbaar is
+        const coachSection = document.getElementById('section-coach');
+        if (coachSection) {
+            coachSection.style.display = 'block';
+            coachSection.classList.add('active');
         }
+        
+        // Initialiseer coach functionaliteiten
+        setTimeout(() => {
+            if (window.coachManager) {
+                // Herinitialiseer coach manager om tabs te activeren
+                window.coachManager.initCoachSubtabs();
+            } else {
+                // Maak nieuwe coach manager aan als deze nog niet bestaat
+                window.coachManager = new CoachManager();
+            }
+        }, 100);
         
         // Initialiseer enhanced lineup builder wanneer coach sectie wordt getoond
         setTimeout(() => {

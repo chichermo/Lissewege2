@@ -275,28 +275,49 @@ class CoachManager {
      * Initialiseert de trainer tabs
      */
     initCoachSubtabs() {
+        // Verwijder oude event listeners door nieuwe elementen te maken
         const subtabs = document.querySelectorAll('.coach-subtab');
         if (subtabs.length === 0) {
-            console.warn('Geen coach subtabs gevonden');
+            console.warn('Geen coach subtabs gevonden, probeer opnieuw...');
+            // Probeer opnieuw na korte delay
+            setTimeout(() => {
+                this.initCoachSubtabs();
+            }, 500);
             return;
         }
         
+        console.log(`Gevonden ${subtabs.length} coach subtabs`);
+        
+        // Verwijder alle oude listeners door nieuwe te maken
         subtabs.forEach(tab => {
-            tab.addEventListener('click', (e) => {
+            // Clone element om listeners te verwijderen
+            const newTab = tab.cloneNode(true);
+            tab.parentNode.replaceChild(newTab, tab);
+            
+            // Voeg nieuwe listener toe
+            newTab.addEventListener('click', (e) => {
                 e.preventDefault();
-                const section = tab.dataset.coachSection;
+                e.stopPropagation();
+                const section = newTab.dataset.coachSection;
+                console.log('Coach tab geklikt:', section);
                 if (section) {
                     this.showCoachSection(section);
                 }
             });
         });
         
-        // Toon eerste tab standaard
-        const firstTab = subtabs[0];
+        // Toon eerste tab standaard (announcements)
+        const firstTab = document.querySelector('.coach-subtab[data-coach-section="announcements"]');
         if (firstTab) {
-            const firstSection = firstTab.dataset.coachSection;
-            if (firstSection) {
-                this.showCoachSection(firstSection);
+            this.showCoachSection('announcements');
+        } else {
+            // Fallback naar eerste beschikbare tab
+            const firstAvailableTab = document.querySelector('.coach-subtab');
+            if (firstAvailableTab) {
+                const firstSection = firstAvailableTab.dataset.coachSection;
+                if (firstSection) {
+                    this.showCoachSection(firstSection);
+                }
             }
         }
     }
@@ -310,6 +331,8 @@ class CoachManager {
             return;
         }
 
+        console.log(`Toon coach sectie: ${sectionId}`);
+
         // Verberg alle secties
         document.querySelectorAll('.coach-section-content').forEach(section => {
             section.classList.remove('active');
@@ -321,27 +344,33 @@ class CoachManager {
         if (targetSection) {
             targetSection.classList.add('active');
             targetSection.style.display = 'block';
+            console.log(`Sectie coach-${sectionId} getoond`);
             
             // Initialiseer lineup builder als het de lineup sectie is
             if (sectionId === 'lineup') {
+                console.log('Initialiseer lineup builder...');
                 setTimeout(() => {
                     if (window.enhancedLineupBuilder) {
                         try {
                             window.enhancedLineupBuilder.init();
+                            console.log('Enhanced lineup builder geactiveerd vanuit showCoachSection');
                         } catch (error) {
                             console.warn('Lineup builder init fout:', error);
                         }
                     } else if (typeof EnhancedLineupBuilder !== 'undefined') {
                         try {
                             window.enhancedLineupBuilder = new EnhancedLineupBuilder();
+                            console.log('Enhanced lineup builder aangemaakt vanuit showCoachSection');
                         } catch (error) {
                             console.warn('Kon lineup builder niet maken:', error);
                         }
+                    } else {
+                        console.warn('EnhancedLineupBuilder class niet beschikbaar');
                     }
-                }, 100);
+                }, 200);
             }
         } else {
-            console.warn(`Sectie coach-${sectionId} niet gevonden`);
+            console.error(`Sectie coach-${sectionId} niet gevonden in DOM`);
         }
 
         // Update actieve tabs
@@ -349,6 +378,7 @@ class CoachManager {
             tab.classList.remove('active');
             if (tab.dataset.coachSection === sectionId) {
                 tab.classList.add('active');
+                console.log(`Tab voor ${sectionId} geactiveerd`);
             }
         });
     }
