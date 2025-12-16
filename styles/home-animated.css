@@ -55,9 +55,18 @@
     animation: fadeInDown 1s ease;
 }
 
+.home-title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
 .home-logo-animated {
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     animation: logoFloat 3s ease-in-out infinite;
+    flex-shrink: 0;
 }
 
 @keyframes logoFloat {
@@ -91,10 +100,31 @@
 .home-main-title {
     font-size: 5rem;
     font-weight: 900;
-    margin: 1rem 0;
+    margin: 0;
     font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
     letter-spacing: 4px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .home-main-title {
+        font-size: 3rem;
+    }
+    
+    .home-title-wrapper {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .animated-logo {
+        width: 100px;
+        height: 100px;
+    }
 }
 
 .title-word {
