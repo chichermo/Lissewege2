@@ -170,7 +170,7 @@ class RealFootballAPI {
                 return standings;
             }
         } catch (error) {
-            console.warn('Could not fetch real standings, using fallback:', error);
+            // Silently use fallback - API unavailable is expected when no keys configured
         }
 
         // Fallback: Return null to indicate API unavailable
