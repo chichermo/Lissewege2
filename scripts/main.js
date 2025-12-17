@@ -62,6 +62,9 @@ function showPage(pageId) {
         // Update active sidebar link
         updateActiveSidebarLink(pageId);
         
+        // Initialize section-specific functionality
+        initializeSectionFeatures(pageId);
+        
         console.log('✓ Page shown successfully:', pageId);
         console.log('==========================================');
     } else {
@@ -69,6 +72,57 @@ function showPage(pageId) {
         const availableIds = Array.from(pages).map(p => p.id).filter(id => id);
         console.log('Available page IDs:', availableIds);
         console.log('==========================================');
+    }
+}
+
+// Initialize section-specific features
+function initializeSectionFeatures(pageId) {
+    switch(pageId) {
+        case 'statistieken':
+            // Initialize statistics
+            if (window.playerStats) {
+                setTimeout(() => {
+                    window.playerStats.updateStatistics('2024-2025');
+                }, 100);
+            }
+            break;
+        case 'reserveringen':
+            // Initialize reservations
+            if (window.facilityReservations) {
+                setTimeout(() => {
+                    window.facilityReservations.renderCalendar();
+                    window.facilityReservations.updateReservationsList();
+                }, 100);
+            }
+            break;
+        case 'winkel':
+            // Initialize shop
+            if (window.clubShop) {
+                setTimeout(() => {
+                    window.clubShop.renderProducts();
+                    window.clubShop.updateCartUI();
+                }, 100);
+            }
+            break;
+        case 'notificaties':
+            // Initialize notifications
+            if (window.notificationsSystem) {
+                setTimeout(() => {
+                    window.notificationsSystem.renderNotifications();
+                    window.notificationsSystem.updatePermissionUI();
+                }, 100);
+            }
+            break;
+        case 'geschiedenis':
+            // Initialize history
+            if (window.clubHistory) {
+                setTimeout(() => {
+                    window.clubHistory.showSeasonDetails('2024-2025');
+                    window.clubHistory.renderTimeline();
+                    window.clubHistory.renderAchievements();
+                }, 100);
+            }
+            break;
     }
 }
 

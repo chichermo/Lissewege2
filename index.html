@@ -36,6 +36,11 @@
     <link rel="stylesheet" href="styles/rivals.css">
     <link rel="stylesheet" href="styles/members.css">
     <link rel="stylesheet" href="styles/members-sections.css">
+    <link rel="stylesheet" href="styles/statistics.css">
+    <link rel="stylesheet" href="styles/reservations.css">
+    <link rel="stylesheet" href="styles/shop.css">
+    <link rel="stylesheet" href="styles/notifications.css">
+    <link rel="stylesheet" href="styles/history.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -2279,6 +2284,266 @@
             </div>
         </section>
 
+        <!-- Statistics Section -->
+        <section id="statistieken" class="page-section section stats-section" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Speler Statistieken</h2>
+                    <p>Bekijk gedetailleerde statistieken van alle spelers</p>
+                </div>
+                
+                <div class="stats-filters">
+                    <div class="stats-filter-group">
+                        <label for="statsSeasonSelect">Seizoen</label>
+                        <select id="statsSeasonSelect" class="form-select">
+                            <option value="2024-2025">2024-2025</option>
+                            <option value="2023-2024">2023-2024</option>
+                            <option value="2022-2023">2022-2023</option>
+                        </select>
+                    </div>
+                    <div class="stats-filter-group">
+                        <label for="statsTeamFilter">Team</label>
+                        <select id="statsTeamFilter" class="form-select">
+                            <option value="all">Alle Teams</option>
+                            <option value="A-Kern">A-Kern</option>
+                            <option value="U15">U15</option>
+                            <option value="U13">U13</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="playerStatsContainer"></div>
+
+                <div class="stats-charts-section">
+                    <h3>Team Statistieken</h3>
+                    <div class="charts-grid">
+                        <div class="chart-card">
+                            <h4>Top Scorers</h4>
+                            <canvas id="topScorersChart" width="400" height="300"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h4>Team Vergelijking</h4>
+                            <canvas id="teamStatsChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facility Reservations Section -->
+        <section id="reserveringen" class="page-section section reservations-section" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Faciliteiten Reserveren</h2>
+                    <p>Reserveer velden, kleedkamers en andere faciliteiten</p>
+                </div>
+
+                <div class="reservations-header">
+                    <button class="btn-primary" onclick="facilityReservations.showNewReservationForm()">
+                        <i class="fas fa-plus"></i> Nieuwe Reservering
+                    </button>
+                    <div class="reservations-filters">
+                        <select id="reservationsFacilityFilter" class="form-select">
+                            <option value="all">Alle Faciliteiten</option>
+                            <option value="main-field">Hoofdveld</option>
+                            <option value="training-field">Trainingsveld</option>
+                            <option value="locker-room-1">Kleedkamer 1</option>
+                            <option value="locker-room-2">Kleedkamer 2</option>
+                            <option value="meeting-room">Vergaderzaal</option>
+                            <option value="bar">Clubhuis Bar</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="reservationsCalendar"></div>
+
+                <div class="reservations-list">
+                    <h3>Mijn Reserveringen</h3>
+                    <div id="myReservationsList"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop Section -->
+        <section id="winkel" class="page-section section shop-section" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Club Winkel</h2>
+                    <p>Officiële merchandise en uitrusting van RFC Lissewege</p>
+                </div>
+
+                <div class="shop-header">
+                    <div class="shop-filters">
+                        <select id="shopCategoryFilter" class="form-select">
+                            <option value="all">Alle Categorieën</option>
+                            <option value="shirts">Shirts</option>
+                            <option value="equipment">Uitrusting</option>
+                            <option value="merchandise">Merchandise</option>
+                            <option value="accessories">Accessoires</option>
+                        </select>
+                        <input type="text" id="shopSearch" class="form-input shop-search" placeholder="Zoek producten...">
+                    </div>
+                </div>
+
+                <div id="shopProductsGrid"></div>
+            </div>
+
+            <!-- Cart Sidebar -->
+            <div id="shopCartSidebar" class="shop-cart-sidebar">
+                <div class="cart-header">
+                    <h3>Winkelwagen</h3>
+                    <button onclick="clubShop.toggleCart()" class="modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="shopCartItems" class="cart-items"></div>
+                <div class="cart-footer">
+                    <div class="cart-total">
+                        <span>Totaal:</span>
+                        <span id="shopCartTotal">€0.00</span>
+                    </div>
+                    <button id="shopCheckoutBtn" class="btn-primary" style="width: 100%;">
+                        <i class="fas fa-shopping-cart"></i> Afrekenen
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cart Toggle Button -->
+            <button id="shopCartToggle" class="shop-cart-toggle">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="shopCartCount" class="shop-cart-count" style="display: none;">0</span>
+            </button>
+        </section>
+
+        <!-- Notifications Section -->
+        <section id="notificaties" class="page-section section notifications-section" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Notificaties</h2>
+                    <p>Beheer je notificatie voorkeuren</p>
+                </div>
+
+                <div class="notifications-settings">
+                    <div class="settings-header">
+                        <h3>Notificatie Instellingen</h3>
+                        <div>
+                            <span>Status: </span>
+                            <span id="notificationPermissionStatus" class="permission-status default">Niet gevraagd</span>
+                        </div>
+                    </div>
+
+                    <div class="notification-toggle">
+                        <label>
+                            <input type="checkbox" id="notificationsEnable" class="toggle-switch">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <div>
+                            <strong>Notificaties Inschakelen</strong>
+                            <p>Ontvang meldingen over wedstrijden, trainingen en aankondigingen</p>
+                        </div>
+                    </div>
+
+                    <div class="preferences-grid">
+                        <div class="preference-item">
+                            <div class="preference-label">
+                                <strong>Wedstrijd Herinneringen</strong>
+                                <span>24 uur voor wedstrijden</span>
+                            </div>
+                            <label>
+                                <input type="checkbox" class="notification-preference" data-preference="matchReminders" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="preference-item">
+                            <div class="preference-label">
+                                <strong>Training Herinneringen</strong>
+                                <span>Herinneringen voor trainingen</span>
+                            </div>
+                            <label>
+                                <input type="checkbox" class="notification-preference" data-preference="trainingReminders" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="preference-item">
+                            <div class="preference-label">
+                                <strong>Resultaten</strong>
+                                <span>Wedstrijd resultaten</span>
+                            </div>
+                            <label>
+                                <input type="checkbox" class="notification-preference" data-preference="results" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="preference-item">
+                            <div class="preference-label">
+                                <strong>Aankondigingen</strong>
+                                <span>Belangrijke aankondigingen</span>
+                            </div>
+                            <label>
+                                <input type="checkbox" class="notification-preference" data-preference="announcements" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <button id="testNotificationBtn" class="btn-secondary">
+                            <i class="fas fa-bell"></i> Test Notificatie
+                        </button>
+                    </div>
+                </div>
+
+                <div class="notifications-list-container">
+                    <div class="notifications-list-header">
+                        <h3>Notificatie Geschiedenis</h3>
+                        <button class="btn-secondary" onclick="notificationsSystem.markAllAsRead()">
+                            Markeer Alles als Gelezen
+                        </button>
+                    </div>
+                    <div id="notificationsList"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section id="geschiedenis" class="page-section section history-section" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Club Geschiedenis</h2>
+                    <p>Ontdek de rijke geschiedenis van RFC Lissewege sinds 1947</p>
+                </div>
+
+                <div class="history-content">
+                    <div class="history-filters" style="margin-bottom: 2rem; text-align: center;">
+                        <select id="historySeasonSelect" class="form-select" style="max-width: 300px; margin: 0 auto;">
+                            <option value="2024-2025">2024-2025</option>
+                            <option value="2023-2024">2023-2024</option>
+                            <option value="2022-2023">2022-2023</option>
+                        </select>
+                    </div>
+
+                    <div id="seasonDetails"></div>
+
+                    <div class="timeline-container">
+                        <div class="timeline-line"></div>
+                        <div style="margin-bottom: 2rem; text-align: center;">
+                            <select id="timelineFilter" class="form-select" style="max-width: 300px; margin: 0 auto;">
+                                <option value="all">Alle Jaren</option>
+                                <option value="recent">Vanaf 2000</option>
+                                <option value="early">Voor 2000</option>
+                            </select>
+                        </div>
+                        <div id="historyTimeline"></div>
+                    </div>
+
+                    <div class="achievements-section">
+                        <h3 style="text-align: center; margin-bottom: 2rem;">Belangrijke Prestaties</h3>
+                        <div id="achievementsList" class="achievements-list"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Footer -->
         <!-- Modern Footer -->
         <footer class="site-footer">
@@ -2509,6 +2774,16 @@
     <script src="scripts/lineup-builder-enhanced.js"></script>
     <script src="scripts/coach-manager.js"></script>
     <script src="scripts/admin-manager.js"></script>
+    <script src="scripts/player-statistics.js"></script>
+    <script src="scripts/facility-reservations.js"></script>
+    <script src="scripts/shop-system.js"></script>
+    <script src="scripts/notifications-system.js"></script>
+    <script src="scripts/club-history.js"></script>
+    <script src="scripts/player-statistics.js"></script>
+    <script src="scripts/facility-reservations.js"></script>
+    <script src="scripts/shop-system.js"></script>
+    <script src="scripts/notifications-system.js"></script>
+    <script src="scripts/club-history.js"></script>
     <script>
         // Initialiseer enhanced lineup builder wanneer DOM klaar is
         document.addEventListener('DOMContentLoaded', () => {

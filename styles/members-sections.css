@@ -196,6 +196,29 @@
     color: #333;
 }
 
+/* Form Styles - Shared across all sections */
+.form-select,
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--light-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--surface);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.form-select:focus,
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(13, 77, 46, 0.1);
+}
+
 .form-select {
     width: 100%;
     padding: 0.875rem;

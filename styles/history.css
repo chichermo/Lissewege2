@@ -1,0 +1,301 @@
+/* ============================================
+   CLUB HISTORY & ARCHIVE STYLES
+   ============================================ */
+
+.history-section {
+    padding: 4rem 0;
+    background: var(--light-color);
+}
+
+.history-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Timeline Styles */
+.timeline-container {
+    position: relative;
+    padding: 2rem 0;
+    margin: 3rem 0;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary-color);
+    transform: translateX(-50%);
+}
+
+#historyTimeline {
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.timeline-item.left {
+    flex-direction: row;
+}
+
+.timeline-item.right {
+    flex-direction: row-reverse;
+}
+
+.timeline-year {
+    width: 100px;
+    height: 100px;
+    background: var(--gradient-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-md);
+    z-index: 2;
+}
+
+.timeline-content {
+    flex: 1;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin: 0 2rem;
+    max-width: 400px;
+}
+
+.timeline-item.left .timeline-content {
+    margin-left: 2rem;
+}
+
+.timeline-item.right .timeline-content {
+    margin-right: 2rem;
+}
+
+.timeline-content h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+.timeline-content p {
+    margin: 0;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Season Details */
+.season-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--light-color);
+}
+
+.season-header h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+    font-size: 2rem;
+}
+
+.season-league {
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+.season-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.season-stat-box {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.season-stat-box .stat-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.season-stat-box .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.season-stat-box .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.season-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.season-highlights,
+.season-top-scorer {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.season-highlights h4,
+.season-top-scorer h4 {
+    margin: 0 0 1rem 0;
+    color: var(--text-color);
+}
+
+.season-highlights ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.season-highlights li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--light-color);
+    color: var(--text-light);
+}
+
+.season-highlights li:last-child {
+    border-bottom: none;
+}
+
+.season-highlights li::before {
+    content: '✓ ';
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-right: 0.5rem;
+}
+
+.top-scorer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--light-color);
+    border-radius: var(--radius);
+}
+
+.scorer-name {
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.scorer-goals {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* Achievements */
+.achievements-section {
+    margin-top: 4rem;
+}
+
+.achievements-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.achievement-item {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 1.5rem;
+    align-items: start;
+    transition: var(--transition);
+}
+
+.achievement-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.achievement-year {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    flex-shrink: 0;
+    min-width: 80px;
+}
+
+.achievement-content h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+}
+
+.achievement-content p {
+    margin: 0;
+    color: var(--text-light);
+}
+
+@media (max-width: 968px) {
+    .timeline-line {
+        left: 50px;
+    }
+
+    .timeline-item {
+        flex-direction: row !important;
+        padding-left: 100px;
+    }
+
+    .timeline-content {
+        margin: 0 !important;
+        max-width: none;
+    }
+
+    .season-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-line {
+        left: 30px;
+    }
+
+    .timeline-item {
+        padding-left: 80px;
+    }
+
+    .timeline-year {
+        width: 60px;
+        height: 60px;
+        font-size: 1rem;
+    }
+
+    .season-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
