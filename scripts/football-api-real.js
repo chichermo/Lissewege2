@@ -112,7 +112,7 @@ class RealFootballAPI {
                     return await response.json();
                 }
             } catch (error) {
-                console.warn('API-Football failed, trying fallback:', error);
+                // Silently continue to next API - don't log expected failures
             }
         }
 
@@ -130,11 +130,12 @@ class RealFootballAPI {
                     return await response.json();
                 }
             } catch (error) {
-                console.warn('Football-Data.org failed:', error);
+                // Silently continue - fallback data will be used
             }
         }
 
-        throw new Error('All API sources failed');
+        // Silently return null instead of throwing - fallback data will be used
+        return null;
     }
 
     // Get league standings from real API
@@ -202,7 +203,7 @@ class RealFootballAPI {
                 }));
             }
         } catch (error) {
-            console.warn('Could not fetch real matches:', error);
+            // Silently use fallback - API unavailable is expected when no keys configured
         }
 
         return null;

@@ -87,19 +87,34 @@ class VoetbalInBelgieAPI {
         try {
             const url = `${this.apiUrl}/teams/${encodeURIComponent(teamName)}/matches?status=SCHEDULED&limit=${limit}`;
             
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
+            let response;
+            try {
+                response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    mode: 'cors'
+                });
+            } catch (fetchError) {
+                // CORS or network error - return empty array silently
+                return [];
+            }
 
-            if (response.ok) {
+            if (response && response.ok) {
                 const data = await response.json();
                 return data.matches || [];
             }
         } catch (error) {
-            console.warn('Error al obtener partidos:', error);
+            // Silently handle CORS/network errors
+            const isCorsOrNetworkError = error.name === 'TypeError' || 
+                                        error.message?.includes('fetch') ||
+                                        error.message?.includes('CORS') ||
+                                        error.message?.includes('Failed to fetch');
+            
+            if (!isCorsOrNetworkError) {
+                console.warn('Error al obtener partidos:', error);
+            }
         }
 
         return [];
@@ -112,19 +127,34 @@ class VoetbalInBelgieAPI {
         try {
             const url = `${this.apiUrl}/teams/${encodeURIComponent(teamName)}/matches?status=FINISHED&limit=${limit}`;
             
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
+            let response;
+            try {
+                response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    mode: 'cors'
+                });
+            } catch (fetchError) {
+                // CORS or network error - return empty array silently
+                return [];
+            }
 
-            if (response.ok) {
+            if (response && response.ok) {
                 const data = await response.json();
                 return data.matches || [];
             }
         } catch (error) {
-            console.warn('Error al obtener resultados:', error);
+            // Silently handle CORS/network errors
+            const isCorsOrNetworkError = error.name === 'TypeError' || 
+                                        error.message?.includes('fetch') ||
+                                        error.message?.includes('CORS') ||
+                                        error.message?.includes('Failed to fetch');
+            
+            if (!isCorsOrNetworkError) {
+                console.warn('Error al obtener resultados:', error);
+            }
         }
 
         return [];
