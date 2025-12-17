@@ -25,10 +25,16 @@ class RivalTeamsManager {
                 }
             }
         } catch (error) {
-            // Silenciar errores de CORS/red - usar datos de respaldo
+            // Silenciar completamente errores de CORS/red - usar datos de respaldo
+            // No loguear ningún error relacionado con fetch/CORS/red
             const isCorsOrNetworkError = error.name === 'TypeError' || 
+                                        error.name === 'AbortError' ||
                                         error.message?.includes('fetch') ||
-                                        error.message?.includes('CORS');
+                                        error.message?.includes('CORS') ||
+                                        error.message?.includes('Failed to fetch') ||
+                                        error.message?.includes('network');
+            
+            // Solo loguear errores inesperados que no sean de red/CORS
             if (!isCorsOrNetworkError) {
                 console.warn('Error al cargar rivales desde API:', error);
             }
