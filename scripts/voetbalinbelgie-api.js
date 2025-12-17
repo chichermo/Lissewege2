@@ -42,6 +42,10 @@ class VoetbalInBelgieAPI {
             const url = `${this.apiUrl}/competities/${this.season}/${province}/${gender}/${division}/standings`;
             
             // Intentar fetch con manejo silencioso de errores CORS
+            // Usar AbortController para timeout y evitar errores persistentes
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+            
             let response;
             try {
                 response = await fetch(url, {
@@ -49,10 +53,15 @@ class VoetbalInBelgieAPI {
                     headers: {
                         'Accept': 'application/json'
                     },
-                    mode: 'cors'
+                    mode: 'cors',
+                    signal: controller.signal,
+                    cache: 'no-store' // Don't cache failed requests
                 });
+                clearTimeout(timeoutId);
             } catch (fetchError) {
+                clearTimeout(timeoutId);
                 // Error de CORS o red - usar datos de respaldo silenciosamente
+                // No loguear errores esperados de CORS
                 return this.getFallbackStandings();
             }
 

@@ -25,25 +25,21 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
     const url = new URL(event.request.url);
     
-    // Skip caching for external APIs and cross-origin requests
+    // Completely skip service worker for external APIs and cross-origin requests
+    // This prevents CORS errors from appearing in the console
     if (url.origin !== self.location.origin || 
         url.hostname.includes('api.') ||
         url.hostname.includes('voetbalinbelgie.be') ||
         url.hostname.includes('api-football.com') ||
-        url.hostname.includes('football-data.org')) {
-        // For external APIs, just fetch without caching
-        event.respondWith(
-            fetch(event.request).catch(() => {
-                // Silently fail for external API errors
-                return new Response('{}', {
-                    headers: { 'Content-Type': 'application/json' }
-                });
-            })
-        );
+        url.hostname.includes('football-data.org') ||
+        url.hostname.includes('googleapis.com') ||
+        url.hostname.includes('gstatic.com') ||
+        url.hostname.includes('cdnjs.cloudflare.com')) {
+        // Don't intercept external API requests at all - let them pass through
         return;
     }
     
-    // For local resources, use cache-first strategy
+    // For local resources only, use cache-first strategy
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
