@@ -226,7 +226,7 @@ class RealFootballAPI {
                 };
             }
         } catch (error) {
-            console.warn('Could not fetch team info:', error);
+            // Silently use fallback - API unavailable is expected when no keys configured
         }
 
         return null;
