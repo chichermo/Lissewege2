@@ -71,7 +71,7 @@ class VoetbalInBelgieAPI {
                 this.cache.lastUpdate = Date.now();
                 return data;
             } else {
-                // API no disponible o error de CORS - usar datos de respaldo silenciosamente
+                // API no disponible, error de CORS, o redirección (301) - usar datos de respaldo silenciosamente
                 return this.getFallbackStandings();
             }
         } catch (error) {
