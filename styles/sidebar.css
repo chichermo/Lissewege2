@@ -52,14 +52,34 @@ body {
     gap: 1rem;
 }
 
-.sidebar-logo-img {
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.sidebar-logo::before {
+    content: '';
+    position: absolute;
+    left: 0;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background: var(--white);
+    z-index: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
     padding: 5px;
     object-fit: contain;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
 }
 
 .sidebar-logo-text {
