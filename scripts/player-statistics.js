@@ -624,8 +624,6 @@ if (typeof PlayerStatistics === 'undefined') {
             ctx.fillText(team, x + barWidth / 2, height - 5);
         });
     }
-}
-
     }
     window.PlayerStatistics = PlayerStatistics;
 }
