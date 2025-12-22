@@ -37,56 +37,13 @@ class VoetbalInBelgieAPI {
             return this.cache.standings;
         }
 
-        try {
-            // Construir URL según estructura de voetbalinbelgie.be
-            const url = `${this.apiUrl}/competities/${this.season}/${province}/${gender}/${division}/standings`;
-            
-            // Intentar fetch con manejo silencioso de errores CORS
-            // Usar AbortController para timeout y evitar errores persistentes
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-            
-            let response;
-            try {
-                response = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json'
-                    },
-                    mode: 'cors',
-                    signal: controller.signal,
-                    cache: 'no-store' // Don't cache failed requests
-                });
-                clearTimeout(timeoutId);
-            } catch (fetchError) {
-                clearTimeout(timeoutId);
-                // Error de CORS o red - usar datos de respaldo silenciosamente
-                // No loguear errores esperados de CORS
-                return this.getFallbackStandings();
-            }
-
-            if (response && response.ok) {
-                const data = await response.json();
-                this.cache.standings = data;
-                this.cache.lastUpdate = Date.now();
-                return data;
-            } else {
-                // API no disponible, error de CORS, o redirección (301) - usar datos de respaldo silenciosamente
-                return this.getFallbackStandings();
-            }
-        } catch (error) {
-            // Silenciar errores de CORS y red - usar datos de respaldo
-            // Solo mostrar errores que no sean relacionados con CORS/fetch
-            const isCorsOrNetworkError = error.name === 'TypeError' || 
-                                        error.message?.includes('fetch') ||
-                                        error.message?.includes('CORS') ||
-                                        error.message?.includes('Failed to fetch');
-            
-            if (!isCorsOrNetworkError) {
-                console.warn('Error al obtener clasificación:', error);
-            }
-            return this.getFallbackStandings();
-        }
+        // Usar directamente datos de respaldo para evitar errores de CORS en consola
+        // La API externa requiere configuración de CORS del lado del servidor
+        // que no está disponible, por lo que usamos datos de respaldo directamente
+        const fallbackData = this.getFallbackStandings();
+        this.cache.standings = fallbackData;
+        this.cache.lastUpdate = Date.now();
+        return fallbackData;
     }
 
     /**

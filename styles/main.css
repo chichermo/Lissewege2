@@ -2203,6 +2203,8 @@ ul {
 .sponsor-mobile-item img {
     width: 100% !important;
     height: 100% !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
     object-fit: contain !important;
     padding: 0.5rem;
     filter: grayscale(0%) opacity(1) !important;
@@ -2215,6 +2217,8 @@ ul {
     visibility: visible !important;
     opacity: 1 !important;
     background: transparent !important;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
 .sponsor-mobile-item:hover img {
