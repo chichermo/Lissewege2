@@ -4,9 +4,8 @@
 // Systeem voor reserveringen van faciliteiten
 
 if (typeof FacilityReservations === 'undefined') {
-    if (typeof FacilityReservations === 'undefined') {
     class FacilityReservations {
-    constructor() {
+        constructor() {
         this.reservations = [];
         this.facilities = [
             { id: 'main-field', name: 'Hoofdveld', type: 'field', capacity: 22 },
