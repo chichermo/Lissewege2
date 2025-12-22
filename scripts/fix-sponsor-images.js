@@ -21,20 +21,36 @@
         
         console.log(`[Fix Sponsor Images] Encontradas ${sponsorImages.length} imágenes en el banner móvil`);
         
+        if (sponsorImages.length === 0) {
+            console.warn('[Fix Sponsor Images] No se encontraron imágenes. El banner puede no estar visible aún.');
+            return;
+        }
+        
         sponsorImages.forEach((img, index) => {
             // Obtener la ruta original del atributo src
-            const originalSrc = img.getAttribute('src');
+            let originalSrc = img.getAttribute('src');
             
             if (!originalSrc) {
                 console.warn(`[Fix Sponsor Images] Imagen ${index} no tiene atributo src`);
                 return;
             }
             
-            // Si la ruta tiene espacios, codificarla
-            if (originalSrc.includes(' ')) {
+            // Si la ruta tiene espacios o caracteres especiales, codificarla
+            if (originalSrc.includes(' ') || originalSrc.includes('(') || originalSrc.includes(')')) {
                 const encodedSrc = encodeImagePath(originalSrc);
-                console.log(`[Fix Sponsor Images] Codificando ruta: ${originalSrc} -> ${encodedSrc}`);
+                console.log(`[Fix Sponsor Images] Imagen ${index}: Codificando ruta "${originalSrc}" -> "${encodedSrc}"`);
                 img.src = encodedSrc;
+                originalSrc = encodedSrc; // Actualizar para el siguiente paso
+            }
+            
+            // Si la imagen ya tiene una src pero no se está mostrando, forzar recarga
+            if (img.complete && img.naturalHeight === 0 && img.naturalWidth === 0) {
+                console.warn(`[Fix Sponsor Images] Imagen ${index} parece estar rota, reintentando carga: ${originalSrc}`);
+                const currentSrc = img.src;
+                img.src = '';
+                setTimeout(() => {
+                    img.src = currentSrc;
+                }, 100);
             }
             
             // Agregar atributos de carga si no existen
