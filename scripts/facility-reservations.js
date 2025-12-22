@@ -484,7 +484,7 @@ if (typeof FacilityReservations === 'undefined') {
     saveReservations() {
         localStorage.setItem('facility_reservations', JSON.stringify(this.reservations));
     }
-    }
+}
     window.FacilityReservations = FacilityReservations;
 }
 

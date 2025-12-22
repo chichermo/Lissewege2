@@ -241,7 +241,7 @@ if (typeof ClubHistory === 'undefined') {
             </div>
         `).join('');
     }
-    }
+}
     window.ClubHistory = ClubHistory;
 }
 

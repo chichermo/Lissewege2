@@ -399,7 +399,7 @@ if (typeof NotificationsSystem === 'undefined') {
         // This would fetch from calendar system
         // For now, demo implementation
     }
-    }
+}
     window.NotificationsSystem = NotificationsSystem;
 }
 
