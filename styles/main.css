@@ -2132,7 +2132,7 @@ ul {
     top: 0;
     width: 60px;
     height: 100%;
-    z-index: 2;
+    z-index: 3;
     pointer-events: none;
 }
 
@@ -2172,12 +2172,15 @@ ul {
     border: 1px solid rgba(13, 77, 46, 0.1);
     transition: all 0.3s ease;
     text-decoration: none;
+    position: relative;
+    z-index: 1;
 }
 
 .sponsor-mobile-item:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: var(--shadow-md);
     border-color: rgba(26, 122, 74, 0.3);
+    z-index: 10;
 }
 
 .sponsor-mobile-item img {
@@ -2186,6 +2189,9 @@ ul {
     object-fit: contain;
     filter: grayscale(20%) opacity(0.9);
     transition: filter 0.3s ease;
+    display: block;
+    position: relative;
+    z-index: 2;
 }
 
 .sponsor-mobile-item:hover img {

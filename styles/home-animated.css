@@ -91,6 +91,31 @@
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     animation: logoPulse 2s ease-in-out infinite;
     object-fit: contain;
+    overflow: hidden;
+    display: block;
+}
+
+.home-logo-animated {
+    margin-bottom: 0;
+    animation: logoFloat 3s ease-in-out infinite;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--white);
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.home-logo-animated .animated-logo {
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    border-radius: 50%;
 }
 
 @keyframes logoPulse {
