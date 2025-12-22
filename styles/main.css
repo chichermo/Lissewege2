@@ -2110,6 +2110,114 @@ ul {
     border: 1px solid rgba(13, 77, 46, 0.08);
 }
 
+/* ============================================
+   MOBILE SPONSORS BANNER
+   ============================================ */
+.sponsors-mobile-banner {
+    display: none; /* Oculto por defecto, solo visible en móviles */
+    width: 100%;
+    overflow: hidden;
+    margin: 3rem 0;
+    padding: 1.5rem 0;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+
+.sponsors-mobile-banner::before,
+.sponsors-mobile-banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.sponsors-mobile-banner::before {
+    left: 0;
+    background: linear-gradient(to right, var(--light-color), transparent);
+}
+
+.sponsors-mobile-banner::after {
+    right: 0;
+    background: linear-gradient(to left, var(--light-color), transparent);
+}
+
+.sponsors-mobile-track {
+    display: flex;
+    gap: 2rem;
+    width: fit-content;
+    animation: scrollSponsorsMobile 40s linear infinite;
+    padding: 0 1rem;
+}
+
+.sponsors-mobile-track:hover {
+    animation-play-state: paused;
+}
+
+.sponsor-mobile-item {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(13, 77, 46, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.sponsor-mobile-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(26, 122, 74, 0.3);
+}
+
+.sponsor-mobile-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: grayscale(20%) opacity(0.9);
+    transition: filter 0.3s ease;
+}
+
+.sponsor-mobile-item:hover img {
+    filter: grayscale(0%) opacity(1);
+}
+
+@keyframes scrollSponsorsMobile {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Mostrar banner móvil solo en pantallas pequeñas */
+@media (max-width: 768px) {
+    .sponsors-mobile-banner {
+        display: block;
+    }
+    
+    .sponsors-grid-original {
+        display: none; /* Ocultar grid en móviles */
+    }
+}
+
+@media (min-width: 769px) {
+    .sponsors-mobile-banner {
+        display: none; /* Ocultar banner en desktop */
+    }
+}
+
 .sponsor-cta p {
     font-size: 1.35rem;
     margin-bottom: 2rem;
