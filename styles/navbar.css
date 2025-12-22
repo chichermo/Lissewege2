@@ -46,14 +46,6 @@
     gap: 1rem;
     text-decoration: none;
     z-index: 1001;
-}
-
-.nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    text-decoration: none;
-    z-index: 1001;
     position: relative;
 }
 
