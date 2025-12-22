@@ -2123,6 +2123,7 @@ ul {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     position: relative;
+    min-height: 150px;
 }
 
 .sponsors-mobile-banner::before,
@@ -2152,6 +2153,8 @@ ul {
     width: fit-content;
     animation: scrollSponsorsMobile 40s linear infinite;
     padding: 0 1rem;
+    align-items: center;
+    min-height: 120px;
 }
 
 .sponsors-mobile-track:hover {
