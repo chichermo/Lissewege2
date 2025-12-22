@@ -2114,7 +2114,7 @@ ul {
    MOBILE SPONSORS BANNER
    ============================================ */
 .sponsors-mobile-banner {
-    display: none; /* Oculto por defecto, solo visible en móviles */
+    display: block; /* Mostrar siempre para debugging */
     width: 100%;
     overflow: hidden;
     margin: 3rem 0;
@@ -2126,6 +2126,10 @@ ul {
     min-height: 150px;
 }
 
+.sponsors-mobile-banner * {
+    box-sizing: border-box;
+}
+
 .sponsors-mobile-banner::before,
 .sponsors-mobile-banner::after {
     content: '';
@@ -2133,7 +2137,7 @@ ul {
     top: 0;
     width: 60px;
     height: 100%;
-    z-index: 3;
+    z-index: 2;
     pointer-events: none;
 }
 
@@ -2155,6 +2159,8 @@ ul {
     padding: 0 1rem;
     align-items: center;
     min-height: 120px;
+    position: relative;
+    z-index: 1;
 }
 
 .sponsors-mobile-track:hover {
@@ -2165,40 +2171,55 @@ ul {
     flex-shrink: 0;
     width: 120px;
     height: 120px;
+    min-width: 120px;
+    min-height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--white);
     border-radius: var(--radius-md);
-    padding: 0.75rem;
+    padding: 1rem;
     box-shadow: var(--shadow-sm);
     border: 1px solid rgba(13, 77, 46, 0.1);
     transition: all 0.3s ease;
     text-decoration: none;
     position: relative;
-    z-index: 1;
+    z-index: 5;
+    overflow: visible;
+}
+
+.sponsor-mobile-item::before {
+    content: '';
+    display: none; /* No mostrar placeholder si la imagen carga */
 }
 
 .sponsor-mobile-item:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: var(--shadow-md);
     border-color: rgba(26, 122, 74, 0.3);
-    z-index: 10;
+    z-index: 15;
 }
 
 .sponsor-mobile-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: grayscale(20%) opacity(0.9);
-    transition: filter 0.3s ease;
-    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    padding: 0.5rem;
+    filter: grayscale(0%) opacity(1) !important;
+    transition: all 0.3s ease;
+    display: block !important;
     position: relative;
-    z-index: 2;
+    z-index: 6;
+    max-width: 100%;
+    max-height: 100%;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: transparent !important;
 }
 
 .sponsor-mobile-item:hover img {
     filter: grayscale(0%) opacity(1);
+    transform: scale(1.08);
 }
 
 @keyframes scrollSponsorsMobile {
@@ -2223,7 +2244,11 @@ ul {
 
 @media (min-width: 769px) {
     .sponsors-mobile-banner {
-        display: none; /* Ocultar banner en desktop */
+        display: block; /* Mostrar también en desktop temporalmente */
+    }
+    
+    .sponsors-grid-original {
+        display: grid; /* Mostrar ambos en desktop */
     }
 }
 
