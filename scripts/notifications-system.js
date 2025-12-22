@@ -4,9 +4,8 @@
 // Systeem voor push notificaties en meldingen
 
 if (typeof NotificationsSystem === 'undefined') {
-    if (typeof NotificationsSystem === 'undefined') {
     class NotificationsSystem {
-    constructor() {
+        constructor() {
         this.notifications = [];
         this.preferences = {
             matchReminders: true,
