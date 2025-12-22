@@ -3,7 +3,8 @@
 // ============================================
 // Systeem voor club geschiedenis en archief
 
-class ClubHistory {
+if (typeof ClubHistory === 'undefined') {
+    class ClubHistory {
     constructor() {
         this.seasons = [];
         this.achievements = [];
@@ -242,11 +243,19 @@ class ClubHistory {
     }
 }
 
+    }
+    window.ClubHistory = ClubHistory;
+}
+
 // Initialiseer wanneer DOM klaar is
-let clubHistory;
-document.addEventListener('DOMContentLoaded', () => {
-    clubHistory = new ClubHistory();
-    window.clubHistory = clubHistory;
-    clubHistory.renderAchievements();
-});
+if (!window.clubHistory) {
+    let clubHistory;
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!window.clubHistory) {
+            clubHistory = new ClubHistory();
+            window.clubHistory = clubHistory;
+            clubHistory.renderAchievements();
+        }
+    });
+}
 

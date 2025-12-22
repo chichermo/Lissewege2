@@ -3,7 +3,9 @@
 // ============================================
 // Systeem voor reserveringen van faciliteiten
 
-class FacilityReservations {
+if (typeof FacilityReservations === 'undefined') {
+    if (typeof FacilityReservations === 'undefined') {
+    class FacilityReservations {
     constructor() {
         this.reservations = [];
         this.facilities = [
@@ -483,12 +485,18 @@ class FacilityReservations {
     saveReservations() {
         localStorage.setItem('facility_reservations', JSON.stringify(this.reservations));
     }
+    }
+    window.FacilityReservations = FacilityReservations;
 }
 
 // Initialiseer wanneer DOM klaar is
-let facilityReservations;
-document.addEventListener('DOMContentLoaded', () => {
-    facilityReservations = new FacilityReservations();
-    window.facilityReservations = facilityReservations;
-});
+if (!window.facilityReservations) {
+    let facilityReservations;
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!window.facilityReservations) {
+            facilityReservations = new FacilityReservations();
+            window.facilityReservations = facilityReservations;
+        }
+    });
+}
 

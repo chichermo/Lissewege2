@@ -3,7 +3,8 @@
 // ============================================
 // Systeem voor statistieken van spelers en teams
 
-class PlayerStatistics {
+if (typeof PlayerStatistics === 'undefined') {
+    class PlayerStatistics {
     constructor() {
         this.players = [];
         this.matches = [];
@@ -625,10 +626,18 @@ class PlayerStatistics {
     }
 }
 
+    }
+    window.PlayerStatistics = PlayerStatistics;
+}
+
 // Initialiseer wanneer DOM klaar is
-let playerStats;
-document.addEventListener('DOMContentLoaded', () => {
-    playerStats = new PlayerStatistics();
-    window.playerStats = playerStats;
-});
+if (!window.playerStats) {
+    let playerStats;
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!window.playerStats) {
+            playerStats = new PlayerStatistics();
+            window.playerStats = playerStats;
+        }
+    });
+}
 

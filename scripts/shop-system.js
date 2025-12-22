@@ -3,7 +3,8 @@
 // ============================================
 // Online winkel voor club merchandise
 
-class ClubShop {
+if (typeof ClubShop === 'undefined') {
+    class ClubShop {
     constructor() {
         this.products = [];
         this.cart = [];
@@ -580,12 +581,18 @@ class ClubShop {
     saveCart() {
         localStorage.setItem('shop_cart', JSON.stringify(this.cart));
     }
+    }
+    window.ClubShop = ClubShop;
 }
 
 // Initialiseer wanneer DOM klaar is
-let clubShop;
-document.addEventListener('DOMContentLoaded', () => {
-    clubShop = new ClubShop();
-    window.clubShop = clubShop;
-});
+if (!window.clubShop) {
+    let clubShop;
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!window.clubShop) {
+            clubShop = new ClubShop();
+            window.clubShop = clubShop;
+        }
+    });
+}
 

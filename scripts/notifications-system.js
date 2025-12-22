@@ -3,7 +3,9 @@
 // ============================================
 // Systeem voor push notificaties en meldingen
 
-class NotificationsSystem {
+if (typeof NotificationsSystem === 'undefined') {
+    if (typeof NotificationsSystem === 'undefined') {
+    class NotificationsSystem {
     constructor() {
         this.notifications = [];
         this.preferences = {
@@ -398,17 +400,23 @@ class NotificationsSystem {
         // This would fetch from calendar system
         // For now, demo implementation
     }
+    }
+    window.NotificationsSystem = NotificationsSystem;
 }
 
 // Initialiseer wanneer DOM klaar is
-let notificationsSystem;
-document.addEventListener('DOMContentLoaded', () => {
-    notificationsSystem = new NotificationsSystem();
-    window.notificationsSystem = notificationsSystem;
-    
-    // Setup automatic reminders after a delay
-    setTimeout(() => {
-        notificationsSystem.setupAutomaticReminders();
-    }, 5000);
-});
+if (!window.notificationsSystem) {
+    let notificationsSystem;
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!window.notificationsSystem) {
+            notificationsSystem = new NotificationsSystem();
+            window.notificationsSystem = notificationsSystem;
+            
+            // Setup automatic reminders after a delay
+            setTimeout(() => {
+                notificationsSystem.setupAutomaticReminders();
+            }, 5000);
+        }
+    });
+}
 
