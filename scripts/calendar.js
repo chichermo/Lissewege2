@@ -2,6 +2,54 @@
 // CALENDAR MANAGEMENT - PAST & UPCOMING MATCHES
 // ============================================
 
+// Helpers for splitting matches by date
+function parseMatchDate(match) {
+    if (!match || !match.date) return null;
+    const time = match.time ? match.time : '23:59';
+    const dateTime = `${match.date}T${time}`;
+    const parsed = new Date(dateTime);
+    return Number.isNaN(parsed.getTime()) ? new Date(match.date) : parsed;
+}
+
+function getDateKey(date) {
+    return date.toISOString().slice(0, 10);
+}
+
+function splitMatchesByDate(matches) {
+    const now = new Date();
+    const todayKey = getDateKey(now);
+    const nowTime = now.getTime();
+    const past = [];
+    const upcoming = [];
+    const seen = new Set();
+
+    matches.forEach(match => {
+        if (!match || !match.date) return;
+        const date = parseMatchDate(match);
+        if (!date) return;
+
+        const key = `${match.date || ''}|${match.time || ''}|${match.homeTeam || ''}|${match.awayTeam || ''}`;
+        if (seen.has(key)) return;
+        seen.add(key);
+
+        const matchKey = getDateKey(date);
+        const isPast = matchKey < todayKey || (matchKey === todayKey && date.getTime() < nowTime);
+        if (isPast) {
+            past.push(match);
+        } else {
+            upcoming.push(match);
+        }
+    });
+
+    return { past, upcoming };
+}
+
+function getFallbackMatches() {
+    const past = Array.isArray(window.PAST_MATCHES) ? window.PAST_MATCHES : [];
+    const upcoming = Array.isArray(window.UPCOMING_MATCHES) ? window.UPCOMING_MATCHES : [];
+    return splitMatchesByDate([...past, ...upcoming]);
+}
+
 // Load and display past matches
 async function loadPastMatches() {
     const calendarGrid = document.getElementById('pastMatchesGrid');
@@ -10,9 +58,7 @@ async function loadPastMatches() {
     // Get past matches from real data
     let pastMatches = [];
     
-    if (window.PAST_MATCHES) {
-        pastMatches = window.PAST_MATCHES;
-    } else if (window.realFootballAPI) {
+    if (window.realFootballAPI) {
         try {
             const matches = await window.realFootballAPI.getPastMatches();
             if (matches && matches.length > 0) {
@@ -21,6 +67,10 @@ async function loadPastMatches() {
         } catch (error) {
             console.warn('Could not load past matches from API:', error);
         }
+    }
+
+    if (pastMatches.length === 0) {
+        pastMatches = getFallbackMatches().past;
     }
 
     if (pastMatches.length === 0) {
@@ -43,34 +93,42 @@ async function loadPastMatches() {
         const isHome = match.venue === 'home';
         const homeTeam = match.homeTeam;
         const awayTeam = match.awayTeam;
-        const score = match.score || 'TBD';
-        const [homeScore, awayScore] = score.split('-').map(s => s.trim());
+        const score = match.score || '';
+        const scoreParts = score.split('-').map(s => s.trim());
+        const hasScore = scoreParts.length === 2 && !Number.isNaN(parseInt(scoreParts[0])) && !Number.isNaN(parseInt(scoreParts[1]));
+        const homeScore = hasScore ? scoreParts[0] : '--';
+        const awayScore = hasScore ? scoreParts[1] : '--';
         
         // Determine result for RFC Lissewege
         let resultClass = '';
         let resultText = '';
-        if (isHome) {
-            if (parseInt(homeScore) > parseInt(awayScore)) {
-                resultClass = 'win';
-                resultText = 'Winst';
-            } else if (parseInt(homeScore) < parseInt(awayScore)) {
-                resultClass = 'loss';
-                resultText = 'Verlies';
+        if (hasScore) {
+            if (isHome) {
+                if (parseInt(homeScore) > parseInt(awayScore)) {
+                    resultClass = 'win';
+                    resultText = 'Winst';
+                } else if (parseInt(homeScore) < parseInt(awayScore)) {
+                    resultClass = 'loss';
+                    resultText = 'Verlies';
+                } else {
+                    resultClass = 'draw';
+                    resultText = 'Gelijk';
+                }
             } else {
-                resultClass = 'draw';
-                resultText = 'Gelijk';
+                if (parseInt(awayScore) > parseInt(homeScore)) {
+                    resultClass = 'win';
+                    resultText = 'Winst';
+                } else if (parseInt(awayScore) < parseInt(homeScore)) {
+                    resultClass = 'loss';
+                    resultText = 'Verlies';
+                } else {
+                    resultClass = 'draw';
+                    resultText = 'Gelijk';
+                }
             }
         } else {
-            if (parseInt(awayScore) > parseInt(homeScore)) {
-                resultClass = 'win';
-                resultText = 'Winst';
-            } else if (parseInt(awayScore) < parseInt(homeScore)) {
-                resultClass = 'loss';
-                resultText = 'Verlies';
-            } else {
-                resultClass = 'draw';
-                resultText = 'Gelijk';
-            }
+            resultClass = 'pending';
+            resultText = 'Geen score';
         }
 
         // Get team logos
@@ -104,11 +162,11 @@ async function loadPastMatches() {
                 <div class="match-result-display">
                     <div class="match-result-team">
                         <img src="${homeLogo}" alt="${homeTeam} logo" class="match-result-logo" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${homeTeam}'); this.onerror = null; } else { this.style.display='none'; }">
-                        <span class="match-result-score ${isHome && parseInt(homeScore) > parseInt(awayScore) ? 'winner' : ''}">${homeScore}</span>
+                        <span class="match-result-score ${hasScore && isHome && parseInt(homeScore) > parseInt(awayScore) ? 'winner' : ''}">${homeScore}</span>
                     </div>
                     <span class="match-result-separator">-</span>
                     <div class="match-result-team">
-                        <span class="match-result-score ${!isHome && parseInt(awayScore) > parseInt(homeScore) ? 'winner' : ''}">${awayScore}</span>
+                        <span class="match-result-score ${hasScore && !isHome && parseInt(awayScore) > parseInt(homeScore) ? 'winner' : ''}">${awayScore}</span>
                         <img src="${awayLogo}" alt="${awayTeam} logo" class="match-result-logo" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${awayTeam}'); this.onerror = null; } else { this.style.display='none'; }">
                     </div>
                 </div>
@@ -136,9 +194,7 @@ async function loadUpcomingMatches() {
     // Get upcoming matches
     let upcomingMatches = [];
     
-    if (window.UPCOMING_MATCHES) {
-        upcomingMatches = window.UPCOMING_MATCHES;
-    } else if (window.realFootballAPI) {
+    if (window.realFootballAPI) {
         try {
             const matches = await window.realFootballAPI.getUpcomingMatches(null, 20);
             if (matches && matches.length > 0) {
@@ -172,6 +228,10 @@ async function loadUpcomingMatches() {
         } catch (error) {
             console.warn('Could not load upcoming matches:', error);
         }
+    }
+
+    if (upcomingMatches.length === 0) {
+        upcomingMatches = getFallbackMatches().upcoming;
     }
 
     if (upcomingMatches.length === 0) {

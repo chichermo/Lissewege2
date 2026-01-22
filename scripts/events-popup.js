@@ -17,16 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const events = [
         {
-            title: 'Evento 1',
-            description: 'Descubre el evento especial del club para este año y no te pierdas las novedades.',
+            title: 'Event 1',
+            description: 'Ontdek het speciale clubevent van dit jaar en mis geen enkele update.',
             image: 'images/1.jpg',
-            tag: 'Evento 2026'
+            tag: 'Event 2026'
         },
         {
-            title: 'Evento 2',
-            description: 'Un encuentro pensado para toda la familia del RFC Lissewege.',
+            title: 'Event 2',
+            description: 'Een ontmoeting voor de hele RFC Lissewege-familie.',
             image: 'images/2.jpg',
-            tag: 'Evento 2026'
+            tag: 'Event 2026'
         }
     ];
 
@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
         popupCounter.textContent = `${currentIndex + 1} / ${events.length}`;
         prevBtn.disabled = currentIndex === 0;
         nextBtn.innerHTML = currentIndex === events.length - 1
-            ? 'Cerrar <i class="fas fa-times"></i>'
-            : 'Siguiente <i class="fas fa-chevron-right"></i>';
+            ? 'Sluiten <i class="fas fa-times"></i>'
+            : 'Volgende <i class="fas fa-chevron-right"></i>';
     };
 
     const openPopup = (index = 0) => {
@@ -105,5 +105,5 @@ document.addEventListener('DOMContentLoaded', () => {
             autoOpened = true;
             openPopup(0);
         }
-    }, 700);
+    }, 2000);
 });
