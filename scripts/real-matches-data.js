@@ -24,6 +24,7 @@ const PAST_MATCHES = [
 // Próximos partidos
 const UPCOMING_MATCHES = [
     { date: '2026-01-18', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'VKSO Zerkegem B', venue: 'home' },
+    { date: '2026-01-23', time: '19:30', homeTeam: 'RFC Lissewege', awayTeam: 'Tegenstander', venue: 'home' },
     { date: '2026-01-25', time: '14:30', homeTeam: 'KSK Steenbrugge', awayTeam: 'RFC Lissewege', venue: 'away' },
     { date: '2026-02-01', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'KFC Heist B', venue: 'home' },
     { date: '2026-02-07', time: '19:30', homeTeam: 'KSV Bredene B', awayTeam: 'RFC Lissewege', venue: 'away' },
