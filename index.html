@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="styles/players.css">
     <link rel="stylesheet" href="styles/matches.css">
     <link rel="stylesheet" href="styles/pages.css">
+    <link rel="stylesheet" href="styles/events.css">
     <link rel="stylesheet" href="styles/calendar-improved.css">
     <link rel="stylesheet" href="styles/team-logos.css">
     <link rel="stylesheet" href="styles/lightbox.css">
@@ -75,6 +76,7 @@
                     <li><a href="#club-info" class="nav-link">Club Info</a></li>
                     <li><a href="#teams" class="nav-link">Teams</a></li>
                     <li><a href="#nieuws" class="nav-link">Nieuws</a></li>
+                    <li><a href="#eventos" class="nav-link">Eventos</a></li>
                     <li><a href="#kalender" class="nav-link">Kalender</a></li>
                     <li><a href="#competities" class="nav-link">Competities</a></li>
                     <li><a href="#rivalen" class="nav-link">Rivalen</a></li>
@@ -260,6 +262,47 @@
                         <div class="stat-value">6</div>
                         <div class="stat-label">Actieve Teams</div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eventos Page -->
+        <section id="eventos" class="page-section section events-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Eventos</span>
+                    <h2 class="section-title">Eventos 2026</h2>
+                    <p class="section-description">Nuevos eventos del club para este año.</p>
+                </div>
+
+                <div class="events-grid">
+                    <article class="event-card">
+                        <div class="event-image">
+                            <img src="images/1.jpg" alt="Evento 1" loading="lazy">
+                        </div>
+                        <div class="event-content">
+                            <span class="event-label">Nuevo evento</span>
+                            <h3>Evento 1</h3>
+                            <p>Consulta los detalles del evento y mantente al día con las novedades del club.</p>
+                            <button class="event-card-btn" data-event-index="0" type="button">
+                                Ver evento <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="event-card">
+                        <div class="event-image">
+                            <img src="images/2.jpg" alt="Evento 2" loading="lazy">
+                        </div>
+                        <div class="event-content">
+                            <span class="event-label">Nuevo evento</span>
+                            <h3>Evento 2</h3>
+                            <p>Un nuevo encuentro para toda la familia del RFC Lissewege.</p>
+                            <button class="event-card-btn" data-event-index="1" type="button">
+                                Ver evento <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -2811,6 +2854,7 @@
                             <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
                             <li><a href="#teams"><i class="fas fa-chevron-right"></i> Teams</a></li>
                             <li><a href="#nieuws"><i class="fas fa-chevron-right"></i> Nieuws</a></li>
+                            <li><a href="#eventos"><i class="fas fa-chevron-right"></i> Eventos</a></li>
                             <li><a href="#kalender"><i class="fas fa-chevron-right"></i> Kalender</a></li>
                             <li><a href="#contact"><i class="fas fa-chevron-right"></i> Lid Worden</a></li>
                         </ul>
@@ -2942,6 +2986,32 @@
         <div class="loading-spinner"></div>
     </div>
 
+    <!-- Eventos Popup -->
+    <div class="event-popup-overlay" id="eventPopupOverlay" aria-hidden="true">
+        <div class="event-popup" role="dialog" aria-modal="true" aria-labelledby="eventPopupTitle">
+            <button class="event-popup-close" type="button" aria-label="Cerrar">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="event-popup-image">
+                <img src="" alt="" id="eventPopupImage">
+            </div>
+            <div class="event-popup-body">
+                <span class="event-popup-tag" id="eventPopupTag"></span>
+                <h3 id="eventPopupTitle"></h3>
+                <p id="eventPopupDescription"></p>
+                <div class="event-popup-actions">
+                    <button class="event-popup-btn secondary" id="eventPopupPrev" type="button">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="event-popup-btn primary" id="eventPopupNext" type="button">
+                        Siguiente <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="event-popup-counter" id="eventPopupCounter"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Match Detail Modal -->
     <div class="modal-overlay" id="matchModal">
         <div class="match-modal">
@@ -3010,6 +3080,7 @@
     </div>
 
     <script src="scripts/modal.js"></script>
+    <script src="scripts/events-popup.js"></script>
     <script src="scripts/particles.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/navbar.js"></script>
