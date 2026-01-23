@@ -23,6 +23,30 @@ class VoetbalInBelgieAPI {
         this.cache = VOETBALINBELGIE_API.cache;
     }
 
+    async fetchJsonWithFallback(url) {
+        const proxies = [
+            (target) => target,
+            (target) => `https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`
+        ];
+
+        for (const buildUrl of proxies) {
+            try {
+                const response = await fetch(buildUrl(url), {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' },
+                    mode: 'cors'
+                });
+                if (response.ok) {
+                    return await response.json();
+                }
+            } catch (error) {
+                continue;
+            }
+        }
+
+        return null;
+    }
+
     /**
      * Obtiene la clasificación de una liga específica
      * @param {string} province - Provincia (ej: 'west-vlaanderen')
@@ -52,23 +76,9 @@ class VoetbalInBelgieAPI {
     async getUpcomingMatches(teamName = 'RFC Lissewege', limit = 5) {
         try {
             const url = `${this.apiUrl}/teams/${encodeURIComponent(teamName)}/matches?status=SCHEDULED&limit=${limit}`;
-            
-            let response;
-            try {
-                response = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json'
-                    },
-                    mode: 'cors'
-                });
-            } catch (fetchError) {
-                // CORS or network error - return empty array silently
-                return [];
-            }
 
-            if (response && response.ok) {
-                const data = await response.json();
+            const data = await this.fetchJsonWithFallback(url);
+            if (data) {
                 return data.matches || [];
             }
         } catch (error) {
@@ -92,23 +102,9 @@ class VoetbalInBelgieAPI {
     async getRecentResults(teamName = 'RFC Lissewege', limit = 5) {
         try {
             const url = `${this.apiUrl}/teams/${encodeURIComponent(teamName)}/matches?status=FINISHED&limit=${limit}`;
-            
-            let response;
-            try {
-                response = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json'
-                    },
-                    mode: 'cors'
-                });
-            } catch (fetchError) {
-                // CORS or network error - return empty array silently
-                return [];
-            }
 
-            if (response && response.ok) {
-                const data = await response.json();
+            const data = await this.fetchJsonWithFallback(url);
+            if (data) {
                 return data.matches || [];
             }
         } catch (error) {

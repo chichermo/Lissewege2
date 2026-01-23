@@ -114,6 +114,36 @@ class FootballAPI {
     }
 }
 
+function normalizeMatch(rawMatch) {
+    if (!rawMatch) return null;
+    const teamName = window.APP_CONFIG?.team?.name || 'RFC Lissewege';
+    const date = rawMatch.date
+        || rawMatch.matchDate
+        || (rawMatch.utcDate ? rawMatch.utcDate.split('T')[0] : null);
+    if (!date) return null;
+
+    const time = rawMatch.time
+        || rawMatch.matchTime
+        || (rawMatch.utcDate ? new Date(rawMatch.utcDate).toLocaleTimeString('nl-BE', { hour: '2-digit', minute: '2-digit' }) : '');
+
+    const homeTeam = rawMatch.homeTeam?.name || rawMatch.homeTeam || rawMatch.home || rawMatch.teamHome || '';
+    const awayTeam = rawMatch.awayTeam?.name || rawMatch.awayTeam || rawMatch.away || rawMatch.teamAway || '';
+    let venue = rawMatch.venue;
+    if (!venue && homeTeam && awayTeam) {
+        venue = homeTeam === teamName ? 'home' : (awayTeam === teamName ? 'away' : null);
+    }
+
+    return {
+        date,
+        time,
+        homeTeam,
+        awayTeam,
+        venue: venue || rawMatch.venue || null,
+        address: rawMatch.address || '',
+        score: rawMatch.score || ''
+    };
+}
+
 // Initialize API
 const footballAPI = new FootballAPI();
 
@@ -141,6 +171,28 @@ async function updateNextMatchWidget() {
                 }
             } catch (error) {
                 console.warn('Real API failed, using fallback:', error);
+            }
+        }
+
+        if (!match && window.voetbalAPI) {
+            try {
+                const matches = await window.voetbalAPI.getUpcomingMatches(window.APP_CONFIG?.team?.name || 'RFC Lissewege', 1);
+                if (matches && matches.length > 0) {
+                    const normalized = normalizeMatch(matches[0]);
+                    if (normalized) {
+                        match = {
+                            homeTeam: normalized.homeTeam,
+                            awayTeam: normalized.awayTeam,
+                            date: normalized.date,
+                            time: normalized.time || '--:--',
+                            category: 'Competitie',
+                            venue: normalized.venue || 'home',
+                            address: normalized.address || 'Pol Dhondtstraat 70, 8380 Lissewege'
+                        };
+                    }
+                }
+            } catch (error) {
+                console.warn('Voetbal API failed, using fallback:', error);
             }
         }
 
@@ -269,6 +321,23 @@ async function updateOtherMatches() {
             }
         }
 
+        if (!matches && window.voetbalAPI) {
+            try {
+                const voetbalMatches = await window.voetbalAPI.getUpcomingMatches(window.APP_CONFIG?.team?.name || 'RFC Lissewege', 10);
+                matches = voetbalMatches.map(normalizeMatch).filter(Boolean).map(m => ({
+                    date: m.date,
+                    time: m.time,
+                    category: 'Competitie',
+                    homeTeam: m.homeTeam,
+                    awayTeam: m.awayTeam,
+                    venue: m.venue || 'home',
+                    address: m.address || 'Pol Dhondtstraat 70, 8380 Lissewege'
+                }));
+            } catch (error) {
+                console.warn('Voetbal API failed, using fallback:', error);
+            }
+        }
+
         // Fallback to mock data if API unavailable
         if (!matches) {
             matches = await footballAPI.getUpcomingMatches();
@@ -361,7 +430,34 @@ function updateMatchCountdown(matchDate, matchTime) {
 // Update League Position
 async function updateLeaguePosition() {
     try {
-        const standings = await footballAPI.getLeagueStandings();
+        let standings = null;
+        if (window.realFootballAPI) {
+            try {
+                const realStandings = await window.realFootballAPI.getLeagueStandings();
+                if (realStandings && realStandings.length > 0) {
+                    const teamName = window.APP_CONFIG?.team?.name || 'RFC Lissewege';
+                    standings = realStandings.find(team => team.team === teamName || team.team?.toLowerCase().includes('lissewege'));
+                }
+            } catch (error) {
+                console.warn('Real standings API failed, using fallback:', error);
+            }
+        }
+
+        if (!standings && window.voetbalAPI) {
+            try {
+                const voetbalStandings = await window.voetbalAPI.getStandings();
+                if (voetbalStandings && voetbalStandings.standings) {
+                    const teamName = window.APP_CONFIG?.team?.name || 'RFC Lissewege';
+                    standings = voetbalStandings.standings.find(team => team.team === teamName || team.team?.toLowerCase().includes('lissewege'));
+                }
+            } catch (error) {
+                console.warn('Voetbal standings API failed, using fallback:', error);
+            }
+        }
+
+        if (!standings) {
+            standings = await footballAPI.getLeagueStandings();
+        }
         const positionElement = document.getElementById('leaguePosition');
 
         if (positionElement) {
@@ -372,11 +468,78 @@ async function updateLeaguePosition() {
     }
 }
 
+async function updateRecentResults() {
+    const resultsGrid = document.getElementById('recentResultsGrid');
+    const resultsUpdate = document.getElementById('recentResultsLastUpdate');
+    if (!resultsGrid) return;
+
+    let results = [];
+    if (window.realFootballAPI) {
+        try {
+            const realResults = await window.realFootballAPI.getPastMatches(null, 5);
+            if (realResults && realResults.length > 0) {
+                results = realResults.map(normalizeMatch).filter(Boolean);
+            }
+        } catch (error) {
+            console.warn('Real API results failed, using fallback:', error);
+        }
+    }
+
+    if (results.length === 0 && window.voetbalAPI) {
+        try {
+            const voetbalResults = await window.voetbalAPI.getRecentResults(window.APP_CONFIG?.team?.name || 'RFC Lissewege', 5);
+            results = voetbalResults.map(normalizeMatch).filter(Boolean);
+        } catch (error) {
+            console.warn('Voetbal API results failed, using fallback:', error);
+        }
+    }
+
+    if (results.length === 0 && window.PAST_MATCHES) {
+        results = window.PAST_MATCHES.map(normalizeMatch).filter(Boolean);
+    }
+
+    resultsGrid.innerHTML = '';
+    const teamName = window.APP_CONFIG?.team?.name || 'RFC Lissewege';
+    results.slice(0, 5).forEach(match => {
+        const date = new Date(match.date);
+        const isHome = match.homeTeam === teamName;
+        const opponent = isHome ? match.awayTeam : match.homeTeam;
+        const ourTeamLogo = window.getTeamLogo ? window.getTeamLogo(teamName) : '/images/logos/100b.jpeg';
+        const opponentLogo = window.getTeamLogo ? window.getTeamLogo(opponent) : '/images/logos/100b.jpeg';
+        const score = match.score && match.score.includes('-') ? match.score : '-- - --';
+
+        const item = document.createElement('div');
+        item.className = 'recent-result-card';
+        item.innerHTML = `
+            <div class="recent-result-date">${date.toLocaleDateString('nl-BE', { day: '2-digit', month: 'short' })}</div>
+            <div class="recent-result-teams">
+                <div class="recent-result-team">
+                    <img src="${ourTeamLogo}" alt="${teamName} logo">
+                    <span>${teamName}</span>
+                </div>
+                <span class="recent-result-score">${score}</span>
+                <div class="recent-result-team">
+                    <img src="${opponentLogo}" alt="${opponent} logo">
+                    <span>${opponent}</span>
+                </div>
+            </div>
+            <div class="recent-result-venue">${isHome ? 'Thuis' : 'Uit'}</div>
+        `;
+        resultsGrid.appendChild(item);
+    });
+
+    if (resultsUpdate) {
+        const now = new Date();
+        resultsUpdate.textContent = now.toLocaleString('nl-BE', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     updateNextMatchWidget();
     updateOtherMatches();
     updateLeaguePosition();
+    updateRecentResults();
 
     // Update countdown every minute
     setInterval(() => {
@@ -390,4 +553,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Export for use in other scripts
 window.footballAPI = footballAPI;
+window.updateNextMatchWidget = updateNextMatchWidget;
+window.updateOtherMatches = updateOtherMatches;
+window.updateLeaguePosition = updateLeaguePosition;
+window.updateRecentResults = updateRecentResults;
 

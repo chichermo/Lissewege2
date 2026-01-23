@@ -203,6 +203,17 @@
                     </div>
                 </div>
 
+                <!-- Recent Results -->
+                <div class="recent-results-section">
+                    <div class="recent-results-header">
+                        <h3><i class="fas fa-flag-checkered"></i> Recente Resultaten</h3>
+                        <span class="recent-results-update">Bijgewerkt: <span id="recentResultsLastUpdate">--</span></span>
+                    </div>
+                    <div class="recent-results-grid" id="recentResultsGrid">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                </div>
+
                 <!-- Latest News Carousel -->
                 <div class="news-carousel-section">
                     <div class="carousel-header">
@@ -602,6 +613,15 @@
                     <button class="team-select-btn" data-team="eersteElftallen">A-Kern</button>
                 </div>
 
+                <div class="api-squad-section">
+                    <div class="section-header-inline">
+                        <h3><i class="fas fa-users"></i> Officiële selectie (API)</h3>
+                        <span class="api-status" id="squadApiStatus">Nog geen API-gegevens</span>
+                    </div>
+                    <div class="api-squad-grid" id="apiSquadGrid"></div>
+                    <p class="api-squad-note" id="apiSquadNote">Deze gegevens verschijnen zodra er een team-ID en API-sleutels zijn ingesteld.</p>
+                </div>
+
                 <!-- Players Grid by Team -->
                 <div class="players-container">
                     <!-- U7 Team Players -->
@@ -911,7 +931,7 @@
                         Competitie Stand - 4e Provinciale C West-Vlaanderen
                     </h3>
                     <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem; font-size: 0.9rem;">
-                        Seizoen 2025/2026 - Bijgewerkt op 8 december 2025
+                        Seizoen 2025/2026 - Bijgewerkt op <span id="standingsLastUpdate">--</span>
                     </p>
                     <div class="standings-table-wrapper">
                         <table class="standings-table">
@@ -943,7 +963,7 @@
                         Resultaten - Afgelopen Wedstrijden
                     </h3>
                     <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem; font-size: 0.9rem;">
-                        Seizoen 2025/2026 - Laatste update: 7 december 2025
+                        Seizoen 2025/2026 - Laatste update: <span id="calendarLastUpdate">--</span>
                     </p>
                     <div class="calendar-grid-modern" id="pastMatchesGrid">
                         <!-- Will be populated by JavaScript -->
@@ -957,7 +977,7 @@
                         Komende Wedstrijden
                     </h3>
                     <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem; font-size: 0.9rem;">
-                        Seizoen 2025/2026 - 4e Provinciale C West-Vlaanderen
+                        Seizoen 2025/2026 - 4e Provinciale C West-Vlaanderen · <span id="upcomingLastUpdate">--</span>
                     </p>
                     <div class="calendar-grid-modern" id="upcomingMatchesGrid">
                         <!-- Will be populated by JavaScript -->
@@ -3084,16 +3104,19 @@
     <script src="scripts/particles.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/navbar.js"></script>
-    <script src="scripts/football-api-real.js"></script>
     <script src="scripts/api-config.js"></script>
+    <script src="scripts/football-api-real.js"></script>
     <script src="scripts/real-matches-data.js"></script>
+    <script src="scripts/voetbalinbelgie-api.js"></script>
     <script src="scripts/team-logos.js"></script>
     <script src="scripts/fix-sponsor-images.js"></script>
     <script src="scripts/football-api.js"></script>
     <script src="scripts/standings.js"></script>
     <script src="scripts/calendar.js"></script>
+    <script src="scripts/data-refresh-manager.js"></script>
     <script src="scripts/players-data.js"></script>
     <script src="scripts/players.js"></script>
+    <script src="scripts/players-api.js"></script>
     <script src="scripts/team-logos-fetcher.js"></script>
     <script src="scripts/lightbox.js"></script>
     <script src="scripts/scroll-animations.js"></script>
@@ -3127,7 +3150,6 @@
     <script src="scripts/admin-panel.js"></script>
     <script src="scripts/user-system.js"></script>
     <script src="scripts/competitions-data.js"></script>
-    <script src="scripts/voetbalinbelgie-api.js"></script>
     <script src="scripts/rival-teams.js"></script>
     <script src="scripts/competitions-init.js"></script>
     <script src="scripts/members-login.js"></script>

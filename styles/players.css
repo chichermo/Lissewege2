@@ -76,6 +76,71 @@
     min-height: 500px;
 }
 
+/* ============================================
+   API SQUAD SECTION
+   ============================================ */
+.api-squad-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: rgba(13, 77, 46, 0.04);
+    border: 1px solid rgba(13, 77, 46, 0.1);
+}
+
+.api-squad-section .section-header-inline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.api-status {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.api-squad-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.api-squad-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(13, 77, 46, 0.1);
+    box-shadow: var(--shadow-xs);
+}
+
+.api-squad-name {
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    color: var(--dark-color);
+}
+
+.api-squad-meta {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    flex-wrap: wrap;
+}
+
+.api-squad-note {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+@media (max-width: 700px) {
+    .api-squad-section .section-header-inline {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
 .players-team {
     display: none;
     animation: fadeIn 0.5s ease;

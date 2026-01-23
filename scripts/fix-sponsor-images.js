@@ -17,7 +17,7 @@
     }
     
     function fixSponsorImages() {
-        const sponsorImages = document.querySelectorAll('.sponsors-mobile-banner img');
+        const sponsorImages = document.querySelectorAll('.sponsors-mobile-banner img, .sponsor-image, .sponsor-item img, .sponsors-track img');
         
         console.log(`[Fix Sponsor Images] Encontradas ${sponsorImages.length} imágenes en el banner móvil`);
         
@@ -132,5 +132,7 @@
         childList: true,
         subtree: true
     });
+
+    window.fixSponsorImages = fixSponsorImages;
 })();
 

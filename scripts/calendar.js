@@ -11,6 +11,40 @@ function parseMatchDate(match) {
     return Number.isNaN(parsed.getTime()) ? new Date(match.date) : parsed;
 }
 
+function normalizeMatch(rawMatch) {
+    if (!rawMatch) return null;
+    const teamName = window.APP_CONFIG?.team?.name || 'RFC Lissewege';
+    const date = rawMatch.date
+        || rawMatch.matchDate
+        || (rawMatch.utcDate ? rawMatch.utcDate.split('T')[0] : null);
+    if (!date) return null;
+
+    const time = rawMatch.time
+        || rawMatch.matchTime
+        || (rawMatch.utcDate ? new Date(rawMatch.utcDate).toLocaleTimeString('nl-BE', { hour: '2-digit', minute: '2-digit' }) : '');
+
+    const homeTeam = rawMatch.homeTeam?.name || rawMatch.homeTeam || rawMatch.home || rawMatch.teamHome || '';
+    const awayTeam = rawMatch.awayTeam?.name || rawMatch.awayTeam || rawMatch.away || rawMatch.teamAway || '';
+    const score = rawMatch.score
+        || (rawMatch.score?.fullTime
+            ? `${rawMatch.score.fullTime.home ?? '-'}-${rawMatch.score.fullTime.away ?? '-'}`
+            : '');
+    let venue = rawMatch.venue;
+    if (!venue && homeTeam && awayTeam) {
+        venue = homeTeam === teamName ? 'home' : (awayTeam === teamName ? 'away' : null);
+    }
+
+    return {
+        date,
+        time,
+        homeTeam,
+        awayTeam,
+        score,
+        venue: venue || rawMatch.venue || null,
+        address: rawMatch.address || ''
+    };
+}
+
 function getDateKey(date) {
     return date.toISOString().slice(0, 10);
 }
@@ -62,10 +96,21 @@ async function loadPastMatches() {
         try {
             const matches = await window.realFootballAPI.getPastMatches();
             if (matches && matches.length > 0) {
-                pastMatches = matches;
+                pastMatches = matches.map(normalizeMatch).filter(Boolean);
             }
         } catch (error) {
             console.warn('Could not load past matches from API:', error);
+        }
+    }
+
+    if (pastMatches.length === 0) {
+        if (window.voetbalAPI) {
+            try {
+                const matches = await window.voetbalAPI.getRecentResults(window.APP_CONFIG?.team?.name || 'RFC Lissewege', 10);
+                pastMatches = matches.map(normalizeMatch).filter(Boolean);
+            } catch (error) {
+                console.warn('Could not load past matches from Voetbal API:', error);
+            }
         }
     }
 
@@ -198,7 +243,7 @@ async function loadUpcomingMatches() {
         try {
             const matches = await window.realFootballAPI.getUpcomingMatches(null, 20);
             if (matches && matches.length > 0) {
-                upcomingMatches = matches.map(m => {
+                upcomingMatches = matches.map(normalizeMatch).filter(Boolean).map(m => {
                     let address = m.address;
                     if (!address) {
                         if (m.venue === 'home') {
@@ -208,14 +253,7 @@ async function loadUpcomingMatches() {
                             address = teamInfo?.address || `${m.homeTeam} Stadion`;
                         }
                     }
-                    return {
-                        date: m.date,
-                        time: m.time,
-                        homeTeam: m.homeTeam,
-                        awayTeam: m.awayTeam,
-                        venue: m.venue,
-                        address: address
-                    };
+                    return { ...m, address };
                 });
             }
         } catch (error) {
@@ -224,9 +262,20 @@ async function loadUpcomingMatches() {
     } else if (window.footballAPI) {
         try {
             const matches = await window.footballAPI.getUpcomingMatches(20);
-            upcomingMatches = matches;
+            upcomingMatches = matches.map(normalizeMatch).filter(Boolean);
         } catch (error) {
             console.warn('Could not load upcoming matches:', error);
+        }
+    }
+
+    if (upcomingMatches.length === 0) {
+        if (window.voetbalAPI) {
+            try {
+                const matches = await window.voetbalAPI.getUpcomingMatches(window.APP_CONFIG?.team?.name || 'RFC Lissewege', 20);
+                upcomingMatches = matches.map(normalizeMatch).filter(Boolean);
+            } catch (error) {
+                console.warn('Could not load upcoming matches from Voetbal API:', error);
+            }
         }
     }
 

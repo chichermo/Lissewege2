@@ -19,17 +19,37 @@ const API_KEYS = {
     }
 };
 
-// Actualizar configuración en football-api-real.js
-if (typeof API_CONFIG !== 'undefined') {
+const APP_CONFIG = {
+    team: {
+        name: 'RFC Lissewege'
+    },
+    teamIds: {
+        footballData: '', // ID de equipo si usas Football-Data.org
+        apiFootball: '' // ID de equipo si usas API-Football
+    },
+    refreshIntervals: {
+        matches: 10 * 60 * 1000,
+        standings: 15 * 60 * 1000,
+        squad: 60 * 60 * 1000
+    }
+};
+
+// Guardar keys para aplicarlas cuando la API real esté disponible
+window.API_KEYS = API_KEYS;
+window.APP_CONFIG = APP_CONFIG;
+window.API_CONFIG_OVERRIDE = API_KEYS;
+
+// Actualizar configuración si ya está cargada
+if (typeof window.API_CONFIG !== 'undefined') {
     if (API_KEYS.apiFootball.key) {
-        API_CONFIG.apiFootball.key = API_KEYS.apiFootball.key;
-        API_CONFIG.apiFootball.headers['X-RapidAPI-Key'] = API_KEYS.apiFootball.key;
-        API_CONFIG.apiFootball.headers['X-RapidAPI-Host'] = API_KEYS.apiFootball.host;
+        window.API_CONFIG.apiFootball.key = API_KEYS.apiFootball.key;
+        window.API_CONFIG.apiFootball.headers['X-RapidAPI-Key'] = API_KEYS.apiFootball.key;
+        window.API_CONFIG.apiFootball.headers['X-RapidAPI-Host'] = API_KEYS.apiFootball.host;
     }
     
     if (API_KEYS.footballData.token) {
-        API_CONFIG.footballData.key = API_KEYS.footballData.token;
-        API_CONFIG.footballData.headers['X-Auth-Token'] = API_KEYS.footballData.token;
+        window.API_CONFIG.footballData.key = API_KEYS.footballData.token;
+        window.API_CONFIG.footballData.headers['X-Auth-Token'] = API_KEYS.footballData.token;
     }
 }
 

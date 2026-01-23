@@ -51,9 +51,11 @@ class RealFootballAPI {
             standings: null,
             matches: null,
             teams: null,
+            squad: null,
             lastUpdate: null
         };
         this.cacheDuration = 5 * 60 * 1000; // 5 minutes cache
+        this.defaultTeamId = window.APP_CONFIG?.teamIds?.footballData || null;
     }
 
     // Get team logo from multiple sources
@@ -181,8 +183,9 @@ class RealFootballAPI {
     async getUpcomingMatches(teamId = null, count = 10) {
         try {
             let url = '';
-            if (teamId) {
-                url = `/teams/${teamId}/matches?status=SCHEDULED&limit=${count}`;
+            const resolvedTeamId = teamId || this.defaultTeamId;
+            if (resolvedTeamId) {
+                url = `/teams/${resolvedTeamId}/matches?status=SCHEDULED&limit=${count}`;
             } else {
                 url = `/competitions/${BELGIUM_LEAGUES.footballData.proLeague}/matches?status=SCHEDULED&limit=${count}`;
             }
@@ -199,7 +202,64 @@ class RealFootballAPI {
                     awayTeam: match.awayTeam.name,
                     awayTeamId: match.awayTeam.id,
                     competition: match.competition.name,
-                    venue: match.homeTeam.id === teamId ? 'home' : 'away'
+                    venue: resolvedTeamId ? (match.homeTeam.id === resolvedTeamId ? 'home' : 'away') : null
+                }));
+            }
+        } catch (error) {
+            // Silently use fallback - API unavailable is expected when no keys configured
+        }
+
+        return null;
+    }
+
+    // Get past matches from real API
+    async getPastMatches(teamId = null, count = 10) {
+        try {
+            let url = '';
+            const resolvedTeamId = teamId || this.defaultTeamId;
+            if (resolvedTeamId) {
+                url = `/teams/${resolvedTeamId}/matches?status=FINISHED&limit=${count}`;
+            } else {
+                url = `/competitions/${BELGIUM_LEAGUES.footballData.proLeague}/matches?status=FINISHED&limit=${count}`;
+            }
+
+            const data = await this.fetchWithFallback(url);
+
+            if (data && data.matches) {
+                return data.matches.map(match => ({
+                    id: match.id,
+                    date: match.utcDate.split('T')[0],
+                    time: new Date(match.utcDate).toLocaleTimeString('nl-BE', { hour: '2-digit', minute: '2-digit' }),
+                    homeTeam: match.homeTeam.name,
+                    homeTeamId: match.homeTeam.id,
+                    awayTeam: match.awayTeam.name,
+                    awayTeamId: match.awayTeam.id,
+                    competition: match.competition.name,
+                    venue: resolvedTeamId ? (match.homeTeam.id === resolvedTeamId ? 'home' : 'away') : null,
+                    score: (match.score && match.score.fullTime)
+                        ? `${match.score.fullTime.home ?? '-'}-${match.score.fullTime.away ?? '-'}`
+                        : ''
+                }));
+            }
+        } catch (error) {
+            // Silently use fallback - API unavailable is expected when no keys configured
+        }
+
+        return null;
+    }
+
+    async getTeamSquad(teamId = null) {
+        try {
+            const resolvedTeamId = teamId || this.defaultTeamId;
+            if (!resolvedTeamId) return null;
+            const data = await this.fetchWithFallback(`/teams/${resolvedTeamId}`);
+            if (data && data.squad) {
+                return data.squad.map(player => ({
+                    id: player.id,
+                    name: player.name,
+                    position: player.position,
+                    nationality: player.nationality,
+                    dateOfBirth: player.dateOfBirth
                 }));
             }
         } catch (error) {
@@ -234,6 +294,21 @@ class RealFootballAPI {
 }
 
 // Initialize API
+// Apply API keys from config if available
+if (window.API_CONFIG_OVERRIDE || window.API_KEYS) {
+    const keys = window.API_KEYS || window.API_CONFIG_OVERRIDE;
+    if (keys?.apiFootball?.key) {
+        API_CONFIG.apiFootball.key = keys.apiFootball.key;
+        API_CONFIG.apiFootball.headers['X-RapidAPI-Key'] = keys.apiFootball.key;
+        API_CONFIG.apiFootball.headers['X-RapidAPI-Host'] = keys.apiFootball.host;
+    }
+
+    if (keys?.footballData?.token) {
+        API_CONFIG.footballData.key = keys.footballData.token;
+        API_CONFIG.footballData.headers['X-Auth-Token'] = keys.footballData.token;
+    }
+}
+
 const realFootballAPI = new RealFootballAPI();
 
 // Export for configuration

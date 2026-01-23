@@ -1814,7 +1814,7 @@ ul {
 
 .sponsor-logo-item {
     aspect-ratio: 1;
-    min-height: 150px;
+    min-height: 180px;
 }
 
 .sponsor-link {
@@ -1878,7 +1878,7 @@ ul {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: 0.5rem;
+    padding: 0.3rem;
     transition: transform 0.3s ease;
     filter: grayscale(15%) opacity(0.9);
 }

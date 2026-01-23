@@ -12,22 +12,34 @@ function initLightbox() {
     const lightboxClose = document.getElementById('lightboxClose');
     const lightboxPrev = document.getElementById('lightboxPrev');
     const lightboxNext = document.getElementById('lightboxNext');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    const zoomableSelector = [
+        '.gallery-item img',
+        '.news-slide-image img',
+        '.team-image img',
+        '.event-image img',
+        '.about-image img',
+        '.sponsor-image',
+        '.sponsor-item img'
+    ].join(',');
 
-    // Collect all gallery images
-    galleryImages = Array.from(galleryItems).map(item => {
-        const img = item.querySelector('img');
-        const caption = item.querySelector('.gallery-overlay p')?.textContent || img.alt;
+    const zoomableImages = Array.from(document.querySelectorAll(zoomableSelector))
+        .filter(img => img && img.getAttribute('src'));
+
+    galleryImages = zoomableImages.map(img => {
+        const caption = img.closest('.gallery-item')?.querySelector('.gallery-overlay p')?.textContent
+            || img.alt
+            || 'Afbeelding';
         return {
             src: img.src,
-            alt: img.alt,
+            alt: img.alt || 'Afbeelding',
             caption: caption
         };
     });
 
-    // Open lightbox on gallery item click
-    galleryItems.forEach((item, index) => {
-        item.addEventListener('click', () => {
+    zoomableImages.forEach((img, index) => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', (event) => {
+            event.preventDefault();
             openLightbox(index);
         });
     });
