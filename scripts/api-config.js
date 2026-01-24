@@ -25,7 +25,13 @@ const APP_CONFIG = {
     },
     teamIds: {
         footballData: '', // ID de equipo si usas Football-Data.org
-        apiFootball: '' // ID de equipo si usas API-Football
+        apiFootball: 19643 // ID de equipo si usas API-Football
+    },
+    leagueIds: {
+        apiFootball: 161 // ID de liga en API-Football (Provincial - West-Vlaanderen)
+    },
+    seasons: {
+        apiFootball: 2024 // Temporada (2024 = 2024/2025)
     },
     refreshIntervals: {
         matches: 10 * 60 * 1000,
