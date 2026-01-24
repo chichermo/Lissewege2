@@ -33,6 +33,7 @@ const APP_CONFIG = {
     seasons: {
         apiFootball: 2024 // Temporada (2024 = 2024/2025)
     },
+    apiFootballProxy: '/api/football', // Proxy serverless para proteger la API key
     refreshIntervals: {
         matches: 10 * 60 * 1000,
         standings: 15 * 60 * 1000,

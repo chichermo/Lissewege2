@@ -9,11 +9,11 @@ async function updateApiSquad() {
 
     squadGrid.innerHTML = '';
 
-    const teamId = window.APP_CONFIG?.teamIds?.footballData;
+    const teamId = window.APP_CONFIG?.teamIds?.apiFootball || window.APP_CONFIG?.teamIds?.footballData;
     if (!teamId) {
         if (squadStatus) squadStatus.textContent = 'Configureer team-ID om spelers te tonen';
         if (squadNote) {
-            squadNote.textContent = 'Deze sectie gebruikt Football-Data.org. Voeg een team-ID toe in `scripts/api-config.js`.';
+            squadNote.textContent = 'Deze sectie gebruikt API-Football of Football-Data.org. Voeg een team-ID toe in `scripts/api-config.js`.';
         }
         return;
     }

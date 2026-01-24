@@ -56,6 +56,39 @@ class RealFootballAPI {
         };
         this.cacheDuration = 5 * 60 * 1000; // 5 minutes cache
         this.defaultTeamId = window.APP_CONFIG?.teamIds?.footballData || null;
+        this.defaultApiFootballTeamId = window.APP_CONFIG?.teamIds?.apiFootball || null;
+        this.defaultApiFootballLeagueId = window.APP_CONFIG?.leagueIds?.apiFootball || null;
+        this.defaultApiFootballSeason = window.APP_CONFIG?.seasons?.apiFootball || new Date().getFullYear();
+    }
+
+    hasApiFootball() {
+        return Boolean(API_CONFIG.apiFootball && API_CONFIG.apiFootball.key);
+    }
+
+    getApiFootballTeamId(teamId) {
+        return teamId || this.defaultApiFootballTeamId;
+    }
+
+    async fetchApiFootball(endpoint) {
+        try {
+            if (!this.hasApiFootball() && window.APP_CONFIG?.apiFootballProxy) {
+                const proxyUrl = `${window.APP_CONFIG.apiFootballProxy}?path=${encodeURIComponent(endpoint)}`;
+                const proxyResponse = await fetch(proxyUrl);
+                if (proxyResponse.ok) {
+                    return await proxyResponse.json();
+                }
+            }
+
+            const response = await fetch(`${API_CONFIG.apiFootball.baseUrl}${endpoint}`, {
+                headers: API_CONFIG.apiFootball.headers
+            });
+            if (response.ok) {
+                return await response.json();
+            }
+        } catch (error) {
+            // Silently use fallback - API unavailable is expected when no keys configured
+        }
+        return null;
     }
 
     // Get team logo from multiple sources
@@ -142,6 +175,30 @@ class RealFootballAPI {
 
     // Get league standings from real API
     async getLeagueStandings(leagueId = null) {
+        if (this.hasApiFootball()) {
+            const resolvedLeagueId = leagueId || this.defaultApiFootballLeagueId;
+            if (resolvedLeagueId) {
+                const season = this.defaultApiFootballSeason;
+                const data = await this.fetchApiFootball(`/standings?league=${resolvedLeagueId}&season=${season}`);
+                const standings = data?.response?.[0]?.league?.standings?.[0] || [];
+                if (standings.length > 0) {
+                    return standings.map(team => ({
+                        position: team.rank,
+                        team: team.team?.name,
+                        teamId: team.team?.id,
+                        played: team.all?.played,
+                        won: team.all?.win,
+                        drawn: team.all?.draw,
+                        lost: team.all?.lose,
+                        goalsFor: team.all?.goals?.for,
+                        goalsAgainst: team.all?.goals?.against,
+                        goalDifference: team.goalsDiff,
+                        points: team.points
+                    }));
+                }
+            }
+        }
+
         // Check cache
         if (this.cache.standings && Date.now() - this.cache.lastUpdate < this.cacheDuration) {
             return this.cache.standings;
@@ -181,6 +238,34 @@ class RealFootballAPI {
 
     // Get upcoming matches from real API
     async getUpcomingMatches(teamId = null, count = 10) {
+        if (this.hasApiFootball()) {
+            const resolvedTeamId = this.getApiFootballTeamId(teamId);
+            const season = this.defaultApiFootballSeason;
+            let endpoint = '';
+
+            if (resolvedTeamId) {
+                endpoint = `/fixtures?team=${resolvedTeamId}&season=${season}&status=NS&next=${count}`;
+            } else if (this.defaultApiFootballLeagueId) {
+                endpoint = `/fixtures?league=${this.defaultApiFootballLeagueId}&season=${season}&status=NS&next=${count}`;
+            }
+
+            if (endpoint) {
+                const data = await this.fetchApiFootball(endpoint);
+                const fixtures = data?.response || [];
+                return fixtures.map(match => ({
+                    id: match.fixture?.id,
+                    date: match.fixture?.date?.split('T')[0],
+                    time: match.fixture?.date ? new Date(match.fixture.date).toLocaleTimeString('nl-BE', { hour: '2-digit', minute: '2-digit' }) : '',
+                    homeTeam: match.teams?.home?.name,
+                    homeTeamId: match.teams?.home?.id,
+                    awayTeam: match.teams?.away?.name,
+                    awayTeamId: match.teams?.away?.id,
+                    competition: match.league?.name,
+                    venue: resolvedTeamId ? (match.teams?.home?.id === resolvedTeamId ? 'home' : 'away') : null
+                }));
+            }
+        }
+
         try {
             let url = '';
             const resolvedTeamId = teamId || this.defaultTeamId;
@@ -214,6 +299,35 @@ class RealFootballAPI {
 
     // Get past matches from real API
     async getPastMatches(teamId = null, count = 10) {
+        if (this.hasApiFootball()) {
+            const resolvedTeamId = this.getApiFootballTeamId(teamId);
+            const season = this.defaultApiFootballSeason;
+            let endpoint = '';
+
+            if (resolvedTeamId) {
+                endpoint = `/fixtures?team=${resolvedTeamId}&season=${season}&status=FT&last=${count}`;
+            } else if (this.defaultApiFootballLeagueId) {
+                endpoint = `/fixtures?league=${this.defaultApiFootballLeagueId}&season=${season}&status=FT&last=${count}`;
+            }
+
+            if (endpoint) {
+                const data = await this.fetchApiFootball(endpoint);
+                const fixtures = data?.response || [];
+                return fixtures.map(match => ({
+                    id: match.fixture?.id,
+                    date: match.fixture?.date?.split('T')[0],
+                    time: match.fixture?.date ? new Date(match.fixture.date).toLocaleTimeString('nl-BE', { hour: '2-digit', minute: '2-digit' }) : '',
+                    homeTeam: match.teams?.home?.name,
+                    homeTeamId: match.teams?.home?.id,
+                    awayTeam: match.teams?.away?.name,
+                    awayTeamId: match.teams?.away?.id,
+                    competition: match.league?.name,
+                    venue: resolvedTeamId ? (match.teams?.home?.id === resolvedTeamId ? 'home' : 'away') : null,
+                    score: `${match.goals?.home ?? '-'}-${match.goals?.away ?? '-'}`
+                }));
+            }
+        }
+
         try {
             let url = '';
             const resolvedTeamId = teamId || this.defaultTeamId;
@@ -249,6 +363,21 @@ class RealFootballAPI {
     }
 
     async getTeamSquad(teamId = null) {
+        if (this.hasApiFootball()) {
+            const resolvedTeamId = this.getApiFootballTeamId(teamId);
+            if (resolvedTeamId) {
+                const data = await this.fetchApiFootball(`/players/squads?team=${resolvedTeamId}`);
+                const squad = data?.response?.[0]?.players || [];
+                return squad.map(player => ({
+                    id: player.id,
+                    name: player.name,
+                    position: player.position,
+                    nationality: player.nationality,
+                    dateOfBirth: player.birth?.date
+                }));
+            }
+        }
+
         try {
             const resolvedTeamId = teamId || this.defaultTeamId;
             if (!resolvedTeamId) return null;
