@@ -494,6 +494,11 @@ ul {
     grid-row: span 2;
 }
 
+.teams-masonry .team-card:nth-child(6) {
+    grid-column: span 3;
+    grid-row: span 2;
+}
+
 @media (max-width: 768px) {
     .teams-masonry {
         grid-template-columns: 1fr;
