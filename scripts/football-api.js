@@ -174,28 +174,6 @@ async function updateNextMatchWidget() {
             }
         }
 
-        if (!match && window.voetbalAPI) {
-            try {
-                const matches = await window.voetbalAPI.getUpcomingMatches(window.APP_CONFIG?.team?.name || 'RFC Lissewege', 1);
-                if (matches && matches.length > 0) {
-                    const normalized = normalizeMatch(matches[0]);
-                    if (normalized) {
-                        match = {
-                            homeTeam: normalized.homeTeam,
-                            awayTeam: normalized.awayTeam,
-                            date: normalized.date,
-                            time: normalized.time || '--:--',
-                            category: 'Competitie',
-                            venue: normalized.venue || 'home',
-                            address: normalized.address || 'Pol Dhondtstraat 70, 8380 Lissewege'
-                        };
-                    }
-                }
-            } catch (error) {
-                console.warn('Voetbal API failed, using fallback:', error);
-            }
-        }
-
         // Fallback to mock data
         if (!match) {
             match = await footballAPI.getNextMatch();
@@ -321,23 +299,6 @@ async function updateOtherMatches() {
             }
         }
 
-        if (!matches && window.voetbalAPI) {
-            try {
-                const voetbalMatches = await window.voetbalAPI.getUpcomingMatches(window.APP_CONFIG?.team?.name || 'RFC Lissewege', 10);
-                matches = voetbalMatches.map(normalizeMatch).filter(Boolean).map(m => ({
-                    date: m.date,
-                    time: m.time,
-                    category: 'Competitie',
-                    homeTeam: m.homeTeam,
-                    awayTeam: m.awayTeam,
-                    venue: m.venue || 'home',
-                    address: m.address || 'Pol Dhondtstraat 70, 8380 Lissewege'
-                }));
-            } catch (error) {
-                console.warn('Voetbal API failed, using fallback:', error);
-            }
-        }
-
         // Fallback to mock data if API unavailable
         if (!matches) {
             matches = await footballAPI.getUpcomingMatches();
@@ -443,18 +404,6 @@ async function updateLeaguePosition() {
             }
         }
 
-        if (!standings && window.voetbalAPI) {
-            try {
-                const voetbalStandings = await window.voetbalAPI.getStandings();
-                if (voetbalStandings && voetbalStandings.standings) {
-                    const teamName = window.APP_CONFIG?.team?.name || 'RFC Lissewege';
-                    standings = voetbalStandings.standings.find(team => team.team === teamName || team.team?.toLowerCase().includes('lissewege'));
-                }
-            } catch (error) {
-                console.warn('Voetbal standings API failed, using fallback:', error);
-            }
-        }
-
         if (!standings) {
             standings = await footballAPI.getLeagueStandings();
         }
@@ -482,15 +431,6 @@ async function updateRecentResults() {
             }
         } catch (error) {
             console.warn('Real API results failed, using fallback:', error);
-        }
-    }
-
-    if (results.length === 0 && window.voetbalAPI) {
-        try {
-            const voetbalResults = await window.voetbalAPI.getRecentResults(window.APP_CONFIG?.team?.name || 'RFC Lissewege', 5);
-            results = voetbalResults.map(normalizeMatch).filter(Boolean);
-        } catch (error) {
-            console.warn('Voetbal API results failed, using fallback:', error);
         }
     }
 

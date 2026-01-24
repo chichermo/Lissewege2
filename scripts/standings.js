@@ -38,28 +38,6 @@ async function loadStandingsData() {
         }
     }
 
-    if (window.voetbalAPI) {
-        try {
-            const voetbalStandings = await window.voetbalAPI.getStandings();
-            if (voetbalStandings && voetbalStandings.standings && voetbalStandings.standings.length > 0) {
-                standingsData = voetbalStandings.standings.map(team => ({
-                    position: team.position,
-                    team: team.team,
-                    played: team.played,
-                    won: team.won || 0,
-                    drawn: team.drawn || 0,
-                    lost: team.lost || 0,
-                    goalsFor: team.goalsFor || 0,
-                    goalsAgainst: team.goalsAgainst || 0,
-                    points: team.points || 0
-                }));
-                return;
-            }
-        } catch (error) {
-            console.warn('Could not load standings from Voetbal API, using real data:', error);
-        }
-    }
-
     // Use real data from 4e Provinciale C
     standingsData = REAL_STANDINGS_DATA;
     console.log('Loaded real standings data for 4e Provinciale C West-Vlaanderen');

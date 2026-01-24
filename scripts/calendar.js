@@ -104,17 +104,6 @@ async function loadPastMatches() {
     }
 
     if (pastMatches.length === 0) {
-        if (window.voetbalAPI) {
-            try {
-                const matches = await window.voetbalAPI.getRecentResults(window.APP_CONFIG?.team?.name || 'RFC Lissewege', 10);
-                pastMatches = matches.map(normalizeMatch).filter(Boolean);
-            } catch (error) {
-                console.warn('Could not load past matches from Voetbal API:', error);
-            }
-        }
-    }
-
-    if (pastMatches.length === 0) {
         pastMatches = getFallbackMatches().past;
     }
 
@@ -265,17 +254,6 @@ async function loadUpcomingMatches() {
             upcomingMatches = matches.map(normalizeMatch).filter(Boolean);
         } catch (error) {
             console.warn('Could not load upcoming matches:', error);
-        }
-    }
-
-    if (upcomingMatches.length === 0) {
-        if (window.voetbalAPI) {
-            try {
-                const matches = await window.voetbalAPI.getUpcomingMatches(window.APP_CONFIG?.team?.name || 'RFC Lissewege', 20);
-                upcomingMatches = matches.map(normalizeMatch).filter(Boolean);
-            } catch (error) {
-                console.warn('Could not load upcoming matches from Voetbal API:', error);
-            }
         }
     }
 

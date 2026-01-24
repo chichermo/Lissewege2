@@ -15,6 +15,7 @@ const TEAM_LOGOS = {
     'VV Eendracht Brugge': 'images/logos/teams/vv-eendracht-brugge.webp',
     'KSK Steenbrugge': 'images/logos/teams/ksk-steenbrugge.webp',
     'KFC Sint-Joris Sportief': 'images/logos/teams/kfc-sint-joris-sportief.webp',
+    'KFC Sint-Joris': 'images/logos/teams/kfc-sint-joris-sportief.webp',
     'K. Excelsior Zedelgem B': 'images/logos/teams/k-excelsior-zedelgem-b.webp',
     'KSKD Hertsberge': 'images/logos/teams/kskd-hertsberge.webp',
     'VVC Beernem B': 'images/logos/teams/vvc-beernem-b.webp',
@@ -75,20 +76,6 @@ function getTeamLogo(teamName) {
         if (key.toLowerCase() === lowerName && value !== null) {
             return value;
         }
-    }
-
-    // Try to find logo file in teams directory
-    const sanitizedName = teamName.toLowerCase()
-        .replace(/[^a-z0-9]/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-|-$/g, '');
-
-    // Try multiple extensions
-    const extensions = ['.png', '.jpg', '.jpeg', '.svg'];
-    for (const ext of extensions) {
-        const logoPath = `images/logos/teams/${sanitizedName}${ext}`;
-        // Return path - browser will handle 404 and trigger onerror
-        return logoPath;
     }
 
     // Generate placeholder with initials as fallback
