@@ -30,16 +30,22 @@ async function updateApiSquad() {
     }
 
     if (squadStatus) squadStatus.textContent = `Aantal spelers: ${squad.length}`;
-    if (squadNote) squadNote.textContent = 'Data afkomstig van de voetbal API.';
+    if (squadNote) squadNote.textContent = 'Data afkomstig van API-Football.';
 
-    squad.slice(0, 30).forEach(player => {
+    squad.slice(0, 40).forEach(player => {
+        const age = player.age ? `${player.age} jaar` : '';
+        const number = player.number ? `#${player.number}` : '';
+        const photo = player.photo ? `<img src="${player.photo}" alt="${player.name}" loading="lazy">` : '';
         const card = document.createElement('div');
         card.className = 'api-squad-card';
         card.innerHTML = `
             <div class="api-squad-name">${player.name || 'Speler'}</div>
+            ${photo}
             <div class="api-squad-meta">
                 <span>${player.position || 'Positie'}</span>
                 <span>${player.nationality || 'N/A'}</span>
+                ${number ? `<span>${number}</span>` : ''}
+                ${age ? `<span>${age}</span>` : ''}
             </div>
         `;
         squadGrid.appendChild(card);

@@ -373,7 +373,10 @@ class RealFootballAPI {
                     name: player.name,
                     position: player.position,
                     nationality: player.nationality,
-                    dateOfBirth: player.birth?.date
+                    dateOfBirth: player.birth?.date,
+                    age: player.age,
+                    number: player.number,
+                    photo: player.photo
                 }));
             }
         }

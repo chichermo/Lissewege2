@@ -499,6 +499,13 @@ ul {
     grid-row: span 2;
 }
 
+.teams-senior-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem;
+    margin-top: 2rem;
+}
+
 @media (max-width: 768px) {
     .teams-masonry {
         grid-template-columns: 1fr;

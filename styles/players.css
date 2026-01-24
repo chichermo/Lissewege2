@@ -112,6 +112,9 @@
     padding: 0.85rem 1rem;
     border: 1px solid rgba(13, 77, 46, 0.1);
     box-shadow: var(--shadow-xs);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .api-squad-name {
@@ -126,6 +129,14 @@
     font-size: 0.8rem;
     color: var(--text-light);
     flex-wrap: wrap;
+}
+
+.api-squad-card img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(13, 77, 46, 0.15);
 }
 
 .api-squad-note {
