@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4rem 2rem;
+    padding: 3.5rem 1.5rem;
     overflow: hidden;
 }
 
@@ -16,10 +16,11 @@
    ============================================ */
 .recent-results-section {
     margin-top: 3rem;
-    padding: 2rem;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: var(--shadow);
+    padding: 1.75rem;
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-subtle);
 }
 
 .recent-results-header {
@@ -134,17 +135,17 @@
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.25rem;
 }
 
 /* Title Section */
 .home-title-section {
     text-align: center;
-    padding: 2rem 0;
+    padding: 1.5rem 0 0;
     animation: fadeInDown 1s ease;
 }
 
@@ -319,12 +320,11 @@
 
 /* Next Match Widget */
 .next-match-widget {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 24px;
-    padding: 2rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 1.75rem;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-subtle);
     animation: slideInLeft 1s ease 0.5s both;
     position: relative;
     overflow: hidden;
@@ -469,11 +469,11 @@
 
 /* News Carousel */
 .news-carousel-section {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 24px;
-    padding: 2rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 1.75rem;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-subtle);
     animation: slideInRight 1s ease 0.7s both;
 }
 
@@ -656,18 +656,17 @@
 .home-quick-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 1.25rem;
     animation: fadeInUp 1s ease 1s both;
 }
 
 .quick-stat-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 2rem;
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 1.5rem;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-subtle);
     transition: var(--transition);
     position: relative;
     overflow: hidden;

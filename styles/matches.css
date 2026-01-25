@@ -166,11 +166,11 @@
 
 /* Other Matches Section */
 .other-matches-section {
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
 .other-matches-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 800;
     color: var(--dark-color);
     margin-bottom: 2.5rem;
@@ -187,17 +187,17 @@
 .other-matches-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 /* Match Card - Premium Design */
 .match-card {
     background: var(--white);
     border-radius: 14px;
-    padding: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-card);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(13, 77, 46, 0.08);
+    border: 1px solid var(--border-subtle);
     position: relative;
     overflow: hidden;
 }
@@ -221,7 +221,7 @@
 
 .match-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(13, 77, 46, 0.12);
+    box-shadow: var(--shadow-xl);
     border-color: rgba(26, 122, 74, 0.2);
 }
 
@@ -230,20 +230,20 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 2px solid rgba(13, 77, 46, 0.08);
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(13, 77, 46, 0.08);
 }
 
 .match-card-category {
-    background: var(--gradient-primary);
-    color: var(--white);
-    padding: 0.5rem 1.25rem;
+    background: var(--surface-muted);
+    color: var(--primary-color);
+    padding: 0.45rem 1rem;
     border-radius: 9999px;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 8px rgba(13, 77, 46, 0.2);
+    letter-spacing: 0.4px;
+    box-shadow: var(--shadow-xs);
 }
 
 .match-card-date {

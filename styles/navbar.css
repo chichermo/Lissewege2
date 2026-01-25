@@ -9,7 +9,7 @@
     width: 100%;
     z-index: 1000;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    background: #0d4d2e;
+    background: linear-gradient(135deg, rgba(13, 77, 46, 0.98) 0%, rgba(10, 61, 36, 0.98) 100%);
     padding: 0;
     /* No padding on wrapper, let children handle it */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -18,20 +18,20 @@
 }
 
 .main-header.scrolled {
-    background: rgba(13, 77, 46, 0.95);
+    background: rgba(13, 77, 46, 0.92);
     backdrop-filter: blur(12px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .main-header.scrolled .navbar-container {
-    padding: 0.75rem 2rem;
+    padding: 0.65rem 1.75rem;
 }
 
 .navbar-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 0.9rem 1.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,12 +50,12 @@
 }
 
 .nav-logo-container {
-    width: 80px;
-    height: 80px;
-    min-width: 80px;
-    min-height: 80px;
-    max-width: 80px;
-    max-height: 80px;
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    min-height: 70px;
+    max-width: 70px;
+    max-height: 70px;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     background: var(--white);
@@ -70,13 +70,13 @@
 }
 
 .main-header.scrolled .nav-logo-container {
-    width: 70px;
-    height: 70px;
-    min-width: 70px;
-    min-height: 70px;
-    max-width: 70px;
-    max-height: 70px;
-    padding: 8px;
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    min-height: 58px;
+    max-width: 58px;
+    max-height: 58px;
+    padding: 6px;
 }
 
 .nav-logo-img {
@@ -96,7 +96,7 @@
 .brand-main {
     font-family: 'Orbitron', sans-serif;
     font-weight: 800;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     color: #ffffff;
     line-height: 1;
     letter-spacing: 1px;
@@ -114,7 +114,7 @@
 /* Desktop Navigation */
 .nav-menu {
     display: flex;
-    gap: 2rem;
+    gap: 1.4rem;
     align-items: center;
     list-style: none;
     margin: 0;
@@ -124,11 +124,10 @@
 .nav-link {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.9);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 0.5rem 0;
+    letter-spacing: 0.3px;
+    padding: 0.4rem 0;
     position: relative;
     transition: color 0.3s ease;
 }
@@ -159,15 +158,15 @@
 .nav-cta {
     background: #ff6b35;
     color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
     /* Slightly squared for sports look */
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     letter-spacing: 1px;
     transition: all 0.3s ease;
-    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+    clip-path: none;
     border: none;
     cursor: pointer;
 }

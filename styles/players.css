@@ -206,18 +206,18 @@
 .players-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
 .player-card {
     background: var(--white);
-    border-radius: 20px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-card);
     transition: var(--transition);
     position: relative;
-    border: 3px solid transparent;
+    border: 1px solid var(--border-subtle);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -243,9 +243,9 @@
 }
 
 .player-card:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--primary-color);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(26, 122, 74, 0.25);
     z-index: 10;
 }
 
