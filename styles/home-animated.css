@@ -23,6 +23,59 @@
     border: 1px solid var(--border-subtle);
 }
 
+/* ============================================
+   HOME PARTNERS
+   ============================================ */
+.home-partners-section {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-subtle);
+}
+
+.home-partners-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.home-partners-header h3 {
+    font-size: 1.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0;
+}
+
+.home-partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    align-items: center;
+}
+
+.home-partner-logo {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-xs);
+}
+
+.home-partner-logo img {
+    max-width: 120px;
+    max-height: 60px;
+    object-fit: contain;
+    opacity: 0.95;
+}
+
 .recent-results-header {
     display: flex;
     align-items: center;
