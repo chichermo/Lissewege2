@@ -225,6 +225,16 @@
     text-align: center;
 }
 
+.players-empty {
+    grid-column: 1 / -1;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-light);
+    border: 1px dashed var(--border-subtle);
+    border-radius: 16px;
+    background: var(--light-color);
+}
+
 .player-card::before {
     content: '';
     position: absolute;

@@ -104,9 +104,16 @@ function loadTeamPlayers(teamId) {
         players = playersData[teamId] || [];
     }
     
-    // Limpiar grid (excepto placeholders si no hay jugadores)
+    // Limpiar grid (si no hay jugadores, mostrar estado vacío)
     if (players.length === 0) {
-        // Mantener el placeholder si no hay jugadores
+        const placeholders = playersGrid.querySelectorAll('.player-card');
+        placeholders.forEach(placeholder => placeholder.remove());
+        if (!playersGrid.querySelector('.players-empty')) {
+            const emptyState = document.createElement('div');
+            emptyState.className = 'players-empty';
+            emptyState.textContent = 'Nog geen spelerslijst beschikbaar.';
+            playersGrid.appendChild(emptyState);
+        }
         return;
     }
     

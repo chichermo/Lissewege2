@@ -15,6 +15,7 @@ function addLeaderboard() {
             <div class="section-header">
                 <span class="section-tag">Statistieken</span>
                 <h2 class="section-title">Top Spelers</h2>
+                <p class="section-description leaderboard-note">Statistieken verschijnen zodra de API deze data levert.</p>
             </div>
             <div class="leaderboard-tabs">
                 <button class="leaderboard-tab active" data-tab="goals">
@@ -87,7 +88,7 @@ function addLeaderboard() {
         });
     });
 
-    // Populate leaderboard (sample data)
+    // Populate leaderboard (API)
     populateLeaderboard();
 
     // Add CSS
@@ -97,6 +98,9 @@ function addLeaderboard() {
             margin-top: 4rem;
             padding-top: 4rem;
             border-top: 2px solid rgba(13, 77, 46, 0.1);
+        }
+        .leaderboard-note {
+            margin-top: 0.5rem;
         }
         .leaderboard-tabs {
             display: flex;
@@ -185,35 +189,36 @@ function addLeaderboard() {
     document.head.appendChild(style);
 }
 
-function populateLeaderboard() {
-    // Sample data - in production, this would come from an API
-    const goalsData = [
-        { name: 'Speler A', team: 'U13', goals: 12 },
-        { name: 'Speler B', team: 'U10', goals: 10 },
-        { name: 'Speler C', team: 'U13', goals: 8 },
-        { name: 'Speler D', team: 'U9', goals: 7 },
-        { name: 'Speler E', team: 'U10', goals: 6 }
-    ];
+async function populateLeaderboard() {
+    const teamId = window.APP_CONFIG?.teamIds?.apiFootball;
+    const canUseApi = window.realFootballAPI && teamId;
+    const squad = canUseApi ? await window.realFootballAPI.getTeamSquad(teamId) : null;
 
-    const assistsData = [
-        { name: 'Speler F', team: 'U13', assists: 15 },
-        { name: 'Speler G', team: 'U10', assists: 12 },
-        { name: 'Speler H', team: 'U13', assists: 10 },
-        { name: 'Speler I', team: 'U9', assists: 8 },
-        { name: 'Speler J', team: 'U10', assists: 7 }
-    ];
-
-    const matchesData = [
-        { name: 'Speler K', team: 'U13', matches: 18 },
-        { name: 'Speler L', team: 'U10', matches: 17 },
-        { name: 'Speler M', team: 'U13', matches: 16 },
-        { name: 'Speler N', team: 'U9', matches: 15 },
-        { name: 'Speler O', team: 'U10', matches: 14 }
-    ];
+    const baseData = Array.isArray(squad) && squad.length
+        ? squad.slice(0, 8).map(player => ({
+            name: player.name || 'Speler',
+            team: 'A-Kern',
+            goals: '—',
+            assists: '—',
+            matches: '—'
+        }))
+        : [];
 
     function renderTable(data, containerId, statKey, statLabel) {
         const container = document.getElementById(containerId);
         if (!container) return;
+
+        if (!data.length) {
+            container.innerHTML = `
+                <div class="leaderboard-row">
+                    <span class="leaderboard-position">--</span>
+                    <span class="leaderboard-player">Geen statistieken beschikbaar</span>
+                    <span class="leaderboard-team">A-Kern</span>
+                    <span class="leaderboard-stat">--</span>
+                </div>
+            `;
+            return;
+        }
 
         container.innerHTML = data.map((item, index) => `
             <div class="leaderboard-row">
@@ -225,9 +230,9 @@ function populateLeaderboard() {
         `).join('');
     }
 
-    renderTable(goalsData, 'goalsBody', 'goals', '');
-    renderTable(assistsData, 'assistsBody', 'assists', '');
-    renderTable(matchesData, 'matchesBody', 'matches', '');
+    renderTable(baseData, 'goalsBody', 'goals', '');
+    renderTable(baseData, 'assistsBody', 'assists', '');
+    renderTable(baseData, 'matchesBody', 'matches', '');
 }
 
 // Initialize when players section is shown
