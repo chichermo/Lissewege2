@@ -62,7 +62,8 @@
     --card-shadow: var(--shadow-card);
 
     /* Unified page background */
-    --page-bg: #e9eeeb;
+    --page-bg: #e8ece9;
+    --page-surface: #ffffff;
 }
 
 /* Base typography */
@@ -142,13 +143,4 @@ textarea:focus-visible,
     transform: translateY(-2px);
 }
 
-/* Section rhythm */
-.section.page-section {
-    padding-block: var(--section-y);
-}
-
-@media (max-width: 768px) {
-    :root {
-        --section-y: var(--space-12);
-    }
-}
+/* Section rhythm — padding handled in pages.css containers */

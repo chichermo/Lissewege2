@@ -3,19 +3,13 @@
    ============================================ */
 
 .rivals-section {
-    padding: var(--section-y) 0;
+    padding: 0;
     background: transparent;
     position: relative;
 }
 
 .rivals-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+    display: none;
 }
 
 .rivals-container {

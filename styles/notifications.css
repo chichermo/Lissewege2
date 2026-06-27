@@ -3,8 +3,8 @@
    ============================================ */
 
 .notifications-section {
-    padding: 4rem 0;
-    background: var(--light-color);
+    padding: 0;
+    background: transparent;
 }
 
 .notifications-settings {

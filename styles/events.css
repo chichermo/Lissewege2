@@ -2,8 +2,8 @@
    EVENTS SECTION + POPUPS
    ============================================ */
 .events-section {
-    padding: 5.5rem 0 6rem;
-    background: var(--gradient-subtle);
+    padding: 0;
+    background: transparent;
 }
 
 .events-grid {

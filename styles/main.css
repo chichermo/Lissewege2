@@ -64,7 +64,7 @@ body {
     color: var(--text-color);
     line-height: var(--leading-relaxed);
     overflow-x: hidden;
-    background-color: var(--page-bg, #e9eeeb);
+    background-color: var(--page-bg);
     background-image: none;
     background-attachment: scroll;
     -webkit-font-smoothing: antialiased;
@@ -112,7 +112,6 @@ ul {
    ============================================ */
 .club-info-section {
     padding: 0;
-    background: linear-gradient(135deg, #0a3d24 0%, #0d4d2e 50%, #1a7a4a 100%);
 }
 
 .club-info-hero {
@@ -311,8 +310,36 @@ ul {
 .about-content {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
-    gap: 5rem;
-    align-items: start;
+    gap: 3rem;
+    align-items: stretch;
+}
+
+.about-image {
+    display: flex;
+    min-height: 100%;
+}
+
+.about-logo-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-subtle);
+    padding: 2.5rem 2rem;
+    position: sticky;
+    top: calc(var(--site-header-height, 188px) + 1rem);
+}
+
+.about-crest {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+    display: block;
 }
 
 .about-text {
@@ -418,40 +445,6 @@ ul {
     color: var(--text-light);
     line-height: 1.8;
     font-size: 1rem;
-}
-
-.about-image {
-    position: relative;
-    height: 100%;
-}
-
-.image-wrapper {
-    position: sticky;
-    top: 2rem;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-}
-
-.about-img {
-    width: 100%;
-    height: 600px;
-    object-fit: cover;
-}
-
-.image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-primary);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.image-wrapper:hover .image-overlay {
-    opacity: 0.15;
 }
 
 /* ============================================
@@ -1075,7 +1068,7 @@ ul {
 .pricing-section {
     background: transparent;
     position: relative;
-    padding: 6rem 0;
+    padding: 0;
 }
 
 /* Hero Section */
@@ -2557,6 +2550,13 @@ ul {
     .about-content,
     .contact-content {
         grid-template-columns: 1fr;
+    }
+
+    .about-logo-card {
+        position: static;
+        max-width: 360px;
+        margin: 0 auto;
+        width: 100%;
     }
 
     .teams-masonry,

@@ -2,8 +2,8 @@
    PLAYERS SECTION - UNIQUE DESIGN
    ============================================ */
 .players-section {
-    background: var(--white);
-    padding: var(--section-y) 0;
+    background: transparent;
+    padding: 0;
 }
 
 .team-selector {

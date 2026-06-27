@@ -3,6 +3,8 @@
    ============================================ */
 :root {
     --site-header-height: 188px;
+    --page-bg: #e8ece9;
+    --page-surface: #ffffff;
 }
 
 .page-section {
@@ -13,7 +15,7 @@
     visibility: hidden;
     animation: fadeIn 0.5s ease;
     position: relative;
-    background: transparent;
+    background: var(--page-bg);
 }
 
 .page-section.active {
@@ -27,23 +29,39 @@
 .main-content {
     position: relative;
     padding-top: var(--site-header-height);
+    background: var(--page-bg);
 }
 
-/* Ruimte onder vaste header — geen overlap met partners-balk */
+/* Eén achtergrond voor alle inhoudssecties */
+.page-section.section {
+    background: var(--page-bg);
+}
+
+/* Ruimte onder vaste header */
 .page-section.section > .container,
 .page-section.section > .competitions-container,
-.page-section.section > .rivals-container {
+.page-section.section > .rivals-container,
+.page-section.section > .members-container {
     position: relative;
     z-index: 1;
     padding-top: var(--space-8);
     padding-bottom: var(--space-16);
 }
 
-/* Home & Club Info: hero vult zone onder header */
+/* Home & Club Info: eigen hero-achtergrond */
+.home-animated,
+.club-info-section {
+    background: transparent;
+}
+
 .home-animated.active,
 .club-info-section.active {
     margin-top: calc(-1 * var(--site-header-height));
     padding-top: var(--site-header-height);
+}
+
+.club-info-section.active {
+    background: linear-gradient(135deg, #0a3d24 0%, #0d4d2e 50%, #1a7a4a 100%);
 }
 
 .club-info-hero {
