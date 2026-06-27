@@ -62,10 +62,6 @@ function showPage(pageId) {
         // Update active sidebar link
         updateActiveSidebarLink(pageId);
 
-        // Breadcrumbs + nav state for all navigation paths
-        if (typeof window.updateBreadcrumbs === 'function') {
-            window.updateBreadcrumbs(pageId);
-        }
         document.dispatchEvent(new CustomEvent('pageChanged', { detail: { pageId } }));
         
         // Initialize section-specific functionality
