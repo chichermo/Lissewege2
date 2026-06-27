@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             header.classList.remove('scrolled');
         }
+        if (typeof window.updateSiteHeaderHeight === 'function') {
+            window.updateSiteHeaderHeight();
+        }
     };
 
     window.addEventListener('scroll', handleScroll);

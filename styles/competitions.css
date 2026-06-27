@@ -3,10 +3,10 @@
    ============================================ */
 
 .competitions-section {
-    padding: var(--section-y) 0;
+    padding: 0;
     background: transparent;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .competitions-section::before {
@@ -56,9 +56,8 @@
     margin-bottom: var(--space-8);
     padding: var(--space-6);
     border-radius: var(--radius-lg, 18px);
-    background: rgba(255, 255, 255, 0.72);
+    background: #fff;
     border: 1px solid var(--border-subtle);
-    backdrop-filter: blur(8px);
     box-shadow: var(--shadow-card);
 }
 
@@ -126,10 +125,10 @@
 }
 
 .standings-table {
-    background: var(--surface);
+    background: #fff;
     border-radius: var(--radius-lg, 18px);
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow-card);
     margin-bottom: var(--space-8);
     border: 1px solid var(--border-subtle);
 }
@@ -206,23 +205,54 @@
     font-size: var(--text-base);
 }
 
+.standings-empty {
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    color: var(--text-color);
+    background: #fff;
+}
+
+.standings-empty i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+    color: var(--primary-color);
+}
+
+.standings-empty p {
+    margin: 0 0 0.5rem;
+}
+
+.standings-empty p:first-of-type {
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.standings-empty p:last-child {
+    font-size: 0.92rem;
+    color: var(--text-light);
+    margin-bottom: 0;
+}
+
 .province-info {
-    background: var(--surface);
+    background: #fff;
     border-radius: var(--radius-lg, 18px);
     padding: var(--space-6);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    box-shadow: var(--shadow-card);
     border: 1px solid var(--border-subtle);
 }
 
 .province-info h3 {
-    color: var(--primary-color);
+    color: var(--dark-color);
     margin: 0 0 var(--space-2);
     font-family: var(--font-display);
+    font-size: var(--text-xl);
 }
 
 .province-info > p {
-    color: var(--text-light);
+    color: var(--text-color);
     margin: 0 0 var(--space-5);
+    font-size: var(--text-base);
 }
 
 .league-pyramid {
@@ -241,7 +271,7 @@
 }
 
 .pyramid-tier span {
-    padding: 0.55rem 0.9rem;
+    padding: 0.65rem 1rem;
     border-radius: 10px;
     background: #f4f7f5;
     border: 1px solid var(--border-subtle);
@@ -249,20 +279,25 @@
     font-weight: 600;
     color: var(--dark-color);
     text-align: center;
-    line-height: 1.35;
+    line-height: 1.4;
 }
 
 .pyramid-tier span.current {
-    background: linear-gradient(135deg, var(--primary-color), #0a3d24);
+    background: var(--primary-color);
     color: #fff;
-    border-color: transparent;
-    box-shadow: 0 4px 14px rgba(13, 77, 46, 0.35);
+    border-color: var(--primary-dark);
+    box-shadow: var(--shadow-sm);
+    font-size: var(--text-base);
+    font-weight: 700;
+    min-width: min(100%, 240px);
+    padding: 0.75rem 1.15rem;
 }
 
-.tier-1 span { min-width: 40%; }
-.tier-2 span { min-width: 28%; }
-.tier-3 span { min-width: 22%; }
-.tier-4 span { min-width: 16%; }
+.tier-1 span { min-width: 42%; }
+.tier-2 span { min-width: 30%; }
+.tier-3 span { min-width: 24%; }
+.tier-4 span { min-width: 17%; }
+.tier-4 span.current { min-width: min(100%, 260px); flex: 1 1 200px; }
 
 @media (max-width: 900px) {
     .competition-hero {

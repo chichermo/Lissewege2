@@ -22,7 +22,7 @@
 }
 
 .standings-table-wrapper {
-    background: rgba(255, 255, 255, 0.82);
+    background: #fff;
     border-radius: 16px;
     box-shadow: var(--shadow-card);
     border: 1px solid var(--border-subtle);
@@ -144,7 +144,7 @@
 
 /* Premium Card Design */
 .calendar-card-modern {
-    background: rgba(255, 255, 255, 0.82);
+    background: #fff;
     border-radius: 18px;
     box-shadow: var(--shadow-card);
     overflow: hidden;

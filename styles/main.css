@@ -64,9 +64,9 @@ body {
     color: var(--text-color);
     line-height: var(--leading-relaxed);
     overflow-x: hidden;
-    background-color: var(--page-bg-base, #e4ebe7);
-    background-image: var(--page-bg-pattern);
-    background-attachment: fixed;
+    background-color: var(--page-bg, #e9eeeb);
+    background-image: none;
+    background-attachment: scroll;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding-top: 0;
@@ -76,7 +76,6 @@ body {
 .main-content {
     width: 100%;
     min-height: 100vh;
-    padding-top: 0;
     position: relative;
     z-index: 1;
 }
@@ -113,6 +112,7 @@ ul {
    ============================================ */
 .club-info-section {
     padding: 0;
+    background: linear-gradient(135deg, #0a3d24 0%, #0d4d2e 50%, #1a7a4a 100%);
 }
 
 .club-info-hero {
@@ -1497,7 +1497,7 @@ ul {
    TEAM MEMBERS SECTION
    ============================================ */
 .team-section {
-    background: var(--white);
+    background: transparent;
 }
 
 .team-asymmetric {
@@ -1842,14 +1842,13 @@ ul {
     max-width: 720px;
     margin: 0 auto 2.5rem;
     text-align: center;
-    color: var(--text-light);
+    color: var(--text-color);
     font-size: 0.98rem;
     line-height: 1.7;
     padding: 1.25rem 1.5rem;
-    background: rgba(255, 255, 255, 0.55);
+    background: #fff;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    backdrop-filter: blur(6px);
 }
 
 .sponsors-grid-original {

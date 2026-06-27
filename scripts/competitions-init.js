@@ -25,10 +25,10 @@ async function initCompetitions() {
         // Si no hay datos de API, usar datos de respaldo
         if (!standingsData || !standingsData.standings || standingsData.standings.length === 0) {
             standingsContent.innerHTML = `
-                <div class="standings-empty" style="padding: 2.5rem 1.5rem; text-align: center; color: var(--text-light); background: var(--surface);">
-                    <i class="fas fa-hourglass-half" style="font-size: 2rem; margin-bottom: 1rem; display: block; color: var(--primary-color);"></i>
-                    <p style="font-weight: 700; color: var(--dark-color); margin: 0 0 0.5rem;">Seizoen 2026/2027 — nog geen officiële stand</p>
-                    <p style="margin: 0; font-size: 0.92rem;">RFC Lissewege speelt in de 4e Provinciale C. Punten en posities verschijnen hier zodra de competitie is gestart.</p>
+                <div class="standings-empty">
+                    <i class="fas fa-hourglass-half"></i>
+                    <p>Seizoen 2026/2027 — nog geen officiële stand</p>
+                    <p>RFC Lissewege speelt in de 4e Provinciale C. Punten en posities verschijnen hier zodra de competitie is gestart.</p>
                 </div>
             `;
             return;

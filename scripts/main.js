@@ -51,6 +51,7 @@ function showPage(pageId) {
         
         // Scroll to top
         window.scrollTo(0, 0);
+        updateSiteHeaderHeight();
         
         // Update URL hash without scrolling
         if (history.pushState) {
@@ -533,20 +534,40 @@ window.addEventListener('scroll', optimizedScrollHandler);
 
 window.showPage = showPage;
 
+function updateSiteHeaderHeight() {
+    const header = document.getElementById('mainHeader');
+    if (!header) return;
+    const height = Math.ceil(header.getBoundingClientRect().height);
+    document.documentElement.style.setProperty('--site-header-height', `${height}px`);
+}
+
+window.updateSiteHeaderHeight = updateSiteHeaderHeight;
+
 // ============================================
 // INITIALIZATION
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('R.F.C. Lissewege website loaded successfully!');
+
+    updateSiteHeaderHeight();
+    window.addEventListener('resize', updateSiteHeaderHeight);
+
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(updateSiteHeaderHeight);
+    }
     
     // Set initial active nav link
     if (window.location.hash) {
         const targetSection = document.querySelector(window.location.hash);
         if (targetSection) {
             setTimeout(() => {
+                const headerHeight = parseInt(
+                    getComputedStyle(document.documentElement).getPropertyValue('--site-header-height'),
+                    10
+                ) || 188;
                 window.scrollTo({
-                    top: targetSection.offsetTop - 80,
+                    top: targetSection.offsetTop - headerHeight,
                     behavior: 'smooth'
                 });
             }, 100);

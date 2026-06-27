@@ -2,7 +2,7 @@
    PAGE SYSTEM - SINGLE PAGE APP STYLE
    ============================================ */
 :root {
-    --site-header-height: 176px;
+    --site-header-height: 188px;
 }
 
 .page-section {
@@ -21,25 +21,35 @@
     opacity: 1 !important;
     visibility: visible !important;
     z-index: 1;
+    padding-top: 0;
+}
+
+.main-content {
+    position: relative;
     padding-top: var(--site-header-height);
 }
 
+/* Ruimte onder vaste header — geen overlap met partners-balk */
 .page-section.section > .container,
 .page-section.section > .competitions-container,
 .page-section.section > .rivals-container {
     position: relative;
     z-index: 1;
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-16);
 }
 
-/* Club Info: hero vult de ruimte onder de vaste header */
+/* Home & Club Info: hero vult zone onder header */
+.home-animated.active,
 .club-info-section.active {
-    padding-top: 0;
+    margin-top: calc(-1 * var(--site-header-height));
+    padding-top: var(--site-header-height);
 }
 
 .club-info-hero {
-    margin-top: calc(-1 * var(--site-header-height));
-    padding-top: var(--site-header-height);
-    min-height: calc(85vh + var(--site-header-height));
+    margin-top: 0;
+    padding-top: 0;
+    min-height: 85vh;
 }
 
 @keyframes fadeIn {
@@ -52,8 +62,3 @@
         transform: translateY(0);
     }
 }
-
-.main-content {
-    position: relative;
-}
-
