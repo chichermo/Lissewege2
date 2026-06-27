@@ -2,8 +2,15 @@
    BREADCRUMBS NAVIGATION
    ============================================ */
 .breadcrumbs {
-    padding: 1.5rem 0;
-    margin-bottom: 2rem;
+    display: none;
+    padding: var(--space-3) var(--space-6);
+    margin-bottom: 0;
+    background: var(--surface-muted);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.breadcrumbs:not([style*="display: none"]) {
+    display: block;
 }
 
 .breadcrumbs-list {

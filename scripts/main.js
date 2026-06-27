@@ -222,6 +222,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         });
     });
+
+    // Top navigation + all in-page hash links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (!href || href === '#') return;
+
+            const targetId = href.substring(1);
+            const targetPage = document.getElementById(targetId);
+            if (!targetPage || !targetPage.classList.contains('page-section')) return;
+
+            e.preventDefault();
+            showPage(targetId);
+            document.dispatchEvent(new CustomEvent('pageChanged', { detail: { pageId: targetId } }));
+        });
+    });
+
+    window.addEventListener('hashchange', () => {
+        const hash = window.location.hash.substring(1);
+        if (hash && document.getElementById(hash)) {
+            showPage(hash);
+            document.dispatchEvent(new CustomEvent('pageChanged', { detail: { pageId: hash } }));
+        }
+    });
     
     // Handle browser back/forward
     window.addEventListener('popstate', () => {
@@ -509,6 +533,8 @@ const optimizedScrollHandler = debounce(() => {
 }, 10);
 
 window.addEventListener('scroll', optimizedScrollHandler);
+
+window.showPage = showPage;
 
 // ============================================
 // INITIALIZATION

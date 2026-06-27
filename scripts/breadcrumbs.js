@@ -13,6 +13,10 @@ const breadcrumbMap = {
     'prijslijst': { title: 'Prijslijst', icon: 'fas fa-euro-sign' },
     'team': { title: 'Team', icon: 'fas fa-user-tie' },
     'sponsors': { title: 'Sponsors', icon: 'fas fa-handshake' },
+    'eventos': { title: 'Eventos', icon: 'fas fa-calendar-star' },
+    'competities': { title: 'Competities', icon: 'fas fa-trophy' },
+    'rivalen': { title: 'Rivalen', icon: 'fas fa-fist-raised' },
+    'members': { title: 'Leden', icon: 'fas fa-id-card' },
     'contact': { title: 'Contact', icon: 'fas fa-envelope' }
 };
 
@@ -34,8 +38,16 @@ function initBreadcrumbs() {
 }
 
 function updateBreadcrumbs(pageId) {
+    const breadcrumbs = document.getElementById('breadcrumbs');
     const breadcrumbsList = document.getElementById('breadcrumbsList');
     if (!breadcrumbsList) return;
+
+    if (pageId === 'home') {
+        if (breadcrumbs) breadcrumbs.style.display = 'none';
+        return;
+    }
+
+    if (breadcrumbs) breadcrumbs.style.display = 'block';
 
     const currentPage = breadcrumbMap[pageId];
     if (!currentPage) return;
@@ -86,10 +98,7 @@ document.addEventListener('pageChanged', (e) => {
 setInterval(() => {
     const activePage = document.querySelector('.page-section.active');
     if (activePage && activePage.id) {
-        const currentBreadcrumb = document.querySelector('.breadcrumbs-link.active');
-        if (!currentBreadcrumb || currentBreadcrumb.textContent !== breadcrumbMap[activePage.id]?.title) {
-            updateBreadcrumbs(activePage.id);
-        }
+        updateBreadcrumbs(activePage.id);
     }
 }, 500);
 

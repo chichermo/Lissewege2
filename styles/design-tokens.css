@@ -104,14 +104,12 @@ textarea:focus-visible,
     box-shadow: var(--focus-ring), var(--shadow-md);
 }
 
-/* Touch targets */
-.nav-link,
+/* Touch targets — nav items only */
 .team-select-btn,
 .carousel-btn,
-.mobile-toggle {
+.mobile-toggle,
+.nav-cta {
     min-height: 44px;
-    display: inline-flex;
-    align-items: center;
 }
 
 /* Reduced motion */

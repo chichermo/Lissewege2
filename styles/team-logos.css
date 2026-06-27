@@ -8,17 +8,21 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-    max-width: 50px;
-    /* Prevent pixelation for small source images */
-    max-height: 50px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
     margin: 0 auto;
 }
 
+/* Small logos — match cards & standings only */
+.match-card .team-logo-img,
+.match-card-team-logo-img {
+    max-width: 48px;
+    max-height: 48px;
+}
+
 .match-card-team-logo,
-.team-logo-placeholder {
-    width: 50px;
-    height: 50px;
+.match-card .team-logo-placeholder {
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,42 +31,62 @@
 
 .team-logo-placeholder {
     border-radius: 50%;
-    background: var(--gradient-primary);
+    background: var(--surface-muted);
+    border: 2px solid var(--border-subtle);
     overflow: hidden;
-}
-
-.match-card-team-logo-img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .team-logo-placeholder img.team-logo-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    max-width: none;
+    max-height: none;
 }
 
 .standings-team-logo {
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
     margin-right: 0.5rem;
     object-fit: contain;
 }
 
-.team-home .team-logo-placeholder img,
-.team-away .team-logo-placeholder img {
-    width: 60px;
-    /* Reduced from 90px to improve quality */
-    height: 60px;
+/* Featured next-match widget — larger logos */
+.next-match-widget .team-home .team-logo-placeholder,
+.next-match-widget .team-away .team-logo-placeholder {
+    width: 80px;
+    height: 80px;
+    background: var(--white);
+    border: 2px solid var(--border-subtle);
+    box-shadow: var(--shadow-xs);
+}
+
+.next-match-widget .team-logo-placeholder img,
+.next-match-widget .team-home .team-logo-placeholder img,
+.next-match-widget .team-away .team-logo-placeholder img {
+    width: 72px;
+    height: 72px;
+    max-width: none;
+    max-height: none;
     object-fit: contain;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.next-match-widget .team-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-align: center;
+    line-height: var(--leading-snug);
+    max-width: 130px;
+    word-break: break-word;
 }
 
 .match-card-team {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-4);
 }
 
 .match-card-team-logo {
