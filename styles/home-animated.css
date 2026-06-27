@@ -171,11 +171,24 @@
 
 .home-background-animation {
     position: absolute;
-    top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     z-index: 0;
+}
+
+/* Home: groene achtergrond tot onder de header */
+.home-animated.active {
+    padding-top: 0;
+}
+
+.home-animated .home-background-animation {
+    top: calc(-1 * var(--site-header-height));
+    height: calc(100% + var(--site-header-height));
+    min-height: calc(100% + var(--site-header-height));
+}
+
+.home-animated .home-content-wrapper {
+    padding-top: calc(var(--site-header-height) + var(--space-4));
 }
 
 #particlesCanvas {
@@ -814,7 +827,8 @@
 }
 
 .home-block {
-    background: var(--surface);
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: var(--space-5);
     border: 1px solid var(--border-subtle);

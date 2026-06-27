@@ -1,6 +1,10 @@
 /* ============================================
    PAGE SYSTEM - SINGLE PAGE APP STYLE
    ============================================ */
+:root {
+    --site-header-height: 176px;
+}
+
 .page-section {
     display: none !important;
     min-height: 100vh;
@@ -9,6 +13,7 @@
     visibility: hidden;
     animation: fadeIn 0.5s ease;
     position: relative;
+    background: transparent;
 }
 
 .page-section.active {
@@ -16,6 +21,25 @@
     opacity: 1 !important;
     visibility: visible !important;
     z-index: 1;
+    padding-top: var(--site-header-height);
+}
+
+.page-section.section > .container,
+.page-section.section > .competitions-container,
+.page-section.section > .rivals-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Club Info: hero vult de ruimte onder de vaste header */
+.club-info-section.active {
+    padding-top: 0;
+}
+
+.club-info-hero {
+    margin-top: calc(-1 * var(--site-header-height));
+    padding-top: var(--site-header-height);
+    min-height: calc(85vh + var(--site-header-height));
 }
 
 @keyframes fadeIn {

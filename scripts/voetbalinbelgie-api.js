@@ -154,16 +154,7 @@ class VoetbalInBelgieAPI {
         return {
             competition: '4e Provinciale C West-Vlaanderen',
             season: this.season,
-            standings: [
-                { position: 1, team: 'KVV Aartrijke', played: 15, won: 12, drawn: 2, lost: 1, points: 38 },
-                { position: 2, team: 'FC Zeebrugge', played: 15, won: 11, drawn: 3, lost: 1, points: 36 },
-                { position: 3, team: 'KSV Jabbeke', played: 15, won: 10, drawn: 2, lost: 3, points: 32 },
-                { position: 4, team: 'KFC Sint-Joris', played: 15, won: 9, drawn: 3, lost: 3, points: 30 },
-                { position: 5, team: 'RFC Lissewege', played: 15, won: 8, drawn: 4, lost: 3, points: 28 },
-                { position: 6, team: 'KSK Steenbrugge', played: 15, won: 7, drawn: 3, lost: 5, points: 24 },
-                { position: 7, team: 'KFC Damme', played: 15, won: 6, drawn: 4, lost: 5, points: 22 },
-                { position: 8, team: 'VKSO Zerkegem B', played: 15, won: 5, drawn: 3, lost: 7, points: 18 }
-            ]
+            standings: []
         };
     }
 

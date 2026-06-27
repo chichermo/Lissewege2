@@ -4,7 +4,7 @@
 
 .rivals-section {
     padding: var(--section-y) 0;
-    background: var(--surface);
+    background: transparent;
     position: relative;
 }
 

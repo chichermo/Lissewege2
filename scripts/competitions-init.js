@@ -23,26 +23,17 @@ async function initCompetitions() {
         }
 
         // Si no hay datos de API, usar datos de respaldo
-        if (!standingsData || !standingsData.standings) {
-            if (window.voetbalAPI) {
-                standingsData = window.voetbalAPI.getFallbackStandings();
-            } else {
-                standingsData = {
-                    standings: [
-                        { position: 1, team: 'KVV Aartrijke', played: 15, won: 12, drawn: 2, lost: 1, points: 38, goalsFor: 45, goalsAgainst: 18 },
-                        { position: 2, team: 'FC Zeebrugge', played: 15, won: 11, drawn: 3, lost: 1, points: 36, goalsFor: 42, goalsAgainst: 20 },
-                        { position: 3, team: 'KSV Jabbeke', played: 15, won: 10, drawn: 2, lost: 3, points: 32, goalsFor: 38, goalsAgainst: 22 },
-                        { position: 4, team: 'KFC Sint-Joris', played: 15, won: 9, drawn: 3, lost: 3, points: 30, goalsFor: 35, goalsAgainst: 25 },
-                        { position: 5, team: 'RFC Lissewege', played: 15, won: 8, drawn: 4, lost: 3, points: 28, goalsFor: 32, goalsAgainst: 24 },
-                        { position: 6, team: 'KSK Steenbrugge', played: 15, won: 7, drawn: 3, lost: 5, points: 24, goalsFor: 28, goalsAgainst: 30 },
-                        { position: 7, team: 'KFC Damme', played: 15, won: 6, drawn: 4, lost: 5, points: 22, goalsFor: 25, goalsAgainst: 28 },
-                        { position: 8, team: 'VKSO Zerkegem B', played: 15, won: 5, drawn: 3, lost: 7, points: 18, goalsFor: 22, goalsAgainst: 35 }
-                    ]
-                };
-            }
+        if (!standingsData || !standingsData.standings || standingsData.standings.length === 0) {
+            standingsContent.innerHTML = `
+                <div class="standings-empty" style="padding: 2.5rem 1.5rem; text-align: center; color: var(--text-light); background: var(--surface);">
+                    <i class="fas fa-hourglass-half" style="font-size: 2rem; margin-bottom: 1rem; display: block; color: var(--primary-color);"></i>
+                    <p style="font-weight: 700; color: var(--dark-color); margin: 0 0 0.5rem;">Seizoen 2026/2027 — nog geen officiële stand</p>
+                    <p style="margin: 0; font-size: 0.92rem;">RFC Lissewege speelt in de 4e Provinciale C. Punten en posities verschijnen hier zodra de competitie is gestart.</p>
+                </div>
+            `;
+            return;
         }
 
-        // Renderizar clasificación
         standingsContent.innerHTML = standingsData.standings.map(team => {
             const isOurTeam = team.team === 'RFC Lissewege';
             const isTop3 = team.position <= 3;
@@ -95,51 +86,59 @@ async function initRivals() {
         } else {
             // Datos de respaldo
             rivals = [
-                { name: 'KVV Aartrijke', position: 1, points: 38, played: 15, won: 12, drawn: 2, lost: 1, goalsFor: 45, goalsAgainst: 18, goalDifference: 27, location: 'Aartrijke', distance: '~15 km' },
-                { name: 'FC Zeebrugge', position: 2, points: 36, played: 15, won: 11, drawn: 3, lost: 1, goalsFor: 42, goalsAgainst: 20, goalDifference: 22, location: 'Zeebrugge', distance: '~10 km' },
-                { name: 'KSV Jabbeke', position: 3, points: 32, played: 15, won: 10, drawn: 2, lost: 3, goalsFor: 38, goalsAgainst: 22, goalDifference: 16, location: 'Jabbeke', distance: '~8 km' },
-                { name: 'KFC Sint-Joris', position: 4, points: 30, played: 15, won: 9, drawn: 3, lost: 3, goalsFor: 35, goalsAgainst: 25, goalDifference: 10, location: 'Sint-Joris', distance: '~12 km' },
-                { name: 'KSK Steenbrugge', position: 6, points: 24, played: 15, won: 7, drawn: 3, lost: 5, goalsFor: 28, goalsAgainst: 30, goalDifference: -2, location: 'Steenbrugge', distance: '~5 km' },
-                { name: 'KFC Damme', position: 7, points: 22, played: 15, won: 6, drawn: 4, lost: 5, goalsFor: 25, goalsAgainst: 28, goalDifference: -3, location: 'Damme', distance: '~6 km' },
-                { name: 'VKSO Zerkegem B', position: 8, points: 18, played: 15, won: 5, drawn: 3, lost: 7, goalsFor: 22, goalsAgainst: 35, goalDifference: -13, location: 'Zerkegem', distance: '~18 km' }
+                { name: 'KVV Aartrijke', location: 'Aartrijke', distance: '~15 km' },
+                { name: 'FC Zeebrugge', location: 'Zeebrugge', distance: '~10 km' },
+                { name: 'KSV Jabbeke', location: 'Jabbeke', distance: '~8 km' },
+                { name: 'KFC Sint-Joris Sportief', location: 'Sint-Joris', distance: '~12 km' },
+                { name: 'KSK Steenbrugge', location: 'Steenbrugge', distance: '~5 km' },
+                { name: 'KFC Damme', location: 'Damme', distance: '~6 km' },
+                { name: 'VKSO Zerkegem B', location: 'Zerkegem', distance: '~18 km' },
+                { name: 'VV Eendracht Brugge', location: 'Brugge', distance: '~12 km' }
             ];
         }
 
         // Renderizar tarjetas de rivales
         rivalsGrid.innerHTML = rivals.map(rival => {
-            const isTop3 = rival.position <= 3;
+            const isTop3 = rival.position && rival.position <= 3;
             const logo = window.getTeamLogo
                 ? window.getTeamLogo(rival.name)
                 : (window.generatePlaceholderLogo ? window.generatePlaceholderLogo(rival.name) : '');
             const safeName = rival.name.replace(/'/g, "\\'");
+            const positionLabel = rival.position ? `Positie ${rival.position}` : '4e Prov C';
+            const points = rival.points != null ? rival.points : '—';
+            const played = rival.played != null ? rival.played : '—';
+            const won = rival.won != null ? rival.won : '—';
+            const goalDiff = rival.goalDifference != null
+                ? `${rival.goalDifference > 0 ? '+' : ''}${rival.goalDifference}`
+                : '—';
             
             return `
-                <div class="rival-card" data-position="${rival.position}">
+                <div class="rival-card" data-position="${rival.position || 0}">
                     <div class="rival-header">
                         <div class="rival-logo">
                             <img src="${logo}" alt="${rival.name}" width="44" height="44" loading="lazy" decoding="async" onerror="if(window.generatePlaceholderLogo){this.src=window.generatePlaceholderLogo('${safeName}');this.onerror=null;}">
                         </div>
                         <div class="rival-info">
                             <div class="rival-name">${rival.name}</div>
-                            <span class="rival-position ${isTop3 ? 'top-3' : ''}">Positie ${rival.position}</span>
+                            <span class="rival-position ${isTop3 ? 'top-3' : ''}">${positionLabel}</span>
                         </div>
                     </div>
                     <div class="rival-stats">
                         <div class="stat-item">
                             <div class="stat-label">Punten</div>
-                            <div class="stat-value">${rival.points}</div>
+                            <div class="stat-value">${points}</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-label">Gespeeld</div>
-                            <div class="stat-value">${rival.played}</div>
+                            <div class="stat-value">${played}</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-label">Gewonnen</div>
-                            <div class="stat-value">${rival.won || 0}</div>
+                            <div class="stat-value">${won}</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-label">Doelsaldo</div>
-                            <div class="stat-value">${rival.goalDifference > 0 ? '+' : ''}${rival.goalDifference}</div>
+                            <div class="stat-value">${goalDiff}</div>
                         </div>
                     </div>
                     ${rival.location ? `

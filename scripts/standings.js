@@ -2,9 +2,8 @@
 // LEAGUE STANDINGS DATA & DISPLAY - REAL API
 // ============================================
 
-// REAL DATA - 4e Provinciale C West-Vlaanderen 2025/2026
-// Actualizado al 8 de diciembre de 2025
-const REAL_STANDINGS_DATA = [
+// Archief — 4e Provinciale C West-Vlaanderen 2025/2026 (afgesloten seizoen)
+const ARCHIVED_STANDINGS_2025_2026 = [
     { position: 1, team: 'KVV Aartrijke', played: 13, won: 10, drawn: 2, lost: 1, goalsFor: 45, goalsAgainst: 13, points: 32 },
     { position: 2, team: 'KFC Damme', played: 13, won: 9, drawn: 1, lost: 3, goalsFor: 41, goalsAgainst: 13, points: 28 },
     { position: 3, team: 'VV Eendracht Brugge', played: 13, won: 8, drawn: 2, lost: 3, goalsFor: 30, goalsAgainst: 15, points: 26 },
@@ -21,11 +20,12 @@ const REAL_STANDINGS_DATA = [
     { position: 14, team: 'VC Vamos Zandvoorde', played: 13, won: 0, drawn: 0, lost: 13, goalsFor: 8, goalsAgainst: 61, points: 0 }
 ];
 
+// Huidig seizoen 2026/2027 — nog geen officiële stand
+const REAL_STANDINGS_DATA = [];
+
 let standingsData = [];
 
-// Load standings from real API or use real data
 async function loadStandingsData() {
-    // Try to get real data from API first
     if (window.realFootballAPI) {
         try {
             const realStandings = await window.realFootballAPI.getLeagueStandings();
@@ -34,83 +34,78 @@ async function loadStandingsData() {
                 return;
             }
         } catch (error) {
-            console.warn('Could not load real standings from API, using real data:', error);
+            console.warn('Could not load real standings from API, using season placeholder:', error);
         }
     }
 
-    // Use real data from 4e Provinciale C
     standingsData = REAL_STANDINGS_DATA;
-    console.log('Loaded real standings data for 4e Provinciale C West-Vlaanderen');
+}
+
+function renderStandingsRows(data) {
+    return data.map(team => {
+        const goalDifference = team.goalDifference !== undefined ? team.goalDifference : (team.goalsFor - team.goalsAgainst);
+        const goalDiffSign = goalDifference >= 0 ? '+' : '';
+        const teamLogo = window.getTeamLogo
+            ? window.getTeamLogo(team.team)
+            : (window.generatePlaceholderLogo ? window.generatePlaceholderLogo(team.team) : '/images/logos/100b.jpeg');
+
+        const rowClass = team.team === 'RFC Lissewege' || team.team.toLowerCase().includes('lissewege')
+            ? 'our-team'
+            : (team.position <= 3 ? `position-${team.position}` : '');
+
+        return `
+            <tr class="${rowClass}">
+                <td>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <img src="${teamLogo}" alt="${team.team} logo" class="standings-team-logo" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${team.team}'); this.onerror = null; } else { this.src='/images/logos/100b.jpeg'; }">
+                        <span>${team.position}</span>
+                    </div>
+                </td>
+                <td style="text-align: left;"><strong>${team.team}</strong></td>
+                <td>${team.played || team.playedGames || 0}</td>
+                <td>${team.won || 0}</td>
+                <td>${team.drawn || team.draw || 0}</td>
+                <td>${team.lost || 0}</td>
+                <td>${team.goalsFor || 0}</td>
+                <td>${team.goalsAgainst || 0}</td>
+                <td>${goalDiffSign}${goalDifference}</td>
+                <td><strong>${team.points || 0}</strong></td>
+            </tr>
+        `;
+    }).join('');
 }
 
 function updateStandingsTable() {
     const tbody = document.getElementById('standingsTableBody');
     if (!tbody) return;
 
-    tbody.innerHTML = '';
-
     if (standingsData.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="10" style="text-align: center; padding: 2rem; color: var(--text-light);">
-                    <i class="fas fa-info-circle" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
-                    <p>Geen stand beschikbaar. Configureer API-sleutels of voeg echte gegevens toe.</p>
-                    <p style="font-size: 0.85rem; margin-top: 0.5rem;">No standings available. Configure API keys or add real data.</p>
+                <td colspan="10" style="text-align: center; padding: 2.5rem 1.5rem; color: var(--text-light);">
+                    <i class="fas fa-hourglass-half" style="font-size: 2rem; margin-bottom: 1rem; display: block; color: var(--primary-color); opacity: 0.7;"></i>
+                    <p style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">Seizoen 2026/2027 — stand volgt binnenkort</p>
+                    <p style="font-size: 0.9rem; max-width: 520px; margin: 0 auto;">De competitie is nog niet gestart. De klassement wordt automatisch bijgewerkt zodra er officiële wedstrijden zijn gespeeld.</p>
                 </td>
             </tr>
         `;
         return;
     }
 
-    standingsData.forEach(team => {
-        const row = document.createElement('tr');
-        
-        // Add special class for our team
-        if (team.team === 'RFC Lissewege' || team.team.toLowerCase().includes('lissewege')) {
-            row.classList.add('our-team');
-        }
-
-        // Add position class for top 3
-        if (team.position <= 3) {
-            row.classList.add(`position-${team.position}`);
-        }
-
-        const goalDifference = team.goalDifference !== undefined ? team.goalDifference : (team.goalsFor - team.goalsAgainst);
-        const goalDiffSign = goalDifference >= 0 ? '+' : '';
-
-        // Get team logo (will use placeholder if logo not found)
-        const teamLogo = window.getTeamLogo ? window.getTeamLogo(team.team) : (window.generatePlaceholderLogo ? window.generatePlaceholderLogo(team.team) : '/images/logos/100b.jpeg');
-
-        row.innerHTML = `
-            <td>
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <img src="${teamLogo}" alt="${team.team} logo" class="standings-team-logo" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${team.team}'); this.onerror = null; } else { this.src='/images/logos/100b.jpeg'; }">
-                    <span>${team.position}</span>
-                </div>
-            </td>
-            <td style="text-align: left;">
-                <strong>${team.team}</strong>
-            </td>
-            <td>${team.played || team.playedGames || 0}</td>
-            <td>${team.won || 0}</td>
-            <td>${team.drawn || team.draw || 0}</td>
-            <td>${team.lost || 0}</td>
-            <td>${team.goalsFor || 0}</td>
-            <td>${team.goalsAgainst || 0}</td>
-            <td>${goalDiffSign}${goalDifference}</td>
-            <td><strong>${team.points || 0}</strong></td>
-        `;
-
-        tbody.appendChild(row);
-    });
+    tbody.innerHTML = renderStandingsRows(standingsData);
 }
 
-// Initialize on page load
+function updateArchivedStandingsTable() {
+    const tbody = document.getElementById('archivedStandingsTableBody');
+    if (!tbody) return;
+    tbody.innerHTML = renderStandingsRows(ARCHIVED_STANDINGS_2025_2026);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     await loadStandingsData();
     updateStandingsTable();
-    
-    // Update logos after table is rendered
+    updateArchivedStandingsTable();
+
     setTimeout(() => {
         if (window.updateTeamLogos) {
             window.updateTeamLogos();
@@ -118,7 +113,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 100);
 });
 
-// Export for use in other scripts
 window.updateStandingsTable = updateStandingsTable;
 window.loadStandingsData = loadStandingsData;
-

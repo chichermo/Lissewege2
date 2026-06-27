@@ -4,26 +4,13 @@
 
 .competitions-section {
     padding: var(--section-y) 0;
-    background:
-        linear-gradient(165deg, #0a2e1c 0%, #0d4d2e 42%, #145a38 100%);
+    background: transparent;
     position: relative;
     overflow: hidden;
 }
 
 .competitions-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 79px,
-            rgba(255, 255, 255, 0.03) 79px,
-            rgba(255, 255, 255, 0.03) 80px
-        ),
-        radial-gradient(circle at 50% 0%, rgba(255, 107, 53, 0.12), transparent 55%);
-    pointer-events: none;
+    display: none;
 }
 
 .competitions-container {
@@ -41,11 +28,11 @@
 
 .competition-header .section-title,
 .competition-header .section-description {
-    color: rgba(255, 255, 255, 0.95);
+    color: var(--dark-color);
 }
 
 .competition-header .section-description {
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--text-light);
 }
 
 .competition-badge {
@@ -69,9 +56,10 @@
     margin-bottom: var(--space-8);
     padding: var(--space-6);
     border-radius: var(--radius-lg, 18px);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid var(--border-subtle);
     backdrop-filter: blur(8px);
+    box-shadow: var(--shadow-card);
 }
 
 .competition-hero-main {
@@ -86,8 +74,8 @@
     align-self: flex-start;
     padding: 0.25rem 0.75rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.15);
-    color: #fff;
+    background: rgba(13, 77, 46, 0.12);
+    color: var(--primary-color);
     font-size: var(--text-xs);
     font-weight: 700;
     text-transform: uppercase;
@@ -98,13 +86,13 @@
     margin: 0;
     font-family: var(--font-display);
     font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
-    color: #fff;
+    color: var(--dark-color);
     line-height: var(--leading-tight);
 }
 
 .competition-hero-sub {
     margin: 0;
-    color: rgba(255, 255, 255, 0.72);
+    color: var(--text-light);
     font-size: var(--text-sm);
 }
 
@@ -115,10 +103,10 @@
 }
 
 .competition-hero-stat {
-    background: rgba(0, 0, 0, 0.22);
+    background: rgba(13, 77, 46, 0.06);
     border-radius: var(--radius-md, 12px);
     padding: var(--space-4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-subtle);
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
@@ -128,13 +116,13 @@
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-light);
 }
 
 .competition-hero-stat strong {
     font-family: var(--font-display);
     font-size: var(--text-lg);
-    color: #fff;
+    color: var(--dark-color);
 }
 
 .standings-table {
@@ -253,14 +241,15 @@
 }
 
 .pyramid-tier span {
-    padding: 0.5rem 0.85rem;
+    padding: 0.55rem 0.9rem;
     border-radius: 10px;
     background: #f4f7f5;
     border: 1px solid var(--border-subtle);
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
     font-weight: 600;
     color: var(--dark-color);
     text-align: center;
+    line-height: 1.35;
 }
 
 .pyramid-tier span.current {

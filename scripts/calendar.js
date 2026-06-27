@@ -173,13 +173,21 @@ function renderMatchCards(matches, calendarGrid) {
                 <h3>${homeTeam} vs ${awayTeam}</h3>
                 <div class="match-result-display">
                     <div class="match-result-team">
-                        <img src="${homeLogo}" alt="${homeTeam} logo" class="match-result-logo" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${homeTeam}'); this.onerror = null; } else { this.style.display='none'; }">
-                        <span class="match-result-score ${hasScore && isHome && parseInt(homeScore) > parseInt(awayScore) ? 'winner' : ''}">${homeScore}</span>
+                        <div class="team-logo-circle">
+                            <img src="${homeLogo}" alt="${homeTeam} logo" class="team-logo-img match-result-logo" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${homeTeam}'); this.onerror = null; } else { this.style.display='none'; }">
+                        </div>
+                        <span class="match-result-name">${homeTeam}</span>
                     </div>
-                    <span class="match-result-separator">-</span>
-                    <div class="match-result-team">
-                        <span class="match-result-score ${hasScore && !isHome && parseInt(awayScore) > parseInt(homeScore) ? 'winner' : ''}">${awayScore}</span>
-                        <img src="${awayLogo}" alt="${awayTeam} logo" class="match-result-logo" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${awayTeam}'); this.onerror = null; } else { this.style.display='none'; }">
+                    <div class="match-result-scoreline">
+                        <span class="match-result-score ${hasScore && parseInt(homeScore) > parseInt(awayScore) ? 'winner' : ''}">${homeScore}</span>
+                        <span class="match-result-dash">-</span>
+                        <span class="match-result-score ${hasScore && parseInt(awayScore) > parseInt(homeScore) ? 'winner' : ''}">${awayScore}</span>
+                    </div>
+                    <div class="match-result-team match-result-team--away">
+                        <div class="team-logo-circle">
+                            <img src="${awayLogo}" alt="${awayTeam} logo" class="team-logo-img match-result-logo" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${awayTeam}'); this.onerror = null; } else { this.style.display='none'; }">
+                        </div>
+                        <span class="match-result-name">${awayTeam}</span>
                     </div>
                 </div>
                 <div class="event-details">
@@ -339,9 +347,9 @@ async function loadUpcomingMatches() {
                         <span>${homeTeam}</span>
                     </div>
                     <span class="match-vs-upcoming">VS</span>
-                    <div class="match-team-upcoming">
-                        <span>${awayTeam}</span>
+                    <div class="match-team-upcoming match-team-upcoming--away">
                         <img src="${awayLogo}" alt="${awayTeam} logo" class="match-team-logo-small" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${awayTeam}'); this.onerror = null; } else { this.style.display='none'; }">
+                        <span>${awayTeam}</span>
                     </div>
                 </div>
                 <div class="event-details">
