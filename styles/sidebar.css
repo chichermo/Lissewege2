@@ -6,7 +6,7 @@ body {
     padding: 0;
     display: flex;
     min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-body);
 }
 
 .sidebar {
@@ -92,7 +92,7 @@ body {
     font-weight: 800;
     color: var(--white);
     line-height: 1;
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display);
     letter-spacing: 2px;
 }
 

@@ -84,7 +84,7 @@
     font-size: 1.5rem;
     color: var(--accent-color);
     font-weight: 800;
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display);
 }
 
 .match-info-detailed {
@@ -257,7 +257,7 @@
     font-size: 1.75rem;
     font-weight: 800;
     color: var(--primary-color);
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display);
     line-height: 1;
 }
 
@@ -339,7 +339,7 @@
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--accent-color);
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display);
     margin-bottom: 1.5rem;
 }
 

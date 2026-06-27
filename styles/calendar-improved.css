@@ -179,7 +179,7 @@
 .date-day-modern {
     font-size: 1.1rem;
     font-weight: 800;
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display);
     color: var(--primary-color);
 }
 
@@ -344,7 +344,7 @@
     font-size: 2.5rem;
     /* Larger Score */
     font-weight: 800;
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display);
     color: var(--dark-color);
 }
 

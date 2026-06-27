@@ -7,7 +7,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: var(--z-header);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     background: linear-gradient(135deg, rgba(13, 77, 46, 0.98) 0%, rgba(10, 61, 36, 0.98) 100%);
     padding: 0;
@@ -29,9 +29,9 @@
 }
 
 .navbar-container {
-    max-width: 1400px;
+    max-width: var(--container-wide);
     margin: 0 auto;
-    padding: 0.9rem 1.75rem;
+    padding: var(--space-4) var(--space-6);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -94,21 +94,22 @@
 }
 
 .brand-main {
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.35rem;
+    font-size: var(--text-xl);
     color: #ffffff;
-    line-height: 1;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: var(--leading-tight);
+    letter-spacing: 0.02em;
+    text-transform: none;
+    text-shadow: none;
 }
 
 .brand-sub {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.8);
-    letter-spacing: 2px;
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.12em;
     font-weight: 500;
+    text-transform: uppercase;
 }
 
 /* Desktop Navigation */
@@ -122,12 +123,12 @@
 }
 
 .nav-link {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.9);
-    letter-spacing: 0.3px;
-    padding: 0.4rem 0;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.88);
+    letter-spacing: 0;
+    padding: var(--space-2) 0;
     position: relative;
     transition: color 0.3s ease;
 }
@@ -156,25 +157,29 @@
 
 /* CTA Button in Nav */
 .nav-cta {
-    background: #ff6b35;
+    background: var(--accent-color);
     color: white;
-    padding: 0.65rem 1.25rem;
-    border-radius: 999px;
-    /* Slightly squared for sports look */
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    text-transform: none;
+    font-size: var(--text-sm);
+    letter-spacing: 0;
+    transition: var(--transition-fast);
     clip-path: none;
     border: none;
     cursor: pointer;
+    min-height: 44px;
 }
 
 .nav-cta:hover {
-    background: #ff8c5a;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+    background: var(--accent-light);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.35);
+}
+
+.nav-cta:active {
+    transform: translateY(0);
 }
 
 /* Mobile Toggle */
