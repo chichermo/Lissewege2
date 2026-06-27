@@ -3,8 +3,6 @@
    ============================================ */
 :root {
     --site-header-height: 188px;
-    --page-bg: #e8ece9;
-    --page-surface: #ffffff;
 }
 
 .page-section {
@@ -15,7 +13,6 @@
     visibility: hidden;
     animation: fadeIn 0.5s ease;
     position: relative;
-    background: var(--page-bg);
 }
 
 .page-section.active {
@@ -29,12 +26,6 @@
 .main-content {
     position: relative;
     padding-top: var(--site-header-height);
-    background: var(--page-bg);
-}
-
-/* Eén achtergrond voor alle inhoudssecties */
-.page-section.section {
-    background: var(--page-bg);
 }
 
 /* Ruimte onder vaste header */
@@ -48,20 +39,11 @@
     padding-bottom: var(--space-16);
 }
 
-/* Home & Club Info: eigen hero-achtergrond */
-.home-animated,
-.club-info-section {
-    background: transparent;
-}
-
+/* Home & Club Info: hero bajo header fijo */
 .home-animated.active,
 .club-info-section.active {
     margin-top: calc(-1 * var(--site-header-height));
     padding-top: var(--site-header-height);
-}
-
-.club-info-section.active {
-    background: linear-gradient(135deg, #0a3d24 0%, #0d4d2e 50%, #1a7a4a 100%);
 }
 
 .club-info-hero {

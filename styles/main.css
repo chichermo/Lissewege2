@@ -64,7 +64,7 @@ body {
     color: var(--text-color);
     line-height: var(--leading-relaxed);
     overflow-x: hidden;
-    background-color: var(--page-bg);
+    background-color: #0a3d24;
     background-image: none;
     background-attachment: scroll;
     -webkit-font-smoothing: antialiased;

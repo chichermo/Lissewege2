@@ -1,0 +1,230 @@
+/* ============================================
+   PITCH THEME — Club Info green for all sections
+   (except Home)
+   ============================================ */
+:root {
+    --pitch-gradient: linear-gradient(135deg, #0a3d24 0%, #0d4d2e 50%, #1a7a4a 100%);
+    --pitch-text: rgba(255, 255, 255, 0.95);
+    --pitch-text-muted: rgba(255, 255, 255, 0.78);
+    --pitch-glass: rgba(255, 255, 255, 0.1);
+    --pitch-glass-border: rgba(255, 255, 255, 0.16);
+}
+
+body,
+.main-content {
+    background: var(--pitch-gradient);
+    color: var(--pitch-text);
+}
+
+/* Home mantiene su propio fondo animado */
+.home-animated {
+    background: transparent !important;
+    color: inherit;
+}
+
+.home-animated::before {
+    display: none !important;
+}
+
+/* Todas las secciones excepto Home */
+.page-section.section:not(.home-animated) {
+    background: var(--pitch-gradient);
+    color: var(--pitch-text);
+    position: relative;
+}
+
+.page-section.section:not(.home-animated)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 18% 12%, rgba(255, 107, 53, 0.11), transparent 42%),
+        radial-gradient(circle at 82% 88%, rgba(255, 255, 255, 0.06), transparent 38%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.club-info-section.active {
+    background: var(--pitch-gradient);
+}
+
+/* —— Tipografía sobre verde —— */
+.page-section.section:not(.home-animated) .section-title,
+.page-section.section:not(.home-animated) .competition-header .section-title,
+.page-section.section:not(.home-animated) .members-header .section-title,
+.page-section.section:not(.home-animated) .products-title,
+.page-section.section:not(.home-animated) .pricing-hero h1,
+.page-section.section:not(.home-animated) .standings-title,
+.page-section.section:not(.home-animated) .calendar-events-title,
+.page-section.section:not(.home-animated) .teams-subsection-header h3,
+.page-section.section:not(.home-animated) .stats-header .section-title,
+.page-section.section:not(.home-animated) .history-header .section-title,
+.page-section.section:not(.home-animated) .pricing-hero-title {
+    color: #fff;
+}
+
+.page-section.section:not(.home-animated) .section-description,
+.page-section.section:not(.home-animated) .competition-header .section-description,
+.page-section.section:not(.home-animated) .members-header .section-description,
+.page-section.section:not(.home-animated) .teams-subsection-header p,
+.page-section.section:not(.home-animated) .sponsors-intro,
+.page-section.section:not(.home-animated) .standings-section > p,
+.page-section.section:not(.home-animated) .calendar-events-section > p,
+.page-section.section:not(.home-animated) .pricing-hero-description {
+    color: var(--pitch-text-muted);
+}
+
+.page-section.section:not(.home-animated) .section-tag,
+.page-section.section:not(.home-animated) .members-header .section-tag {
+    background: var(--pitch-glass);
+    color: #fff;
+    border-color: var(--pitch-glass-border);
+}
+
+.page-section.section:not(.home-animated) .section-header::after {
+    background: var(--gradient-accent);
+}
+
+.page-section.section:not(.home-animated) .competition-badge {
+    background: rgba(255, 107, 53, 0.92);
+    color: #fff;
+}
+
+/* —— Bloques informativos sobre verde —— */
+.page-section.section:not(.home-animated) .sponsors-intro {
+    background: var(--pitch-glass);
+    border-color: var(--pitch-glass-border);
+    backdrop-filter: blur(8px);
+}
+
+.page-section.section:not(.home-animated) .sponsors-intro strong {
+    color: #fff;
+}
+
+.page-section.section:not(.home-animated) .season-archive {
+    background: var(--pitch-glass);
+    border-color: var(--pitch-glass-border);
+}
+
+.page-section.section:not(.home-animated) .season-archive-summary {
+    color: #fff;
+}
+
+.page-section.section:not(.home-animated) .season-archive-hint {
+    color: var(--pitch-text-muted);
+}
+
+/* Competities hero — cristal como Club Info stats */
+.competitions-section .competition-hero {
+    background: var(--pitch-glass);
+    border-color: var(--pitch-glass-border);
+    backdrop-filter: blur(10px);
+    box-shadow: none;
+}
+
+.competitions-section .competition-hero-title,
+.competitions-section .competition-hero-stat strong {
+    color: #fff;
+}
+
+.competitions-section .competition-hero-sub,
+.competitions-section .competition-hero-stat span {
+    color: var(--pitch-text-muted);
+}
+
+.competitions-section .competition-hero-level {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.competitions-section .competition-hero-stat {
+    background: rgba(0, 0, 0, 0.18);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.competitions-section .competition-header .section-title,
+.competitions-section .competition-header .section-description {
+    color: #fff;
+}
+
+.competitions-section .competition-header .section-description {
+    color: var(--pitch-text-muted);
+}
+
+.competitions-section .province-info > p {
+    color: var(--text-light);
+}
+
+/* Leden zone header */
+.members-section .members-header {
+    color: #fff;
+}
+
+.members-section .members-header .section-title {
+    color: #fff;
+}
+
+.members-section .members-header .section-description {
+    color: var(--pitch-text-muted);
+}
+
+.members-section .members-header .section-tag {
+    background: var(--pitch-glass);
+    color: #fff;
+    border-color: var(--pitch-glass-border);
+}
+
+/* Tarjetas blancas internas — texto oscuro se mantiene */
+.page-section.section:not(.home-animated) .ui-card,
+.page-section.section:not(.home-animated) .team-card,
+.page-section.section:not(.home-animated) .about-intro,
+.page-section.section:not(.home-animated) .about-card,
+.page-section.section:not(.home-animated) .about-logo-card,
+.page-section.section:not(.home-animated) .event-card,
+.page-section.section:not(.home-animated) .news-card,
+.page-section.section:not(.home-animated) .standings-table-wrapper,
+.page-section.section:not(.home-animated) .standings-table,
+.page-section.section:not(.home-animated) .calendar-card-modern,
+.page-section.section:not(.home-animated) .province-info,
+.page-section.section:not(.home-animated) .rival-card,
+.page-section.section:not(.home-animated) .login-prompt,
+.page-section.section:not(.home-animated) .membership-card,
+.page-section.section:not(.home-animated) .product-card {
+    color: var(--text-color);
+}
+
+/* Selectores / filtros sobre verde */
+.page-section.section:not(.home-animated) .team-select-btn {
+    background: var(--pitch-glass);
+    color: #fff;
+    border-color: var(--pitch-glass-border);
+}
+
+.page-section.section:not(.home-animated) .team-select-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #fff;
+}
+
+.page-section.section:not(.home-animated) .team-select-btn.active {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #fff;
+}
+
+.page-section.section:not(.home-animated) .filter-btn {
+    background: var(--pitch-glass);
+    color: #fff;
+    border-color: var(--pitch-glass-border);
+}
+
+.page-section.section:not(.home-animated) .filter-btn:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #fff;
+}
+
+.page-section.section:not(.home-animated) .filter-btn.active {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #fff;
+}

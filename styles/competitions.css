@@ -28,11 +28,11 @@
 
 .competition-header .section-title,
 .competition-header .section-description {
-    color: var(--dark-color);
+    color: #fff;
 }
 
 .competition-header .section-description {
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.78);
 }
 
 .competition-badge {
