@@ -78,8 +78,8 @@ body {
 .main-content {
     width: 100%;
     min-height: 100vh;
-    padding-top: 120px;
-    /* Precise clearance for Navbar + Ticker */
+    padding-top: 176px;
+    /* Navbar + ticker + partners bar */
     position: relative;
     z-index: 1;
 }
@@ -2214,11 +2214,11 @@ ul {
 
 @media (min-width: 769px) {
     .sponsors-mobile-banner {
-        display: block; /* Mostrar también en desktop temporalmente */
+        display: none;
     }
-    
+
     .sponsors-grid-original {
-        display: grid; /* Mostrar ambos en desktop */
+        display: grid;
     }
 }
 

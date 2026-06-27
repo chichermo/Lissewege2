@@ -26,8 +26,8 @@ async function refreshMatches() {
     if (window.updateOtherMatches) {
         await window.updateOtherMatches();
     }
-    if (window.updateRecentResults) {
-        await window.updateRecentResults();
+    if (window.loadPastMatches) {
+        await window.loadPastMatches();
     }
     if (window.initCalendar) {
         await window.initCalendar();

@@ -79,50 +79,28 @@ function splitMatchesByDate(matches) {
 }
 
 function getFallbackMatches() {
-    const past = Array.isArray(window.PAST_MATCHES) ? window.PAST_MATCHES : [];
+    const past = Array.isArray(window.CURRENT_SEASON_PAST_MATCHES) ? window.CURRENT_SEASON_PAST_MATCHES : [];
     const upcoming = Array.isArray(window.UPCOMING_MATCHES) ? window.UPCOMING_MATCHES : [];
     return splitMatchesByDate([...past, ...upcoming]);
 }
 
-// Load and display past matches
-async function loadPastMatches() {
-    const calendarGrid = document.getElementById('pastMatchesGrid');
+function renderMatchCards(matches, calendarGrid) {
     if (!calendarGrid) return;
+    calendarGrid.innerHTML = '';
 
-    // Get past matches from real data
-    let pastMatches = [];
-    
-    if (window.realFootballAPI) {
-        try {
-            const matches = await window.realFootballAPI.getPastMatches();
-            if (matches && matches.length > 0) {
-                pastMatches = matches.map(normalizeMatch).filter(Boolean);
-            }
-        } catch (error) {
-            console.warn('Could not load past matches from API:', error);
-        }
-    }
-
-    if (pastMatches.length === 0) {
-        pastMatches = getFallbackMatches().past;
-    }
-
-    if (pastMatches.length === 0) {
+    if (!matches.length) {
         calendarGrid.innerHTML = `
             <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-light);">
                 <i class="fas fa-info-circle" style="font-size: 3rem; margin-bottom: 1rem; display: block; opacity: 0.5;"></i>
-                <p>Geen resultaten beschikbaar.</p>
+                <p>Geen uitslagen beschikbaar voor dit seizoen.</p>
             </div>
         `;
         return;
     }
 
-    // Sort by date (most recent first)
-    pastMatches.sort((a, b) => new Date(b.date) - new Date(a.date));
+    matches.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    calendarGrid.innerHTML = '';
-
-    pastMatches.forEach(match => {
+    matches.forEach(match => {
         const matchDate = new Date(match.date);
         const isHome = match.venue === 'home';
         const homeTeam = match.homeTeam;
@@ -218,6 +196,51 @@ async function loadPastMatches() {
 
         calendarGrid.appendChild(matchCard);
     });
+}
+
+async function loadPastMatches() {
+    const calendarGrid = document.getElementById('pastMatchesGrid');
+    if (!calendarGrid) return;
+
+    let pastMatches = [];
+
+    if (window.realFootballAPI) {
+        try {
+            const matches = await window.realFootballAPI.getPastMatches();
+            if (matches && matches.length > 0) {
+                const seasonStart = window.CURRENT_SEASON_START || '2026-08-01';
+                pastMatches = matches
+                    .map(normalizeMatch)
+                    .filter(m => m && m.date >= seasonStart);
+            }
+        } catch (error) {
+            console.warn('Could not load past matches from API:', error);
+        }
+    }
+
+    if (pastMatches.length === 0 && window.CURRENT_SEASON_PAST_MATCHES) {
+        pastMatches = window.CURRENT_SEASON_PAST_MATCHES.map(normalizeMatch).filter(Boolean);
+    }
+
+    renderMatchCards(pastMatches, calendarGrid);
+
+    const calendarUpdate = document.getElementById('calendarLastUpdate');
+    if (calendarUpdate) {
+        calendarUpdate.textContent = new Date().toLocaleString('nl-BE', {
+            day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+    }
+}
+
+function loadArchivedMatches() {
+    const archiveGrid = document.getElementById('archivedMatchesGrid');
+    if (!archiveGrid || !window.ARCHIVED_SEASONS) return;
+
+    const archived = window.ARCHIVED_SEASONS['2025-2026'];
+    if (!archived) return;
+
+    const matches = archived.matches.map(normalizeMatch).filter(Boolean);
+    renderMatchCards(matches, archiveGrid);
 }
 
 // Load and display upcoming matches
@@ -345,6 +368,7 @@ async function initCalendar() {
     // Wait a bit for other scripts to load
     setTimeout(async () => {
         await loadPastMatches();
+        loadArchivedMatches();
         await loadUpcomingMatches();
     }, 300);
 }
@@ -388,6 +412,7 @@ window.addEventListener('hashchange', () => {
 
 // Export functions
 window.loadPastMatches = loadPastMatches;
+window.loadArchivedMatches = loadArchivedMatches;
 window.loadUpcomingMatches = loadUpcomingMatches;
 window.initCalendar = initCalendar;
 

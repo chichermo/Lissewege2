@@ -389,63 +389,6 @@ async function updateLeaguePosition() {
     }
 }
 
-async function updateRecentResults() {
-    const resultsGrid = document.getElementById('recentResultsGrid');
-    const resultsUpdate = document.getElementById('recentResultsLastUpdate');
-    if (!resultsGrid) return;
-
-    let results = [];
-    if (window.realFootballAPI) {
-        try {
-            const realResults = await window.realFootballAPI.getPastMatches(null, 20);
-            if (realResults && realResults.length > 0) {
-                results = filterPastMatches(realResults, 5);
-            }
-        } catch (error) {
-            console.warn('Real API results failed, using fallback:', error);
-        }
-    }
-
-    if (results.length === 0 && window.PAST_MATCHES) {
-        results = filterPastMatches(window.PAST_MATCHES, 5);
-    }
-
-    resultsGrid.innerHTML = '';
-    const teamName = window.APP_CONFIG?.team?.name || 'RFC Lissewege';
-    results.forEach(match => {
-        const date = new Date(match.date);
-        const isHome = match.homeTeam === teamName;
-        const opponent = isHome ? match.awayTeam : match.homeTeam;
-        const ourTeamLogo = window.getTeamLogo ? window.getTeamLogo(teamName) : '/images/logos/100b.jpeg';
-        const opponentLogo = window.getTeamLogo ? window.getTeamLogo(opponent) : '/images/logos/100b.jpeg';
-        const score = match.score && match.score.includes('-') ? match.score : '-- - --';
-
-        const item = document.createElement('div');
-        item.className = 'recent-result-card';
-        item.innerHTML = `
-            <div class="recent-result-date">${date.toLocaleDateString('nl-BE', { day: '2-digit', month: 'short' })}</div>
-            <div class="recent-result-teams">
-                <div class="recent-result-team">
-                    <img src="${ourTeamLogo}" alt="${teamName} logo">
-                    <span>${teamName}</span>
-                </div>
-                <span class="recent-result-score">${score}</span>
-                <div class="recent-result-team">
-                    <img src="${opponentLogo}" alt="${opponent} logo">
-                    <span>${opponent}</span>
-                </div>
-            </div>
-            <div class="recent-result-venue">${isHome ? 'Thuis' : 'Uit'}</div>
-        `;
-        resultsGrid.appendChild(item);
-    });
-
-    if (resultsUpdate) {
-        const now = new Date();
-        resultsUpdate.textContent = now.toLocaleString('nl-BE', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-    }
-}
-
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     const seasonLabel = document.getElementById('homeSeasonLabel');
@@ -456,7 +399,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNextMatchWidget();
     updateOtherMatches();
     updateLeaguePosition();
-    updateRecentResults();
 
     // Update countdown every minute
     setInterval(() => {
@@ -473,5 +415,4 @@ window.footballAPI = footballAPI;
 window.updateNextMatchWidget = updateNextMatchWidget;
 window.updateOtherMatches = updateOtherMatches;
 window.updateLeaguePosition = updateLeaguePosition;
-window.updateRecentResults = updateRecentResults;
 

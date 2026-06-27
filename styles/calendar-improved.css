@@ -477,3 +477,59 @@
         flex-direction: row-reverse;
     }
 }
+
+/* Seizoen archief */
+.season-archive {
+    margin: var(--space-8) 0;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md, 14px);
+    background: var(--surface);
+    overflow: hidden;
+}
+
+.season-archive-summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--dark-color);
+    list-style: none;
+    user-select: none;
+}
+
+.season-archive-summary::-webkit-details-marker {
+    display: none;
+}
+
+.season-archive-summary::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-left: auto;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    transition: transform 0.2s ease;
+}
+
+.season-archive[open] .season-archive-summary::after {
+    transform: rotate(180deg);
+}
+
+.season-archive-hint {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.season-archive-body {
+    padding: 0 var(--space-5) var(--space-5);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.season-archive-desc {
+    color: var(--text-light);
+    font-size: var(--text-sm);
+    margin: var(--space-4) 0;
+}

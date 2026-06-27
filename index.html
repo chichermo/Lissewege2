@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="nl">
 
 <head>
@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="styles/design-tokens.css">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/ticker.css">
+    <link rel="stylesheet" href="styles/sponsors-topbar.css">
     <link rel="stylesheet" href="styles/skeleton.css">
     <link rel="stylesheet" href="styles/modal.css">
     <link rel="stylesheet" href="styles/footer.css">
@@ -120,6 +121,14 @@
             </div>
         </div>
 
+        <div class="sponsors-topbar" aria-label="Onze partners">
+            <span class="sponsors-topbar-label">Partners</span>
+            <div class="sponsors-topbar-viewport">
+                <div class="sponsors-topbar-track" id="sponsorsTopbarTrack"></div>
+            </div>
+            <a href="#sponsors" class="sponsors-topbar-all">Alle sponsors <i class="fas fa-arrow-right"></i></a>
+        </div>
+
     </header>
 
     <!-- Main Content -->
@@ -135,7 +144,7 @@
                 <header class="home-dashboard-header">
                     <p class="home-eyebrow">Welkom bij RFC Lissewege</p>
                     <h1 class="home-dashboard-title">Club Dashboard</h1>
-                    <p class="home-dashboard-meta" id="homeSeasonLabel">Seizoen 2026-2027 · 4e Provinciale C West-Vlaanderen</p>
+                    <p class="home-dashboard-meta" id="homeSeasonLabel">Seizoen 2026-2027 Â· 4e Provinciale C West-Vlaanderen</p>
                 </header>
 
                 <section class="home-block home-block--featured" aria-labelledby="homeNextMatchTitle">
@@ -188,52 +197,10 @@
                 <section class="home-block" aria-labelledby="homeOtherMatchesTitle">
                     <div class="home-block-head">
                         <h2 id="homeOtherMatchesTitle"><i class="fas fa-calendar-week"></i> Komende Wedstrijden</h2>
+                        <a href="#kalender" class="home-block-link">Uitslagen &amp; kalender <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="other-matches-grid" id="otherMatchesGrid">
                         <!-- Matches will be populated by JavaScript -->
-                    </div>
-                </section>
-
-                <section class="home-block" aria-labelledby="homeResultsTitle">
-                    <div class="home-block-head">
-                        <h2 id="homeResultsTitle"><i class="fas fa-flag-checkered"></i> Recente Resultaten</h2>
-                        <span class="home-block-meta">Bijgewerkt: <span id="recentResultsLastUpdate">--</span></span>
-                    </div>
-                    <div class="recent-results-grid" id="recentResultsGrid">
-                        <!-- Results will be populated by JavaScript -->
-                    </div>
-                </section>
-
-                <section class="home-block" aria-labelledby="homePartnersTitle">
-                    <div class="home-block-head">
-                        <h2 id="homePartnersTitle"><i class="fas fa-handshake"></i> Onze Partners</h2>
-                        <a href="#sponsors" class="home-block-link">Alle sponsors <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    <div class="home-partners-grid">
-                        <div class="home-partner-logo">
-                            <img src="images/sponsors/Bossy.jpeg" alt="Bossypaint">
-                        </div>
-                        <div class="home-partner-logo">
-                            <img src="images/sponsors/Jovado.jpeg" alt="Jovado">
-                        </div>
-                        <div class="home-partner-logo">
-                            <img src="images/sponsors/LOGO tcd.jpeg" alt="KS Construct">
-                        </div>
-                        <div class="home-partner-logo">
-                            <img src="images/sponsors/Den ouden toren.jpeg" alt="Den Ouden Toren">
-                        </div>
-                        <div class="home-partner-logo">
-                            <img src="images/sponsors/1 dauwens-5.jpeg" alt="Dauwens">
-                        </div>
-                        <div class="home-partner-logo">
-                            <img src="images/sponsors/blauwe toren klein.jpeg" alt="Blauwe Toren">
-                        </div>
-                        <div class="home-partner-logo">
-                            <img src="images/sponsors/max nieuw.jpeg" alt="MAX">
-                        </div>
-                        <div class="home-partner-logo">
-                            <img src="images/sponsors/LOGO FRS (003).jpeg" alt="FRS">
-                        </div>
                     </div>
                 </section>
 
@@ -409,7 +376,7 @@
                                 mogelijkheid om bij ons te komen voetballen. Onze vereniging staat bekend om haar
                                 familiaire sfeer en gezelligheid, maar ook om haar sportieve prestaties.</p>
                             <p>In de beginjaren speelde de club voornamelijk vriendschappelijke wedstrijden tegen andere
-                                lokale teams. Maar de club groeide snel en begon deel te nemen aan officiële
+                                lokale teams. Maar de club groeide snel en begon deel te nemen aan officiÃ«le
                                 competities. Door de jaren heen heeft RFC Lissewege een rijke geschiedenis opgebouwd met
                                 verschillende kampioenschappen en promoties.</p>
                         </div>
@@ -893,7 +860,7 @@
                             <h3>Nieuw U15 Team voor Seizoen 2025-2026</h3>
                             <p>RFC Lissewege gaat volgend seizoen normaal van start met een U15 ploeg. Hiervoor zoeken
                                 we nog enkele spelers van geboortejaar 2011, 2012 of 2013 zodat de kern voldoende ruim
-                                is. Heb je interesse, stuur me gerust een privébericht. rfcl@telenet.be of 0477 792 803
+                                is. Heb je interesse, stuur me gerust een privÃ©bericht. rfcl@telenet.be of 0477 792 803
                             </p>
                             <a href="#contact" class="news-link">Lees meer <i class="fas fa-arrow-right"></i></a>
                         </div>
@@ -1035,19 +1002,32 @@
                     </div>
                 </div>
 
-                <!-- Past Matches Section -->
+                <!-- Past Matches â€” huidig seizoen -->
                 <div class="calendar-events-section">
                     <h3 class="calendar-events-title">
-                        <i class="fas fa-history"></i>
-                        Resultaten - Afgelopen Wedstrijden
+                        <i class="fas fa-flag-checkered"></i>
+                        Recente Resultaten â€” Seizoen 2026/2027
                     </h3>
                     <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem; font-size: 0.9rem;">
-                        Seizoen 2026/2027 - Laatste update: <span id="calendarLastUpdate">--</span>
+                        Laatste update: <span id="calendarLastUpdate">--</span>
                     </p>
                     <div class="calendar-grid-modern" id="pastMatchesGrid">
                         <!-- Will be populated by JavaScript -->
                     </div>
                 </div>
+
+                <!-- Archief vorige seizoenen -->
+                <details class="season-archive">
+                    <summary class="season-archive-summary">
+                        <i class="fas fa-archive"></i>
+                        Archief â€” Seizoen 2025/2026
+                        <span class="season-archive-hint">Klik om te openen</span>
+                    </summary>
+                    <div class="season-archive-body">
+                        <p class="season-archive-desc">Alle uitslagen van het afgelopen seizoen.</p>
+                        <div class="calendar-grid-modern" id="archivedMatchesGrid"></div>
+                    </div>
+                </details>
 
                 <!-- Upcoming Matches Section -->
                 <div class="calendar-events-section">
@@ -1056,7 +1036,7 @@
                         Komende Wedstrijden
                     </h3>
                     <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem; font-size: 0.9rem;">
-                        Seizoen 2026/2027 - 4e Provinciale C West-Vlaanderen · <span id="upcomingLastUpdate">--</span>
+                        Seizoen 2026/2027 - 4e Provinciale C West-Vlaanderen Â· <span id="upcomingLastUpdate">--</span>
                     </p>
                     <div class="calendar-grid-modern" id="upcomingMatchesGrid">
                         <!-- Will be populated by JavaScript -->
@@ -1093,7 +1073,7 @@
                             </div>
                             <h2 class="membership-title">Jeugdlidmaatschap</h2>
                             <div class="membership-price-wrapper">
-                                <span class="membership-price">€200</span>
+                                <span class="membership-price">â‚¬200</span>
                                 <span class="membership-period">per seizoen</span>
                             </div>
                         </div>
@@ -1363,7 +1343,7 @@
                                 <h3>Kevin, Stefaan, Bjarne, Ferdi, Robin</h3>
                                 <p class="member-role">Jeugdtrainer</p>
                                 <p class="member-description">De jeugdtrainer is verantwoordelijk voor het trainen van
-                                    de jeugdspelers in verschillende leeftijdscategorieën. Hij/zij heeft kennis van de
+                                    de jeugdspelers in verschillende leeftijdscategorieÃ«n. Hij/zij heeft kennis van de
                                     ontwikkeling en behoeften van jeugdspelers en weet hen op een leuke en uitdagende
                                     manier te laten groeien als voetballers.</p>
                             </div>
@@ -1490,7 +1470,7 @@
                     <div class="sponsor-logo-item">
                         <a href="https://visitlissewege.be/cafe-den-ouden-toren-lissewege/" target="_blank" rel="noopener noreferrer" class="sponsor-link">
                             <div class="sponsor-logo-container">
-                                <img src="images/sponsors/Den ouden toren.jpeg" alt="Café Den Ouden Toren"
+                                <img src="images/sponsors/Den ouden toren.jpeg" alt="CafÃ© Den Ouden Toren"
                                     class="sponsor-image">
                             </div>
                         </a>
@@ -1768,165 +1748,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Mobile Sponsors Banner -->
-                <div class="sponsors-mobile-banner">
-                    <div class="sponsors-mobile-track">
-                        <!-- Primera ronda de sponsors -->
-                        <a href="https://www.bossypaints.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Bossy.jpeg" alt="Bossypain" loading="eager" decoding="async" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'120\'%3E%3Crect width=\'120\' height=\'120\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\' font-family=\'Arial\' font-size=\'12\'%3EBossypain%3C/text%3E%3C/svg%3E';">
-                        </a>
-                        <a href="https://www.jovado.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Jovado.jpeg" alt="KOFFIE JOVADO" loading="eager" decoding="async" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'120\'%3E%3Crect width=\'120\' height=\'120\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\' font-family=\'Arial\' font-size=\'12\'%3EJovado%3C/text%3E%3C/svg%3E';">
-                        </a>
-                        <a href="https://ks-construct-kh.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/LOGO tcd.jpeg" alt="KS CONSTRUCT" loading="eager" decoding="async" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'120\'%3E%3Crect width=\'120\' height=\'120\' fill=\'%23f0f0f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\' font-family=\'Arial\' font-size=\'12\'%3EKS CONSTRUCT%3C/text%3E%3C/svg%3E';">
-                        </a>
-                        <a href="https://www.facebook.com/dimitri.coopman.7/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/logo dimitri.jpeg" alt="COOPMAN DIMITRI">
-                        </a>
-                        <a href="https://visitlissewege.be/cafe-den-ouden-toren-lissewege/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Den ouden toren.jpeg" alt="Café Den Ouden Toren">
-                        </a>
-                        <a href="https://dauwens.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/1 dauwens-5.jpeg" alt="SCHILDERWERKEN DAUWENS">
-                        </a>
-                        <a href="https://denieuweblauwetoren.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/blauwe toren klein.jpeg" alt="DE NIEUWE BLAUWE TOREN">
-                        </a>
-                        <a href="https://voetbalschool-legein.webnode.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/voetbalschool_Devriendt_Logo-04.jpeg" alt="VOETBALSCHOOL DEVRIENDT-LEBEIN">
-                        </a>
-                        <a href="https://www.facebook.com/p/MAX-dak-en-schrijnwerken-100057594483544/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/max nieuw.jpeg" alt="MAX' DAK- EN SCHRIJNWERKEN">
-                        </a>
-                        <a href="https://www.terdoest.be/nl/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/jenko  terdoest.jpeg" alt="Hostellerie Ter Doest">
-                        </a>
-                        <a href="https://staelen.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Logo_Staelen_Nick_opt-768x513.png" alt="Staelen Nick">
-                        </a>
-                        <a href="https://www.facebook.com/p/Cafe-De-Bolle-100057068485628/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/de bolle.jpeg" alt="Cafe De Bolle">
-                        </a>
-                        <a href="https://www.google.com/search?q=Opti-Clean+ruitenwasserij+Brugge" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/opticlean.jpeg" alt="RUITENWASSERIJ BVBA OPTI-CLEAN">
-                        </a>
-                        <a href="https://nl.flandersroadservices.com/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/LOGO FRS (003).jpeg" alt="Flanders Road Services">
-                        </a>
-                        <a href="https://www.contrast-interieur.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Logo_Contrast_Interieur.png" alt="CONTRAST">
-                        </a>
-                        <a href="https://www.google.com/search?q=Savels+VDB+Belgium" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/22 SavelVDB_WitTransparant (002)-4.jpeg" alt="SAVELS - VDB">
-                        </a>
-                        <a href="https://www.facebook.com/p/Blikvanger-Photography-100063898729913/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/blikvanger.jpeg" alt="Blikvanger Photography">
-                        </a>
-                        <a href="https://bizzy.org/nl/be/0801197630/algemeen-schrijnwerk-cedric-dellevoet" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/LOGO tcd.jpeg" alt="CEDRIC DELLEVOET">
-                        </a>
-                        <a href="https://slotenmakerbg.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/BG_Sleutel-Logo-2.png" alt="BG Sleutel">
-                        </a>
-                        <a href="https://bistrodekip.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/bistro de kip.jpeg" alt="De Kip">
-                        </a>
-                        <a href="https://www.facebook.com/p/Lissewege-Express-100069385129828/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/23 Lissewege Express.jpeg" alt="Lissewege Express">
-                        </a>
-                        <a href="https://www.panos.be/nl" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/panos.jpeg" alt="Panos">
-                        </a>
-                        <a href="https://www.ecs.be/nl" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/ecs.jpeg" alt="ECS Transport">
-                        </a>
-                        <a href="https://www.facebook.com/pages/De%20Coif/449152215136697/about/?ref=page_internal" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/26 de coif.jpeg" alt="Coiffeur de CoisDe Haan">
-                        </a>
-                        <a href="https://www.inforegio.be/fietsen-bikeworld-knokke-heist" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/bikeworld.jpeg" alt="BIKE WORLD">
-                        </a>
-                        <a href="https://www.kranenverheye.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/D Verheye-3.jpeg" alt="VERHEYE DANNY KRAANWERKEN">
-                        </a>
-                        <a href="https://belladerma.store/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/bella.jpeg" alt="BellaDerma">
-                        </a>
-                        <a href="https://tropicana.be/nl-be/home" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/tropicana-3.jpeg" alt="Tropicana fruitsap">
-                        </a>
-                        <a href="https://www.bobosland.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/logo bobo-s land (002).jpeg" alt="bobosland">
-                        </a>
-                        <a href="https://www.passeviet.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/passeviet-logo.jpeg" alt="Passeviet">
-                        </a>
-                        <a href="https://tennisclubduinbergen.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/27 ASCD zond achter.jpeg" alt="tennis - padel duinbergen">
-                        </a>
-                        <a href="https://www.facebook.com/lifecoachvero/?locale=nl_NL" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/audry vaesen.jpeg" alt="AUDREY VAESEN">
-                        </a>
-                        <a href="https://schoonheidsinstituutonyx.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Onyx.jpeg" alt="ONYX permanente make-up">
-                        </a>
-                        <a href="https://www.facebook.com/p/Simons-Santos-BVBA-100063611467554/?locale=nl_BE" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/simon santos.jpeg" alt="Transport Simon-Santos">
-                        </a>
-                        <a href="https://optiekdelrue.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Delreu.jpeg" alt="OPTIEK DELRUE">
-                        </a>
-                        <a href="https://www.beautyandcareluna.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Luna VB.jpeg" alt="Luna Beauty Care">
-                        </a>
-                        <a href="https://www.instagram.com/passionnailsbeautysalon/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Kimberly.jpeg" alt="Passion NAILS & BEAUTY Kimberly Lootens">
-                        </a>
-                        <a href="https://bakkerij-putje.com/putje/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/t putje.jpeg" alt="Bakkerij 't putje">
-                        </a>
-                        <a href="https://ks-construct-kh.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Kenzie.jpeg" alt="Kenzie">
-                        </a>
-                        <a href="https://www.qualitec.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Martens-Talitha-crew-2019-6zww-40x60.jpeg" alt="Martens Talitha">
-                        </a>
-                        <!-- Duplicados para scroll infinito -->
-                        <a href="https://www.bossypaints.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Bossy.jpeg" alt="Bossypain">
-                        </a>
-                        <a href="https://www.jovado.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Jovado.jpeg" alt="KOFFIE JOVADO">
-                        </a>
-                        <a href="https://ks-construct-kh.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/LOGO tcd.jpeg" alt="KS CONSTRUCT">
-                        </a>
-                        <a href="https://www.facebook.com/dimitri.coopman.7/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/logo dimitri.jpeg" alt="COOPMAN DIMITRI">
-                        </a>
-                        <a href="https://visitlissewege.be/cafe-den-ouden-toren-lissewege/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/Den ouden toren.jpeg" alt="Café Den Ouden Toren">
-                        </a>
-                        <a href="https://dauwens.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/1 dauwens-5.jpeg" alt="SCHILDERWERKEN DAUWENS">
-                        </a>
-                        <a href="https://denieuweblauwetoren.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/blauwe toren klein.jpeg" alt="DE NIEUWE BLAUWE TOREN">
-                        </a>
-                        <a href="https://voetbalschool-legein.webnode.be/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/voetbalschool_Devriendt_Logo-04.jpeg" alt="VOETBALSCHOOL DEVRIENDT-LEBEIN">
-                        </a>
-                        <a href="https://www.facebook.com/p/MAX-dak-en-schrijnwerken-100057594483544/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/max nieuw.jpeg" alt="MAX' DAK- EN SCHRIJNWERKEN">
-                        </a>
-                        <a href="https://www.terdoest.be/nl/" target="_blank" rel="noopener noreferrer" class="sponsor-mobile-item">
-                            <img src="images/sponsors/jenko  terdoest.jpeg" alt="Hostellerie Ter Doest">
-                        </a>
-                    </div>
-                </div>
-                
+
                 <div class="sponsor-cta">
                     <p>Wil je sponsor worden van R.F.C. Lissewege?</p>
                     <a href="#contact" class="btn-new btn-new-accent">
@@ -1950,7 +1772,7 @@
                     <div class="competition-hero-main">
                         <span class="competition-hero-level">Niveau 4</span>
                         <h3 class="competition-hero-title">4e Provinciale C</h3>
-                        <p class="competition-hero-sub">West-Vlaanderen · Mannen · KBVB</p>
+                        <p class="competition-hero-sub">West-Vlaanderen Â· Mannen Â· KBVB</p>
                     </div>
                     <div class="competition-hero-stats">
                         <div class="competition-hero-stat">
@@ -1988,7 +1810,7 @@
                 <!-- Province pyramid -->
                 <div class="province-info">
                     <h3>West-Vlaanderen Competitie Piramide</h3>
-                    <p>Van hoog naar laag — onze club speelt in de 4e Provinciale C:</p>
+                    <p>Van hoog naar laag â€” onze club speelt in de 4e Provinciale C:</p>
                     <div class="league-pyramid">
                         <div class="pyramid-tier tier-1"><span>1e Provinciale</span></div>
                         <div class="pyramid-tier tier-2"><span>2e Provinciale A</span><span>2e Provinciale B</span></div>
@@ -1996,7 +1818,7 @@
                         <div class="pyramid-tier tier-4">
                             <span>4e Prov. A</span>
                             <span>4e Prov. B</span>
-                            <span class="current">4e Prov. C ← RFC Lissewege</span>
+                            <span class="current">4e Prov. C â† RFC Lissewege</span>
                             <span>4e Prov. D</span>
                             <span>4e Prov. E</span>
                         </div>
@@ -2041,7 +1863,7 @@
                         <i class="fas fa-lock"></i>
                     </div>
                     <h3>Toegang voor Leden</h3>
-                    <p>Log in om toegang te krijgen tot het exclusieve leden gebied van de club. Hier vind je privé informatie, documenten en speciale bronnen.</p>
+                    <p>Log in om toegang te krijgen tot het exclusieve leden gebied van de club. Hier vind je privÃ© informatie, documenten en speciale bronnen.</p>
                     <div class="login-buttons">
                         <button class="btn-login btn-login-primary" onclick="window.membersLogin.openLoginModal()">
                             <i class="fas fa-sign-in-alt"></i>
@@ -2098,7 +1920,7 @@
                         </button>
                         <button class="members-tab admin-only" data-section="finances" style="display: none;">
                             <i class="fas fa-euro-sign"></i>
-                            <span>Financiën</span>
+                            <span>FinanciÃ«n</span>
                         </button>
                         <button class="members-tab member-only" data-section="calendar">
                             <i class="fas fa-calendar-alt"></i>
@@ -2176,7 +1998,7 @@
                                     <i class="fas fa-file-contract"></i>
                                 </div>
                                 <h4>Documentatie</h4>
-                                <p>Beheer officiële documenten, notulen, reglementen en normen van de club.</p>
+                                <p>Beheer officiÃ«le documenten, notulen, reglementen en normen van de club.</p>
                                 <button class="btn-admin-action" onclick="adminManager.openDocuments()">
                                     Documenten Beheren
                                 </button>
@@ -2197,10 +2019,10 @@
                                 <div class="admin-card-icon">
                                     <i class="fas fa-euro-sign"></i>
                                 </div>
-                                <h4>Financiën</h4>
-                                <p>Beheer budgetten, betalingen, facturen en financiële staten.</p>
+                                <h4>FinanciÃ«n</h4>
+                                <p>Beheer budgetten, betalingen, facturen en financiÃ«le staten.</p>
                                 <button class="btn-admin-action" onclick="window.membersSections?.loadSection('finances')">
-                                    Financiën Bekijken
+                                    FinanciÃ«n Bekijken
                                 </button>
                             </div>
                         </div>
@@ -2498,20 +2320,20 @@
                     <div id="section-finances" class="members-section-content admin-only" style="display: none;">
                         <div class="section-header-inline">
                             <h3>Financieel Beheer</h3>
-                            <p>Budgetten, betalingen en financiële overzichten</p>
+                            <p>Budgetten, betalingen en financiÃ«le overzichten</p>
                         </div>
                         <div class="finances-dashboard">
                             <div class="finance-card">
                                 <h4>Jaarbudget</h4>
-                                <div class="finance-amount">€25,000</div>
+                                <div class="finance-amount">â‚¬25,000</div>
                             </div>
                             <div class="finance-card">
                                 <h4>Maandelijkse Uitgaven</h4>
-                                <div class="finance-amount">€2,500</div>
+                                <div class="finance-amount">â‚¬2,500</div>
                             </div>
                             <div class="finance-card">
                                 <h4>Maandelijkse Inkomsten</h4>
-                                <div class="finance-amount">€3,200</div>
+                                <div class="finance-amount">â‚¬3,200</div>
                             </div>
                         </div>
                     </div>
@@ -2522,7 +2344,7 @@
                             <h3>Clubkalender</h3>
                             <p>Evenementen, trainingen en wedstrijden</p>
                         </div>
-                        <!-- Kalender wordt geïntegreerd -->
+                        <!-- Kalender wordt geÃ¯ntegreerd -->
                     </div>
 
                     <!-- Forum Section -->
@@ -2531,7 +2353,7 @@
                             <h3>Clubforum</h3>
                             <p>Discussies en nieuws</p>
                         </div>
-                        <!-- Forum wordt geïntegreerd -->
+                        <!-- Forum wordt geÃ¯ntegreerd -->
                     </div>
                 </div>
             </div>
@@ -2753,13 +2575,13 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Club Winkel</h2>
-                    <p>Officiële merchandise en uitrusting van RFC Lissewege</p>
+                    <p>OfficiÃ«le merchandise en uitrusting van RFC Lissewege</p>
                 </div>
 
                 <div class="shop-header">
                     <div class="shop-filters">
                         <select id="shopCategoryFilter" class="form-select">
-                            <option value="all">Alle Categorieën</option>
+                            <option value="all">Alle CategorieÃ«n</option>
                             <option value="shirts">Shirts</option>
                             <option value="equipment">Uitrusting</option>
                             <option value="merchandise">Merchandise</option>
@@ -2784,7 +2606,7 @@
                 <div class="cart-footer">
                     <div class="cart-total">
                         <span>Totaal:</span>
-                        <span id="shopCartTotal">€0.00</span>
+                        <span id="shopCartTotal">â‚¬0.00</span>
                     </div>
                     <button id="shopCheckoutBtn" class="btn-primary" style="width: 100%;">
                         <i class="fas fa-shopping-cart"></i> Afrekenen
@@ -2981,74 +2803,6 @@
                     </div>
                 </div>
 
-                <!-- Sponsor Carousel -->
-                <div class="footer-sponsors">
-                    <h3>Onze Partners</h3>
-                    <div class="sponsors-track">
-                        <!-- Original Items -->
-                        <a href="https://www.bossypaints.be/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/Bossy.jpeg" alt="Bossypain" loading="lazy">
-                        </a>
-                        <a href="https://www.jovado.be/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/Jovado.jpeg" alt="KOFFIE JOVADO" loading="lazy">
-                        </a>
-                        <a href="https://ks-construct-kh.be/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/LOGO%20tcd.jpeg" alt="KS CONSTRUCT" loading="lazy">
-                        </a>
-                        <a href="https://www.facebook.com/dimitri.coopman.7/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/logo%20dimitri.jpeg" alt="COOPMAN DIMITRI" loading="lazy">
-                        </a>
-                        <a href="https://visitlissewege.be/cafe-den-ouden-toren-lissewege/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/Den%20ouden%20toren.jpeg" alt="Café Den Ouden Toren" loading="lazy">
-                        </a>
-                        <a href="https://dauwens.be/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/1%20dauwens-5.jpeg" alt="SCHILDERWERKEN DAUWENS" loading="lazy">
-                        </a>
-                        <a href="https://denieuweblauwetoren.be/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/blauwe%20toren%20klein.jpeg" alt="DE NIEUWE BLAUWE TOREN" loading="lazy">
-                        </a>
-                        <a href="https://voetbalschool-legein.webnode.be/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/voetbalschool_Devriendt_Logo-04.jpeg" alt="VOETBALSCHOOL DEVRIENDT-LEBEIN" loading="lazy">
-                        </a>
-                        <a href="https://www.facebook.com/p/MAX-dak-en-schrijnwerken-100057594483544/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/max%20nieuw.jpeg" alt="MAX' DAK- EN SCHRIJNWERKEN" loading="lazy">
-                        </a>
-                        <a href="https://www.terdoest.be/nl/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/jenko%20%20terdoest.jpeg" alt="Hostellerie Ter Doest" loading="lazy">
-                        </a>
-                        <!-- Duplicates for infinite scroll -->
-                        <a href="https://www.bossypaints.be/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/Bossy.jpeg" alt="Bossypain" loading="lazy">
-                        </a>
-                        <a href="https://www.jovado.be/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/Jovado.jpeg" alt="KOFFIE JOVADO" loading="lazy">
-                        </a>
-                        <a href="https://ks-construct-kh.be/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/LOGO%20tcd.jpeg" alt="KS CONSTRUCT" loading="lazy">
-                        </a>
-                        <a href="https://www.facebook.com/dimitri.coopman.7/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/logo%20dimitri.jpeg" alt="COOPMAN DIMITRI" loading="lazy">
-                        </a>
-                        <a href="https://visitlissewege.be/cafe-den-ouden-toren-lissewege/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/Den%20ouden%20toren.jpeg" alt="Café Den Ouden Toren" loading="lazy">
-                        </a>
-                        <a href="https://dauwens.be/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/1%20dauwens-5.jpeg" alt="SCHILDERWERKEN DAUWENS" loading="lazy">
-                        </a>
-                        <a href="https://denieuweblauwetoren.be/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/blauwe%20toren%20klein.jpeg" alt="DE NIEUWE BLAUWE TOREN" loading="lazy">
-                        </a>
-                        <a href="https://voetbalschool-legein.webnode.be/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/voetbalschool_Devriendt_Logo-04.jpeg" alt="VOETBALSCHOOL DEVRIENDT-LEBEIN" loading="lazy">
-                        </a>
-                        <a href="https://www.facebook.com/p/MAX-dak-en-schrijnwerken-100057594483544/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/max%20nieuw.jpeg" alt="MAX' DAK- EN SCHRIJNWERKEN" loading="lazy">
-                        </a>
-                        <a href="https://www.terdoest.be/nl/" target="_blank" rel="noopener noreferrer" class="sponsor-item">
-                            <img src="images/sponsors/jenko%20%20terdoest.jpeg" alt="Hostellerie Ter Doest" loading="lazy">
-                        </a>
-                    </div>
-                </div>
             </div>
 
             <div class="footer-bottom">
@@ -3185,6 +2939,7 @@
     <script src="scripts/particles.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/navbar.js"></script>
+    <script src="scripts/sponsors-marquee.js"></script>
     <script src="scripts/api-config.js"></script>
     <script src="scripts/football-api-real.js"></script>
     <script src="scripts/real-matches-data.js"></script>
