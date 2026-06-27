@@ -17,12 +17,19 @@ const breadcrumbMap = {
     'competities': { title: 'Competities', icon: 'fas fa-trophy' },
     'rivalen': { title: 'Rivalen', icon: 'fas fa-fist-raised' },
     'members': { title: 'Leden', icon: 'fas fa-id-card' },
-    'contact': { title: 'Contact', icon: 'fas fa-envelope' }
+    'contact': { title: 'Contact', icon: 'fas fa-envelope' },
+    'statistieken': { title: 'Statistieken', icon: 'fas fa-chart-bar' },
+    'reserveringen': { title: 'Reserveringen', icon: 'fas fa-calendar-check' },
+    'winkel': { title: 'Clubwinkel', icon: 'fas fa-shopping-bag' },
+    'notificaties': { title: 'Notificaties', icon: 'fas fa-bell' },
+    'geschiedenis': { title: 'Geschiedenis', icon: 'fas fa-landmark' }
 };
+
+let lastBreadcrumbPage = null;
 
 function initBreadcrumbs() {
     const mainContent = document.querySelector('.main-content');
-    if (!mainContent) return;
+    if (!mainContent || document.getElementById('breadcrumbs')) return;
 
     // Create breadcrumbs container
     const breadcrumbsHTML = `
@@ -42,42 +49,32 @@ function updateBreadcrumbs(pageId) {
     const breadcrumbsList = document.getElementById('breadcrumbsList');
     if (!breadcrumbsList) return;
 
-    if (pageId === 'home') {
+    if (pageId === lastBreadcrumbPage) return;
+    lastBreadcrumbPage = pageId;
+
+    if (pageId === 'home' || !pageId) {
         if (breadcrumbs) breadcrumbs.style.display = 'none';
+        breadcrumbsList.innerHTML = '';
+        return;
+    }
+
+    const currentPage = breadcrumbMap[pageId];
+    if (!currentPage) {
+        if (breadcrumbs) breadcrumbs.style.display = 'none';
+        breadcrumbsList.innerHTML = '';
         return;
     }
 
     if (breadcrumbs) breadcrumbs.style.display = 'block';
 
-    const currentPage = breadcrumbMap[pageId];
-    if (!currentPage) return;
-
     breadcrumbsList.innerHTML = `
         <li class="breadcrumbs-item">
-            <a href="#home" class="breadcrumbs-link" data-section="home">
-                <i class="fas fa-home breadcrumbs-icon"></i>
-                <span>Home</span>
-            </a>
-        </li>
-        <li class="breadcrumbs-separator">
-            <i class="fas fa-chevron-right"></i>
-        </li>
-        <li class="breadcrumbs-item">
-            <span class="breadcrumbs-link active">
+            <span class="breadcrumbs-link active" aria-current="page">
                 <i class="${currentPage.icon} breadcrumbs-icon"></i>
                 <span>${currentPage.title}</span>
             </span>
         </li>
     `;
-
-    // Add click handler for home link
-    const homeLink = breadcrumbsList.querySelector('a[href="#home"]');
-    if (homeLink) {
-        homeLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            showPage('home');
-        });
-    }
 }
 
 // Initialize on DOM ready
@@ -87,18 +84,12 @@ if (document.readyState === 'loading') {
     initBreadcrumbs();
 }
 
-// Update breadcrumbs when page changes
+// Update breadcrumbs when page changes via custom event
 document.addEventListener('pageChanged', (e) => {
     if (e.detail && e.detail.pageId) {
         updateBreadcrumbs(e.detail.pageId);
     }
 });
 
-// Also listen for direct showPage calls
-setInterval(() => {
-    const activePage = document.querySelector('.page-section.active');
-    if (activePage && activePage.id) {
-        updateBreadcrumbs(activePage.id);
-    }
-}, 500);
+window.updateBreadcrumbs = updateBreadcrumbs;
 

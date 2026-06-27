@@ -61,6 +61,12 @@ function showPage(pageId) {
         
         // Update active sidebar link
         updateActiveSidebarLink(pageId);
+
+        // Breadcrumbs + nav state for all navigation paths
+        if (typeof window.updateBreadcrumbs === 'function') {
+            window.updateBreadcrumbs(pageId);
+        }
+        document.dispatchEvent(new CustomEvent('pageChanged', { detail: { pageId } }));
         
         // Initialize section-specific functionality
         initializeSectionFeatures(pageId);
@@ -210,9 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
         showPage(targetId);
         
-        // Trigger page change event for other scripts
-        document.dispatchEvent(new CustomEvent('pageChanged', { detail: { pageId: targetId } }));
-        
         // Close mobile menu if open
         if (sidebar && sidebar.classList.contains('active')) {
             sidebar.classList.remove('active');
@@ -235,7 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             e.preventDefault();
             showPage(targetId);
-            document.dispatchEvent(new CustomEvent('pageChanged', { detail: { pageId: targetId } }));
         });
     });
 
@@ -243,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const hash = window.location.hash.substring(1);
         if (hash && document.getElementById(hash)) {
             showPage(hash);
-            document.dispatchEvent(new CustomEvent('pageChanged', { detail: { pageId: hash } }));
         }
     });
     
