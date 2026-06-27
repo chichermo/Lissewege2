@@ -31,7 +31,8 @@ const APP_CONFIG = {
         apiFootball: 161 // ID de liga en API-Football (Provincial - West-Vlaanderen)
     },
     seasons: {
-        apiFootball: 2024 // Temporada (2024 = 2024/2025)
+        apiFootball: 2026,
+        label: '2026-2027'
     },
     apiFootballProxy: '/api/football', // Proxy serverless para proteger la API key
     refreshIntervals: {

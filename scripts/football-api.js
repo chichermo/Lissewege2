@@ -16,17 +16,39 @@ class FootballAPI {
 
     // REAL DATA - 4e Provinciale C West-Vlaanderen 2025/2026
     async getNextMatch() {
-        // Próximo partido real: 18/01/2026 RFC Lissewege vs VKSO Zerkegem B
+        const upcoming = this.getFilteredUpcoming();
+        if (!upcoming.length) return null;
+        const m = upcoming[0];
         return {
-            homeTeam: 'RFC Lissewege',
-            awayTeam: 'VKSO Zerkegem B',
-            date: '2026-01-18',
-            time: '15:00',
+            homeTeam: m.homeTeam,
+            awayTeam: m.awayTeam,
+            date: m.date,
+            time: m.time || '15:00',
             category: '4e Provinciale C',
-            venue: 'home',
-            address: 'Pol Dhondtstraat 70, 8380 Lissewege',
+            venue: m.venue,
+            address: m.venue === 'home' ? 'Pol Dhondtstraat 70, 8380 Lissewege' : `${m.awayTeam === 'RFC Lissewege' ? m.homeTeam : m.awayTeam} Stadion`,
             competition: '4e Provinciale C West-Vlaanderen'
         };
+    }
+
+    getFilteredUpcoming() {
+        const raw = Array.isArray(window.UPCOMING_MATCHES) ? window.UPCOMING_MATCHES : [];
+        const today = new Date().toISOString().slice(0, 10);
+        return raw
+            .filter(m => m.date >= today)
+            .sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+
+    async getUpcomingMatches(count = 10) {
+        return this.getFilteredUpcoming().slice(0, count).map(m => ({
+            date: m.date,
+            time: m.time || '15:00',
+            category: '4e Provinciale C',
+            homeTeam: m.homeTeam,
+            awayTeam: m.awayTeam,
+            venue: m.venue,
+            address: m.venue === 'home' ? 'Pol Dhondtstraat 70, 8380 Lissewege' : 'Tegenstander Stadion'
+        }));
     }
 
     async getLeagueStandings() {
@@ -42,75 +64,6 @@ class FootballAPI {
             goalsAgainst: 24,
             points: 21
         };
-    }
-
-    async getUpcomingMatches(count = 10) {
-        // REAL DATA - Próximos partidos 4e Provinciale C West-Vlaanderen 2025/2026
-        return [
-            {
-                date: '2026-01-18',
-                time: '15:00',
-                category: '4e Provinciale C',
-                homeTeam: 'RFC Lissewege',
-                awayTeam: 'VKSO Zerkegem B',
-                venue: 'home',
-                address: 'Pol Dhondtstraat 70, 8380 Lissewege'
-            },
-            {
-                date: '2026-01-25',
-                time: '14:30',
-                category: '4e Provinciale C',
-                homeTeam: 'KSK Steenbrugge',
-                awayTeam: 'RFC Lissewege',
-                venue: 'away',
-                address: 'KSK Steenbrugge Stadion'
-            },
-            {
-                date: '2026-02-01',
-                time: '15:00',
-                category: '4e Provinciale C',
-                homeTeam: 'RFC Lissewege',
-                awayTeam: 'KFC Heist B',
-                venue: 'home',
-                address: 'Pol Dhondtstraat 70, 8380 Lissewege'
-            },
-            {
-                date: '2026-02-07',
-                time: '19:30',
-                category: '4e Provinciale C',
-                homeTeam: 'KSV Bredene B',
-                awayTeam: 'RFC Lissewege',
-                venue: 'away',
-                address: 'KSV Bredene Stadion'
-            },
-            {
-                date: '2026-02-15',
-                time: '15:00',
-                category: '4e Provinciale C',
-                homeTeam: 'RFC Lissewege',
-                awayTeam: 'VVC Beernem B',
-                venue: 'home',
-                address: 'Pol Dhondtstraat 70, 8380 Lissewege'
-            },
-            {
-                date: '2026-02-22',
-                time: '15:00',
-                category: '4e Provinciale C',
-                homeTeam: 'KVV Aartrijke',
-                awayTeam: 'RFC Lissewege',
-                venue: 'away',
-                address: 'KVV Aartrijke Stadion'
-            },
-            {
-                date: '2026-03-01',
-                time: '15:00',
-                category: '4e Provinciale C',
-                homeTeam: 'RFC Lissewege',
-                awayTeam: 'KFC Damme',
-                venue: 'home',
-                address: 'Pol Dhondtstraat 70, 8380 Lissewege'
-            }
-        ];
     }
 }
 
@@ -147,6 +100,23 @@ function normalizeMatch(rawMatch) {
 // Initialize API
 const footballAPI = new FootballAPI();
 
+function filterFutureMatches(matches) {
+    const today = new Date().toISOString().slice(0, 10);
+    return (matches || [])
+        .map(m => normalizeMatch(m))
+        .filter(m => m && m.date >= today)
+        .sort((a, b) => new Date(a.date) - new Date(b.date));
+}
+
+function filterPastMatches(matches, count = 5) {
+    const today = new Date().toISOString().slice(0, 10);
+    return (matches || [])
+        .map(m => normalizeMatch(m))
+        .filter(m => m && m.date < today)
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0, count);
+}
+
 // Update Next Match Widget
 async function updateNextMatchWidget() {
     try {
@@ -154,9 +124,10 @@ async function updateNextMatchWidget() {
         let match = null;
         if (window.realFootballAPI) {
             try {
-                const realMatches = await window.realFootballAPI.getUpcomingMatches(null, 1);
-                if (realMatches && realMatches.length > 0) {
-                    const realMatch = realMatches[0];
+                const realMatches = await window.realFootballAPI.getUpcomingMatches(null, 15);
+                const future = filterFutureMatches(realMatches);
+                if (future.length > 0) {
+                    const realMatch = future[0];
                     match = {
                         homeTeam: realMatch.homeTeam,
                         homeTeamId: realMatch.homeTeamId,
@@ -178,8 +149,7 @@ async function updateNextMatchWidget() {
         if (!match) {
             match = await footballAPI.getNextMatch();
         }
-
-        const matchDate = document.getElementById('matchDate');
+        if (!match) return;
         const matchTime = document.getElementById('matchTime');
         const opponentName = document.getElementById('opponentName');
         const matchLocation = document.getElementById('matchLocation');
@@ -208,7 +178,7 @@ async function updateNextMatchWidget() {
         }
 
         if (matchCategory) {
-            matchCategory.textContent = match.category || 'U13';
+            matchCategory.textContent = match.category || '4e Prov C';
         }
 
         if (locationType) {
@@ -283,10 +253,9 @@ async function updateOtherMatches() {
         let matches = null;
         if (window.realFootballAPI) {
             try {
-                matches = await window.realFootballAPI.getUpcomingMatches(null, 10);
+                matches = await window.realFootballAPI.getUpcomingMatches(null, 15);
                 if (matches) {
-                    // Transform API data to our format
-                    matches = matches.map(m => ({
+                    matches = filterFutureMatches(matches).map(m => ({
                         date: m.date,
                         time: m.time,
                         category: m.competition || 'Competitie',
@@ -303,8 +272,7 @@ async function updateOtherMatches() {
             }
         }
 
-        // Fallback to mock data if API unavailable
-        if (!matches) {
+        if (!matches || matches.length === 0) {
             matches = await footballAPI.getUpcomingMatches();
         }
 
@@ -429,9 +397,9 @@ async function updateRecentResults() {
     let results = [];
     if (window.realFootballAPI) {
         try {
-            const realResults = await window.realFootballAPI.getPastMatches(null, 5);
+            const realResults = await window.realFootballAPI.getPastMatches(null, 20);
             if (realResults && realResults.length > 0) {
-                results = realResults.map(normalizeMatch).filter(Boolean);
+                results = filterPastMatches(realResults, 5);
             }
         } catch (error) {
             console.warn('Real API results failed, using fallback:', error);
@@ -439,12 +407,12 @@ async function updateRecentResults() {
     }
 
     if (results.length === 0 && window.PAST_MATCHES) {
-        results = window.PAST_MATCHES.map(normalizeMatch).filter(Boolean);
+        results = filterPastMatches(window.PAST_MATCHES, 5);
     }
 
     resultsGrid.innerHTML = '';
     const teamName = window.APP_CONFIG?.team?.name || 'RFC Lissewege';
-    results.slice(0, 5).forEach(match => {
+    results.forEach(match => {
         const date = new Date(match.date);
         const isHome = match.homeTeam === teamName;
         const opponent = isHome ? match.awayTeam : match.homeTeam;
@@ -480,6 +448,11 @@ async function updateRecentResults() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
+    const seasonLabel = document.getElementById('homeSeasonLabel');
+    if (seasonLabel && window.CURRENT_SEASON_LABEL) {
+        seasonLabel.textContent = `Seizoen ${window.CURRENT_SEASON_LABEL} · 4e Provinciale C West-Vlaanderen`;
+    }
+
     updateNextMatchWidget();
     updateOtherMatches();
     updateLeaguePosition();

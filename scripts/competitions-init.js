@@ -108,14 +108,16 @@ async function initRivals() {
         // Renderizar tarjetas de rivales
         rivalsGrid.innerHTML = rivals.map(rival => {
             const isTop3 = rival.position <= 3;
+            const logo = window.getTeamLogo
+                ? window.getTeamLogo(rival.name)
+                : (window.generatePlaceholderLogo ? window.generatePlaceholderLogo(rival.name) : '');
+            const safeName = rival.name.replace(/'/g, "\\'");
             
             return `
                 <div class="rival-card" data-position="${rival.position}">
                     <div class="rival-header">
                         <div class="rival-logo">
-                            <div class="placeholder">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
+                            <img src="${logo}" alt="${rival.name}" width="44" height="44" loading="lazy" decoding="async" onerror="if(window.generatePlaceholderLogo){this.src=window.generatePlaceholderLogo('${safeName}');this.onerror=null;}">
                         </div>
                         <div class="rival-info">
                             <div class="rival-name">${rival.name}</div>

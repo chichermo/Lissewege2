@@ -6,7 +6,7 @@
 
 const VOETBALINBELGIE_API = {
     baseUrl: 'https://api.voetbalinbelgie.be',
-    currentSeason: '2025-2026',
+    currentSeason: '2026-2027',
     cache: {
         standings: null,
         matches: null,

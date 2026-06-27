@@ -13,7 +13,7 @@ const breadcrumbMap = {
     'prijslijst': { title: 'Prijslijst', icon: 'fas fa-euro-sign' },
     'team': { title: 'Team', icon: 'fas fa-user-tie' },
     'sponsors': { title: 'Sponsors', icon: 'fas fa-handshake' },
-    'eventos': { title: 'Eventos', icon: 'fas fa-calendar-star' },
+    'eventos': { title: 'Evenementen', icon: 'fas fa-calendar-star' },
     'competities': { title: 'Competities', icon: 'fas fa-trophy' },
     'rivalen': { title: 'Rivalen', icon: 'fas fa-fist-raised' },
     'members': { title: 'Leden', icon: 'fas fa-id-card' },

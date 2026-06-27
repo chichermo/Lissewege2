@@ -1,204 +1,296 @@
 /* ============================================
-   COMPETITIONS SECTION STYLES
+   COMPETITIONS — RFC Lissewege pitch theme
    ============================================ */
 
 .competitions-section {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    padding: var(--section-y) 0;
+    background:
+        linear-gradient(165deg, #0a2e1c 0%, #0d4d2e 42%, #145a38 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.competitions-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 79px,
+            rgba(255, 255, 255, 0.03) 79px,
+            rgba(255, 255, 255, 0.03) 80px
+        ),
+        radial-gradient(circle at 50% 0%, rgba(255, 107, 53, 0.12), transparent 55%);
+    pointer-events: none;
 }
 
 .competitions-container {
-    max-width: 1200px;
+    max-width: var(--container-max);
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--space-4);
+    position: relative;
+    z-index: 1;
 }
 
 .competition-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-8);
+}
+
+.competition-header .section-title,
+.competition-header .section-description {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.competition-header .section-description {
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .competition-badge {
     display: inline-block;
-    padding: 0.5rem 1.5rem;
-    background: var(--primary-color, #1a5f3f);
+    padding: var(--space-2) var(--space-5);
+    background: rgba(255, 107, 53, 0.9);
     color: white;
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+    border-radius: 999px;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    margin-bottom: var(--space-3);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.08em;
 }
 
-.competition-structure {
+.competition-hero {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-6);
+    align-items: stretch;
+    margin-bottom: var(--space-8);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg, 18px);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(8px);
 }
 
-.competition-card {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.competition-hero-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-2);
 }
 
-.competition-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+.competition-hero-level {
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
-.competition-card h3 {
-    color: var(--primary-color, #1a5f3f);
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
+.competition-hero-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+    color: #fff;
+    line-height: var(--leading-tight);
 }
 
-.competition-level {
-    display: inline-block;
-    padding: 0.3rem 0.8rem;
-    background: #e8f5e9;
-    color: #2e7d32;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+.competition-hero-sub {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: var(--text-sm);
+}
+
+.competition-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+}
+
+.competition-hero-stat {
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: var(--radius-md, 12px);
+    padding: var(--space-4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.competition-hero-stat span {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.competition-hero-stat strong {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: #fff;
 }
 
 .standings-table {
-    background: white;
-    border-radius: 12px;
+    background: var(--surface);
+    border-radius: var(--radius-lg, 18px);
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 2rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    margin-bottom: var(--space-8);
+    border: 1px solid var(--border-subtle);
 }
 
 .standings-header {
-    background: var(--primary-color, #1a5f3f);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0a3d24 100%);
     color: white;
-    padding: 1.5rem;
+    padding: var(--space-4) var(--space-5);
     display: grid;
     grid-template-columns: 50px 1fr repeat(6, 60px);
-    gap: 1rem;
+    gap: var(--space-3);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: var(--text-xs);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.05em;
 }
 
 .standings-row {
-    padding: 1rem 1.5rem;
+    padding: var(--space-3) var(--space-5);
     display: grid;
     grid-template-columns: 50px 1fr repeat(6, 60px);
-    gap: 1rem;
+    gap: var(--space-3);
     align-items: center;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--border-subtle);
     transition: background 0.2s ease;
 }
 
 .standings-row:hover {
-    background: #f5f5f5;
+    background: rgba(13, 77, 46, 0.04);
 }
 
 .standings-row.our-team {
-    background: #e8f5e9;
-    font-weight: 600;
+    background: linear-gradient(90deg, rgba(13, 77, 46, 0.12) 0%, rgba(255, 107, 53, 0.08) 100%);
+    font-weight: 700;
+    border-left: 4px solid var(--accent-color);
 }
 
 .standings-row.our-team .position {
-    background: var(--primary-color, #1a5f3f);
+    background: var(--primary-color);
     color: white;
 }
 
 .position {
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    background: #f0f0f0;
+    border-radius: 10px;
+    background: #f0f4f2;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
 }
 
 .position.top-3 {
-    background: #ffd700;
-    color: #333;
+    background: linear-gradient(135deg, #ffd700, #f5a623);
+    color: #1a1a1a;
 }
 
-.team-name {
-    font-weight: 500;
-    color: #333;
+.standings-row .team-name {
+    font-weight: 600;
+    color: var(--dark-color);
 }
 
 .stats-cell {
     text-align: center;
-    font-size: 0.9rem;
-    color: #666;
+    font-size: var(--text-sm);
+    color: var(--text-light);
 }
 
 .points {
-    font-weight: 700;
-    color: var(--primary-color, #1a5f3f);
-    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    font-size: var(--text-base);
 }
 
 .province-info {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    margin-top: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: var(--surface);
+    border-radius: var(--radius-lg, 18px);
+    padding: var(--space-6);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    border: 1px solid var(--border-subtle);
 }
 
 .province-info h3 {
-    color: var(--primary-color, #1a5f3f);
-    margin-bottom: 1rem;
+    color: var(--primary-color);
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-display);
 }
 
-.province-divisions {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
+.province-info > p {
+    color: var(--text-light);
+    margin: 0 0 var(--space-5);
 }
 
-.division-item {
-    padding: 0.8rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border-left: 4px solid var(--primary-color, #1a5f3f);
-    transition: background 0.2s ease;
+.league-pyramid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
 }
 
-.division-item:hover {
-    background: #e9ecef;
+.pyramid-tier {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
 }
 
-.division-item.current {
-    background: #e8f5e9;
-    border-left-color: #4caf50;
+.pyramid-tier span {
+    padding: 0.5rem 0.85rem;
+    border-radius: 10px;
+    background: #f4f7f5;
+    border: 1px solid var(--border-subtle);
+    font-size: var(--text-xs);
     font-weight: 600;
+    color: var(--dark-color);
+    text-align: center;
+}
+
+.pyramid-tier span.current {
+    background: linear-gradient(135deg, var(--primary-color), #0a3d24);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 14px rgba(13, 77, 46, 0.35);
+}
+
+.tier-1 span { min-width: 40%; }
+.tier-2 span { min-width: 28%; }
+.tier-3 span { min-width: 22%; }
+.tier-4 span { min-width: 16%; }
+
+@media (max-width: 900px) {
+    .competition-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .competition-hero-stats {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
-    .competitions-container {
-        padding: 0 1rem;
-    }
-
-    .competition-header h2 {
-        font-size: 2rem;
-    }
-
     .standings-header,
     .standings-row {
         grid-template-columns: 40px 1fr 60px 60px;
-        font-size: 0.8rem;
-        padding: 0.75rem 1rem;
+        font-size: var(--text-xs);
+        padding: var(--space-3);
     }
 
     .standings-header .hide-mobile,
@@ -206,41 +298,9 @@
         display: none;
     }
 
-    .competition-structure {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .competition-card {
-        padding: 1.5rem;
-    }
-
-    .province-divisions {
-        grid-template-columns: 1fr;
-    }
-
-    .province-info {
-        padding: 1.5rem;
+    .tier-4 span,
+    .tier-3 span,
+    .tier-2 span {
+        min-width: 45%;
     }
 }
-
-@media (max-width: 480px) {
-    .standings-header,
-    .standings-row {
-        grid-template-columns: 35px 1fr 50px;
-        font-size: 0.75rem;
-        padding: 0.5rem;
-    }
-
-    .position {
-        width: 30px;
-        height: 30px;
-        font-size: 0.8rem;
-    }
-
-    .competition-badge {
-        font-size: 0.8rem;
-        padding: 0.4rem 1rem;
-    }
-}
-

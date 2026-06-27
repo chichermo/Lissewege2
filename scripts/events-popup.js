@@ -17,16 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const events = [
         {
-            title: 'Event 1',
-            description: 'Ontdek het speciale clubevent van dit jaar en mis geen enkele update.',
+            title: 'Club Evenement 1',
+            description: 'Ontdek het speciale clubevenement van dit jaar en mis geen enkele update.',
             image: 'images/1.jpg',
-            tag: 'Event 2026'
+            tag: 'Evenement 2026'
         },
         {
-            title: 'Event 2',
-            description: 'Een ontmoeting voor de hele RFC Lissewege-familie.',
+            title: 'Club Evenement 2',
+            description: 'Een activiteit voor de hele RFC Lissewege-familie.',
             image: 'images/2.jpg',
-            tag: 'Event 2026'
+            tag: 'Evenement 2026'
         }
     ];
 

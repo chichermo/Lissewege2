@@ -1,9 +1,12 @@
 // ============================================
 // REAL MATCHES DATA - RFC Lissewege
-// 4e Provinciale C West-Vlaanderen 2025/2026
+// 4e Provinciale C West-Vlaanderen
+// Seizoen 2026-2027 (fallback)
 // ============================================
 
-// Resultados pasados (actualizado al 7/12/2025)
+const CURRENT_SEASON_LABEL = '2026-2027';
+
+// Resultaten seizoen 2025-2026 (afgerond)
 const PAST_MATCHES = [
     { date: '2025-08-31', homeTeam: 'RFC Lissewege', awayTeam: 'KFC Damme', score: '3-1', venue: 'home' },
     { date: '2025-09-07', homeTeam: 'FC Zeebrugge', awayTeam: 'RFC Lissewege', score: '2-4', venue: 'away' },
@@ -18,27 +21,33 @@ const PAST_MATCHES = [
     { date: '2025-11-15', homeTeam: 'KSKD Hertsberge', awayTeam: 'RFC Lissewege', score: '1-1', venue: 'away' },
     { date: '2025-11-30', homeTeam: 'KFC Sint-Joris Sportief', awayTeam: 'RFC Lissewege', score: '3-2', venue: 'away' },
     { date: '2025-12-07', homeTeam: 'RFC Lissewege', awayTeam: 'KVV Aartrijke', score: '2-4', venue: 'home' },
-    { date: '2025-12-13', homeTeam: 'RFC Lissewege', awayTeam: 'FC Zeebrugge', score: '2-0', venue: 'home' }
+    { date: '2025-12-13', homeTeam: 'RFC Lissewege', awayTeam: 'FC Zeebrugge', score: '2-0', venue: 'home' },
+    { date: '2026-01-18', homeTeam: 'RFC Lissewege', awayTeam: 'VKSO Zerkegem B', score: '3-1', venue: 'home' },
+    { date: '2026-01-25', homeTeam: 'KSK Steenbrugge', awayTeam: 'RFC Lissewege', score: '1-2', venue: 'away' },
+    { date: '2026-02-01', homeTeam: 'RFC Lissewege', awayTeam: 'KFC Heist B', score: '4-0', venue: 'home' },
+    { date: '2026-02-07', homeTeam: 'KSV Bredene B', awayTeam: 'RFC Lissewege', score: '0-3', venue: 'away' },
+    { date: '2026-03-01', homeTeam: 'RFC Lissewege', awayTeam: 'KFC Sint-Joris Sportief', score: '2-1', venue: 'home' },
+    { date: '2026-03-14', homeTeam: 'RFC Lissewege', awayTeam: 'VC Vamos Zandvoorde', score: '3-0', venue: 'home' },
+    { date: '2026-04-19', homeTeam: 'RFC Lissewege', awayTeam: 'KSKD Hertsberge', score: '1-1', venue: 'home' },
+    { date: '2026-05-10', homeTeam: 'KVV Aartrijke', awayTeam: 'RFC Lissewege', score: '2-3', venue: 'away' }
 ];
 
-// Próximos partidos
+// Komende wedstrijden seizoen 2026-2027
 const UPCOMING_MATCHES = [
-    { date: '2026-01-18', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'VKSO Zerkegem B', venue: 'home' },
-    { date: '2026-01-23', time: '19:30', homeTeam: 'RFC Lissewege', awayTeam: 'Tegenstander', venue: 'home' },
-    { date: '2026-01-25', time: '14:30', homeTeam: 'KSK Steenbrugge', awayTeam: 'RFC Lissewege', venue: 'away' },
-    { date: '2026-02-01', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'KFC Heist B', venue: 'home' },
-    { date: '2026-02-07', time: '19:30', homeTeam: 'KSV Bredene B', awayTeam: 'RFC Lissewege', venue: 'away' },
-    { date: '2026-03-01', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'KFC Sint-Joris Sportief', venue: 'home' },
-    { date: '2026-03-07', time: '19:30', homeTeam: 'K. Excelsior Zedelgem B', awayTeam: 'RFC Lissewege', venue: 'away' },
-    { date: '2026-03-14', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'VC Vamos Zandvoorde', venue: 'home' },
-    { date: '2026-03-22', time: '15:00', homeTeam: 'KFC Damme', awayTeam: 'RFC Lissewege', venue: 'away' },
-    { date: '2026-03-29', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'VVC Beernem B', venue: 'home' },
-    { date: '2026-04-12', time: '15:00', homeTeam: 'VV Eendracht Brugge', awayTeam: 'RFC Lissewege', venue: 'away' },
-    { date: '2026-04-19', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'KSKD Hertsberge', venue: 'home' },
-    { date: '2026-04-26', time: '15:00', homeTeam: 'KVV Aartrijke', awayTeam: 'RFC Lissewege', venue: 'away' }
+    { date: '2026-08-17', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'KFC Damme', venue: 'home' },
+    { date: '2026-08-24', time: '15:00', homeTeam: 'FC Zeebrugge', awayTeam: 'RFC Lissewege', venue: 'away' },
+    { date: '2026-08-31', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'VV Eendracht Brugge', venue: 'home' },
+    { date: '2026-09-07', time: '15:00', homeTeam: 'VKSO Zerkegem B', awayTeam: 'RFC Lissewege', venue: 'away' },
+    { date: '2026-09-14', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'KSV Bredene B', venue: 'home' },
+    { date: '2026-09-21', time: '15:00', homeTeam: 'VVC Beernem B', awayTeam: 'RFC Lissewege', venue: 'away' },
+    { date: '2026-09-28', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'KFC Heist B', venue: 'home' },
+    { date: '2026-10-05', time: '15:00', homeTeam: 'KSK Steenbrugge', awayTeam: 'RFC Lissewege', venue: 'away' },
+    { date: '2026-10-12', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'VC Vamos Zandvoorde', venue: 'home' },
+    { date: '2026-10-19', time: '15:00', homeTeam: 'K. Excelsior Zedelgem B', awayTeam: 'RFC Lissewege', venue: 'away' },
+    { date: '2026-11-02', time: '15:00', homeTeam: 'RFC Lissewege', awayTeam: 'KSKD Hertsberge', venue: 'home' },
+    { date: '2026-11-09', time: '15:00', homeTeam: 'KFC Sint-Joris Sportief', awayTeam: 'RFC Lissewege', venue: 'away' }
 ];
 
-// Información de equipos para logos
 const TEAM_INFO = {
     'RFC Lissewege': { logo: 'images/logos/teams/rfc-lissewege.webp', address: 'Pol Dhondtstraat 70, 8380 Lissewege' },
     'KVV Aartrijke': { logo: 'images/logos/teams/kvv-aartrijke.webp', address: 'KVV Aartrijke Stadion' },
@@ -56,8 +65,7 @@ const TEAM_INFO = {
     'VC Vamos Zandvoorde': { logo: 'images/logos/teams/vc-vamos-zandvoorde.webp', address: 'VC Vamos Zandvoorde Stadion' }
 };
 
-// Export
+window.CURRENT_SEASON_LABEL = CURRENT_SEASON_LABEL;
 window.PAST_MATCHES = PAST_MATCHES;
 window.UPCOMING_MATCHES = UPCOMING_MATCHES;
 window.TEAM_INFO = TEAM_INFO;
-

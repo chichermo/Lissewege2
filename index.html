@@ -78,7 +78,7 @@
                     <li><a href="#teams" class="nav-link">Teams</a></li>
                     <li><a href="#spelers" class="nav-link">Spelers</a></li>
                     <li><a href="#nieuws" class="nav-link">Nieuws</a></li>
-                    <li><a href="#eventos" class="nav-link">Eventos</a></li>
+                    <li><a href="#eventos" class="nav-link">Evenementen</a></li>
                     <li><a href="#kalender" class="nav-link">Kalender</a></li>
                     <li><a href="#sponsors" class="nav-link">Sponsors</a></li>
                     <li><a href="#competities" class="nav-link">Competities</a></li>
@@ -133,21 +133,20 @@
             </div>
 
             <div class="home-content-wrapper">
-                <!-- Compact intro (brand is in navbar) -->
-                <div class="home-intro">
-                    <p class="home-tagline">Samen sterk, op naar de overwinning!</p>
-                </div>
+                <header class="home-dashboard-header">
+                    <p class="home-eyebrow">Welkom bij RFC Lissewege</p>
+                    <h1 class="home-dashboard-title">Club Dashboard</h1>
+                    <p class="home-dashboard-meta" id="homeSeasonLabel">Seizoen 2026-2027 · 4e Provinciale C West-Vlaanderen</p>
+                </header>
 
-                <!-- Next Match Widget - Featured -->
-                <div class="next-match-widget featured-match">
-                    <div class="match-widget-header">
-                        <div class="match-category-badge" id="matchCategory">U13</div>
-                        <div class="match-header-right">
-                            <i class="fas fa-futbol"></i>
-                            <h3>Volgende Wedstrijd</h3>
-                        </div>
+                <section class="home-block home-block--featured" aria-labelledby="homeNextMatchTitle">
+                    <div class="home-block-head">
+                        <h2 id="homeNextMatchTitle"><i class="fas fa-futbol"></i> Volgende Wedstrijd</h2>
+                        <a href="#kalender" class="home-block-link">Volledige kalender <i class="fas fa-arrow-right"></i></a>
                     </div>
+                    <div class="next-match-widget featured-match">
                     <div class="match-widget-content" id="nextMatchWidget">
+                        <div class="match-category-badge" id="matchCategory">4e Prov C</div>
                         <div class="match-teams match-teams--horizontal">
                             <div class="match-team-row">
                                 <div class="team-logo-placeholder">
@@ -184,35 +183,32 @@
                                     class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-                </div>
+                    </div>
+                </section>
 
-                <!-- Other Matches List -->
-                <div class="other-matches-section">
-                    <h3 class="other-matches-title">
-                        <i class="fas fa-calendar-week"></i>
-                        Andere Wedstrijden
-                    </h3>
+                <section class="home-block" aria-labelledby="homeOtherMatchesTitle">
+                    <div class="home-block-head">
+                        <h2 id="homeOtherMatchesTitle"><i class="fas fa-calendar-week"></i> Komende Wedstrijden</h2>
+                    </div>
                     <div class="other-matches-grid" id="otherMatchesGrid">
                         <!-- Matches will be populated by JavaScript -->
                     </div>
-                </div>
+                </section>
 
-                <!-- Recent Results -->
-                <div class="recent-results-section">
-                    <div class="recent-results-header">
-                        <h3><i class="fas fa-flag-checkered"></i> Recente Resultaten</h3>
-                        <span class="recent-results-update">Bijgewerkt: <span id="recentResultsLastUpdate">--</span></span>
+                <section class="home-block" aria-labelledby="homeResultsTitle">
+                    <div class="home-block-head">
+                        <h2 id="homeResultsTitle"><i class="fas fa-flag-checkered"></i> Recente Resultaten</h2>
+                        <span class="home-block-meta">Bijgewerkt: <span id="recentResultsLastUpdate">--</span></span>
                     </div>
                     <div class="recent-results-grid" id="recentResultsGrid">
                         <!-- Results will be populated by JavaScript -->
                     </div>
-                </div>
+                </section>
 
-                <!-- Partners Preview -->
-                <div class="home-partners-section">
-                    <div class="home-partners-header">
-                        <h3><i class="fas fa-handshake"></i> Onze Partners</h3>
-                        <a href="#sponsors" class="view-all-link">Alle Sponsors <i class="fas fa-arrow-right"></i></a>
+                <section class="home-block" aria-labelledby="homePartnersTitle">
+                    <div class="home-block-head">
+                        <h2 id="homePartnersTitle"><i class="fas fa-handshake"></i> Onze Partners</h2>
+                        <a href="#sponsors" class="home-block-link">Alle sponsors <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="home-partners-grid">
                         <div class="home-partner-logo">
@@ -240,14 +236,14 @@
                             <img src="images/sponsors/LOGO FRS (003).jpeg" alt="FRS">
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <!-- Latest News Carousel -->
-                <div class="news-carousel-section">
-                    <div class="carousel-header">
-                        <h3><i class="fas fa-newspaper"></i> Laatste Nieuws</h3>
-                        <a href="#nieuws" class="view-all-link">Alles Bekijken <i class="fas fa-arrow-right"></i></a>
+                <section class="home-block" aria-labelledby="homeNewsTitle">
+                    <div class="home-block-head">
+                        <h2 id="homeNewsTitle"><i class="fas fa-newspaper"></i> Laatste Nieuws</h2>
+                        <a href="#nieuws" class="home-block-link">Alles bekijken <i class="fas fa-arrow-right"></i></a>
                     </div>
+                <!-- Latest News Carousel -->
                     <div class="news-carousel" id="newsCarousel">
                         <div class="news-slide active">
                             <div class="news-slide-image">
@@ -282,7 +278,7 @@
                         </div>
                         <button class="carousel-btn next" id="nextNews"><i class="fas fa-chevron-right"></i></button>
                     </div>
-                </div>
+                </section>
 
                 <!-- Quick Stats -->
                 <div class="home-quick-stats">
@@ -305,40 +301,40 @@
             </div>
         </section>
 
-        <!-- Eventos Page -->
+        <!-- Evenementen Page -->
         <section id="eventos" class="page-section section events-section">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag">Eventos</span>
-                    <h2 class="section-title">Eventos 2026</h2>
-                    <p class="section-description">Nuevos eventos del club para este año.</p>
+                    <span class="section-tag">Evenementen</span>
+                    <h2 class="section-title">Club Evenementen 2026</h2>
+                    <p class="section-description">Blijf op de hoogte van activiteiten en evenementen van RFC Lissewege.</p>
                 </div>
 
                 <div class="events-grid">
                     <article class="event-card">
                         <div class="event-image">
-                            <img src="images/1.jpg" alt="Evento 1" loading="lazy">
+                            <img src="images/1.jpg" alt="Club evenement 1" loading="lazy">
                         </div>
                         <div class="event-content">
-                            <span class="event-label">Nuevo evento</span>
-                            <h3>Evento 1</h3>
-                            <p>Consulta los detalles del evento y mantente al día con las novedades del club.</p>
+                            <span class="event-label">Nieuw evenement</span>
+                            <h3>Club Evenement 1</h3>
+                            <p>Bekijk de details van dit evenement en blijf op de hoogte van het clubnieuws.</p>
                             <button class="event-card-btn" data-event-index="0" type="button">
-                                Ver evento <i class="fas fa-arrow-right"></i>
+                                Bekijk evenement <i class="fas fa-arrow-right"></i>
                             </button>
                         </div>
                     </article>
 
                     <article class="event-card">
                         <div class="event-image">
-                            <img src="images/2.jpg" alt="Evento 2" loading="lazy">
+                            <img src="images/2.jpg" alt="Club evenement 2" loading="lazy">
                         </div>
                         <div class="event-content">
-                            <span class="event-label">Nuevo evento</span>
-                            <h3>Evento 2</h3>
-                            <p>Un nuevo encuentro para toda la familia del RFC Lissewege.</p>
+                            <span class="event-label">Nieuw evenement</span>
+                            <h3>Club Evenement 2</h3>
+                            <p>Een activiteit voor de hele RFC Lissewege-familie.</p>
                             <button class="event-card-btn" data-event-index="1" type="button">
-                                Ver evento <i class="fas fa-arrow-right"></i>
+                                Bekijk evenement <i class="fas fa-arrow-right"></i>
                             </button>
                         </div>
                     </article>
@@ -855,7 +851,7 @@
                     <!-- Eerste Elftallen Team Players -->
                     <div class="players-team" id="team-eersteElftallen">
                         <h3 class="team-players-title">A-Kern</h3>
-                        <p class="team-players-subtitle">Seizoen 2025-2026</p>
+                        <p class="team-players-subtitle">Seizoen 2026-2027</p>
                         <div class="players-grid">
                             <!-- Players will be loaded dynamically by JavaScript -->
                             <div class="player-card placeholder">
@@ -1006,7 +1002,7 @@
                 <div class="section-header">
                     <span class="section-tag">Kalender</span>
                     <h2 class="section-title">Komende Evenementen</h2>
-                    <p class="section-description">4e Provinciale C West-Vlaanderen - Seizoen 2025/2026</p>
+                    <p class="section-description">4e Provinciale C West-Vlaanderen - Seizoen 2026/2027</p>
                 </div>
                 <!-- League Standings Table -->
                 <div class="standings-section">
@@ -1015,7 +1011,7 @@
                         Competitie Stand - 4e Provinciale C West-Vlaanderen
                     </h3>
                     <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem; font-size: 0.9rem;">
-                        Seizoen 2025/2026 - Bijgewerkt op <span id="standingsLastUpdate">--</span>
+                        Seizoen 2026/2027 - Bijgewerkt op <span id="standingsLastUpdate">--</span>
                     </p>
                     <div class="standings-table-wrapper">
                         <table class="standings-table">
@@ -1047,7 +1043,7 @@
                         Resultaten - Afgelopen Wedstrijden
                     </h3>
                     <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem; font-size: 0.9rem;">
-                        Seizoen 2025/2026 - Laatste update: <span id="calendarLastUpdate">--</span>
+                        Seizoen 2026/2027 - Laatste update: <span id="calendarLastUpdate">--</span>
                     </p>
                     <div class="calendar-grid-modern" id="pastMatchesGrid">
                         <!-- Will be populated by JavaScript -->
@@ -1061,7 +1057,7 @@
                         Komende Wedstrijden
                     </h3>
                     <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem; font-size: 0.9rem;">
-                        Seizoen 2025/2026 - 4e Provinciale C West-Vlaanderen · <span id="upcomingLastUpdate">--</span>
+                        Seizoen 2026/2027 - 4e Provinciale C West-Vlaanderen · <span id="upcomingLastUpdate">--</span>
                     </p>
                     <div class="calendar-grid-modern" id="upcomingMatchesGrid">
                         <!-- Will be populated by JavaScript -->
@@ -1948,27 +1944,28 @@
                 <div class="competition-header">
                     <span class="competition-badge">Competities</span>
                     <h2 class="section-title">Onze Competitie</h2>
-                    <p class="section-description">RFC Lissewege speelt in de 4e Provinciale C West-Vlaanderen</p>
+                    <p class="section-description">RFC Lissewege in de 4e Provinciale C West-Vlaanderen</p>
                 </div>
 
-                <div class="competition-structure">
-                    <div class="competition-card">
-                        <span class="competition-level">Niveau 4</span>
-                        <h3>4e Provinciale C</h3>
-                        <p>West-Vlaanderen - Mannen</p>
-                        <p class="competition-info">Seizoen 2025-2026</p>
+                <div class="competition-hero">
+                    <div class="competition-hero-main">
+                        <span class="competition-hero-level">Niveau 4</span>
+                        <h3 class="competition-hero-title">4e Provinciale C</h3>
+                        <p class="competition-hero-sub">West-Vlaanderen · Mannen · KBVB</p>
                     </div>
-                    <div class="competition-card">
-                        <span class="competition-level">Provincie</span>
-                        <h3>West-Vlaanderen</h3>
-                        <p>Flandes Occidental</p>
-                        <p class="competition-info">Regio: Vlaanderen</p>
-                    </div>
-                    <div class="competition-card">
-                        <span class="competition-level">Systeem</span>
-                        <h3>Belgisch Voetbal</h3>
-                        <p>Provinciale Competities</p>
-                        <p class="competition-info">KBVB Georganiseerd</p>
+                    <div class="competition-hero-stats">
+                        <div class="competition-hero-stat">
+                            <span>Seizoen</span>
+                            <strong>2026-2027</strong>
+                        </div>
+                        <div class="competition-hero-stat">
+                            <span>Provincie</span>
+                            <strong>West-Vlaanderen</strong>
+                        </div>
+                        <div class="competition-hero-stat">
+                            <span>Regio</span>
+                            <strong>Vlaanderen</strong>
+                        </div>
                     </div>
                 </div>
 
@@ -1989,22 +1986,21 @@
                     </div>
                 </div>
 
-                <!-- Province Info -->
+                <!-- Province pyramid -->
                 <div class="province-info">
-                    <h3>West-Vlaanderen Competitie Structuur</h3>
-                    <p>De provincie West-Vlaanderen heeft verschillende niveaus van competities voor mannen:</p>
-                    <div class="province-divisions">
-                        <div class="division-item">1e Provinciale</div>
-                        <div class="division-item">2e Provinciale A</div>
-                        <div class="division-item">2e Provinciale B</div>
-                        <div class="division-item">3e Provinciale A</div>
-                        <div class="division-item">3e Provinciale B</div>
-                        <div class="division-item">3e Provinciale C</div>
-                        <div class="division-item">4e Provinciale A</div>
-                        <div class="division-item">4e Provinciale B</div>
-                        <div class="division-item current">4e Provinciale C ← RFC Lissewege</div>
-                        <div class="division-item">4e Provinciale D</div>
-                        <div class="division-item">4e Provinciale E</div>
+                    <h3>West-Vlaanderen Competitie Piramide</h3>
+                    <p>Van hoog naar laag — onze club speelt in de 4e Provinciale C:</p>
+                    <div class="league-pyramid">
+                        <div class="pyramid-tier tier-1"><span>1e Provinciale</span></div>
+                        <div class="pyramid-tier tier-2"><span>2e Provinciale A</span><span>2e Provinciale B</span></div>
+                        <div class="pyramid-tier tier-3"><span>3e Prov. A</span><span>3e Prov. B</span><span>3e Prov. C</span></div>
+                        <div class="pyramid-tier tier-4">
+                            <span>4e Prov. A</span>
+                            <span>4e Prov. B</span>
+                            <span class="current">4e Prov. C ← RFC Lissewege</span>
+                            <span>4e Prov. D</span>
+                            <span>4e Prov. E</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2960,7 +2956,7 @@
                             <li><a href="#spelers"><i class="fas fa-chevron-right"></i> Spelers</a></li>
                             <li><a href="#nieuws"><i class="fas fa-chevron-right"></i> Nieuws</a></li>
                             <li><a href="#sponsors"><i class="fas fa-chevron-right"></i> Sponsors</a></li>
-                            <li><a href="#eventos"><i class="fas fa-chevron-right"></i> Eventos</a></li>
+                            <li><a href="#eventos"><i class="fas fa-chevron-right"></i> Evenementen</a></li>
                             <li><a href="#kalender"><i class="fas fa-chevron-right"></i> Kalender</a></li>
                             <li><a href="#contact"><i class="fas fa-chevron-right"></i> Lid Worden</a></li>
                         </ul>
@@ -3092,7 +3088,7 @@
         <div class="loading-spinner"></div>
     </div>
 
-    <!-- Eventos Popup -->
+    <!-- Evenementen Popup -->
     <div class="event-popup-overlay" id="eventPopupOverlay" aria-hidden="true">
         <div class="event-popup" role="dialog" aria-modal="true" aria-labelledby="eventPopupTitle">
             <button class="event-popup-close" type="button" aria-label="Sluiten">
