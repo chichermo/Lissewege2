@@ -3,8 +3,8 @@
    ============================================ */
 .search-container {
     position: relative;
-    max-width: 500px;
-    margin: 2.5rem auto 0;
+    max-width: 360px;
+    margin: 0 0 var(--space-4) 0;
     z-index: 10;
 }
 
@@ -15,14 +15,14 @@
 
 .search-input {
     width: 100%;
-    padding: 1.25rem 3.5rem 1.25rem 1.5rem;
-    border: 2px solid rgba(13, 77, 46, 0.2);
-    border-radius: 9999px;
-    font-size: 1rem;
+    padding: var(--space-3) var(--space-10) var(--space-3) var(--space-4);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
     font-family: inherit;
-    transition: all 0.3s ease;
-    background: var(--white);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: var(--transition-fast);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-xs);
 }
 
 .search-input:focus {

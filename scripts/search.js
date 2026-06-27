@@ -121,12 +121,11 @@ function createSearchBox() {
         </div>
     `;
 
-    // Target the Home Title Section for better placement
-    const targetSection = document.querySelector('.home-title-section');
+    // Place search at top of home content
+    const targetSection = document.querySelector('.home-content-wrapper');
 
     if (targetSection) {
-        // Insert inside the home title section, after the subtitle
-        targetSection.insertAdjacentHTML('beforeend', searchHTML);
+        targetSection.insertAdjacentHTML('afterbegin', searchHTML);
     } else if (mainContent) {
         // Fallback: Insert at the beginning of main content
         mainContent.insertAdjacentHTML('afterbegin', searchHTML);

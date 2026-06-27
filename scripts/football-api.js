@@ -186,8 +186,8 @@ async function updateNextMatchWidget() {
         const matchCategory = document.getElementById('matchCategory');
         const locationType = document.querySelector('.location-type');
         const locationAddress = document.querySelector('.location-address span');
-        const homeTeamLogo = document.querySelector('.team-home .team-logo-placeholder');
-        const awayTeamLogo = document.querySelector('.team-away .team-logo-placeholder');
+        const homeTeamLogo = document.querySelector('.match-team-row:first-child .team-logo-placeholder');
+        const awayTeamLogo = document.querySelector('.match-team-row:last-child .team-logo-placeholder');
 
         if (matchDate) {
             const date = new Date(match.date);
@@ -234,6 +234,8 @@ async function updateNextMatchWidget() {
                 const homeImg = document.createElement('img');
                 homeImg.src = homeLogo;
                 homeImg.alt = `${match.homeTeam} logo`;
+                homeImg.width = 44;
+                homeImg.height = 44;
                 homeImg.className = 'team-logo-img';
                 homeImg.onerror = function () {
                     if (window.generatePlaceholderLogo) {
@@ -251,6 +253,8 @@ async function updateNextMatchWidget() {
                 const awayImg = document.createElement('img');
                 awayImg.src = awayLogo;
                 awayImg.alt = `${opponent} logo`;
+                awayImg.width = 44;
+                awayImg.height = 44;
                 awayImg.className = 'team-logo-img';
                 awayImg.onerror = function () {
                     if (window.generatePlaceholderLogo) {
@@ -337,27 +341,27 @@ async function updateOtherMatches() {
                         <span class="match-card-date-month">${date.toLocaleDateString('nl-BE', { month: 'short' })}</span>
                     </div>
                 </div>
-                <div class="match-card-teams">
+                <div class="match-card-teams match-card-teams--horizontal">
                     <div class="match-card-team">
-                        <img src="${ourTeamLogo}" alt="${ourTeam} logo" class="match-card-team-logo-img" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${ourTeam}'); this.onerror = null; } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
-                        <div class="match-card-team-logo" style="display: none;">
-                            <i class="fas fa-shield-alt"></i>
+                        <div class="match-card-logo-circle">
+                            <img src="${ourTeamLogo}" alt="${ourTeam}" class="match-card-team-logo-img" width="40" height="40" loading="lazy" decoding="async" onerror="if(window.generatePlaceholderLogo){this.src=window.generatePlaceholderLogo('${ourTeam.replace(/'/g, "\\'")}');this.onerror=null;}">
                         </div>
                         <span class="match-card-team-name ${isHome ? 'home' : ''}">${ourTeam}</span>
                     </div>
-                    <div class="match-card-vs">VS</div>
-                    <div class="match-card-team">
-                        <img src="${opponentLogo}" alt="${opponent} logo" class="match-card-team-logo-img" onerror="if(window.generatePlaceholderLogo) { this.src = window.generatePlaceholderLogo('${opponent}'); this.onerror = null; } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
-                        <div class="match-card-team-logo" style="display: none;">
-                            <i class="fas fa-shield-alt"></i>
+                    <span class="match-card-vs">vs</span>
+                    <div class="match-card-team match-card-team--away">
+                        <div class="match-card-logo-circle">
+                            <img src="${opponentLogo}" alt="${opponent}" class="match-card-team-logo-img" width="40" height="40" loading="lazy" decoding="async" onerror="if(window.generatePlaceholderLogo){this.src=window.generatePlaceholderLogo('${opponent.replace(/'/g, "\\'")}');this.onerror=null;}">
                         </div>
                         <span class="match-card-team-name">${opponent}</span>
                     </div>
                 </div>
-                <div class="match-card-time">${match.time}</div>
-                <div class="match-card-location ${match.venue === 'away' ? 'away' : ''}">
-                    <i class="fas fa-${match.venue === 'away' ? 'plane' : 'home'}"></i>
-                    <span>${match.venue === 'away' ? 'Uit' : 'Thuis'} - ${match.address}</span>
+                <div class="match-card-footer">
+                    <span class="match-card-time">${match.time}</span>
+                    <div class="match-card-location ${match.venue === 'away' ? 'away' : ''}">
+                        <i class="fas fa-${match.venue === 'away' ? 'plane' : 'home'}"></i>
+                        <span>${match.venue === 'away' ? 'Uit' : 'Thuis'}</span>
+                    </div>
                 </div>
             `;
 
